@@ -1,0 +1,184 @@
+{
+  "computed_at": "2026-06-10T18:30:29.560486+00:00",
+  "ticker": "QQQ",
+  "index": "NDX",
+  "model": {
+    "model_tag": "kader-equity-stack-2026-06-09",
+    "as_of": "2026-06-10",
+    "computed_at": "2026-06-10T18:30:29.404541+00:00",
+    "data_source": "live",
+    "call_status": "current",
+    "freshness": {
+      "as_of": "2026-06-10",
+      "today": "2026-06-10",
+      "age_days": 0,
+      "max_staleness_days": 5,
+      "stale": false
+    },
+    "tide_score": 7.3591,
+    "tide_dir": 1,
+    "direction": "LONG",
+    "position_target": 0.966,
+    "deploy_fraction": 0.966,
+    "leverage": 1.0,
+    "active_overlays": [
+      "cor1m_froth",
+      "gex_shield"
+    ],
+    "overlay_block": false,
+    "overlay_block_reason": null,
+    "overlays": {
+      "cor1m_froth": {
+        "available": true,
+        "cor1m": 13.65,
+        "as_of": "2026-06-09",
+        "factor": 1.0,
+        "froth": false,
+        "reason": "COR1M 13.7 ≥ 11 → normal (factor 1.0)"
+      },
+      "gex_shield": {
+        "available": true,
+        "gex_z": -1.07,
+        "as_of": "2026-06-09",
+        "factor": 0.966,
+        "short_gamma": true,
+        "z_stale": false,
+        "z_stale_obs": 0,
+        "reason": "z(GEX) -1.1 < −1 → dealer short-gamma kalkan (factor 0.97)"
+      }
+    },
+    "spine": {
+      "recipe": "8-modül sweep winner (RAW m2, +1g lag); m9 .563/m5 .214/m2 .118/m0 .061/m3 .025/m6 .01/m8 .006/m4 .002",
+      "vector": {
+        "m0": 0.0613,
+        "m1": 0.0001,
+        "m2": 0.1182,
+        "m3": 0.0246,
+        "m4": 0.0024,
+        "m5": 0.2143,
+        "m6": 0.0098,
+        "m8": 0.0065,
+        "m9": 0.5626,
+        "m11": 0.0003
+      },
+      "modules_used": [
+        "m0",
+        "m1",
+        "m2",
+        "m3",
+        "m4",
+        "m5",
+        "m6",
+        "m8",
+        "m9",
+        "m11"
+      ]
+    },
+    "_pass": "spine + cor1m_froth × gex_shield"
+  },
+  "state": {
+    "ticker": "QQQ",
+    "spot": 697.83,
+    "net_gex_bn": -1.875,
+    "net_vanna_m": 104.04,
+    "net_charm_m": -1959.84,
+    "gex_flip": 708.4,
+    "call_wall": 702.0,
+    "put_wall": 695.0,
+    "max_pain": 705.0,
+    "exp_move_1d": 14.51,
+    "rv_ratio": 1.572,
+    "gamma_regime": "SHORT GAMMA",
+    "cor1m": 13.65,
+    "atm_iv": 35.62,
+    "rr_skew": 4.22,
+    "ts_ratio": 1.248,
+    "atm_iv_30d": 29.95,
+    "realized_vol": 24.39,
+    "vrp": 5.56
+  },
+  "meta": {
+    "snapshot_as_of": "2026-06-10",
+    "snapshot_age_days": 0,
+    "gamma_available": true,
+    "surface_available": true,
+    "model_call_status": "current",
+    "stale": false,
+    "data_ok": true,
+    "data_fails": [],
+    "data_checks": {
+      "spot": 697.83,
+      "front_atm_iv": 35.62,
+      "exp_move_1d": 14.51,
+      "net_gex_bn": -1.875,
+      "em_cross_ratio": 0.93
+    },
+    "data_junk": false,
+    "gamma_fallback_to_spy": false,
+    "surface_fallback_to_spy": false,
+    "index": "NDX",
+    "mult": 41
+  },
+  "decision": {
+    "direction": "LONG",
+    "conviction": 0.966,
+    "horizon": "intraday",
+    "vehicle": {
+      "class": "call_debit",
+      "expression": "kısa-gamma/flip-altı + model LONG: CALL-debit-spread (tanımlı-risk ile katıl, kuyruğu satın al değil)",
+      "instrument": "call-debit-spread(SPY/QQQ)"
+    },
+    "regime": {
+      "short_gamma": true,
+      "above_flip": false,
+      "dist_flip_em": 0.7284631288766324,
+      "froth": false,
+      "froth_soft": false,
+      "near_wall": true,
+      "backwardation": true,
+      "calm": false,
+      "cor1m": 13.65,
+      "vrp": 5.56,
+      "vrp_rich": true,
+      "vrp_cheap": false,
+      "ticker": "QQQ"
+    },
+    "rationale": "model LONG (konviksiyon 0.97); rejim: kısa-gamma, flip-altı, froth-yok, vol-backward/stres, duvara-yakın → kısa-gamma/flip-altı + model LONG: CALL-debit-spread (tanımlı-risk ile katıl, kuyruğu satın al değil)"
+  },
+  "trade": {
+    "class": "call_debit",
+    "ticket": {
+      "class": "call_debit",
+      "underlying": "QQQ",
+      "spot": 697.83,
+      "dte": 21,
+      "structure": "call-debit-spread",
+      "long_call": 698,
+      "short_call": 730,
+      "max_loss": "ödenen debit (tanımlı)",
+      "target": "spot→730 (call-wall)",
+      "levels": "AL call 698 / SAT call 730, 21g — tanımlı-risk directional"
+    },
+    "note": "kısa-gamma/flip-altı + model LONG: CALL-debit-spread (tanımlı-risk ile katıl, kuyruğu satın al değil)"
+  },
+  "risk": {
+    "pool": "options(Midas)",
+    "account_size_usd": 1000.0,
+    "conviction": 0.966,
+    "risk_budget_usd": 19.32,
+    "action": "OPEN call-debit-spread",
+    "contracts": "≈ floor(risk_bütçesi / yapı-max-loss)",
+    "dollar_risk": 19.32,
+    "note": "max-loss ≤ $19.32 (defined-risk); kontrat = bütçe ÷ (yapının canlı max-loss'u). Midas'ta debit/genişlik girince netleşir.",
+    "futures_note": "prop hesabı kapalı → directional futures devre-dışı (cash-ETF/options kullanılıyor)"
+  },
+  "live_book": {
+    "mode": "delta_one",
+    "etf": "QQQM",
+    "position": 0.966,
+    "direction": "LONG",
+    "halt_pct": -23.4,
+    "options_paper": true,
+    "unlock_usd": 10000
+  }
+}

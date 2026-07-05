@@ -1,0 +1,349 @@
+{
+  "recomputed": {
+    "R1_unconditional": {
+      "by_offset": {
+        "-5": {
+          "mean": 0.00023330274888484762,
+          "t": 0.24704733288390698,
+          "n": 181
+        },
+        "-4": {
+          "mean": 0.0023900191166355196,
+          "t": 3.2804017377799104,
+          "n": 181
+        },
+        "-3": {
+          "mean": -0.0007851297559277582,
+          "t": -1.055363795497673,
+          "n": 181
+        },
+        "-2": {
+          "mean": -6.855611882538277e-05,
+          "t": -0.09844218341534262,
+          "n": 181
+        },
+        "-1": {
+          "mean": -0.00047491838194266414,
+          "t": -0.7122929395048536,
+          "n": 181
+        },
+        "0": {
+          "mean": 0.0002484491687480406,
+          "t": 0.3404262591479398,
+          "n": 181
+        },
+        "1": {
+          "mean": 0.0015012311957388667,
+          "t": 1.6836109241722135,
+          "n": 181
+        },
+        "2": {
+          "mean": 0.0006858587373730278,
+          "t": 1.0400115488382604,
+          "n": 181
+        },
+        "3": {
+          "mean": 0.0006045976574618231,
+          "t": 0.7213985151238175,
+          "n": 181
+        },
+        "4": {
+          "mean": 0.0004725793354318229,
+          "t": 0.6256605380913407,
+          "n": 181
+        },
+        "5": {
+          "mean": 0.0013751684108806576,
+          "t": 1.8853636879579623,
+          "n": 181
+        }
+      },
+      "PRE": {
+        "mean": 0.00025894352176491245,
+        "t": 0.7567049859714489,
+        "n": 905
+      },
+      "OPEX": {
+        "mean": 0.0002484491687480406,
+        "t": 0.3404262591479398,
+        "n": 181
+      },
+      "POST": {
+        "mean": 0.0009278870673772396,
+        "t": 2.6668443415620158,
+        "n": 905
+      },
+      "ALL": {
+        "mean": 0.0005057082090940273,
+        "t": 2.8607838205433445,
+        "n": 3797
+      }
+    },
+    "R2_regime_cells": {
+      "PRE_POS": {
+        "mean": 0.0005900021943807199,
+        "t": 2.0357539286915327,
+        "n": 810
+      },
+      "PRE_NEG": {
+        "mean": -0.002563767265801446,
+        "t": -1.212657492165698,
+        "n": 95
+      },
+      "OPEX_POS": {
+        "mean": 0.00047593945964738443,
+        "t": 0.7090688172824787,
+        "n": 161
+      },
+      "OPEX_NEG": {
+        "mean": -0.0015828476729916774,
+        "t": -0.4096940037771463,
+        "n": 20
+      },
+      "POST_POS": {
+        "mean": 0.0005099315997864901,
+        "t": 1.6728243046850342,
+        "n": 826
+      },
+      "POST_NEG": {
+        "mean": 0.005297902462693177,
+        "t": 2.2532576158456328,
+        "n": 79
+      }
+    },
+    "R3_overlay": {
+      "bh": {
+        "sharpe": 0.7369957997332433,
+        "maxdd": -0.33924373619363757,
+        "cum_ret": 4.440509364962866,
+        "n": 3797,
+        "expo": 0.9997366341848828
+      },
+      "with_regime": {
+        "sharpe": 0.6772992104198451,
+        "maxdd": -0.3244687743332696,
+        "cum_ret": 3.471951409803104,
+        "n": 3797,
+        "expo": 0.9997366341848828
+      },
+      "without_regime": {
+        "sharpe": 0.6303174618524328,
+        "maxdd": -0.3244687743332698,
+        "cum_ret": 2.7102543456430217,
+        "n": 3797,
+        "expo": 0.9997366341848828
+      }
+    },
+    "R3_sub_wins": "0/7",
+    "R4_ablation": {
+      "SPX": {
+        "frozen": {
+          "sharpe": 1.6359684783093185,
+          "maxdd": -0.13207371121281164,
+          "n": 1928
+        },
+        "with-regime": {
+          "sharpe": 1.6667578322811283,
+          "maxdd": -0.13207371121281164,
+          "n": 1928
+        },
+        "no-regime": {
+          "sharpe": 1.6106260882158487,
+          "maxdd": -0.12856635147050444,
+          "n": 1928
+        },
+        "reversed": {
+          "sharpe": 1.5766353902084014,
+          "maxdd": -0.12856635147050455,
+          "n": 1928
+        }
+      },
+      "NDX": {
+        "frozen": {
+          "sharpe": 1.7730132865951622,
+          "maxdd": -0.15593575266501158,
+          "n": 1928
+        },
+        "with-regime": {
+          "sharpe": 1.806273069537842,
+          "maxdd": -0.15593575266501203,
+          "n": 1928
+        },
+        "no-regime": {
+          "sharpe": 1.7686686601062735,
+          "maxdd": -0.1370642716947883,
+          "n": 1928
+        },
+        "reversed": {
+          "sharpe": 1.7319719156150224,
+          "maxdd": -0.14795222186802015,
+          "n": 1928
+        }
+      }
+    },
+    "R4_shield_overlap": {
+      "n_trim": 53,
+      "n_overlap": 38,
+      "frac": 0.717
+    }
+  },
+  "audits": {
+    "a_opex_3rd_friday": {
+      "all_fridays": true,
+      "all_third": true,
+      "n_opex": 181,
+      "matches_G": true
+    },
+    "b_lookahead": {
+      "methodA_postneg_mean": 0.005297902462693177,
+      "methodB_shift_mean": 0.005297902462693177,
+      "consistent": true
+    },
+    "c_trim_only": {
+      "mult_regime_min": 0.5,
+      "mult_regime_max": 1.0,
+      "mult_opx_min": 0.5,
+      "mult_opx_max": 1.0,
+      "stack_reg_max": 1.0,
+      "trim_only": true
+    },
+    "d_overfit": {
+      "cells_examined": 6,
+      "offsets_examined": 11,
+      "subperiods": 7,
+      "winning_cell": "POST_NEG",
+      "note": "winning POST_NEG is best of 6 cells x examined; n=79 thin; multiple-comparison risk high"
+    },
+    "e_tide_absorption": {
+      "spx_delta": 0.0308,
+      "ndx_delta": 0.0333,
+      "standalone_beats_bh": false,
+      "reversed_also_moves": true
+    }
+  },
+  "compare": {
+    "PRE_mean": {
+      "mine": 0.000259,
+      "study": 0.000259,
+      "match": true
+    },
+    "PRE_t": {
+      "mine": 0.757,
+      "study": 0.757,
+      "match": true
+    },
+    "POST_mean": {
+      "mine": 0.000928,
+      "study": 0.000928,
+      "match": true
+    },
+    "POST_t": {
+      "mine": 2.667,
+      "study": 2.667,
+      "match": true
+    },
+    "ALL_mean": {
+      "mine": 0.000506,
+      "study": 0.000506,
+      "match": true
+    },
+    "cell_PRE_POS_mean": {
+      "mine": 0.00059,
+      "study": 0.00059,
+      "match": true
+    },
+    "cell_PRE_POS_n": {
+      "mine": 810,
+      "study": 810,
+      "match": true
+    },
+    "cell_PRE_NEG_mean": {
+      "mine": -0.002564,
+      "study": -0.002564,
+      "match": true
+    },
+    "cell_PRE_NEG_n": {
+      "mine": 95,
+      "study": 95,
+      "match": true
+    },
+    "cell_POST_POS_mean": {
+      "mine": 0.00051,
+      "study": 0.00051,
+      "match": true
+    },
+    "cell_POST_POS_n": {
+      "mine": 826,
+      "study": 826,
+      "match": true
+    },
+    "cell_POST_NEG_mean": {
+      "mine": 0.005298,
+      "study": 0.005298,
+      "match": true
+    },
+    "cell_POST_NEG_n": {
+      "mine": 79,
+      "study": 79,
+      "match": true
+    },
+    "overlay_with_sharpe": {
+      "mine": 0.677,
+      "study": 0.677,
+      "match": true
+    },
+    "overlay_without_sharpe": {
+      "mine": 0.63,
+      "study": 0.63,
+      "match": true
+    },
+    "overlay_bh_sharpe": {
+      "mine": 0.737,
+      "study": 0.737,
+      "match": true
+    },
+    "overlay_with_maxdd": {
+      "mine": -0.3245,
+      "study": -0.3245,
+      "match": true
+    },
+    "abl_SPX_frozen": {
+      "mine": 1.636,
+      "study": 1.636,
+      "match": true
+    },
+    "abl_SPX_with": {
+      "mine": 1.667,
+      "study": 1.667,
+      "match": true
+    },
+    "abl_NDX_frozen": {
+      "mine": 1.773,
+      "study": 1.773,
+      "match": true
+    },
+    "abl_NDX_with": {
+      "mine": 1.806,
+      "study": 1.806,
+      "match": true
+    },
+    "abl_SPX_reversed": {
+      "mine": 1.577,
+      "study": 1.577,
+      "match": true
+    },
+    "shield_overlap_frac": {
+      "mine": 0.717,
+      "study": 0.717,
+      "match": true
+    }
+  },
+  "summary": {
+    "matched": 23,
+    "total": 23,
+    "abl_spx_delta": 0.0308,
+    "abl_ndx_delta": 0.0333,
+    "standalone_beats_bh": false,
+    "sub_wins": "0/7"
+  }
+}

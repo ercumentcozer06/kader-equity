@@ -1,0 +1,204 @@
+{
+  "computed_at": "2026-06-12T15:03:48.362246+00:00",
+  "ticker": "SPY",
+  "index": "SPX",
+  "model": {
+    "model_tag": "kader-equity-stack-2026-06-09",
+    "as_of": "2026-06-12",
+    "computed_at": "2026-06-12T15:03:46.509421+00:00",
+    "data_source": "live",
+    "call_status": "current",
+    "freshness": {
+      "as_of": "2026-06-12",
+      "today": "2026-06-12",
+      "age_days": 0,
+      "max_staleness_days": 5,
+      "stale": false
+    },
+    "tide_score": 7.2144,
+    "tide_dir": 1,
+    "direction": "LONG",
+    "position_target": 1.0,
+    "deploy_fraction": 1.0,
+    "leverage": 1.0,
+    "active_overlays": [
+      "cor1m_froth",
+      "gex_shield"
+    ],
+    "overlay_block": false,
+    "overlay_block_reason": null,
+    "overlays": {
+      "cor1m_froth": {
+        "available": true,
+        "cor1m": 13.18,
+        "as_of": "2026-06-11",
+        "factor": 1.0,
+        "froth": false,
+        "reason": "COR1M 13.2 ≥ 11 → normal (factor 1.0)"
+      },
+      "gex_shield": {
+        "available": true,
+        "gex_z": -0.57,
+        "as_of": "2026-06-11",
+        "factor": 1.0,
+        "short_gamma": false,
+        "z_stale": false,
+        "z_stale_obs": 0,
+        "reason": "z(GEX) -0.6 ≥ −1 → normal (factor 1.0)"
+      }
+    },
+    "opex_gate": {
+      "next_opex": "2026-06-19",
+      "is_quad_witch_next": true,
+      "trading_days_until": 5,
+      "is_opex_today": false,
+      "warn": false,
+      "warn_days": 3,
+      "flat_assets": [
+        "NDX"
+      ],
+      "asset_overrides": {},
+      "note": "veri-doğrulanmış (FINDING 23: NDX OpEx −14bps p=0.001, 4 on yıl); taktik NDX de-risk + uyarı"
+    },
+    "asset_deploy": {
+      "SPX": 1.0,
+      "NDX": 1.0
+    },
+    "spine": {
+      "recipe": "8-modül sweep winner (RAW m2, +1g lag); m9 .563/m5 .214/m2 .118/m0 .061/m3 .025/m6 .01/m8 .006/m4 .002",
+      "vector": {
+        "m0": 0.0613,
+        "m1": 0.0001,
+        "m2": 0.1182,
+        "m3": 0.0246,
+        "m4": 0.0024,
+        "m5": 0.2143,
+        "m6": 0.0098,
+        "m8": 0.0065,
+        "m9": 0.5626,
+        "m11": 0.0003
+      },
+      "modules_used": [
+        "m0",
+        "m1",
+        "m2",
+        "m3",
+        "m4",
+        "m5",
+        "m6",
+        "m8",
+        "m9",
+        "m11"
+      ]
+    },
+    "_pass": "spine + cor1m_froth × gex_shield"
+  },
+  "state": {
+    "ticker": "SPY",
+    "spot": 737.76,
+    "net_gex_bn": -2.642,
+    "net_vanna_m": 795.28,
+    "net_charm_m": -5549.98,
+    "gex_flip": 742.5,
+    "call_wall": 760.0,
+    "ghost": 740.0,
+    "put_wall": 730.0,
+    "max_pain": 730.0,
+    "exp_move_1d": 7.86,
+    "rv_ratio": 1.722,
+    "gamma_regime": "SHORT GAMMA",
+    "cor1m": 13.18,
+    "atm_iv": 21.45,
+    "rr_skew": 4.45,
+    "ts_ratio": 1.16,
+    "atm_iv_30d": 16.92,
+    "realized_vol": 15.46,
+    "vrp": 1.46
+  },
+  "meta": {
+    "snapshot_as_of": "2026-06-12",
+    "snapshot_age_days": 0,
+    "gamma_available": true,
+    "surface_available": true,
+    "model_call_status": "current",
+    "stale": false,
+    "data_ok": true,
+    "data_fails": [],
+    "data_checks": {
+      "spot": 737.76,
+      "front_atm_iv": 21.45,
+      "exp_move_1d": 7.86,
+      "net_gex_bn": -2.642,
+      "em_cross_ratio": 0.79
+    },
+    "data_junk": false,
+    "gamma_fallback_to_spy": false,
+    "surface_fallback_to_spy": false,
+    "index": "SPX",
+    "mult": 10
+  },
+  "decision": {
+    "direction": "LONG",
+    "conviction": 1.0,
+    "horizon": "intraday",
+    "vehicle": {
+      "class": "call_debit",
+      "expression": "kısa-gamma/flip-altı + model LONG: CALL-debit-spread (tanımlı-risk ile katıl, kuyruğu satın al değil)",
+      "instrument": "call-debit-spread(SPY/QQQ)"
+    },
+    "regime": {
+      "short_gamma": true,
+      "above_flip": false,
+      "dist_flip_em": 0.6030534351145049,
+      "froth": false,
+      "froth_soft": false,
+      "near_wall": false,
+      "backwardation": true,
+      "calm": false,
+      "cor1m": 13.18,
+      "vrp": 1.46,
+      "vrp_rich": false,
+      "vrp_cheap": false,
+      "ticker": "SPY"
+    },
+    "rationale": "model LONG (konviksiyon 1.00); rejim: kısa-gamma, flip-altı, froth-yok, vol-backward/stres → kısa-gamma/flip-altı + model LONG: CALL-debit-spread (tanımlı-risk ile katıl, kuyruğu satın al değil)"
+  },
+  "trade": {
+    "class": "call_debit",
+    "ticket": {
+      "class": "call_debit",
+      "underlying": "SPY",
+      "spot": 737.76,
+      "dte": 21,
+      "structure": "call-debit-spread",
+      "long_call": 738,
+      "short_call": 760,
+      "max_loss": "ödenen debit (tanımlı)",
+      "target": "spot→760 (call-wall)",
+      "levels": "AL call 738 / SAT call 760, 21g — tanımlı-risk directional"
+    },
+    "note": "kısa-gamma/flip-altı + model LONG: CALL-debit-spread (tanımlı-risk ile katıl, kuyruğu satın al değil)"
+  },
+  "risk": {
+    "pool": "options(Midas)",
+    "account_size_usd": 1000.0,
+    "conviction": 1.0,
+    "risk_budget_usd": 20.0,
+    "action": "OPEN call-debit-spread",
+    "contracts": "≈ floor(risk_bütçesi / yapı-max-loss)",
+    "dollar_risk": 20.0,
+    "note": "max-loss ≤ $20.0 (defined-risk); kontrat = bütçe ÷ (yapının canlı max-loss'u). Midas'ta debit/genişlik girince netleşir.",
+    "futures_note": "prop hesabı kapalı → directional futures devre-dışı (cash-ETF/options kullanılıyor)"
+  },
+  "live_book": {
+    "mode": "delta_one",
+    "etf": "SPLG",
+    "position": 1.0,
+    "direction": "LONG",
+    "halt_pct": -19.8,
+    "options_paper": true,
+    "unlock_usd": 10000
+  },
+  "eval_order": null,
+  "policy_flag": null
+}

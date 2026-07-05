@@ -1,0 +1,258 @@
+{
+  "recompute": {
+    "SPY": {
+      "n_days": 237,
+      "bars_ok": true,
+      "n_join_ok": true,
+      "pit_levels_ok": true,
+      "events_primary": 197,
+      "events_dn": 56,
+      "events_up": 141,
+      "p_touch_pooled": {
+        "k": 83,
+        "n": 197,
+        "rate": 0.4213197969543147,
+        "lo": 0.35451858629052424,
+        "hi": 0.49113092058454544
+      },
+      "p_touch_down": {
+        "k": 28,
+        "n": 56,
+        "rate": 0.5,
+        "lo": 0.37331520958682995,
+        "hi": 0.62668479041317
+      },
+      "p_touch_up": {
+        "k": 55,
+        "n": 141,
+        "rate": 0.3900709219858156,
+        "lo": 0.31349641502575776,
+        "hi": 0.47247667557804673
+      },
+      "ev_nostop_pooled": {
+        "n": 197,
+        "mean_gross_bps": 3.297162682909016,
+        "mean_net_bps": 1.2971626829090173,
+        "t_net": 0.3541206999214727
+      },
+      "placebo_dn_0.5-1.0": {
+        "k": 122,
+        "n": 237,
+        "rate": 0.5147679324894515,
+        "lo": 0.45141137858161845,
+        "hi": 0.5776533677080591
+      },
+      "cond_dn_0.5-1.0": {
+        "k": 6,
+        "n": 16,
+        "rate": 0.375,
+        "lo": 0.18480982554752806,
+        "hi": 0.613593529020652
+      },
+      "never_fill_pooled": {
+        "n": 113,
+        "skipped": 1,
+        "mean_gross_bps": -1.9537413828918004,
+        "mean_net_bps": -3.9537413828918013,
+        "hit_rate": 0.48672566371681414,
+        "hit_lo": 0.39653058797717566,
+        "hit_hi": 0.5777936253167196
+      }
+    },
+    "QQQ": {
+      "n_days": 237,
+      "bars_ok": true,
+      "n_join_ok": true,
+      "pit_levels_ok": true,
+      "events_primary": 196,
+      "events_dn": 64,
+      "events_up": 132,
+      "p_touch_pooled": {
+        "k": 71,
+        "n": 196,
+        "rate": 0.3622448979591837,
+        "lo": 0.2981994445523125,
+        "hi": 0.43158654595216694
+      },
+      "p_touch_down": {
+        "k": 27,
+        "n": 64,
+        "rate": 0.421875,
+        "lo": 0.3086959366145158,
+        "hi": 0.5439018794747275
+      },
+      "p_touch_up": {
+        "k": 44,
+        "n": 132,
+        "rate": 0.3333333333333333,
+        "lo": 0.2586321887372849,
+        "hi": 0.4174611434967287
+      },
+      "ev_nostop_pooled": {
+        "n": 196,
+        "mean_gross_bps": -0.07613862872530258,
+        "mean_net_bps": -2.0761386287253023,
+        "t_net": -0.39943185202274284
+      },
+      "placebo_dn_0.5-1.0": {
+        "k": 149,
+        "n": 237,
+        "rate": 0.6286919831223629,
+        "lo": 0.5655841387310462,
+        "hi": 0.6876943646504293
+      },
+      "cond_dn_0.5-1.0": {
+        "k": 6,
+        "n": 14,
+        "rate": 0.42857142857142855,
+        "lo": 0.21380509930400526,
+        "hi": 0.6740973309713064
+      },
+      "never_fill_pooled": {
+        "n": 123,
+        "skipped": 2,
+        "mean_gross_bps": -1.2430726591482884,
+        "mean_net_bps": -3.243072659148286,
+        "hit_rate": 0.44715447154471544,
+        "hit_lo": 0.3622123329815222,
+        "hit_hi": 0.5352976322034013
+      }
+    }
+  },
+  "comparison": [
+    {
+      "name": "SPY events PRIMARY",
+      "verify": 197,
+      "study": 197,
+      "match": true
+    },
+    {
+      "name": "SPY events dn",
+      "verify": 56,
+      "study": 56,
+      "match": true
+    },
+    {
+      "name": "SPY events up",
+      "verify": 141,
+      "study": 141,
+      "match": true
+    },
+    {
+      "name": "SPY P(touch) pooled",
+      "verify": 0.4213197969543147,
+      "study": 0.4213,
+      "match": true
+    },
+    {
+      "name": "SPY P(touch) down",
+      "verify": 0.5,
+      "study": 0.5,
+      "match": true
+    },
+    {
+      "name": "SPY P(touch) up",
+      "verify": 0.3900709219858156,
+      "study": 0.3901,
+      "match": true
+    },
+    {
+      "name": "SPY EV no-stop net bps",
+      "verify": 1.2971626829090173,
+      "study": 1.3,
+      "match": true
+    },
+    {
+      "name": "SPY placebo dn 0.5-1.0",
+      "verify": 0.5147679324894515,
+      "study": 0.5148,
+      "match": true
+    },
+    {
+      "name": "SPY never-fill n",
+      "verify": 113,
+      "study": 113,
+      "match": true
+    },
+    {
+      "name": "SPY never-fill gross bps",
+      "verify": -1.9537413828918004,
+      "study": -1.95,
+      "match": true
+    },
+    {
+      "name": "SPY never-fill net bps",
+      "verify": -3.9537413828918013,
+      "study": -3.95,
+      "match": true
+    },
+    {
+      "name": "QQQ events PRIMARY",
+      "verify": 196,
+      "study": 196,
+      "match": true
+    },
+    {
+      "name": "QQQ events dn",
+      "verify": 64,
+      "study": 64,
+      "match": true
+    },
+    {
+      "name": "QQQ events up",
+      "verify": 132,
+      "study": 132,
+      "match": true
+    },
+    {
+      "name": "QQQ P(touch) pooled",
+      "verify": 0.3622448979591837,
+      "study": 0.3622,
+      "match": true
+    },
+    {
+      "name": "QQQ P(touch) down",
+      "verify": 0.421875,
+      "study": 0.4219,
+      "match": true
+    },
+    {
+      "name": "QQQ P(touch) up",
+      "verify": 0.3333333333333333,
+      "study": 0.3333,
+      "match": true
+    },
+    {
+      "name": "QQQ EV no-stop net bps",
+      "verify": -2.0761386287253023,
+      "study": -2.08,
+      "match": true
+    },
+    {
+      "name": "QQQ placebo dn 0.5-1.0",
+      "verify": 0.6286919831223629,
+      "study": 0.6287,
+      "match": true
+    }
+  ],
+  "audit_buckets": {
+    "SPY": {
+      "all_bucket_cells_present": true,
+      "keys": [
+        "0.25-0.5",
+        "0.5-1.0",
+        "1.0-2.0",
+        "2.0-2+"
+      ]
+    },
+    "QQQ": {
+      "all_bucket_cells_present": true,
+      "keys": [
+        "0.25-0.5",
+        "0.5-1.0",
+        "1.0-2.0",
+        "2.0-2+"
+      ]
+    }
+  }
+}

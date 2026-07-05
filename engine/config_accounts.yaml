@@ -1,0 +1,79 @@
+# kader-equity FAZ-4 motor — hesap & teslimat config. Emir gerçek değerleri girene dek placeholder.
+# Durum 2026-06-10: FAZ GEÇİŞİ — canlı kitap DELTA-ONE'a geçti (opsiyon $1000'da ekonomik değil, friction
+# %86-120). Opsiyon ENGINE'de PAPER-forward yaşar. Prop yolu: FTMO Swing 2-Step (prop_sim ile sınanacak).
+
+# ── CANLI KİTAP (delta-one) — RİSK-1 kararı (2026-06-10). $1000 hesapta opsiyon yerine ETF directional. ──
+live_book:
+  mode: delta_one               # delta_one (ETF directional) | options (unlock eşiğinden sonra)
+  etf_map: {SPY: SPLG, QQQ: QQQM}   # SPX sinyali→SPLG (fractional-friendly), NDX sinyali→QQQM [a priori, RİSK-1]
+  position_source: tide         # TIDE binary 0/1, pozisyon = model position_target
+  allocation: {SPX: 0.5, NDX: 0.5}  # default 50/50; her bacak kendi TIDE sinyaline göre 0/1
+  # max-DD halt = in-sample (frozen stack) maxDD × 1.5. %2-per-event gap bütçesi KALDIRILDI (0.97/5.8≈0.17 anlamsız).
+  # Gap riski "bilinen yapısal kör nokta" olarak dokümante; GEX-shield dokunulmaz. [a priori policy, analysis-derived 2026-06-10]
+  max_dd_halt_pct: {SPX: -19.8, NDX: -23.4, blend: -21.6}   # frozen stack maxDD ×1.5 (SPX -13.2/NDX -15.6/50-50 -14.4)
+  options_unlock_min_account_usd: 10000   # friction/risk ≤ 0.15 sağlayan min hesap (friction.py: $5k=%17-24 RED, $10k=%8.6-12 OK) [analysis-derived]
+
+accounts:
+  # ── FTMO EVAL hesabı (B4) — alım SONRASI FTMO_HESAP+KONTRAT_SPEC ile doldur. Default'lar ÖN-DEĞER (FLAG). ──
+  eval:
+    enabled: false              # alım sonrası true → translator/tracker aktive
+    firm: FTMO
+    product: swing_2step        # P1 +10/P2 +5/günlük −5(CET)/toplam −10-statik/min4g/swing
+    size_usd: 10000
+    book: NDX                   # EVAL_KİTAP (default öneri; A2 RED: cs=10 ise US500 daha ince ifade eder)
+    instrument: US100           # NDX→US100, SPX→US500
+    eval_pos: 1.2               # EVAL_POS (default öneri; asimetrik → funded 0.6)
+    eval_pos_registered: 1.2    # PRE-REGISTERED referans — eval_pos != bu → "policy ihlali" FLAG (mid-eval değişim yasak)
+    eval_stop: false            # A1: eval'de stop OPSİYONEL/HAYIR (marjinal +3pp, %76 whipsaw)
+    contract_spec: {contract_size: 10, lot_step: 0.01, min_lot: 0.01}   # PLATFORM-TEYİTLİ FLAG (cs=10 ön-değer)
+    server: null                # FTMO_HESAP: MT5 sunucu
+    account_no: null
+  # ── FUNDED profili (eval geçince) — frontier yeniden-doğruladı ──
+  funded:
+    funded_pos: 0.6             # SABİT
+    funded_stop: true           # A1: funded'da felaket-stop EVET (12ay survival %94→%100)
+
+  # ── Futures prop (directional, ES/NQ) — ŞU AN YOK. Prop alınınca enabled:true + doldur. ──
+  futures_prop:
+    enabled: false
+    firm: null                  # FTMO | Topstep | Apex | MFF | ...
+    size_usd: null
+    drawdown_type: null         # static_eod | intraday_trailing | trailing_until_funded
+    max_drawdown_usd: null
+    daily_loss_limit_usd: null
+    profit_target_usd: null
+    instruments: [ES, MES, NQ, MNQ]
+    point_value: {ES: 50, MES: 5, NQ: 20, MNQ: 2}   # $/index-point
+
+  # ── Options (Midas) — PAPER-FORWARD (canlı DEĞİL; $1000'da friction %86-120). ENGINE ifadeyi paper izler. ──
+  options:
+    enabled: true
+    paper_forward: true         # CANLI DEĞİL — ledger'ın expression bacağında paper-forward izlenir [RİSK-1]
+    broker: midas               # US hisse + opsiyon erişimi
+    size_usd: 1000              # PLACEHOLDER — gerçek hesap büyüklüğü
+    max_risk_per_trade_pct: 2.0 # trade-başı sermayenin %'i (defined-risk max-loss bütçesi)
+    level: defined_risk         # defined_risk (long-option / debit-spread) | naked  — Midas seviyesine göre
+    min_dte: 21                 # GÖREV 2: min vade 21g — rejim YAPIYI seçer, vadeyi 21 altına İNDİREMEZ
+    #                             [a priori policy, analysis-derived 2026-06-10: TIDE LONG-run 35g, edge g2-45,
+    #                             gün-1 negatif → intraday-2DTE run'ın %6'sı; 30-DTE g2-10'u delta'dan yakalar]
+    underlyings: [SPY, QQQ]     # SPX≈SPY×10, NDX≈QQQ; Midas'ta ETF opsiyonu
+
+sizing:
+  fractional_kelly: 0.5         # konviksiyon×bu = pozisyon ölçeği
+  no_trade_conviction_floor: 0.15  # konviksiyon bunun altıysa STAND-ASIDE (Marks: çoğu gün işlem yok)
+
+# ── İŞLEM MALİYETİ (GÖREV 1 friction) — Midas gerçek komisyonu BİLİNMİYOR → null bırak, parametrik 2 senaryo.
+#    Emir Midas komisyonunu girince friction tablosu otomatik tek-senaryoya düşer. half_spread = bacak başına
+#    yarı bid/ask genişliği ($/kontrat); SPY/QQQ likit ATM ~$1-3, a priori $1.5 (optimize değil).
+costs:
+  commission_per_contract: null   # $/kontrat/bacak (Midas) — null → parametrik {düşük 0.65, yüksek 1.50}
+  half_spread_per_contract: 1.5    # $/kontrat/bacak yarı-spread (a priori, SPY/QQQ ATM; optimize edilmedi)
+  close_round_trip: true           # spread'i vade-öncesi kapatıyor muyuz (4 fill) yoksa vade-sonu mu (2 fill)
+
+vehicles:
+  # prop yokken directional ifade: cash_etf (SPY/QQQ al/sat Midas) | options_only
+  directional_no_prop: cash_etf
+
+delivery:
+  channel: terminal             # terminal | file | push
+  timing: eod_next_session      # eod_next_session (kapanış→ertesi seans) | premarket

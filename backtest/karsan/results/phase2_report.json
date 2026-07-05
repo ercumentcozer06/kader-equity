@@ -1,0 +1,233 @@
+{
+ "family": "PHASE-2 (incremental over TIDE)",
+ "n_prior_trials": 40,
+ "trials": [
+  {
+   "id": "P2.bucket.fwd5",
+   "desc": "high-slope vs rest forward fwd5",
+   "p": 0.2765440145609821,
+   "effect": "+0.151% (t1.088)",
+   "note": "iyimser: high-slope=capitulation→bullish?",
+   "p_bh": 0.5993999999999999,
+   "pass_bh": false
+  },
+  {
+   "id": "P2.bucket.fwd21",
+   "desc": "high-slope vs rest forward fwd21",
+   "p": 0.012631829856054377,
+   "effect": "+0.796% (t2.494)",
+   "note": "iyimser: high-slope=capitulation→bullish?",
+   "p_bh": 0.1136864687044894,
+   "pass_bh": false
+  },
+  {
+   "id": "P2.into_quad",
+   "desc": "into_quad günlük ret vs baseline (support/weakness)",
+   "p": 0.3862868175910057,
+   "effect": "-5.1bps (t-0.866)",
+   "note": "Karsan: into=support(+), post=weak(−)",
+   "p_bh": 0.5993999999999999,
+   "pass_bh": false
+  },
+  {
+   "id": "P2.post_quad",
+   "desc": "post_quad günlük ret vs baseline (support/weakness)",
+   "p": 0.686000701522326,
+   "effect": "-2.9bps (t-0.404)",
+   "note": "Karsan: into=support(+), post=weak(−)",
+   "p_bh": 0.8820009019572763,
+   "pass_bh": false
+  },
+  {
+   "id": "P2.into_quad_hislope",
+   "desc": "into-quad ∩ slope-elevated günlük ret",
+   "p": 0.0617560524790941,
+   "effect": "-20.8bps (t-1.868)",
+   "note": "vanna-support en güçlü hücre",
+   "p_bh": 0.27790223615592347,
+   "pass_bh": false
+  },
+  {
+   "id": "P2.ablation.SPX.stack × slope-trim",
+   "desc": "SPX stack × slope-trim incremental over stack",
+   "p": 0.3618,
+   "effect": "ΔSharpe +0.057, DSR 0.9902",
+   "note": "P(>stack)=0.64",
+   "p_bh": 0.5993999999999999,
+   "pass_bh": false
+  },
+  {
+   "id": "P2.ablation.SPX.stack + quad-vanna-override",
+   "desc": "SPX stack + quad-vanna-override incremental over stack",
+   "p": 0.864,
+   "effect": "ΔSharpe -0.024, DSR 0.9861",
+   "note": "P(>stack)=0.14",
+   "p_bh": 0.9214,
+   "pass_bh": false
+  },
+  {
+   "id": "P2.ablation.NDX.stack × slope-trim",
+   "desc": "NDX stack × slope-trim incremental over stack",
+   "p": 0.39959999999999996,
+   "effect": "ΔSharpe +0.033, DSR 0.9965",
+   "note": "P(>stack)=0.60",
+   "p_bh": 0.5993999999999999,
+   "pass_bh": false
+  },
+  {
+   "id": "P2.ablation.NDX.stack + quad-vanna-override",
+   "desc": "NDX stack + quad-vanna-override incremental over stack",
+   "p": 0.9214,
+   "effect": "ΔSharpe -0.020, DSR 0.9949",
+   "note": "P(>stack)=0.08",
+   "p_bh": 0.9214,
+   "pass_bh": false
+  }
+ ],
+ "tables": {
+  "standalone_bucket": {
+   "fwd5": {
+    "low_slope": 0.149,
+    "high_slope": 0.359,
+    "n_hi": 1294
+   },
+   "fwd21": {
+    "low_slope": 0.665,
+    "high_slope": 1.612,
+    "n_hi": 1294
+   }
+  },
+  "ablation": {
+   "SPX": {
+    "tide (base)": {
+     "sharpe": 1.424,
+     "maxdd": -0.189,
+     "cum": 3.253,
+     "n": 1928,
+     "sharpe_daily": 0.08971560203813973,
+     "skew": 0.9053403999340414,
+     "kurt": 23.726747678127932
+    },
+    "stack (base: tide×froth×shield)": {
+     "sharpe": 1.636,
+     "maxdd": -0.1321,
+     "cum": 3.49,
+     "n": 1928,
+     "sharpe_daily": 0.10305632729398148,
+     "skew": 0.25030180015623227,
+     "kurt": 17.458269757577433
+    },
+    "tide × slope-trim": {
+     "sharpe": 1.482,
+     "maxdd": -0.1217,
+     "cum": 2.409,
+     "n": 1928,
+     "sharpe_daily": 0.093373802984568,
+     "skew": -0.23810347955315317,
+     "kurt": 10.751465347256488
+    },
+    "tide × post-quad-derisk": {
+     "sharpe": 1.471,
+     "maxdd": -0.1787,
+     "cum": 3.229,
+     "n": 1928,
+     "sharpe_daily": 0.09266776292795467,
+     "skew": 0.894473906453049,
+     "kurt": 25.9007215003946
+    },
+    "tide + into-quad-LONG": {
+     "sharpe": 1.37,
+     "maxdd": -0.189,
+     "cum": 3.275,
+     "n": 1928,
+     "sharpe_daily": 0.08633193385986497,
+     "skew": 0.7633254637680936,
+     "kurt": 21.6126343570318
+    },
+    "stack × slope-trim": {
+     "sharpe": 1.693,
+     "maxdd": -0.106,
+     "cum": 2.658,
+     "n": 1928,
+     "sharpe_daily": 0.10661849667081776,
+     "skew": -0.42166308298755106,
+     "kurt": 11.287520598415483
+    },
+    "stack + quad-vanna-override": {
+     "sharpe": 1.612,
+     "maxdd": -0.1381,
+     "cum": 3.504,
+     "n": 1928,
+     "sharpe_daily": 0.10153727083592384,
+     "skew": 0.5510511107090259,
+     "kurt": 21.588012011959734
+    }
+   },
+   "NDX": {
+    "tide (base)": {
+     "sharpe": 1.489,
+     "maxdd": -0.225,
+     "cum": 5.675,
+     "n": 1928,
+     "sharpe_daily": 0.09379406630417585,
+     "skew": 0.47886669490839745,
+     "kurt": 14.242500864512893
+    },
+    "stack (base: tide×froth×shield)": {
+     "sharpe": 1.773,
+     "maxdd": -0.1559,
+     "cum": 6.693,
+     "n": 1928,
+     "sharpe_daily": 0.11168933875104974,
+     "skew": 0.020632625703663792,
+     "kurt": 8.510648915871078
+    },
+    "tide × slope-trim": {
+     "sharpe": 1.527,
+     "maxdd": -0.1459,
+     "cum": 4.264,
+     "n": 1928,
+     "sharpe_daily": 0.09616491318581355,
+     "skew": -0.03527049096497893,
+     "kurt": 7.29660991782634
+    },
+    "tide × post-quad-derisk": {
+     "sharpe": 1.546,
+     "maxdd": -0.2076,
+     "cum": 5.831,
+     "n": 1928,
+     "sharpe_daily": 0.09738168700401671,
+     "skew": 0.5038402221819408,
+     "kurt": 15.497707075585145
+    },
+    "tide + into-quad-LONG": {
+     "sharpe": 1.526,
+     "maxdd": -0.225,
+     "cum": 6.521,
+     "n": 1928,
+     "sharpe_daily": 0.09610155484642352,
+     "skew": 0.40670856317949156,
+     "kurt": 13.0484508057202
+    },
+    "stack × slope-trim": {
+     "sharpe": 1.806,
+     "maxdd": -0.1089,
+     "cum": 5.116,
+     "n": 1928,
+     "sharpe_daily": 0.11374224636973254,
+     "skew": -0.06564929661851522,
+     "kurt": 7.310207807880334
+    },
+    "stack + quad-vanna-override": {
+     "sharpe": 1.753,
+     "maxdd": -0.151,
+     "cum": 6.745,
+     "n": 1928,
+     "sharpe_daily": 0.11041041829721529,
+     "skew": 0.11937664487167719,
+     "kurt": 9.807002746435966
+    }
+   }
+  }
+ }
+}

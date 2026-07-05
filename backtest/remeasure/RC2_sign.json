@@ -1,0 +1,556 @@
+{
+  "config_sha": "c80e6558181015a6",
+  "generated_utc": "2026-06-11T17:47:22Z",
+  "script": "backtest/remeasure/RC2_sign.py",
+  "panel": {
+    "start": "2025-06-13",
+    "end": "2026-06-08"
+  },
+  "methodology": "R2_keydiag.sign_agreement birebir: inner-join(level.net_gex, squeeze.gex), agree = sign(net_gex)==sign(gex); tercile = qcut(|net_gex|,3) [alt/orta/üst]; top10 = en-büyük-|net_gex| günleri; panel-pencere filtresi uygulanır.",
+  "squeeze_source": "C:\\Users\\admin\\Downloads\\kader-equity\\data\\cache\\squeeze_dix_gex.parquet",
+  "results": {
+    "SPX_full": {
+      "n": 242,
+      "window": [
+        "2025-06-13",
+        "2026-06-08"
+      ],
+      "overall_pct": 72.7,
+      "terciles": {
+        "alt": {
+          "agree_pct": 50.6,
+          "n": 81
+        },
+        "orta": {
+          "agree_pct": 75.0,
+          "n": 80
+        },
+        "üst": {
+          "agree_pct": 92.6,
+          "n": 81
+        }
+      },
+      "top10_largest_abs_net_gex": [
+        {
+          "date": "2026-05-14",
+          "net_gex": 137321117181.13329,
+          "squeeze_gex": 9067645347.11,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2026-05-06",
+          "net_gex": 120119346811.36037,
+          "squeeze_gex": 8492997873.139992,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2026-05-13",
+          "net_gex": 116569148462.34709,
+          "squeeze_gex": 8599272149.920002,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2026-05-29",
+          "net_gex": 115078940463.32747,
+          "squeeze_gex": 7366590365.690004,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2025-12-24",
+          "net_gex": 109962099298.38023,
+          "squeeze_gex": 9286153262.63,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2026-05-28",
+          "net_gex": 108851829645.49608,
+          "squeeze_gex": 9134728289.779997,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2026-05-26",
+          "net_gex": 106927276480.69865,
+          "squeeze_gex": 7103457636.9800005,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2026-03-18",
+          "net_gex": -103453195680.35205,
+          "squeeze_gex": -140231247.46000004,
+          "our_sign": -1,
+          "squeeze_sign": -1,
+          "agree": true
+        },
+        {
+          "date": "2025-08-13",
+          "net_gex": 101092328178.74748,
+          "squeeze_gex": 9554009566.2,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2026-05-08",
+          "net_gex": 100990270930.5971,
+          "squeeze_gex": 21320969400.29001,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        }
+      ],
+      "top10_agree_n": 10
+    },
+    "SPY_full": {
+      "n": 243,
+      "window": [
+        "2025-06-13",
+        "2026-06-08"
+      ],
+      "overall_pct": 48.6,
+      "terciles": {
+        "alt": {
+          "agree_pct": 53.1,
+          "n": 81
+        },
+        "orta": {
+          "agree_pct": 45.7,
+          "n": 81
+        },
+        "üst": {
+          "agree_pct": 46.9,
+          "n": 81
+        }
+      },
+      "top10_largest_abs_net_gex": [
+        {
+          "date": "2026-03-20",
+          "net_gex": -27287513957.643597,
+          "squeeze_gex": -1096289832.7600005,
+          "our_sign": -1,
+          "squeeze_sign": -1,
+          "agree": true
+        },
+        {
+          "date": "2026-03-18",
+          "net_gex": -22859332383.372715,
+          "squeeze_gex": -140231247.46000004,
+          "our_sign": -1,
+          "squeeze_sign": -1,
+          "agree": true
+        },
+        {
+          "date": "2026-03-27",
+          "net_gex": -22783449194.889755,
+          "squeeze_gex": -7241893459.340001,
+          "our_sign": -1,
+          "squeeze_sign": -1,
+          "agree": true
+        },
+        {
+          "date": "2026-03-13",
+          "net_gex": -20705739705.409203,
+          "squeeze_gex": 100977975.2800002,
+          "our_sign": -1,
+          "squeeze_sign": 1,
+          "agree": false
+        },
+        {
+          "date": "2026-03-26",
+          "net_gex": -20568672693.891766,
+          "squeeze_gex": -313179686.9200002,
+          "our_sign": -1,
+          "squeeze_sign": -1,
+          "agree": true
+        },
+        {
+          "date": "2026-03-30",
+          "net_gex": -19998760328.17649,
+          "squeeze_gex": -1077105660.4,
+          "our_sign": -1,
+          "squeeze_sign": -1,
+          "agree": true
+        },
+        {
+          "date": "2026-03-19",
+          "net_gex": -18858721862.981236,
+          "squeeze_gex": -321849345.7400001,
+          "our_sign": -1,
+          "squeeze_sign": -1,
+          "agree": true
+        },
+        {
+          "date": "2026-03-12",
+          "net_gex": -18135320845.815044,
+          "squeeze_gex": -341342620.5799998,
+          "our_sign": -1,
+          "squeeze_sign": -1,
+          "agree": true
+        },
+        {
+          "date": "2026-04-17",
+          "net_gex": 18072079765.187267,
+          "squeeze_gex": 9780203902.370005,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2025-11-20",
+          "net_gex": -17795323772.763542,
+          "squeeze_gex": 1340626611.58,
+          "our_sign": -1,
+          "squeeze_sign": 1,
+          "agree": false
+        }
+      ],
+      "top10_agree_n": 8
+    },
+    "SPY_livematch": {
+      "n": 243,
+      "window": [
+        "2025-06-13",
+        "2026-06-08"
+      ],
+      "overall_pct": 53.5,
+      "terciles": {
+        "alt": {
+          "agree_pct": 50.6,
+          "n": 81
+        },
+        "orta": {
+          "agree_pct": 50.6,
+          "n": 81
+        },
+        "üst": {
+          "agree_pct": 59.3,
+          "n": 81
+        }
+      },
+      "top10_largest_abs_net_gex": [
+        {
+          "date": "2026-03-20",
+          "net_gex": -17540617290.284336,
+          "squeeze_gex": -1096289832.7600005,
+          "our_sign": -1,
+          "squeeze_sign": -1,
+          "agree": true
+        },
+        {
+          "date": "2026-03-18",
+          "net_gex": -15563351806.90826,
+          "squeeze_gex": -140231247.46000004,
+          "our_sign": -1,
+          "squeeze_sign": -1,
+          "agree": true
+        },
+        {
+          "date": "2026-03-27",
+          "net_gex": -15321045811.254063,
+          "squeeze_gex": -7241893459.340001,
+          "our_sign": -1,
+          "squeeze_sign": -1,
+          "agree": true
+        },
+        {
+          "date": "2025-12-19",
+          "net_gex": 14669826386.3596,
+          "squeeze_gex": 5875128134.31,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2026-04-17",
+          "net_gex": 12854696603.76985,
+          "squeeze_gex": 9780203902.370005,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2025-12-24",
+          "net_gex": 12142273216.875475,
+          "squeeze_gex": 9286153262.63,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2026-05-22",
+          "net_gex": 11830458958.798294,
+          "squeeze_gex": 9134498537.969994,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2025-11-20",
+          "net_gex": -11792518376.422935,
+          "squeeze_gex": 1340626611.58,
+          "our_sign": -1,
+          "squeeze_sign": 1,
+          "agree": false
+        },
+        {
+          "date": "2026-03-30",
+          "net_gex": -11496450999.844545,
+          "squeeze_gex": -1077105660.4,
+          "our_sign": -1,
+          "squeeze_sign": -1,
+          "agree": true
+        },
+        {
+          "date": "2026-03-26",
+          "net_gex": -11407964629.924976,
+          "squeeze_gex": -313179686.9200002,
+          "our_sign": -1,
+          "squeeze_sign": -1,
+          "agree": true
+        }
+      ],
+      "top10_agree_n": 9
+    },
+    "QQQ_full": {
+      "n": 243,
+      "window": [
+        "2025-06-13",
+        "2026-06-08"
+      ],
+      "overall_pct": 57.6,
+      "terciles": {
+        "alt": {
+          "agree_pct": 60.5,
+          "n": 81
+        },
+        "orta": {
+          "agree_pct": 63.0,
+          "n": 81
+        },
+        "üst": {
+          "agree_pct": 49.4,
+          "n": 81
+        }
+      },
+      "top10_largest_abs_net_gex": [
+        {
+          "date": "2026-03-06",
+          "net_gex": -9485378763.667093,
+          "squeeze_gex": -255824365.19,
+          "our_sign": -1,
+          "squeeze_sign": -1,
+          "agree": true
+        },
+        {
+          "date": "2025-09-19",
+          "net_gex": 9251749162.926704,
+          "squeeze_gex": 7221005006.35,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2026-03-27",
+          "net_gex": -8507626740.817274,
+          "squeeze_gex": -7241893459.340001,
+          "our_sign": -1,
+          "squeeze_sign": -1,
+          "agree": true
+        },
+        {
+          "date": "2026-02-12",
+          "net_gex": -8490300675.366591,
+          "squeeze_gex": 3055298147.07,
+          "our_sign": -1,
+          "squeeze_sign": 1,
+          "agree": false
+        },
+        {
+          "date": "2026-03-20",
+          "net_gex": -8445146640.613982,
+          "squeeze_gex": -1096289832.7600005,
+          "our_sign": -1,
+          "squeeze_sign": -1,
+          "agree": true
+        },
+        {
+          "date": "2026-03-13",
+          "net_gex": -8259138337.761689,
+          "squeeze_gex": 100977975.2800002,
+          "our_sign": -1,
+          "squeeze_sign": 1,
+          "agree": false
+        },
+        {
+          "date": "2026-02-13",
+          "net_gex": -8233550121.361988,
+          "squeeze_gex": 2915535519.25,
+          "our_sign": -1,
+          "squeeze_sign": 1,
+          "agree": false
+        },
+        {
+          "date": "2026-03-26",
+          "net_gex": -8083136671.489688,
+          "squeeze_gex": -313179686.9200002,
+          "our_sign": -1,
+          "squeeze_sign": -1,
+          "agree": true
+        },
+        {
+          "date": "2026-03-03",
+          "net_gex": -7912731842.230159,
+          "squeeze_gex": 2721525872.19,
+          "our_sign": -1,
+          "squeeze_sign": 1,
+          "agree": false
+        },
+        {
+          "date": "2026-03-18",
+          "net_gex": -7320093269.269384,
+          "squeeze_gex": -140231247.46000004,
+          "our_sign": -1,
+          "squeeze_sign": -1,
+          "agree": true
+        }
+      ],
+      "top10_agree_n": 6
+    },
+    "NDX_full": {
+      "n": 242,
+      "window": [
+        "2025-06-13",
+        "2026-06-08"
+      ],
+      "overall_pct": 84.7,
+      "terciles": {
+        "alt": {
+          "agree_pct": 67.9,
+          "n": 81
+        },
+        "orta": {
+          "agree_pct": 86.2,
+          "n": 80
+        },
+        "üst": {
+          "agree_pct": 100.0,
+          "n": 81
+        }
+      },
+      "top10_largest_abs_net_gex": [
+        {
+          "date": "2025-10-29",
+          "net_gex": 14946279237.811054,
+          "squeeze_gex": 8576786583.48,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2025-10-24",
+          "net_gex": 8565067775.380606,
+          "squeeze_gex": 7120844043.28,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2025-10-02",
+          "net_gex": 6748783477.460287,
+          "squeeze_gex": 8813095584.05,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2025-10-01",
+          "net_gex": 6296074983.06641,
+          "squeeze_gex": 8331463843.65,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2025-10-28",
+          "net_gex": 6211282524.723002,
+          "squeeze_gex": 9319787449.32,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2026-04-30",
+          "net_gex": 6073781033.552221,
+          "squeeze_gex": 6946361649.689999,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2025-08-07",
+          "net_gex": 6029416872.356173,
+          "squeeze_gex": 7268678445.23,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2025-08-11",
+          "net_gex": 5988493712.497142,
+          "squeeze_gex": 7073272424.02,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2026-05-05",
+          "net_gex": 5969238663.636572,
+          "squeeze_gex": 6707898191.189997,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        },
+        {
+          "date": "2025-07-24",
+          "net_gex": 5883956473.5036545,
+          "squeeze_gex": 8232858198.47,
+          "our_sign": 1,
+          "squeeze_sign": 1,
+          "agree": true
+        }
+      ],
+      "top10_agree_n": 10
+    }
+  },
+  "reference_cited_not_measured": {
+    "D-FAZ_SPY_old": {
+      "overall_pct": 48.0,
+      "ust_tercile_pct": 30.0,
+      "source": "C:/Users/admin/Downloads/kader-equity/backtest/DIAGNOSIS.md"
+    },
+    "PRELIM_157g_SPX_full": {
+      "overall_pct": 79.0,
+      "ust_tercile_pct": 96.0,
+      "source": "C:/Users/admin/Downloads/kader-equity/backtest/remeasure/R2_PRELIM.md"
+    }
+  },
+  "yol_a": {
+    "condition": "SPX_full overall >= 75.0 AND ust_tercile >= 70.0",
+    "spx_full_overall_pct": 72.7,
+    "spx_full_ust_tercile_pct": 92.6,
+    "pass": false
+  }
+}

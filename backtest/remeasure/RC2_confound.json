@@ -1,0 +1,935 @@
+{
+ "config_sha": "c80e6558181015a6",
+ "run_utc": "2026-06-11T17:53:24.106634+00:00",
+ "script": "backtest/remeasure/RC2_confound.py",
+ "spec": {
+  "source": "backtest/diagnosis/D5_confound.py (logistic_mcfadden/ols_r2/contingency_2x2/zscore/dte_from_chains/RVWIN/TRWIN import \u2014 byte-ayn\u0131 matematik)",
+  "panel": [
+   "2025-06-13",
+   "2026-06-08"
+  ],
+  "regressors": "RV20(20g, y\u0131ll\u0131k) + VIX(vixcls.parquet) + DTE + trailing-20g getiri; hepsi PIT D-EOD",
+  "flag": "level_series.regime = sign(net_gex); D-EOD bilinir, D+1 trade (D5 ile ayn\u0131)",
+  "dte_spec": {
+   "d5_kullanimi": "eski md_{sym}.parquet zinciri front-expiry'ye g\u00fcn (tek-expiry fetch; ayl\u0131k-OPEX+ay-sonu d\u00f6ng\u00fcs\u00fc, 0-25 testere)",
+   "burada": "AYNI seri AYNI kaynaktan (D5.dte_from_chains; panel tarihlerinin %100'\u00fc kapsan\u0131r). SPX/NDX index-bayrakta e\u015flenik ETF'in (SPY/QQQ) md-zinciri (ayn\u0131 OPEX takvimi).",
+   "fark_beyani": "Yeni ham full-chain'lerin kendi front-DTE'si g\u00fcnl\u00fck vadeler y\u00fcz\u00fcnden dejenere (~0; bkz. raw_frontdte_evidence) \u2192 D5-e\u015fde\u011feri de\u011fil, regressor olarak al\u0131nmad\u0131. Duyarl\u0131l\u0131k: kapan\u0131\u015f-regresyonu dte yerine dte2_share ile de ko\u015fuldu (variant)."
+  },
+  "bars": "RV20/trail20/intraday kayna\u011f\u0131: own-bayrakta sembol; index-bayrakta trade-ETF (SPX\u2192SPY, NDX\u2192QQQ)"
+ },
+ "old_reference": {
+  "source": "backtest/DIAGNOSIS.md \u00a7D5 + backtest/diagnosis/D5_confound.py taze re-run 2026-06-11 (ayn\u0131 say\u0131lar)",
+  "SPY": {
+   "n": 236,
+   "pos_rate": 0.45,
+   "vol": {
+    "r2_rv20": 0.0,
+    "acc_rv20": 0.55,
+    "r2_vix": 0.149,
+    "acc_vix": 0.66,
+    "r2_rv20_vix": 0.202,
+    "acc_rv20_vix": 0.71,
+    "phi_pg_lowvol": 0.12,
+    "ols_absgex_rv20": 0.028
+   },
+   "calendar": {
+    "corr_dte_flag": -0.24,
+    "corr_dte_logabsgex": -0.178,
+    "ols_absgex_dte": 0.032
+   },
+   "trend": {
+    "corr_tr20_flag": 0.467,
+    "pg_up": 102,
+    "pg_dn": 4,
+    "ng_up": 86,
+    "ng_dn": 44,
+    "phi": 0.37,
+    "ols_absgex_tr20": 0.126
+   },
+   "decompose": {
+    "ols_r2_absgex": 0.278,
+    "gamma_specific_share": 0.722,
+    "pseudo_r2_flag": 0.315,
+    "acc_flag": 0.78,
+    "base_acc": 0.55
+   }
+  },
+  "QQQ": {
+   "n": 236,
+   "pos_rate": 0.56,
+   "vol": {
+    "r2_rv20": 0.03,
+    "acc_rv20": 0.54,
+    "r2_vix": 0.256,
+    "acc_vix": 0.73,
+    "r2_rv20_vix": 0.261,
+    "acc_rv20_vix": 0.75,
+    "phi_pg_lowvol": 0.32,
+    "ols_absgex_rv20": 0.036
+   },
+   "calendar": {
+    "corr_dte_flag": -0.038,
+    "corr_dte_logabsgex": -0.339,
+    "ols_absgex_dte": 0.115
+   },
+   "trend": {
+    "corr_tr20_flag": 0.493,
+    "pg_up": 122,
+    "pg_dn": 11,
+    "ng_up": 58,
+    "ng_dn": 45,
+    "phi": 0.41,
+    "ols_absgex_tr20": 0.072
+   },
+   "decompose": {
+    "ols_r2_absgex": 0.257,
+    "gamma_specific_share": 0.743,
+    "pseudo_r2_flag": 0.36,
+    "acc_flag": 0.79,
+    "base_acc": 0.56
+   }
+  }
+ },
+ "series": {
+  "livematch_spy": {
+   "mode": "livematch",
+   "sym": "SPY",
+   "flag_kind": "own",
+   "scope": "task",
+   "etf_bars": "SPY",
+   "n": 236,
+   "period": [
+    "2025-06-13",
+    "2026-06-08"
+   ],
+   "pos_rate": 0.5,
+   "sec0_overlap": {
+    "overlap_gammainv_vs_volonly": 0.517,
+    "n": 236,
+    "phi": 0.03,
+    "agree_days": 122
+   },
+   "sec1_vol": {
+    "n": 236,
+    "r2_rv20": 0.001,
+    "acc_rv20": 0.53,
+    "r2_vix": 0.15,
+    "acc_vix": 0.68,
+    "r2_rv20_vix": 0.185,
+    "acc_rv20_vix": 0.72,
+    "c2x2_pg_lowvol": {
+     "n11": 67,
+     "n10": 52,
+     "n01": 51,
+     "n00": 66
+    },
+    "phi_pg_lowvol": 0.13,
+    "agree_pg_lowvol": 0.56,
+    "ols_absgex_rv20": 0.0
+   },
+   "sec2_calendar": {
+    "n": 236,
+    "buckets": [
+     {
+      "bucket": "0-2",
+      "n": 53,
+      "pos_rate": 0.51,
+      "mean_absgex_B": 5.65,
+      "med_absgex_B": 4.68
+     },
+     {
+      "bucket": "3-5",
+      "n": 34,
+      "pos_rate": 0.47,
+      "mean_absgex_B": 3.39,
+      "med_absgex_B": 2.66
+     },
+     {
+      "bucket": "6-9",
+      "n": 54,
+      "pos_rate": 0.57,
+      "mean_absgex_B": 4.59,
+      "med_absgex_B": 4.49
+     },
+     {
+      "bucket": "10-14",
+      "n": 43,
+      "pos_rate": 0.44,
+      "mean_absgex_B": 3.11,
+      "med_absgex_B": 2.49
+     },
+     {
+      "bucket": "15+",
+      "n": 52,
+      "pos_rate": 0.5,
+      "mean_absgex_B": 4.39,
+      "med_absgex_B": 3.88
+     }
+    ],
+    "corr_dte_flag": 0.008,
+    "corr_dte_logabsgex": -0.084,
+    "ols_absgex_dte": 0.007
+   },
+   "sec3_trend": {
+    "n": 236,
+    "corr_tr20_flag": 0.308,
+    "c2x2": {
+     "pg_up": 110,
+     "pg_dn": 9,
+     "ng_up": 78,
+     "ng_dn": 39
+    },
+    "agree": 0.63,
+    "phi": 0.32,
+    "ols_absgex_tr20": 0.001
+   },
+   "sec4_decompose": {
+    "feats": [
+     "rv20",
+     "vix",
+     "dte",
+     "tr20"
+    ],
+    "n": 236,
+    "ols_r2_absgex": 0.027,
+    "gamma_specific_share": 0.973,
+    "univariate_r2": {
+     "rv20": 0.0,
+     "vix": 0.008,
+     "dte": 0.007,
+     "tr20": 0.001
+    },
+    "pseudo_r2_flag": 0.19,
+    "acc_flag": 0.72,
+    "base_acc": 0.5,
+    "acc_above_base_pp": 22.0
+   },
+   "sec4_variant_dte2share": {
+    "feats": [
+     "rv20",
+     "vix",
+     "dte2_share",
+     "tr20"
+    ],
+    "n": 236,
+    "ols_r2_absgex": 0.043,
+    "gamma_specific_share": 0.957,
+    "univariate_r2": {
+     "rv20": 0.0,
+     "vix": 0.008,
+     "dte2_share": 0.028,
+     "tr20": 0.001
+    },
+    "pseudo_r2_flag": 0.194,
+    "acc_flag": 0.72,
+    "base_acc": 0.5,
+    "acc_above_base_pp": 21.2
+   }
+  },
+  "livematch_qqq": {
+   "mode": "livematch",
+   "sym": "QQQ",
+   "flag_kind": "own",
+   "scope": "task",
+   "etf_bars": "QQQ",
+   "n": 236,
+   "period": [
+    "2025-06-13",
+    "2026-06-08"
+   ],
+   "pos_rate": 0.56,
+   "sec0_overlap": {
+    "overlap_gammainv_vs_volonly": 0.508,
+    "n": 236,
+    "phi": 0.02,
+    "agree_days": 120
+   },
+   "sec1_vol": {
+    "n": 236,
+    "r2_rv20": 0.0,
+    "acc_rv20": 0.56,
+    "r2_vix": 0.082,
+    "acc_vix": 0.65,
+    "r2_rv20_vix": 0.099,
+    "acc_rv20_vix": 0.66,
+    "c2x2_pg_lowvol": {
+     "n11": 70,
+     "n10": 61,
+     "n01": 48,
+     "n00": 57
+    },
+    "phi_pg_lowvol": 0.08,
+    "agree_pg_lowvol": 0.54,
+    "ols_absgex_rv20": 0.0
+   },
+   "sec2_calendar": {
+    "n": 236,
+    "buckets": [
+     {
+      "bucket": "0-2",
+      "n": 53,
+      "pos_rate": 0.51,
+      "mean_absgex_B": 2.67,
+      "med_absgex_B": 2.21
+     },
+     {
+      "bucket": "3-5",
+      "n": 34,
+      "pos_rate": 0.62,
+      "mean_absgex_B": 2.16,
+      "med_absgex_B": 2.01
+     },
+     {
+      "bucket": "6-9",
+      "n": 54,
+      "pos_rate": 0.59,
+      "mean_absgex_B": 2.0,
+      "med_absgex_B": 1.92
+     },
+     {
+      "bucket": "10-14",
+      "n": 43,
+      "pos_rate": 0.51,
+      "mean_absgex_B": 1.91,
+      "med_absgex_B": 1.75
+     },
+     {
+      "bucket": "15+",
+      "n": 52,
+      "pos_rate": 0.56,
+      "mean_absgex_B": 1.99,
+      "med_absgex_B": 1.76
+     }
+    ],
+    "corr_dte_flag": 0.016,
+    "corr_dte_logabsgex": -0.108,
+    "ols_absgex_dte": 0.012
+   },
+   "sec3_trend": {
+    "n": 236,
+    "corr_tr20_flag": 0.301,
+    "c2x2": {
+     "pg_up": 113,
+     "pg_dn": 18,
+     "ng_up": 67,
+     "ng_dn": 38
+    },
+    "agree": 0.64,
+    "phi": 0.26,
+    "ols_absgex_tr20": 0.0
+   },
+   "sec4_decompose": {
+    "feats": [
+     "rv20",
+     "vix",
+     "dte",
+     "tr20"
+    ],
+    "n": 236,
+    "ols_r2_absgex": 0.02,
+    "gamma_specific_share": 0.98,
+    "univariate_r2": {
+     "rv20": 0.0,
+     "vix": 0.006,
+     "dte": 0.012,
+     "tr20": 0.0
+    },
+    "pseudo_r2_flag": 0.126,
+    "acc_flag": 0.69,
+    "base_acc": 0.56,
+    "acc_above_base_pp": 13.6
+   },
+   "sec4_variant_dte2share": {
+    "feats": [
+     "rv20",
+     "vix",
+     "dte2_share",
+     "tr20"
+    ],
+    "n": 236,
+    "ols_r2_absgex": 0.018,
+    "gamma_specific_share": 0.982,
+    "univariate_r2": {
+     "rv20": 0.0,
+     "vix": 0.006,
+     "dte2_share": 0.012,
+     "tr20": 0.0
+    },
+    "pseudo_r2_flag": 0.124,
+    "acc_flag": 0.68,
+    "base_acc": 0.56,
+    "acc_above_base_pp": 12.3
+   }
+  },
+  "fullsurface_spy": {
+   "mode": "fullsurface",
+   "sym": "SPY",
+   "flag_kind": "own",
+   "scope": "task",
+   "etf_bars": "SPY",
+   "n": 236,
+   "period": [
+    "2025-06-13",
+    "2026-06-08"
+   ],
+   "pos_rate": 0.45,
+   "sec0_overlap": {
+    "overlap_gammainv_vs_volonly": 0.496,
+    "n": 236,
+    "phi": 0.01,
+    "agree_days": 117
+   },
+   "sec1_vol": {
+    "n": 236,
+    "r2_rv20": 0.004,
+    "acc_rv20": 0.54,
+    "r2_vix": 0.171,
+    "acc_vix": 0.67,
+    "r2_rv20_vix": 0.205,
+    "acc_rv20_vix": 0.68,
+    "c2x2_pg_lowvol": {
+     "n11": 62,
+     "n10": 45,
+     "n01": 56,
+     "n00": 73
+    },
+    "phi_pg_lowvol": 0.14,
+    "agree_pg_lowvol": 0.57,
+    "ols_absgex_rv20": 0.04
+   },
+   "sec2_calendar": {
+    "n": 236,
+    "buckets": [
+     {
+      "bucket": "0-2",
+      "n": 53,
+      "pos_rate": 0.45,
+      "mean_absgex_B": 7.46,
+      "med_absgex_B": 6.06
+     },
+     {
+      "bucket": "3-5",
+      "n": 34,
+      "pos_rate": 0.44,
+      "mean_absgex_B": 5.1,
+      "med_absgex_B": 4.24
+     },
+     {
+      "bucket": "6-9",
+      "n": 54,
+      "pos_rate": 0.5,
+      "mean_absgex_B": 6.55,
+      "med_absgex_B": 6.12
+     },
+     {
+      "bucket": "10-14",
+      "n": 43,
+      "pos_rate": 0.42,
+      "mean_absgex_B": 4.7,
+      "med_absgex_B": 3.37
+     },
+     {
+      "bucket": "15+",
+      "n": 52,
+      "pos_rate": 0.44,
+      "mean_absgex_B": 7.27,
+      "med_absgex_B": 6.19
+     }
+    ],
+    "corr_dte_flag": 0.008,
+    "corr_dte_logabsgex": -0.03,
+    "ols_absgex_dte": 0.001
+   },
+   "sec3_trend": {
+    "n": 236,
+    "corr_tr20_flag": 0.416,
+    "c2x2": {
+     "pg_up": 103,
+     "pg_dn": 4,
+     "ng_up": 85,
+     "ng_dn": 44
+    },
+    "agree": 0.62,
+    "phi": 0.38,
+    "ols_absgex_tr20": 0.043
+   },
+   "sec4_decompose": {
+    "feats": [
+     "rv20",
+     "vix",
+     "dte",
+     "tr20"
+    ],
+    "n": 236,
+    "ols_r2_absgex": 0.142,
+    "gamma_specific_share": 0.858,
+    "univariate_r2": {
+     "rv20": 0.04,
+     "vix": 0.139,
+     "dte": 0.001,
+     "tr20": 0.043
+    },
+    "pseudo_r2_flag": 0.247,
+    "acc_flag": 0.74,
+    "base_acc": 0.55,
+    "acc_above_base_pp": 19.5
+   },
+   "sec4_variant_dte2share": {
+    "feats": [
+     "rv20",
+     "vix",
+     "dte2_share",
+     "tr20"
+    ],
+    "n": 236,
+    "ols_r2_absgex": 0.15,
+    "gamma_specific_share": 0.85,
+    "univariate_r2": {
+     "rv20": 0.04,
+     "vix": 0.139,
+     "dte2_share": 0.015,
+     "tr20": 0.043
+    },
+    "pseudo_r2_flag": 0.247,
+    "acc_flag": 0.75,
+    "base_acc": 0.55,
+    "acc_above_base_pp": 19.9
+   }
+  },
+  "fullsurface_qqq": {
+   "mode": "fullsurface",
+   "sym": "QQQ",
+   "flag_kind": "own",
+   "scope": "task",
+   "etf_bars": "QQQ",
+   "n": 236,
+   "period": [
+    "2025-06-13",
+    "2026-06-08"
+   ],
+   "pos_rate": 0.55,
+   "sec0_overlap": {
+    "overlap_gammainv_vs_volonly": 0.53,
+    "n": 236,
+    "phi": 0.06,
+    "agree_days": 125
+   },
+   "sec1_vol": {
+    "n": 236,
+    "r2_rv20": 0.004,
+    "acc_rv20": 0.51,
+    "r2_vix": 0.178,
+    "acc_vix": 0.71,
+    "r2_rv20_vix": 0.202,
+    "acc_rv20_vix": 0.71,
+    "c2x2_pg_lowvol": {
+     "n11": 75,
+     "n10": 54,
+     "n01": 43,
+     "n00": 64
+    },
+    "phi_pg_lowvol": 0.18,
+    "agree_pg_lowvol": 0.59,
+    "ols_absgex_rv20": 0.024
+   },
+   "sec2_calendar": {
+    "n": 236,
+    "buckets": [
+     {
+      "bucket": "0-2",
+      "n": 53,
+      "pos_rate": 0.53,
+      "mean_absgex_B": 3.66,
+      "med_absgex_B": 3.32
+     },
+     {
+      "bucket": "3-5",
+      "n": 34,
+      "pos_rate": 0.59,
+      "mean_absgex_B": 3.31,
+      "med_absgex_B": 3.39
+     },
+     {
+      "bucket": "6-9",
+      "n": 54,
+      "pos_rate": 0.63,
+      "mean_absgex_B": 3.34,
+      "med_absgex_B": 3.0
+     },
+     {
+      "bucket": "10-14",
+      "n": 43,
+      "pos_rate": 0.49,
+      "mean_absgex_B": 2.67,
+      "med_absgex_B": 2.23
+     },
+     {
+      "bucket": "15+",
+      "n": 52,
+      "pos_rate": 0.5,
+      "mean_absgex_B": 3.32,
+      "med_absgex_B": 2.95
+     }
+    ],
+    "corr_dte_flag": -0.036,
+    "corr_dte_logabsgex": -0.02,
+    "ols_absgex_dte": 0.0
+   },
+   "sec3_trend": {
+    "n": 236,
+    "corr_tr20_flag": 0.475,
+    "c2x2": {
+     "pg_up": 119,
+     "pg_dn": 10,
+     "ng_up": 61,
+     "ng_dn": 46
+    },
+    "agree": 0.7,
+    "phi": 0.41,
+    "ols_absgex_tr20": 0.003
+   },
+   "sec4_decompose": {
+    "feats": [
+     "rv20",
+     "vix",
+     "dte",
+     "tr20"
+    ],
+    "n": 236,
+    "ols_r2_absgex": 0.042,
+    "gamma_specific_share": 0.958,
+    "univariate_r2": {
+     "rv20": 0.024,
+     "vix": 0.033,
+     "dte": 0.0,
+     "tr20": 0.003
+    },
+    "pseudo_r2_flag": 0.297,
+    "acc_flag": 0.77,
+    "base_acc": 0.55,
+    "acc_above_base_pp": 22.5
+   },
+   "sec4_variant_dte2share": {
+    "feats": [
+     "rv20",
+     "vix",
+     "dte2_share",
+     "tr20"
+    ],
+    "n": 236,
+    "ols_r2_absgex": 0.042,
+    "gamma_specific_share": 0.958,
+    "univariate_r2": {
+     "rv20": 0.024,
+     "vix": 0.033,
+     "dte2_share": 0.001,
+     "tr20": 0.003
+    },
+    "pseudo_r2_flag": 0.298,
+    "acc_flag": 0.78,
+    "base_acc": 0.55,
+    "acc_above_base_pp": 23.3
+   }
+  },
+  "fullsurface_spx": {
+   "mode": "fullsurface",
+   "sym": "SPX",
+   "flag_kind": "index_flag",
+   "scope": "task",
+   "etf_bars": "SPY",
+   "n": 235,
+   "period": [
+    "2025-06-13",
+    "2026-06-08"
+   ],
+   "pos_rate": 0.69,
+   "sec0_overlap": {
+    "overlap_gammainv_vs_volonly": 0.681,
+    "n": 235,
+    "phi": 0.39,
+    "agree_days": 160
+   },
+   "sec1_vol": {
+    "n": 235,
+    "r2_rv20": 0.032,
+    "acc_rv20": 0.66,
+    "r2_vix": 0.488,
+    "acc_vix": 0.89,
+    "r2_rv20_vix": 0.535,
+    "acc_rv20_vix": 0.9,
+    "c2x2_pg_lowvol": {
+     "n11": 101,
+     "n10": 62,
+     "n01": 17,
+     "n00": 55
+    },
+    "phi_pg_lowvol": 0.35,
+    "agree_pg_lowvol": 0.66,
+    "ols_absgex_rv20": 0.001
+   },
+   "sec2_calendar": {
+    "n": 235,
+    "buckets": [
+     {
+      "bucket": "0-2",
+      "n": 53,
+      "pos_rate": 0.66,
+      "mean_absgex_B": 47.49,
+      "med_absgex_B": 39.93
+     },
+     {
+      "bucket": "3-5",
+      "n": 34,
+      "pos_rate": 0.68,
+      "mean_absgex_B": 46.86,
+      "med_absgex_B": 42.4
+     },
+     {
+      "bucket": "6-9",
+      "n": 53,
+      "pos_rate": 0.79,
+      "mean_absgex_B": 49.31,
+      "med_absgex_B": 50.86
+     },
+     {
+      "bucket": "10-14",
+      "n": 43,
+      "pos_rate": 0.7,
+      "mean_absgex_B": 35.96,
+      "med_absgex_B": 36.53
+     },
+     {
+      "bucket": "15+",
+      "n": 52,
+      "pos_rate": 0.63,
+      "mean_absgex_B": 46.54,
+      "med_absgex_B": 48.06
+     }
+    ],
+    "corr_dte_flag": -0.013,
+    "corr_dte_logabsgex": 0.023,
+    "ols_absgex_dte": 0.001
+   },
+   "sec3_trend": {
+    "n": 235,
+    "corr_tr20_flag": 0.631,
+    "c2x2": {
+     "pg_up": 157,
+     "pg_dn": 6,
+     "ng_up": 30,
+     "ng_dn": 42
+    },
+    "agree": 0.85,
+    "phi": 0.62,
+    "ols_absgex_tr20": 0.081
+   },
+   "sec4_decompose": {
+    "feats": [
+     "rv20",
+     "vix",
+     "dte",
+     "tr20"
+    ],
+    "n": 235,
+    "ols_r2_absgex": 0.109,
+    "gamma_specific_share": 0.891,
+    "univariate_r2": {
+     "rv20": 0.001,
+     "vix": 0.003,
+     "dte": 0.001,
+     "tr20": 0.081
+    },
+    "pseudo_r2_flag": 0.669,
+    "acc_flag": 0.92,
+    "base_acc": 0.69,
+    "acc_above_base_pp": 22.6
+   },
+   "sec4_variant_dte2share": {
+    "feats": [
+     "rv20",
+     "vix",
+     "dte2_share",
+     "tr20"
+    ],
+    "n": 235,
+    "ols_r2_absgex": 0.112,
+    "gamma_specific_share": 0.888,
+    "univariate_r2": {
+     "rv20": 0.001,
+     "vix": 0.003,
+     "dte2_share": 0.005,
+     "tr20": 0.081
+    },
+    "pseudo_r2_flag": 0.67,
+    "acc_flag": 0.91,
+    "base_acc": 0.69,
+    "acc_above_base_pp": 21.3
+   }
+  },
+  "fullsurface_ndx": {
+   "mode": "fullsurface",
+   "sym": "NDX",
+   "flag_kind": "index_flag",
+   "scope": "simetrik-ek",
+   "etf_bars": "QQQ",
+   "n": 235,
+   "period": [
+    "2025-06-13",
+    "2026-06-08"
+   ],
+   "pos_rate": 0.81,
+   "sec0_overlap": {
+    "overlap_gammainv_vs_volonly": 0.468,
+    "n": 235,
+    "phi": -0.09,
+    "agree_days": 110
+   },
+   "sec1_vol": {
+    "n": 235,
+    "r2_rv20": 0.028,
+    "acc_rv20": 0.81,
+    "r2_vix": 0.228,
+    "acc_vix": 0.83,
+    "r2_rv20_vix": 0.229,
+    "acc_rv20_vix": 0.83,
+    "c2x2_pg_lowvol": {
+     "n11": 107,
+     "n10": 84,
+     "n01": 11,
+     "n00": 33
+    },
+    "phi_pg_lowvol": 0.24,
+    "agree_pg_lowvol": 0.6,
+    "ols_absgex_rv20": 0.002
+   },
+   "sec2_calendar": {
+    "n": 235,
+    "buckets": [
+     {
+      "bucket": "0-2",
+      "n": 53,
+      "pos_rate": 0.79,
+      "mean_absgex_B": 3.32,
+      "med_absgex_B": 3.44
+     },
+     {
+      "bucket": "3-5",
+      "n": 34,
+      "pos_rate": 0.82,
+      "mean_absgex_B": 3.04,
+      "med_absgex_B": 2.9
+     },
+     {
+      "bucket": "6-9",
+      "n": 53,
+      "pos_rate": 0.83,
+      "mean_absgex_B": 3.49,
+      "med_absgex_B": 3.6
+     },
+     {
+      "bucket": "10-14",
+      "n": 43,
+      "pos_rate": 0.86,
+      "mean_absgex_B": 2.78,
+      "med_absgex_B": 2.74
+     },
+     {
+      "bucket": "15+",
+      "n": 52,
+      "pos_rate": 0.77,
+      "mean_absgex_B": 2.75,
+      "med_absgex_B": 2.76
+     }
+    ],
+    "corr_dte_flag": -0.037,
+    "corr_dte_logabsgex": -0.006,
+    "ols_absgex_dte": 0.0
+   },
+   "sec3_trend": {
+    "n": 235,
+    "corr_tr20_flag": 0.452,
+    "c2x2": {
+     "pg_up": 164,
+     "pg_dn": 27,
+     "ng_up": 15,
+     "ng_dn": 29
+    },
+    "agree": 0.82,
+    "phi": 0.47,
+    "ols_absgex_tr20": 0.144
+   },
+   "sec4_decompose": {
+    "feats": [
+     "rv20",
+     "vix",
+     "dte",
+     "tr20"
+    ],
+    "n": 235,
+    "ols_r2_absgex": 0.148,
+    "gamma_specific_share": 0.852,
+    "univariate_r2": {
+     "rv20": 0.002,
+     "vix": 0.037,
+     "dte": 0.0,
+     "tr20": 0.144
+    },
+    "pseudo_r2_flag": 0.379,
+    "acc_flag": 0.86,
+    "base_acc": 0.81,
+    "acc_above_base_pp": 5.1
+   },
+   "sec4_variant_dte2share": {
+    "feats": [
+     "rv20",
+     "vix",
+     "dte2_share",
+     "tr20"
+    ],
+    "n": 235,
+    "ols_r2_absgex": 0.152,
+    "gamma_specific_share": 0.848,
+    "univariate_r2": {
+     "rv20": 0.002,
+     "vix": 0.037,
+     "dte2_share": 0.004,
+     "tr20": 0.144
+    },
+    "pseudo_r2_flag": 0.408,
+    "acc_flag": 0.87,
+    "base_acc": 0.81,
+    "acc_above_base_pp": 6.0
+   }
+  }
+ },
+ "raw_frontdte_evidence": {
+  "SPY": {
+   "n_days": 243,
+   "mean": 0.0,
+   "median": 0.0,
+   "max": 0,
+   "share_le1": 1.0
+  },
+  "QQQ": {
+   "n_days": 243,
+   "mean": 0.0,
+   "median": 0.0,
+   "max": 0,
+   "share_le1": 1.0
+  },
+  "SPX": {
+   "n_days": 242,
+   "mean": 0.0,
+   "median": 0.0,
+   "max": 0,
+   "share_le1": 1.0
+  },
+  "NDX": {
+   "n_days": 242,
+   "mean": 0.09,
+   "median": 0.0,
+   "max": 21,
+   "share_le1": 0.996
+  }
+ }
+}

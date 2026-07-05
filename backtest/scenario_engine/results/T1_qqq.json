@@ -1,0 +1,1188 @@
+{
+  "meta": {
+    "sym": "QQQ",
+    "n_days": 237,
+    "n_events_primary": 196,
+    "n_events_alt": 189,
+    "n_events_primary_down": 64,
+    "n_events_primary_up": 132,
+    "n_events_alt_down": 58,
+    "n_events_alt_up": 131,
+    "em1_pct_of_spot_median": 0.315,
+    "cost_rt_bps": 2.0,
+    "panel_window": [
+      "2025-06-13",
+      "2026-06-09"
+    ]
+  },
+  "cells": {
+    "primary": {
+      "down": {
+        "n_events": 64,
+        "p_touch": {
+          "n": 64,
+          "k": 27,
+          "rate": 0.4219,
+          "wilson95": [
+            0.3087,
+            0.5439
+          ]
+        },
+        "time_to_touch": {
+          "n_touch": 27,
+          "median_min": 53.0,
+          "share_le30": {
+            "n": 27,
+            "k": 10,
+            "rate": 0.3704,
+            "wilson95": [
+              0.2153,
+              0.5577
+            ]
+          },
+          "share_le120": {
+            "n": 27,
+            "k": 19,
+            "rate": 0.7037,
+            "wilson95": [
+              0.5152,
+              0.8415
+            ]
+          },
+          "share_gt120": {
+            "n": 27,
+            "k": 8,
+            "rate": 0.2963,
+            "wilson95": [
+              0.1585,
+              0.4848
+            ]
+          }
+        },
+        "mae_em1": {
+          "touched": {
+            "n": 27,
+            "median": 0.539,
+            "p90": 1.356
+          },
+          "non_touch_full_session": {
+            "n": 37,
+            "median": 1.502,
+            "p90": 2.932
+          }
+        },
+        "ev_nostop": {
+          "n": 64,
+          "mean_gross_bps": -6.52,
+          "mean_net_bps": -8.52,
+          "std_bps": 65.34,
+          "t_gross": -0.8,
+          "t_net": -1.04,
+          "hit_gross": {
+            "n": 64,
+            "k": 37,
+            "rate": 0.5781,
+            "wilson95": [
+              0.4561,
+              0.6913
+            ]
+          },
+          "hit_net": {
+            "n": 64,
+            "k": 37,
+            "rate": 0.5781,
+            "wilson95": [
+              0.4561,
+              0.6913
+            ]
+          }
+        },
+        "ev_stop": {
+          "n": 64,
+          "mean_gross_bps": -4.64,
+          "mean_net_bps": -6.64,
+          "std_bps": 47.72,
+          "t_gross": -0.78,
+          "t_net": -1.11,
+          "hit_gross": {
+            "n": 64,
+            "k": 28,
+            "rate": 0.4375,
+            "wilson95": [
+              0.3229,
+              0.5591
+            ]
+          },
+          "hit_net": {
+            "n": 64,
+            "k": 28,
+            "rate": 0.4375,
+            "wilson95": [
+              0.3229,
+              0.5591
+            ]
+          },
+          "exits": {
+            "tp": 22,
+            "stop": 31,
+            "eod": 11
+          }
+        },
+        "never_fill_continuation": {
+          "n": 36,
+          "mean_gross_bps": 1.38,
+          "mean_net_bps": -0.62,
+          "std_bps": 80.26,
+          "t_gross": 0.1,
+          "t_net": -0.05,
+          "hit_gross": {
+            "n": 36,
+            "k": 18,
+            "rate": 0.5,
+            "wilson95": [
+              0.3447,
+              0.6553
+            ]
+          },
+          "hit_net": {
+            "n": 36,
+            "k": 18,
+            "rate": 0.5,
+            "wilson95": [
+              0.3447,
+              0.6553
+            ]
+          },
+          "hit": {
+            "n": 36,
+            "k": 18,
+            "rate": 0.5,
+            "wilson95": [
+              0.3447,
+              0.6553
+            ]
+          },
+          "n_never_fill": 37,
+          "skipped_no_next_panel_row": 1
+        }
+      },
+      "up": {
+        "n_events": 132,
+        "p_touch": {
+          "n": 132,
+          "k": 44,
+          "rate": 0.3333,
+          "wilson95": [
+            0.2586,
+            0.4175
+          ]
+        },
+        "time_to_touch": {
+          "n_touch": 44,
+          "median_min": 50.0,
+          "share_le30": {
+            "n": 44,
+            "k": 17,
+            "rate": 0.3864,
+            "wilson95": [
+              0.2572,
+              0.5338
+            ]
+          },
+          "share_le120": {
+            "n": 44,
+            "k": 34,
+            "rate": 0.7727,
+            "wilson95": [
+              0.6301,
+              0.8716
+            ]
+          },
+          "share_gt120": {
+            "n": 44,
+            "k": 10,
+            "rate": 0.2273,
+            "wilson95": [
+              0.1284,
+              0.3699
+            ]
+          }
+        },
+        "mae_em1": {
+          "touched": {
+            "n": 44,
+            "median": 0.404,
+            "p90": 1.362
+          },
+          "non_touch_full_session": {
+            "n": 88,
+            "median": 1.683,
+            "p90": 4.556
+          }
+        },
+        "ev_nostop": {
+          "n": 132,
+          "mean_gross_bps": 3.05,
+          "mean_net_bps": 1.05,
+          "std_bps": 76.15,
+          "t_gross": 0.46,
+          "t_net": 0.16,
+          "hit_gross": {
+            "n": 132,
+            "k": 79,
+            "rate": 0.5985,
+            "wilson95": [
+              0.5132,
+              0.6782
+            ]
+          },
+          "hit_net": {
+            "n": 132,
+            "k": 78,
+            "rate": 0.5909,
+            "wilson95": [
+              0.5056,
+              0.6711
+            ]
+          }
+        },
+        "ev_stop": {
+          "n": 132,
+          "mean_gross_bps": -2.66,
+          "mean_net_bps": -4.66,
+          "std_bps": 55.18,
+          "t_gross": -0.55,
+          "t_net": -0.97,
+          "hit_gross": {
+            "n": 132,
+            "k": 51,
+            "rate": 0.3864,
+            "wilson95": [
+              0.3076,
+              0.4715
+            ]
+          },
+          "hit_net": {
+            "n": 132,
+            "k": 51,
+            "rate": 0.3864,
+            "wilson95": [
+              0.3076,
+              0.4715
+            ]
+          },
+          "exits": {
+            "tp": 36,
+            "stop": 72,
+            "eod": 24
+          }
+        },
+        "never_fill_continuation": {
+          "n": 87,
+          "mean_gross_bps": -2.33,
+          "mean_net_bps": -4.33,
+          "std_bps": 104.46,
+          "t_gross": -0.21,
+          "t_net": -0.39,
+          "hit_gross": {
+            "n": 87,
+            "k": 37,
+            "rate": 0.4253,
+            "wilson95": [
+              0.3267,
+              0.5302
+            ]
+          },
+          "hit_net": {
+            "n": 87,
+            "k": 37,
+            "rate": 0.4253,
+            "wilson95": [
+              0.3267,
+              0.5302
+            ]
+          },
+          "hit": {
+            "n": 87,
+            "k": 37,
+            "rate": 0.4253,
+            "wilson95": [
+              0.3267,
+              0.5302
+            ]
+          },
+          "n_never_fill": 88,
+          "skipped_no_next_panel_row": 1
+        }
+      },
+      "pooled": {
+        "n_events": 196,
+        "p_touch": {
+          "n": 196,
+          "k": 71,
+          "rate": 0.3622,
+          "wilson95": [
+            0.2982,
+            0.4316
+          ]
+        },
+        "time_to_touch": {
+          "n_touch": 71,
+          "median_min": 52.0,
+          "share_le30": {
+            "n": 71,
+            "k": 27,
+            "rate": 0.3803,
+            "wilson95": [
+              0.2763,
+              0.4966
+            ]
+          },
+          "share_le120": {
+            "n": 71,
+            "k": 53,
+            "rate": 0.7465,
+            "wilson95": [
+              0.6345,
+              0.8332
+            ]
+          },
+          "share_gt120": {
+            "n": 71,
+            "k": 18,
+            "rate": 0.2535,
+            "wilson95": [
+              0.1668,
+              0.3655
+            ]
+          }
+        },
+        "mae_em1": {
+          "touched": {
+            "n": 71,
+            "median": 0.404,
+            "p90": 1.372
+          },
+          "non_touch_full_session": {
+            "n": 125,
+            "median": 1.636,
+            "p90": 4.133
+          }
+        },
+        "ev_nostop": {
+          "n": 196,
+          "mean_gross_bps": -0.08,
+          "mean_net_bps": -2.08,
+          "std_bps": 72.77,
+          "t_gross": -0.01,
+          "t_net": -0.4,
+          "hit_gross": {
+            "n": 196,
+            "k": 116,
+            "rate": 0.5918,
+            "wilson95": [
+              0.5219,
+              0.6582
+            ]
+          },
+          "hit_net": {
+            "n": 196,
+            "k": 115,
+            "rate": 0.5867,
+            "wilson95": [
+              0.5168,
+              0.6534
+            ]
+          }
+        },
+        "ev_stop": {
+          "n": 196,
+          "mean_gross_bps": -3.31,
+          "mean_net_bps": -5.31,
+          "std_bps": 52.75,
+          "t_gross": -0.88,
+          "t_net": -1.41,
+          "hit_gross": {
+            "n": 196,
+            "k": 79,
+            "rate": 0.4031,
+            "wilson95": [
+              0.3369,
+              0.473
+            ]
+          },
+          "hit_net": {
+            "n": 196,
+            "k": 79,
+            "rate": 0.4031,
+            "wilson95": [
+              0.3369,
+              0.473
+            ]
+          },
+          "exits": {
+            "tp": 58,
+            "stop": 103,
+            "eod": 35
+          }
+        },
+        "never_fill_continuation": {
+          "n": 123,
+          "mean_gross_bps": -1.24,
+          "mean_net_bps": -3.24,
+          "std_bps": 97.69,
+          "t_gross": -0.14,
+          "t_net": -0.37,
+          "hit_gross": {
+            "n": 123,
+            "k": 55,
+            "rate": 0.4472,
+            "wilson95": [
+              0.3622,
+              0.5353
+            ]
+          },
+          "hit_net": {
+            "n": 123,
+            "k": 55,
+            "rate": 0.4472,
+            "wilson95": [
+              0.3622,
+              0.5353
+            ]
+          },
+          "hit": {
+            "n": 123,
+            "k": 55,
+            "rate": 0.4472,
+            "wilson95": [
+              0.3622,
+              0.5353
+            ]
+          },
+          "n_never_fill": 125,
+          "skipped_no_next_panel_row": 2
+        }
+      }
+    },
+    "alt": {
+      "down": {
+        "n_events": 58,
+        "p_touch": {
+          "n": 58,
+          "k": 22,
+          "rate": 0.3793,
+          "wilson95": [
+            0.2656,
+            0.508
+          ]
+        },
+        "time_to_touch": {
+          "n_touch": 22,
+          "median_min": 64.0,
+          "share_le30": {
+            "n": 22,
+            "k": 6,
+            "rate": 0.2727,
+            "wilson95": [
+              0.1315,
+              0.4815
+            ]
+          },
+          "share_le120": {
+            "n": 22,
+            "k": 13,
+            "rate": 0.5909,
+            "wilson95": [
+              0.3873,
+              0.7674
+            ]
+          },
+          "share_gt120": {
+            "n": 22,
+            "k": 9,
+            "rate": 0.4091,
+            "wilson95": [
+              0.2326,
+              0.6127
+            ]
+          }
+        },
+        "mae_em1": {
+          "touched": {
+            "n": 22,
+            "median": 0.446,
+            "p90": 1.415
+          },
+          "non_touch_full_session": {
+            "n": 36,
+            "median": 1.465,
+            "p90": 2.94
+          }
+        },
+        "ev_nostop": {
+          "n": 58,
+          "mean_gross_bps": -6.6,
+          "mean_net_bps": -8.6,
+          "std_bps": 68.05,
+          "t_gross": -0.74,
+          "t_net": -0.96,
+          "hit_gross": {
+            "n": 58,
+            "k": 32,
+            "rate": 0.5517,
+            "wilson95": [
+              0.4245,
+              0.6725
+            ]
+          },
+          "hit_net": {
+            "n": 58,
+            "k": 32,
+            "rate": 0.5517,
+            "wilson95": [
+              0.4245,
+              0.6725
+            ]
+          }
+        },
+        "ev_stop": {
+          "n": 58,
+          "mean_gross_bps": -5.23,
+          "mean_net_bps": -7.23,
+          "std_bps": 49.97,
+          "t_gross": -0.8,
+          "t_net": -1.1,
+          "hit_gross": {
+            "n": 58,
+            "k": 23,
+            "rate": 0.3966,
+            "wilson95": [
+              0.2809,
+              0.5251
+            ]
+          },
+          "hit_net": {
+            "n": 58,
+            "k": 23,
+            "rate": 0.3966,
+            "wilson95": [
+              0.2809,
+              0.5251
+            ]
+          },
+          "exits": {
+            "tp": 17,
+            "stop": 30,
+            "eod": 11
+          }
+        },
+        "never_fill_continuation": {
+          "n": 35,
+          "mean_gross_bps": 2.41,
+          "mean_net_bps": 0.41,
+          "std_bps": 81.2,
+          "t_gross": 0.18,
+          "t_net": 0.03,
+          "hit_gross": {
+            "n": 35,
+            "k": 18,
+            "rate": 0.5143,
+            "wilson95": [
+              0.3557,
+              0.6701
+            ]
+          },
+          "hit_net": {
+            "n": 35,
+            "k": 18,
+            "rate": 0.5143,
+            "wilson95": [
+              0.3557,
+              0.6701
+            ]
+          },
+          "hit": {
+            "n": 35,
+            "k": 18,
+            "rate": 0.5143,
+            "wilson95": [
+              0.3557,
+              0.6701
+            ]
+          },
+          "n_never_fill": 36,
+          "skipped_no_next_panel_row": 1
+        }
+      },
+      "up": {
+        "n_events": 131,
+        "p_touch": {
+          "n": 131,
+          "k": 42,
+          "rate": 0.3206,
+          "wilson95": [
+            0.2468,
+            0.4047
+          ]
+        },
+        "time_to_touch": {
+          "n_touch": 42,
+          "median_min": 50.0,
+          "share_le30": {
+            "n": 42,
+            "k": 15,
+            "rate": 0.3571,
+            "wilson95": [
+              0.2299,
+              0.5083
+            ]
+          },
+          "share_le120": {
+            "n": 42,
+            "k": 32,
+            "rate": 0.7619,
+            "wilson95": [
+              0.6147,
+              0.8652
+            ]
+          },
+          "share_gt120": {
+            "n": 42,
+            "k": 10,
+            "rate": 0.2381,
+            "wilson95": [
+              0.1348,
+              0.3853
+            ]
+          }
+        },
+        "mae_em1": {
+          "touched": {
+            "n": 42,
+            "median": 0.371,
+            "p90": 1.323
+          },
+          "non_touch_full_session": {
+            "n": 89,
+            "median": 1.593,
+            "p90": 4.528
+          }
+        },
+        "ev_nostop": {
+          "n": 131,
+          "mean_gross_bps": 2.51,
+          "mean_net_bps": 0.51,
+          "std_bps": 76.75,
+          "t_gross": 0.37,
+          "t_net": 0.08,
+          "hit_gross": {
+            "n": 131,
+            "k": 77,
+            "rate": 0.5878,
+            "wilson95": [
+              0.5022,
+              0.6684
+            ]
+          },
+          "hit_net": {
+            "n": 131,
+            "k": 76,
+            "rate": 0.5802,
+            "wilson95": [
+              0.4945,
+              0.6612
+            ]
+          }
+        },
+        "ev_stop": {
+          "n": 131,
+          "mean_gross_bps": -4.32,
+          "mean_net_bps": -6.32,
+          "std_bps": 58.82,
+          "t_gross": -0.84,
+          "t_net": -1.23,
+          "hit_gross": {
+            "n": 131,
+            "k": 50,
+            "rate": 0.3817,
+            "wilson95": [
+              0.303,
+              0.4671
+            ]
+          },
+          "hit_net": {
+            "n": 131,
+            "k": 50,
+            "rate": 0.3817,
+            "wilson95": [
+              0.303,
+              0.4671
+            ]
+          },
+          "exits": {
+            "tp": 35,
+            "stop": 72,
+            "eod": 24
+          }
+        },
+        "never_fill_continuation": {
+          "n": 88,
+          "mean_gross_bps": -2.44,
+          "mean_net_bps": -4.44,
+          "std_bps": 104.58,
+          "t_gross": -0.22,
+          "t_net": -0.4,
+          "hit_gross": {
+            "n": 88,
+            "k": 38,
+            "rate": 0.4318,
+            "wilson95": [
+              0.3333,
+              0.536
+            ]
+          },
+          "hit_net": {
+            "n": 88,
+            "k": 38,
+            "rate": 0.4318,
+            "wilson95": [
+              0.3333,
+              0.536
+            ]
+          },
+          "hit": {
+            "n": 88,
+            "k": 38,
+            "rate": 0.4318,
+            "wilson95": [
+              0.3333,
+              0.536
+            ]
+          },
+          "n_never_fill": 89,
+          "skipped_no_next_panel_row": 1
+        }
+      },
+      "pooled": {
+        "n_events": 189,
+        "p_touch": {
+          "n": 189,
+          "k": 64,
+          "rate": 0.3386,
+          "wilson95": [
+            0.275,
+            0.4087
+          ]
+        },
+        "time_to_touch": {
+          "n_touch": 64,
+          "median_min": 53.0,
+          "share_le30": {
+            "n": 64,
+            "k": 21,
+            "rate": 0.3281,
+            "wilson95": [
+              0.2257,
+              0.45
+            ]
+          },
+          "share_le120": {
+            "n": 64,
+            "k": 45,
+            "rate": 0.7031,
+            "wilson95": [
+              0.5823,
+              0.801
+            ]
+          },
+          "share_gt120": {
+            "n": 64,
+            "k": 19,
+            "rate": 0.2969,
+            "wilson95": [
+              0.199,
+              0.4177
+            ]
+          }
+        },
+        "mae_em1": {
+          "touched": {
+            "n": 64,
+            "median": 0.371,
+            "p90": 1.362
+          },
+          "non_touch_full_session": {
+            "n": 125,
+            "median": 1.564,
+            "p90": 4.133
+          }
+        },
+        "ev_nostop": {
+          "n": 189,
+          "mean_gross_bps": -0.29,
+          "mean_net_bps": -2.29,
+          "std_bps": 74.13,
+          "t_gross": -0.05,
+          "t_net": -0.42,
+          "hit_gross": {
+            "n": 189,
+            "k": 109,
+            "rate": 0.5767,
+            "wilson95": [
+              0.5054,
+              0.6449
+            ]
+          },
+          "hit_net": {
+            "n": 189,
+            "k": 108,
+            "rate": 0.5714,
+            "wilson95": [
+              0.5001,
+              0.6399
+            ]
+          }
+        },
+        "ev_stop": {
+          "n": 189,
+          "mean_gross_bps": -4.6,
+          "mean_net_bps": -6.6,
+          "std_bps": 56.13,
+          "t_gross": -1.13,
+          "t_net": -1.62,
+          "hit_gross": {
+            "n": 189,
+            "k": 73,
+            "rate": 0.3862,
+            "wilson95": [
+              0.3198,
+              0.4573
+            ]
+          },
+          "hit_net": {
+            "n": 189,
+            "k": 73,
+            "rate": 0.3862,
+            "wilson95": [
+              0.3198,
+              0.4573
+            ]
+          },
+          "exits": {
+            "tp": 52,
+            "stop": 102,
+            "eod": 35
+          }
+        },
+        "never_fill_continuation": {
+          "n": 123,
+          "mean_gross_bps": -1.06,
+          "mean_net_bps": -3.06,
+          "std_bps": 98.19,
+          "t_gross": -0.12,
+          "t_net": -0.35,
+          "hit_gross": {
+            "n": 123,
+            "k": 56,
+            "rate": 0.4553,
+            "wilson95": [
+              0.37,
+              0.5433
+            ]
+          },
+          "hit_net": {
+            "n": 123,
+            "k": 56,
+            "rate": 0.4553,
+            "wilson95": [
+              0.37,
+              0.5433
+            ]
+          },
+          "hit": {
+            "n": 123,
+            "k": 56,
+            "rate": 0.4553,
+            "wilson95": [
+              0.37,
+              0.5433
+            ]
+          },
+          "n_never_fill": 125,
+          "skipped_no_next_panel_row": 2
+        }
+      }
+    },
+    "placebo_buckets": {
+      "0.25-0.5": {
+        "d_mid": 0.375,
+        "placebo": {
+          "down": {
+            "n": 237,
+            "k": 189,
+            "rate": 0.7975,
+            "wilson95": [
+              0.7417,
+              0.8437
+            ]
+          },
+          "up": {
+            "n": 237,
+            "k": 178,
+            "rate": 0.7511,
+            "wilson95": [
+              0.6923,
+              0.8018
+            ]
+          }
+        },
+        "conditional_primary": {
+          "down": {
+            "n": 12,
+            "k": 10,
+            "rate": 0.8333,
+            "wilson95": [
+              0.552,
+              0.953
+            ]
+          },
+          "up": {
+            "n": 8,
+            "k": 6,
+            "rate": 0.75,
+            "wilson95": [
+              0.4093,
+              0.9285
+            ],
+            "flag": "YETERSIZ-N"
+          }
+        },
+        "conditional_alt": {
+          "down": {
+            "n": 4,
+            "k": 3,
+            "rate": 0.75,
+            "wilson95": [
+              0.3006,
+              0.9544
+            ],
+            "flag": "YETERSIZ-N"
+          },
+          "up": {
+            "n": 3,
+            "k": 2,
+            "rate": 0.6667,
+            "wilson95": [
+              0.2077,
+              0.9385
+            ],
+            "flag": "YETERSIZ-N"
+          }
+        }
+      },
+      "0.5-1.0": {
+        "d_mid": 0.75,
+        "placebo": {
+          "down": {
+            "n": 237,
+            "k": 149,
+            "rate": 0.6287,
+            "wilson95": [
+              0.5656,
+              0.6877
+            ]
+          },
+          "up": {
+            "n": 237,
+            "k": 151,
+            "rate": 0.6371,
+            "wilson95": [
+              0.5742,
+              0.6957
+            ]
+          }
+        },
+        "conditional_primary": {
+          "down": {
+            "n": 14,
+            "k": 6,
+            "rate": 0.4286,
+            "wilson95": [
+              0.2138,
+              0.6741
+            ]
+          },
+          "up": {
+            "n": 27,
+            "k": 11,
+            "rate": 0.4074,
+            "wilson95": [
+              0.2451,
+              0.5927
+            ]
+          }
+        },
+        "conditional_alt": {
+          "down": {
+            "n": 14,
+            "k": 6,
+            "rate": 0.4286,
+            "wilson95": [
+              0.2138,
+              0.6741
+            ]
+          },
+          "up": {
+            "n": 27,
+            "k": 11,
+            "rate": 0.4074,
+            "wilson95": [
+              0.2451,
+              0.5927
+            ]
+          }
+        }
+      },
+      "1.0-2.0": {
+        "d_mid": 1.5,
+        "placebo": {
+          "down": {
+            "n": 237,
+            "k": 87,
+            "rate": 0.3671,
+            "wilson95": [
+              0.3083,
+              0.4301
+            ]
+          },
+          "up": {
+            "n": 237,
+            "k": 100,
+            "rate": 0.4219,
+            "wilson95": [
+              0.3608,
+              0.4856
+            ]
+          }
+        },
+        "conditional_primary": {
+          "down": {
+            "n": 21,
+            "k": 8,
+            "rate": 0.381,
+            "wilson95": [
+              0.2075,
+              0.5912
+            ]
+          },
+          "up": {
+            "n": 42,
+            "k": 19,
+            "rate": 0.4524,
+            "wilson95": [
+              0.3122,
+              0.6005
+            ]
+          }
+        },
+        "conditional_alt": {
+          "down": {
+            "n": 21,
+            "k": 8,
+            "rate": 0.381,
+            "wilson95": [
+              0.2075,
+              0.5912
+            ]
+          },
+          "up": {
+            "n": 42,
+            "k": 19,
+            "rate": 0.4524,
+            "wilson95": [
+              0.3122,
+              0.6005
+            ]
+          }
+        }
+      },
+      "2.0-2+": {
+        "d_mid": 2.5,
+        "placebo": {
+          "down": {
+            "n": 237,
+            "k": 51,
+            "rate": 0.2152,
+            "wilson95": [
+              0.1676,
+              0.2718
+            ]
+          },
+          "up": {
+            "n": 237,
+            "k": 51,
+            "rate": 0.2152,
+            "wilson95": [
+              0.1676,
+              0.2718
+            ]
+          }
+        },
+        "conditional_primary": {
+          "down": {
+            "n": 17,
+            "k": 3,
+            "rate": 0.1765,
+            "wilson95": [
+              0.0619,
+              0.4103
+            ]
+          },
+          "up": {
+            "n": 55,
+            "k": 8,
+            "rate": 0.1455,
+            "wilson95": [
+              0.0756,
+              0.2616
+            ]
+          }
+        },
+        "conditional_alt": {
+          "down": {
+            "n": 17,
+            "k": 3,
+            "rate": 0.1765,
+            "wilson95": [
+              0.0619,
+              0.4103
+            ]
+          },
+          "up": {
+            "n": 55,
+            "k": 8,
+            "rate": 0.1455,
+            "wilson95": [
+              0.0756,
+              0.2616
+            ]
+          }
+        }
+      }
+    }
+  },
+  "caveats": [
+    "PIT: row-D (D-EOD) ghost/em1/spot vs session-N 1-min bars only; entry at o1 = 09:30 open (15-min 14:45 entry-cutoff trivially satisfied; exits anytime).",
+    "time-to-touch BAR-END convention: minutes from 09:30 to END of first touching 1-min bar (touch in 09:30 bar = 1 min); quick-fill = <=30 min (se_config.QUICK_FILL_MIN); offsets from timestamps (robust to missing minutes).",
+    "MAE-before-touch INCLUDES the touching bar's adverse extreme (intra-bar ordering unknown -> conservative, MAE biased high); non-touch days = full-session adverse excursion from o1.",
+    "Stop variant: hard stop at o1 adverse-side 1.0\u00d7em1 (T1_STOP_EM1), checked on 1-min bars from the 09:30 entry bar onward; stop and TP in the SAME 1-min bar -> STOP counted first (conservative); stop fill price = stop level exactly (no slippage beyond COST_RT).",
+    "Net = gross \u2212 COST_RT (2.0 bps) per round trip; hit rates reported on BOTH gross>0 and net>0.",
+    "ALT filter (0.15%\u00d7spot_D): 6 event(s) with d_em < 0.25 fall below the lowest configured DIST_BUCKET and are EXCLUDED from the bucket table (still in alt direction/pooled cells); no new bucket invented (locked spec).",
+    "Placebo = unconditional touch P over ALL panel days of a target at d_mid\u00d7em1 below/above o1 (d_mid = bucket midpoint, 2.5 for 2+), same-day em1, session extremes from 1-min bars; ghost is a real magnet only if conditional > placebo consistently per bucket+direction.",
+    "Never-fill continuation needs the panel row indexed N (its o1/c1 = the FOLLOWING session); events whose N is not a panel index (e.g. the last panel day) are skipped (count reported per cell).",
+    "Bucket assignment lo <= d_em < hi; d_em == 0.25 exactly -> first bucket (matches PRIMARY threshold).",
+    "Sample = 237 sessions, single year 2025-06..2026-06 (one regime era); descriptive scenario scoring, no multiplicity correction \u2014 all cells reported (se_config multi-test note).",
+    "Sessions skipped for missing minute bars: 0."
+  ]
+}

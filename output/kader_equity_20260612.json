@@ -1,0 +1,108 @@
+{
+  "model_tag": "kader-equity-stack-2026-06-09",
+  "as_of": "2026-05-22",
+  "computed_at": "2026-06-12T21:59:52.819022+00:00",
+  "data_source": "frozen",
+  "call_status": "STALE",
+  "freshness": {
+    "as_of": "2026-05-22",
+    "today": "2026-06-12",
+    "age_days": 21,
+    "max_staleness_days": 5,
+    "stale": true
+  },
+  "tide_score": 10.4226,
+  "tide_dir": 1,
+  "direction": "LONG",
+  "position_target": 0.9733,
+  "deploy_fraction": 0.9733,
+  "leverage": 1.0,
+  "active_overlays": [
+    "cor1m_froth",
+    "gex_shield"
+  ],
+  "overlay_block": false,
+  "overlay_block_reason": null,
+  "overlays": {
+    "cor1m_froth": {
+      "cor1m": 10.92,
+      "factor": 0.973,
+      "cor1m_as_of": "frozen(@tide as_of)"
+    },
+    "gex_shield": {
+      "gex_z": 1.13,
+      "factor": 1.0,
+      "gex_as_of": "frozen(@tide as_of)"
+    }
+  },
+  "opex_gate": {
+    "next_opex": "2026-06-19",
+    "is_quad_witch_next": true,
+    "trading_days_until": 5,
+    "is_opex_today": false,
+    "warn": false,
+    "warn_days": 3,
+    "flat_assets": [
+      "NDX"
+    ],
+    "asset_overrides": {},
+    "note": "veri-doğrulanmış (FINDING 23: NDX OpEx −14bps p=0.001, 4 on yıl); taktik NDX de-risk + uyarı"
+  },
+  "asset_deploy": {
+    "SPX": 0.9733,
+    "NDX": 0.9733
+  },
+  "santa_context": {
+    "as_of": "2026-06-12",
+    "window_months": [
+      11,
+      12
+    ],
+    "ytd_threshold": 0.1,
+    "stats_note": "1928-2025: n=43, ort +4.54%, isabet %88, min -2.10% (perm-p<0.001; 3 donem stabil)",
+    "state": "INACTIVE"
+  },
+  "net_supply_context": {
+    "quarter": "2025Q4",
+    "pit_date": "2026-03-15",
+    "pit_age_days": 89,
+    "stale": false,
+    "ratio4q_nfc_pct_ngdp": -0.99,
+    "z10y_nfc": 0.78,
+    "single_q_flow_bn_saar": -215.7,
+    "flip_note": null,
+    "tail_flag": false,
+    "tail_threshold": 2.5,
+    "tail_note": null,
+    "label": "BETIMSEL panel - yon-sinyali DEGIL (1984+ icerik ~0, 2005+ isaret ters, tam-orneklem anlamlilik sahte-trend; tide-ustu 8 kural FDR-FAIL)",
+    "panel_file": "output/net_supply_panel.txt"
+  },
+  "spine": {
+    "recipe": "8-modül sweep winner (RAW m2, +1g lag); m9 .563/m5 .214/m2 .118/m0 .061/m3 .025/m6 .01/m8 .006/m4 .002",
+    "vector": {
+      "m0": 0.0613,
+      "m1": 0.0001,
+      "m2": 0.1182,
+      "m3": 0.0246,
+      "m4": 0.0024,
+      "m5": 0.2143,
+      "m6": 0.0098,
+      "m8": 0.0065,
+      "m9": 0.5626,
+      "m11": 0.0003
+    },
+    "modules_used": [
+      "m0",
+      "m1",
+      "m2",
+      "m3",
+      "m4",
+      "m5",
+      "m6",
+      "m8",
+      "m9",
+      "m11"
+    ]
+  },
+  "_pass": "spine + cor1m_froth × gex_shield"
+}

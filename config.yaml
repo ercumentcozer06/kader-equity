@@ -1,0 +1,96 @@
+# kader-equity — yapılandırma. Pass 0 = spine-only (equities macro-tide). Overlay'ler Faz 2'de eklenir.
+macro:
+  repo_path: "C:\\Users\\admin\\Downloads\\kader-macro"   # yalnız .env (FRED key) — canlı RAW m2 rekonstrüksiyonu için
+
+spine:
+  source: live              # live (rekonstrüktör; GÜNLÜK CANLI çağrı — varsayılan) | frozen (donmuş snapshot; backtest + crash-fallback)
+                            # NOT: live başarısız olursa (FRED/ağ/kader-macro) build_decision otomatik frozen'a düşer
+                            # ve call_status=STALE damgalar (Bible: fallback ASLA güncel çağrı sayılmaz). Testler
+                            # conftest._pin_frozen_spine ile frozen'a sabitlenir (ağsız + byte-identik reprodüksiyon).
+  max_staleness_days: 5     # equities GÜNLÜK; snapshot > 5 takvim günü eski → STALE (güncel call değil)
+
+sizing:
+  net_exposure_cap: 1.0     # KALDIRAÇSIZ; deploy = min(cap, position_target). Boyut kısmak: 0.5 → yarı.
+
+assets: [SPX, NDX]
+
+# overlays: incremental-screen'i (strict BH-FDR) geçen aday katmanları. Trim-only, rebound-safe.
+overlays:
+  # COR1M-froth — kader-equity'nin İLK alfa modülü. Düşük COR1M (CBOE 1ay implied corr) = call-froth/
+  # complacency → tide-long'u kıs. strict-FDR PASS (5 form, robust 8-12 bölgesi), 3 episode (2024/25/26).
+  # Form: ramp — COR1M≤lo→floor, ≥hi→1.0, arası lineer. CAVEAT: 2024+ rejimi (genç) → forward-watch.
+  cor1m_froth:
+    enabled: true
+    lo: 8.0        # A PRİORİ (SpotGamma froth~8), grid-doğrulandı [GÖREV 5]
+    hi: 11.0       # FITTED (verify_cor1m 5-ramp seçimi), DSR-muhasebesinde
+    floor: 0.0     # FITTED (3-floor seçimi). DSR N=60 İYİMSER → dürüst ~0.96/0.98
+  # GEX-shield — 2. overlay (DRAWDOWN KALKANI, alfa değil). z(GEX, 252g) derin-düşük = dealer SHORT
+  # gamma = kırılgan → tide-long'u kıs. standalone sub-strict-FDR ama STACK'te ödüyor (kader-btc B8):
+  # maxDD SPX −17→−13% / NDX −20→−16%, CVaR↓, P(stack>tide) %100, DSR 0.985/0.994.
+  # Form: zg ≤ −thr → trim, factor=(1−k·clip(−zg−thr,0,3)).clip(floor,1). trim-only, rebound-safe.
+  gex_shield:
+    enabled: true
+    k: 0.5         # FITTED (k-grid {0.5,1.0} seçimi), DSR-muhasebesinde [GÖREV 5]
+    thr: 1.0       # A PRİORİ (1σ z-cutoff), grid'de tutuldu
+    floor: 0.4     # A PRİORİ (rebound-safe %60-max-trim)
+    win: 252       # A PRİORİ, OPTİMİZE EDİLMEDİ (standart 1-yıl trailing; hiç taranmadı)
+
+# OpEx taktik kapısı (overlay DEĞİL — frozen stack'e dokunmaz; per-asset ifade override + takvim uyarısı).
+# FINDING 23: NDX monthly OpEx günü −14.4bps/gün, block-boot t−3.35 p=0.001, OpEx-spesifik, 4 on yıl negatif.
+# Standalone flat-NDX-OpEx → NDX Sharpe +0.076. SPX zayıflığı anlamsız+modele-zarar → YALNIZ NDX (asimetrik).
+# position_target (tide×froth×shield) DEĞİŞMEZ; yalnız NDX sleeve o gün deploy→0. Emir-talebi, veri-doğrulanmış.
+opex_gate:
+  enabled: true
+  warn_days: 3          # OpEx Cuması'na ≤3 işgünü kala çıktıda UYARI (Emir: "minimum 3 gün önce haber ver")
+  flat_assets: [NDX]    # yalnız NDX (SPX OpEx-flat modele zarar verdi; veri-temelli asimetri)
+
+# Constan bağlam bantları (2026-06-13, Emir-talebi; OpEx-etiket emsali — pozisyon etkisi SIFIR).
+# santa: koşullu Noel penceresi. STANDALONE GERÇEK (1928+: n=43, ort +4.54%, isabet %88, 3 dönem stabil,
+# p<0.001; koşulsuz yıllar ort ~0 min −22.7%) ama STACK'E ABSORBED (nitelikli pencerede stack zaten
+# ~tam-long; boost/ters-trim hepsi FDR-FAIL, 2024'te froth-trim alfası boost'la silinirdi) → ETİKET.
+santa_context:
+  enabled: true
+  ytd_threshold: 0.10   # 1 Kas'ta YTD eşiği (Constan kuralı; candidate_santa_conditional replikasyonu)
+# net-arz: Z.1 NFC net hisse ihracı paneli. Yön-sinyali olarak KALICILIK-FAIL (sahte-trend; 1984+ ~0,
+# 2005+ ters; tide-üstü FDR-FAIL) → BETİMSEL panel + uç-kuyruk izleme bayrağı (z≥+2.5 = 2000/2021
+# ihraç-çılgınlığı imzası). Tazeleme: çeyrekte bir `python -m screen.fetch_net_equity_supply`.
+net_supply_context:
+  enabled: true
+  tail_z_threshold: 2.5
+  max_staleness_days: 200
+# EDGAR S-1/F-1 boru-hattı + dev-arz izleme (FINDING 26, 2026-06-13): Constan Q3-Q4 tezinin
+# İLERİYE-BAKAN dedektörü — dosyalama fiyatlamadan aylar önce. İLK KOŞUDA ATEŞLENDİ: SpaceX S-1
+# 2026-05-20, kayıt-tavanı $86.25 mlr. dosyalama=NİYET etiketi sabit; pozisyon etkisi SIFIR.
+# Tazeleme: python -m screen.fetch_ipo_pipeline (run_daily'ye eklenebilir; SEC nazik-limitli).
+ipo_pipeline_context:
+  enabled: true
+  max_staleness_days: 10
+# dev-IPO GECİKMELİ arz dalgaları (2026-06-13, Emir-talebi): ilk-arz ($86B) BAŞLANGIÇ; asıl gecikmeli
+# şoklar = (1) LOCK-UP BİTİŞİ (SpaceX prospektüs: kurucu 366-gün kilidi ~7.8B hisse = >%63 hisse), (2)
+# ENDEKS-DAHİL ($50B+ → S&P 500/Nasdaq-100 ~3-12ay, pasif fonlar float'ın ~%15-20'sini ZORUNLU alır =
+# forced talep). BETİMSEL band — pozisyon etkisi SIFIR (ipo_pipeline emsali). Lock-up gün/hisse
+# prospektüsten regex parse; gövde cache'te yoksa allow_network ile indirilir. Anlık-arz POZİSYON kolu
+# AYRI (supply_demand_derisk mega-IPO); bu modül yalnız GELECEK takvimi resmeder.
+ipo_supply_waves:
+  enabled: true
+  default_lockup_days: 180   # prospektüsten parse edilemezse standart varsayım
+  allow_network: true        # lock-up gövdesi cache'te yoksa EDGAR'dan indir (SEC nazik-limitli)
+# K1 ARZ-TALEP DENGE kadranı (FINDING 27, 2026-06-13): Constan grafiğinin bedava ikizi (betimsel).
+# PIT-dürüst z'de 2020-rali/2021-tepe AYRILMIYOR → yön-ayracı DEĞİL, takip paneli. Pozisyon etkisi YOK.
+supply_demand_balance:
+  enabled: true
+# K2 KOŞULLU DE-RİSK (FINDING 27, Emir-onaylı): arz-aşırı (z10y_nfc>=+1) VE talep-zayıf (tide<=+2 düşüşte
+# VEYA dir=0) → SPX/NDX deploy ×0.85. 3 ön-kayıtlı kriter GEÇTİ (2020-sessiz/2021-ateşler/zararsız).
+# DÜRÜST: incremental ~0 (tide 2021-22'yi zaten de-risk eder); DEĞER = backtest'in göremediği arz-şoku
+# rejimi (Constan Q3-Q4 sigortası). frozen position_target DOKUNULMAZ — yalnız asset_deploy katmanı
+# (OpEx emsali) → reproduce 1.64/1.77 byte-exact. position_effect: false → gözcü modu (trim hesaplanır,
+# deploy'a uygulanmaz). Default ON (Emir "etkisi olmalı" + gate geçti); kapatmak tek satır.
+supply_demand_derisk:
+  enabled: true
+  position_effect: true
+  # MEGA-IPO ANLIK arz kolu (2026-06-13, Emir "5.5 ay kabul edilemez"): çeyreklik z10y_nfc ~5.5ay
+  # gecikir → tek-dev-IPO ANLIK şokunu geç görür. mega_ipo_hits.json'daki MAX kayıt-tavanı >= eşik
+  # ise arz-aşırı kolu (OR ile) ateşler. $50B = açıkça-rejim-dışı tek-arz (tarihsel rekor ~$26B
+  # Aramco). KRİTİK: TALEP-ZAYIF kapısı DEĞİŞMEZ → mega-IPO TEK BAŞINA tetiklemez (2020-tipi güçlü
+  # talepte SUSAR). SpaceX 2026-06-03 S-1/A tavan $86.25B → mega kol AKTİF.
+  mega_ceiling_thr_usd: 50e9

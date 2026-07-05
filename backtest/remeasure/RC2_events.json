@@ -1,0 +1,202 @@
+{
+ "config_sha": "c80e6558181015a6",
+ "run_utc": "2026-06-11T17:47:43.915044+00:00",
+ "script": "backtest/remeasure/RC2_events.py",
+ "mr_definition": "spine_diagnostic.mean_reversion_return (call:(cw-c1)/cw; put:(c1-pw)/pw; gross)",
+ "panel": {
+  "start": "2025-06-13",
+  "end": "2026-06-08"
+ },
+ "flag_sets": {
+  "own_livematch": {
+   "SPY|+g|call": {
+    "n": 37,
+    "mean_bps": -13.6,
+    "t": -1.75,
+    "thesis_expected": "MR>0",
+    "thesis": "tez-d\u0131\u015f\u0131"
+   },
+   "SPY|+g|put": {
+    "n": 45,
+    "mean_bps": -12.9,
+    "t": -1.61,
+    "thesis_expected": "MR>0",
+    "thesis": "tez-d\u0131\u015f\u0131"
+   },
+   "SPY|-g|call": {
+    "n": 27,
+    "mean_bps": -10.6,
+    "t": -0.65,
+    "thesis_expected": "MR<0",
+    "thesis": "tez-i\u00e7i"
+   },
+   "SPY|-g|put": {
+    "n": 66,
+    "mean_bps": -16.8,
+    "t": -1.79,
+    "thesis_expected": "MR<0",
+    "thesis": "tez-i\u00e7i"
+   },
+   "QQQ|+g|call": {
+    "n": 46,
+    "mean_bps": -33.4,
+    "t": -3.33,
+    "thesis_expected": "MR>0",
+    "thesis": "tez-d\u0131\u015f\u0131"
+   },
+   "QQQ|+g|put": {
+    "n": 53,
+    "mean_bps": -18.6,
+    "t": -1.66,
+    "thesis_expected": "MR>0",
+    "thesis": "tez-d\u0131\u015f\u0131"
+   },
+   "QQQ|-g|call": {
+    "n": 20,
+    "mean_bps": -13.5,
+    "t": -0.74,
+    "thesis_expected": "MR<0",
+    "thesis": "tez-i\u00e7i"
+   },
+   "QQQ|-g|put": {
+    "n": 60,
+    "mean_bps": -19.0,
+    "t": -1.29,
+    "thesis_expected": "MR<0",
+    "thesis": "tez-i\u00e7i"
+   }
+  },
+  "index_flag": {
+   "SPY|+g|call": {
+    "n": 14,
+    "mean_bps": -12.1,
+    "t": -1.53,
+    "thesis_expected": "MR>0",
+    "thesis": "tez-d\u0131\u015f\u0131"
+   },
+   "SPY|+g|put": {
+    "n": 47,
+    "mean_bps": -13.7,
+    "t": -1.5,
+    "thesis_expected": "MR>0",
+    "thesis": "tez-d\u0131\u015f\u0131"
+   },
+   "SPY|-g|call": {
+    "n": 2,
+    "mean_bps": 20.0,
+    "t": 0.94,
+    "thesis_expected": "MR<0",
+    "thesis": "tez-d\u0131\u015f\u0131"
+   },
+   "SPY|-g|put": {
+    "n": 31,
+    "mean_bps": 4.0,
+    "t": 0.3,
+    "thesis_expected": "MR<0",
+    "thesis": "tez-d\u0131\u015f\u0131"
+   },
+   "QQQ|+g|call": {
+    "n": 28,
+    "mean_bps": -18.8,
+    "t": -1.68,
+    "thesis_expected": "MR>0",
+    "thesis": "tez-d\u0131\u015f\u0131"
+   },
+   "QQQ|+g|put": {
+    "n": 51,
+    "mean_bps": -14.1,
+    "t": -0.89,
+    "thesis_expected": "MR>0",
+    "thesis": "tez-d\u0131\u015f\u0131"
+   },
+   "QQQ|-g|call": {
+    "n": 0,
+    "mean_bps": null,
+    "t": null,
+    "thesis_expected": "MR<0",
+    "thesis": null
+   },
+   "QQQ|-g|put": {
+    "n": 22,
+    "mean_bps": 30.6,
+    "t": 1.29,
+    "thesis_expected": "MR<0",
+    "thesis": "tez-d\u0131\u015f\u0131"
+   }
+  }
+ },
+ "panel_n": {
+  "SPY|own_livematch": 236,
+  "QQQ|own_livematch": 236,
+  "SPY|index_flag": 235,
+  "QQQ|index_flag": 235
+ },
+ "reference": {
+  "eski_dfaz_d63": {
+   "source": "backtest/DIAGNOSIS.md (\u00a73, sembol\u00d7rejim\u00d7duvar tablosu)",
+   "cells": {
+    "SPY|+g|call": {
+     "n": 16,
+     "mean_bps": -5.4
+    },
+    "SPY|+g|put": {
+     "n": 15,
+     "mean_bps": -30.2
+    },
+    "SPY|-g|call": {
+     "n": 12,
+     "mean_bps": 22.3
+    },
+    "SPY|-g|put": {
+     "n": 23,
+     "mean_bps": -4.8
+    },
+    "QQQ|+g|call": {
+     "n": 22,
+     "mean_bps": -22.5
+    },
+    "QQQ|+g|put": {
+     "n": 18,
+     "mean_bps": -17.8
+    },
+    "QQQ|-g|call": {
+     "n": 15,
+     "mean_bps": -20.6
+    },
+    "QQQ|-g|put": {
+     "n": 30,
+     "mean_bps": 12.3
+    }
+   }
+  },
+  "prelim_157g": {
+   "source": "backtest/remeasure/R2_PRELIM.md (\u2466 event-edge 8-h\u00fccre, 157g LIVE-MATCH)",
+   "cells": {
+    "SPY|+g|call": {
+     "mean_bps": -23
+    },
+    "SPY|+g|put": {
+     "mean_bps": -16
+    },
+    "SPY|-g|call": {
+     "mean_bps": -11
+    },
+    "SPY|-g|put": {
+     "mean_bps": -14
+    },
+    "QQQ|+g|call": {
+     "mean_bps": -19
+    },
+    "QQQ|+g|put": {
+     "mean_bps": -17
+    },
+    "QQQ|-g|call": {
+     "mean_bps": -1
+    },
+    "QQQ|-g|put": {
+     "mean_bps": -15
+    }
+   }
+  }
+ }
+}

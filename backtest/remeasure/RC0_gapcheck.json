@@ -1,0 +1,163 @@
+{
+  "config_sha": "c80e6558181015a6",
+  "ts_utc": "2026-06-11T14:01:42+00:00",
+  "task": "RC0.2 rolling-window gap-check + WAVE-0 kapı",
+  "expected": {
+    "n": 245,
+    "first": "2025-06-13",
+    "last": "2026-06-10",
+    "source": "md_spy.parquet + bdate-ext bugün-1'e (R0_backfill.py:72-77 birebir)"
+  },
+  "fetcher_results_input": [
+    {
+      "sym": "SPY",
+      "fetched": 87,
+      "done": true,
+      "missing": []
+    },
+    {
+      "sym": "QQQ",
+      "fetched": 88,
+      "done": true,
+      "missing": []
+    },
+    {
+      "sym": "SPX",
+      "fetched": 89,
+      "done": true,
+      "missing": [
+        "2025-12-12"
+      ]
+    },
+    {
+      "sym": "NDX",
+      "fetched": 87,
+      "done": true,
+      "missing": [
+        "2025-12-12"
+      ]
+    }
+  ],
+  "per_symbol": {
+    "SPY": {
+      "have_n": 245,
+      "oldest_on_disk": "2025-06-13",
+      "newest_on_disk": "2026-06-10",
+      "missing_n": 0,
+      "missing": [],
+      "extra_n": 0,
+      "extra": [],
+      "md_first_on_disk": true,
+      "md_first_fetch_ts": "2026-06-11T02:02:02.512845+00:00"
+    },
+    "QQQ": {
+      "have_n": 245,
+      "oldest_on_disk": "2025-06-13",
+      "newest_on_disk": "2026-06-10",
+      "missing_n": 0,
+      "missing": [],
+      "extra_n": 0,
+      "extra": [],
+      "md_first_on_disk": true,
+      "md_first_fetch_ts": "2026-06-11T02:02:10.380617+00:00"
+    },
+    "SPX": {
+      "have_n": 244,
+      "oldest_on_disk": "2025-06-13",
+      "newest_on_disk": "2026-06-10",
+      "missing_n": 1,
+      "missing": [
+        "2025-12-12"
+      ],
+      "extra_n": 0,
+      "extra": [],
+      "md_first_on_disk": true,
+      "md_first_fetch_ts": "2026-06-11T02:02:28.060665+00:00"
+    },
+    "NDX": {
+      "have_n": 244,
+      "oldest_on_disk": "2025-06-13",
+      "newest_on_disk": "2026-06-10",
+      "missing_n": 1,
+      "missing": [
+        "2025-12-12"
+      ],
+      "extra_n": 0,
+      "extra": [],
+      "md_first_on_disk": true,
+      "md_first_fetch_ts": "2026-06-11T02:02:42.039046+00:00"
+    }
+  },
+  "window": {
+    "md_first": "2025-06-13",
+    "md_first_on_disk_all_syms": true
+  },
+  "probe": {
+    "date": "2025-06-12",
+    "symbol": "SPY",
+    "expectation": "402/no_data → API en-eski ≥ md-ilk-günü",
+    "http_status": 203,
+    "ratelimit_remaining": 4316,
+    "consumed_this_call": 1,
+    "body_s": "ok",
+    "body_errmsg": null,
+    "n_contracts_returned": 578,
+    "probe_date_served": true,
+    "api_oldest_lower_bound": "2025-06-12",
+    "reused_from_prior_run": "2026-06-11T14:00:08+00:00",
+    "window_floor_proven": "2025-06-12",
+    "interpretation": "probe 2025-06-12 SERVİS EDİLDİ → API penceresi md-ilk-gününden (2025-06-13) en az 1 iş günü daha eskiyi kapsıyor; beklenen 402/no_data GERÇEKLEŞMEDİ; pencere-kaybı riski bugün YOK"
+  },
+  "lost_dates_window": {
+    "SPY": [],
+    "QQQ": [],
+    "SPX": [],
+    "NDX": []
+  },
+  "missing_in_window": {
+    "SPY": [],
+    "QQQ": [],
+    "SPX": [
+      "2025-12-12"
+    ],
+    "NDX": [
+      "2025-12-12"
+    ]
+  },
+  "fetcher_crosscheck": {
+    "SPY": {
+      "fetcher_missing": [],
+      "disk_missing": [],
+      "match": true
+    },
+    "QQQ": {
+      "fetcher_missing": [],
+      "disk_missing": [],
+      "match": true
+    },
+    "SPX": {
+      "fetcher_missing": [
+        "2025-12-12"
+      ],
+      "disk_missing": [
+        "2025-12-12"
+      ],
+      "match": true
+    },
+    "NDX": {
+      "fetcher_missing": [
+        "2025-12-12"
+      ],
+      "disk_missing": [
+        "2025-12-12"
+      ],
+      "match": true
+    }
+  },
+  "gate": {
+    "window_ok": true,
+    "coverage_full": false,
+    "wave0_pass": true,
+    "note": "pencere-içi eksikler (varsa) kalıcı kayıp DEĞİL; sağlayıcı no-data ya da yeniden-denenebilir"
+  }
+}

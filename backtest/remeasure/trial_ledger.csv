@@ -1,0 +1,47 @@
+trial_id,member,sym,flag,class,reason,declared_utc,config_sha
+P01,gamma_txt,SPY,dfaz_single_expiry,prior-nominal,d-faz-original,2026-06-11T01:47:59+00:00,c80e6558181015a6
+P02,gamma_inv,SPY,dfaz_single_expiry,prior-nominal,d-faz-original,2026-06-11T01:47:59+00:00,c80e6558181015a6
+P03,M3_setup,SPY,dfaz_single_expiry,prior-nominal,d-faz-original,2026-06-11T01:47:59+00:00,c80e6558181015a6
+P04,M1_corr,SPY,dfaz_single_expiry,prior-nominal,d-faz-original,2026-06-11T01:47:59+00:00,c80e6558181015a6
+P05,M2_wallMR,SPY,dfaz_single_expiry,prior-nominal,d-faz-original,2026-06-11T01:47:59+00:00,c80e6558181015a6
+P06,gamma_txt,QQQ,dfaz_single_expiry,prior-nominal,d-faz-original,2026-06-11T01:47:59+00:00,c80e6558181015a6
+P07,gamma_inv,QQQ,dfaz_single_expiry,prior-nominal,d-faz-original,2026-06-11T01:47:59+00:00,c80e6558181015a6
+P08,M3_setup,QQQ,dfaz_single_expiry,prior-nominal,d-faz-original,2026-06-11T01:47:59+00:00,c80e6558181015a6
+P09,M1_corr,QQQ,dfaz_single_expiry,prior-nominal,d-faz-original,2026-06-11T01:47:59+00:00,c80e6558181015a6
+P10,M2_wallMR,QQQ,dfaz_single_expiry,prior-nominal,d-faz-original,2026-06-11T01:47:59+00:00,c80e6558181015a6
+R01,gamma_txt,SPY,livematch_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R02,gamma_inv,SPY,livematch_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R03,vol_only,SPY,none(livematch-panel),replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R04,hep_mom,SPY,none(livematch-panel),replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R05,hep_rev,SPY,none(livematch-panel),replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R06,M3_setup,SPY,livematch_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R07,gamma_txt,SPY,fullsurface_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R08,gamma_inv,SPY,fullsurface_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R09,M3_setup,SPY,fullsurface_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R10,gamma_txt,QQQ,livematch_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R11,gamma_inv,QQQ,livematch_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R12,vol_only,QQQ,none(livematch-panel),replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R13,hep_mom,QQQ,none(livematch-panel),replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R14,hep_rev,QQQ,none(livematch-panel),replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R15,M3_setup,QQQ,livematch_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R16,gamma_txt,QQQ,fullsurface_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R17,gamma_inv,QQQ,fullsurface_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R18,M3_setup,QQQ,fullsurface_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R19,M1_corr,SPY,livematch_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R20,M2_wallMR,SPY,livematch_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R21,M1_corr,SPY,fullsurface_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R22,M2_wallMR,SPY,fullsurface_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R23,M1_corr,QQQ,livematch_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R24,M2_wallMR,QQQ,livematch_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R25,M1_corr,QQQ,fullsurface_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+R26,M2_wallMR,QQQ,fullsurface_own,replacement,instrument-fix,2026-06-11T13:10:00Z,c80e6558181015a6
+A01,gamma_txt,SPY,index_flag,amendment/new-trial,instrument-quality (FAZR-AMD-1; K+=10 -> K_CURRENT=20),2026-06-11T13:10:00Z,c80e6558181015a6
+A02,gamma_inv,SPY,index_flag,amendment/new-trial,instrument-quality (FAZR-AMD-1; K+=10 -> K_CURRENT=20),2026-06-11T13:10:00Z,c80e6558181015a6
+A03,M3_setup,SPY,index_flag,amendment/new-trial,instrument-quality (FAZR-AMD-1; K+=10 -> K_CURRENT=20),2026-06-11T13:10:00Z,c80e6558181015a6
+A04,M1_corr,SPY,index_flag,amendment/new-trial,instrument-quality (FAZR-AMD-1; K+=10 -> K_CURRENT=20),2026-06-11T13:10:00Z,c80e6558181015a6
+A05,M2_wallMR,SPY,index_flag,amendment/new-trial,instrument-quality (FAZR-AMD-1; K+=10 -> K_CURRENT=20),2026-06-11T13:10:00Z,c80e6558181015a6
+A06,gamma_txt,QQQ,index_flag,amendment/new-trial,instrument-quality (FAZR-AMD-1; K+=10 -> K_CURRENT=20),2026-06-11T13:10:00Z,c80e6558181015a6
+A07,gamma_inv,QQQ,index_flag,amendment/new-trial,instrument-quality (FAZR-AMD-1; K+=10 -> K_CURRENT=20),2026-06-11T13:10:00Z,c80e6558181015a6
+A08,M3_setup,QQQ,index_flag,amendment/new-trial,instrument-quality (FAZR-AMD-1; K+=10 -> K_CURRENT=20),2026-06-11T13:10:00Z,c80e6558181015a6
+A09,M1_corr,QQQ,index_flag,amendment/new-trial,instrument-quality (FAZR-AMD-1; K+=10 -> K_CURRENT=20),2026-06-11T13:10:00Z,c80e6558181015a6
+A10,M2_wallMR,QQQ,index_flag,amendment/new-trial,instrument-quality (FAZR-AMD-1; K+=10 -> K_CURRENT=20),2026-06-11T13:10:00Z,c80e6558181015a6

@@ -1,0 +1,338 @@
+{
+  "computed_at": "2026-06-13T17:11:31.170897+00:00",
+  "ticker": "SPY",
+  "index": "SPX",
+  "model": {
+    "model_tag": "kader-equity-stack-2026-06-09",
+    "as_of": "2026-06-12",
+    "computed_at": "2026-06-13T17:11:30.053140+00:00",
+    "data_source": "live",
+    "call_status": "current",
+    "freshness": {
+      "as_of": "2026-06-12",
+      "today": "2026-06-13",
+      "age_days": 1,
+      "max_staleness_days": 5,
+      "stale": false
+    },
+    "tide_score": 7.2078,
+    "tide_dir": 1,
+    "direction": "LONG",
+    "position_target": 0.913,
+    "deploy_fraction": 0.913,
+    "leverage": 1.0,
+    "active_overlays": [
+      "cor1m_froth",
+      "gex_shield"
+    ],
+    "overlay_block": false,
+    "overlay_block_reason": null,
+    "overlays": {
+      "cor1m_froth": {
+        "available": true,
+        "cor1m": 10.74,
+        "as_of": "2026-06-12",
+        "factor": 0.913,
+        "froth": true,
+        "reason": "COR1M 10.7 < 11 → froth de-risk (factor 0.91)"
+      },
+      "gex_shield": {
+        "available": true,
+        "gex_z": -0.98,
+        "as_of": "2026-06-12",
+        "factor": 1.0,
+        "short_gamma": false,
+        "z_stale": false,
+        "z_stale_obs": 0,
+        "reason": "z(GEX) -1.0 ≥ −1 → normal (factor 1.0)"
+      }
+    },
+    "opex_gate": {
+      "next_opex": "2026-06-19",
+      "is_quad_witch_next": true,
+      "trading_days_until": 4,
+      "is_opex_today": false,
+      "warn": false,
+      "warn_days": 3,
+      "flat_assets": [
+        "NDX"
+      ],
+      "asset_overrides": {},
+      "note": "veri-doğrulanmış (FINDING 23: NDX OpEx −14bps p=0.001, 4 on yıl); taktik NDX de-risk + uyarı"
+    },
+    "asset_deploy": {
+      "SPX": 0.913,
+      "NDX": 0.913
+    },
+    "santa_context": {
+      "as_of": "2026-06-13",
+      "window_months": [
+        11,
+        12
+      ],
+      "ytd_threshold": 0.1,
+      "stats_note": "1928-2025: n=43, ort +4.54%, isabet %88, min -2.10% (perm-p<0.001; 3 donem stabil)",
+      "state": "INACTIVE"
+    },
+    "net_supply_context": {
+      "quarter": "2025Q4",
+      "components": {
+        "label": "bilesen-paneli BETIMSEL - bayrak-yukseltme ucgen-sinavi FAIL (sayim 2000-kor, dolar niyet-kor); S3 opco-IPO 2020-temiz/2021-yakala notu gecerli",
+        "opco_ipo": {
+          "quarter": "2025Q4",
+          "n_4q": 90,
+          "z10y": -0.38,
+          "note": "S3: 2020-temiz/2021-yakala ayristirici (2021Q4 z +3.26); 2000-kor — betimsel"
+        },
+        "spac": {
+          "year": 2025,
+          "n": 144,
+          "ref": "2021 zirvesi 613; 2024: 57"
+        },
+        "buyback": {
+          "quarter": "2025Q3",
+          "bn": 249.0,
+          "ratio4q_pct_ngdp": 3.36,
+          "z10y": 0.39,
+          "prelim": true,
+          "universe": "S&P 500 (tum-piyasa degil; olcu-karisimi dikisi 2026-06-13 ONARILDI)"
+        }
+      },
+      "pit_date": "2026-03-15",
+      "pit_age_days": 90,
+      "stale": false,
+      "ratio4q_nfc_pct_ngdp": -0.99,
+      "z10y_nfc": 0.78,
+      "single_q_flow_bn_saar": -215.7,
+      "flip_note": null,
+      "tail_flag": false,
+      "tail_threshold": 2.5,
+      "tail_note": null,
+      "label": "BETIMSEL panel - yon-sinyali DEGIL (1984+ icerik ~0, 2005+ isaret ters, tam-orneklem anlamlilik sahte-trend; tide-ustu 8 kural FDR-FAIL)",
+      "panel_file": "output/net_supply_panel.txt"
+    },
+    "ipo_pipeline_context": {
+      "last_closed_quarter": "2026Q1",
+      "roll4q_filings": 1523,
+      "z10y": 0.69,
+      "last90d_new": 332,
+      "z90": 0.18,
+      "live_as_of": "2026-06-13",
+      "stale": false,
+      "mega_hits_120d": [
+        {
+          "company": "SPACE EXPLORATION TECHNOLOGIES CORP",
+          "watch_name": "Space Exploration Technologies",
+          "first_filed": "2026-05-20",
+          "n_filings": 3,
+          "max_ceiling_usd": 86249999880.0
+        }
+      ],
+      "ref_2021": "2021 seli: S-1 443-779/çeyrek, z tepe +3.49 (2021Q2)",
+      "label": "dosyalama = NIYET, gerceklesme degil; kayit-tavani != arz-buyuklugu; baglam-bandi — pozisyon etkisi SIFIR"
+    },
+    "ipo_supply_waves": {
+      "as_of": "2026-06-13",
+      "n_active": 1,
+      "waves": [
+        {
+          "company": "Space Exploration Technologies",
+          "ipo_date": "2026-06-03",
+          "ipo_date_basis": "dosyalama-tarihi (IPO henuz fiyatlanmadi → TAHMIN tabani)",
+          "offering_ceiling_usd": 86249999880.0,
+          "lockup_days": 366,
+          "lockup_days_parsed": 366,
+          "lockup_days_all": [
+            180,
+            366
+          ],
+          "lockup_status": "parse-ok",
+          "lockup_expiry_date": "2027-06-04",
+          "days_to_lockup": 356,
+          "lockup_shares_est": 7800000000.0,
+          "lockup_pct_note": "greater than 63% of shares outstanding (pre-offering)",
+          "index_incl_eligible": true,
+          "index_incl_window": {
+            "earliest": "2026-09-01",
+            "latest": "2027-06-03",
+            "days_to_earliest": 80
+          },
+          "forced_passive_demand_usd_lo": 12937499982.0,
+          "forced_passive_demand_usd_hi": 17249999976.0,
+          "net_note": "lock-up = arz-YUKARI (overhang), endeks-dahil = talep-YUKARI (forced) — NET zamanlama-bagimli",
+          "label": "TAHMIN (prospektus-okumasi, kesin degil); lock-up = arz-YUKARI overhang, endeks-dahil = talep-YUKARI forced-passive, NET zamanlama-bagimli; BETIMSEL band — pozisyon etkisi SIFIR",
+          "prospectus_fetch_status": "cache"
+        }
+      ],
+      "label": "TAHMIN (prospektus-okumasi, kesin degil); lock-up = arz-YUKARI overhang, endeks-dahil = talep-YUKARI forced-passive, NET zamanlama-bagimli; BETIMSEL band — pozisyon etkisi SIFIR"
+    },
+    "supply_demand_balance": {
+      "quarter": "2026Q1",
+      "net_supply_pressure": 0.6,
+      "supply_z": 0.99,
+      "demand_z": 0.39,
+      "direction": "arz baskısı (bearish-eğilim)",
+      "label": "BETIMSEL denge-kadrani (Constan ikizi) — yon-AYRACI DEGIL: PIT-durust z'de 2020-rali/2021-tepe ayrilmaz; gercek ayrac K2 tide-duzey kapisinda",
+      "panel_file": "output/supply_demand_panel.txt"
+    },
+    "supply_demand_derisk": {
+      "fired": false,
+      "trim_factor": 1.0,
+      "supply_z": 0.78,
+      "supply_hi": true,
+      "supply_arm": "mega-IPO",
+      "mega_ceiling_usd": 86249999880.0,
+      "mega_label": "Space Exploration Technologies",
+      "mega_hi": true,
+      "tide_score": 10.42,
+      "tide_dir": 1,
+      "tide_declining_63d": false,
+      "demand_weak": false,
+      "as_of": "2026-05-22",
+      "reason": "sus: talep guclu (tide +10.4)",
+      "label": "rejim-degisim SIGORTASI (alfa DEGIL); incremental ~0, donmus tide 2021-22'yi zaten de-risk ediyor; deger = backtest'in goremedigi arz-soku rejimi (Constan Q3-Q4)",
+      "thresholds": {
+        "supply_z": 1.0,
+        "demand_weak_level": 2.0,
+        "decline_lb": 63,
+        "trim": 0.85,
+        "mega_ceiling_usd": 50000000000.0
+      }
+    },
+    "_sd_derisk_position_effect": true,
+    "spine": {
+      "recipe": "8-modül sweep winner (RAW m2, +1g lag); m9 .563/m5 .214/m2 .118/m0 .061/m3 .025/m6 .01/m8 .006/m4 .002",
+      "vector": {
+        "m0": 0.0613,
+        "m1": 0.0001,
+        "m2": 0.1182,
+        "m3": 0.0246,
+        "m4": 0.0024,
+        "m5": 0.2143,
+        "m6": 0.0098,
+        "m8": 0.0065,
+        "m9": 0.5626,
+        "m11": 0.0003
+      },
+      "modules_used": [
+        "m0",
+        "m1",
+        "m2",
+        "m3",
+        "m5",
+        "m6",
+        "m8",
+        "m9"
+      ]
+    },
+    "_pass": "spine + cor1m_froth × gex_shield"
+  },
+  "state": {
+    "ticker": "SPY",
+    "spot": 741.75,
+    "net_gex_bn": -1.21,
+    "net_vanna_m": 714.63,
+    "net_charm_m": -1665.17,
+    "gex_flip": 744.0,
+    "call_wall": 760.0,
+    "ghost": 750.0,
+    "put_wall": 730.0,
+    "max_pain": 728.0,
+    "exp_move_1d": 7.03,
+    "rv_ratio": 1.255,
+    "gamma_regime": "SHORT GAMMA",
+    "cor1m": 10.74,
+    "atm_iv": 17.09,
+    "rr_skew": 4.75,
+    "ts_ratio": 0.911,
+    "atm_iv_30d": 15.04,
+    "realized_vol": 15.53,
+    "vrp": -0.49
+  },
+  "meta": {
+    "snapshot_as_of": "2026-06-13",
+    "snapshot_age_days": 0,
+    "gamma_available": true,
+    "surface_available": true,
+    "model_call_status": "current",
+    "stale": false,
+    "data_ok": true,
+    "data_fails": [],
+    "data_checks": {
+      "spot": 741.75,
+      "front_atm_iv": 17.09,
+      "exp_move_1d": 7.03,
+      "net_gex_bn": -1.21,
+      "em_cross_ratio": 0.88
+    },
+    "data_junk": false,
+    "gamma_fallback_to_spy": false,
+    "surface_fallback_to_spy": false,
+    "index": "SPX",
+    "mult": 10
+  },
+  "decision": {
+    "direction": "LONG",
+    "conviction": 0.913,
+    "horizon": "intraday",
+    "vehicle": {
+      "class": "call_debit",
+      "expression": "kısa-gamma/flip-altı + model LONG: CALL-debit-spread (tanımlı-risk ile katıl, kuyruğu satın al değil)",
+      "instrument": "call-debit-spread(SPY/QQQ)"
+    },
+    "regime": {
+      "short_gamma": true,
+      "above_flip": false,
+      "dist_flip_em": 0.3200568990042674,
+      "froth": false,
+      "froth_soft": true,
+      "near_wall": false,
+      "backwardation": false,
+      "calm": true,
+      "cor1m": 10.74,
+      "vrp": -0.49,
+      "vrp_rich": false,
+      "vrp_cheap": true,
+      "ticker": "SPY"
+    },
+    "rationale": "model LONG (konviksiyon 0.91); rejim: kısa-gamma, flip-altı, froth-soft, vol-sakin → kısa-gamma/flip-altı + model LONG: CALL-debit-spread (tanımlı-risk ile katıl, kuyruğu satın al değil)"
+  },
+  "trade": {
+    "class": "call_debit",
+    "ticket": {
+      "class": "call_debit",
+      "underlying": "SPY",
+      "spot": 741.75,
+      "dte": 21,
+      "structure": "call-debit-spread",
+      "long_call": 742,
+      "short_call": 760,
+      "max_loss": "ödenen debit (tanımlı)",
+      "target": "spot→760 (call-wall)",
+      "levels": "AL call 742 / SAT call 760, 21g — tanımlı-risk directional"
+    },
+    "note": "kısa-gamma/flip-altı + model LONG: CALL-debit-spread (tanımlı-risk ile katıl, kuyruğu satın al değil)"
+  },
+  "risk": {
+    "pool": "options(Midas)",
+    "account_size_usd": 1000.0,
+    "conviction": 0.913,
+    "risk_budget_usd": 18.26,
+    "action": "OPEN call-debit-spread",
+    "contracts": "≈ floor(risk_bütçesi / yapı-max-loss)",
+    "dollar_risk": 18.26,
+    "note": "max-loss ≤ $18.26 (defined-risk); kontrat = bütçe ÷ (yapının canlı max-loss'u). Midas'ta debit/genişlik girince netleşir.",
+    "futures_note": "prop hesabı kapalı → directional futures devre-dışı (cash-ETF/options kullanılıyor)"
+  },
+  "live_book": {
+    "mode": "delta_one",
+    "etf": "SPLG",
+    "position": 0.913,
+    "direction": "LONG",
+    "halt_pct": -19.8,
+    "options_paper": true,
+    "unlock_usd": 10000
+  },
+  "eval_order": null,
+  "policy_flag": null
+}

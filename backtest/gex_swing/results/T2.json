@@ -1,0 +1,654 @@
+{
+  "meta": {
+    "study": "T2 \u2014 GEX as leading fragility indicator (standalone, SPX, 2011-26)",
+    "data_rows": 3798,
+    "data_span": [
+      "2011-05-02",
+      "2026-06-08"
+    ],
+    "gex_neg_frac": 0.091,
+    "deepneg_z_frac": 0.143,
+    "pit_lag": 1,
+    "note": "rv=trailing-21d ann vol; gz=trailing-252d z(GEX); fwd vol/dd over [D+1..D+N]; gates trim-to-0.5 trim-only (never short/never>1)."
+  },
+  "leadlag": {
+    "horizons": {
+      "N5": {
+        "corr_gz_fwdvol": -0.412,
+        "n_gz_fwdvol": 3734,
+        "corr_gz_fwddd": 0.2654,
+        "n_gz_fwddd": 3734,
+        "corr_rv_fwdvol": 0.5773,
+        "n_rv_fwdvol": 3778,
+        "corr_rv_fwddd": -0.3451,
+        "n_rv_fwddd": 3778,
+        "partial_gz_fwddd_given_rv": 0.1736,
+        "n_partial": 3734,
+        "partial_gz_fwddd_given_rv_nonoverlap": 0.1442,
+        "n_partial_nonoverlap": 747,
+        "partial_gz_fwdvol_given_rv": -0.2935,
+        "n_partial_fv": 3734,
+        "ols_fdd_on_rv_gz": {
+          "n": 3734,
+          "r2": 0.1469,
+          "hac_lag": 5,
+          "const": {
+            "beta": -0.007217884359724369,
+            "t": -14.473575654658958,
+            "t_hac": -4.885565696383783
+          },
+          "rv": {
+            "beta": -0.05184467107869919,
+            "t": -18.29358882237858,
+            "t_hac": -4.7484262930539005
+          },
+          "gz": {
+            "beta": 0.0025831233672942017,
+            "t": 10.767692002790564,
+            "t_hac": 6.008902174289332
+          }
+        },
+        "ols_fdd_on_rv": {
+          "n": 3778,
+          "r2": 0.1191,
+          "hac_lag": 5,
+          "const": {
+            "beta": -0.005455447790485299,
+            "t": -11.511179424651447,
+            "t_hac": -3.5927893557168686
+          },
+          "rv": {
+            "beta": -0.06146660022112308,
+            "t": -22.595897502907192,
+            "t_hac": -5.3102885119098335
+          }
+        },
+        "incr_r2_from_gz": 0.0278
+      },
+      "N10": {
+        "corr_gz_fwdvol": -0.3923,
+        "n_gz_fwdvol": 3729,
+        "corr_gz_fwddd": 0.2643,
+        "n_gz_fwddd": 3729,
+        "corr_rv_fwdvol": 0.5705,
+        "n_rv_fwdvol": 3773,
+        "corr_rv_fwddd": -0.3306,
+        "n_rv_fwddd": 3773,
+        "partial_gz_fwddd_given_rv": 0.176,
+        "n_partial": 3729,
+        "partial_gz_fwddd_given_rv_nonoverlap": 0.1729,
+        "n_partial_nonoverlap": 373,
+        "partial_gz_fwdvol_given_rv": -0.2693,
+        "n_partial_fv": 3729,
+        "ols_fdd_on_rv_gz": {
+          "n": 3729,
+          "r2": 0.1396,
+          "hac_lag": 10,
+          "const": {
+            "beta": -0.013881732364133419,
+            "t": -19.767467903121496,
+            "t_hac": -6.134780583063831
+          },
+          "rv": {
+            "beta": -0.06933426604130097,
+            "t": -17.379018765721884,
+            "t_hac": -4.137175260373655
+          },
+          "gz": {
+            "beta": 0.0036853868943563656,
+            "t": 10.912799532478642,
+            "t_hac": 4.702061910289191
+          }
+        },
+        "ols_fdd_on_rv": {
+          "n": 3773,
+          "r2": 0.1093,
+          "hac_lag": 10,
+          "const": {
+            "beta": -0.011461587318945213,
+            "t": -17.02143453672271,
+            "t_hac": -4.719047000238922
+          },
+          "rv": {
+            "beta": -0.08310820149962056,
+            "t": -21.512169512383988,
+            "t_hac": -4.4652457056293064
+          }
+        },
+        "incr_r2_from_gz": 0.0303
+      },
+      "N21": {
+        "corr_gz_fwdvol": -0.3264,
+        "n_gz_fwdvol": 3718,
+        "corr_gz_fwddd": 0.2116,
+        "n_gz_fwddd": 3718,
+        "corr_rv_fwdvol": 0.5049,
+        "n_rv_fwdvol": 3762,
+        "corr_rv_fwddd": -0.2576,
+        "n_rv_fwddd": 3762,
+        "partial_gz_fwddd_given_rv": 0.1389,
+        "n_partial": 3718,
+        "partial_gz_fwddd_given_rv_nonoverlap": 0.229,
+        "n_partial_nonoverlap": 177,
+        "partial_gz_fwdvol_given_rv": -0.1993,
+        "n_partial_fv": 3718,
+        "ols_fdd_on_rv_gz": {
+          "n": 3718,
+          "r2": 0.0877,
+          "hac_lag": 21,
+          "const": {
+            "beta": -0.026204213426041904,
+            "t": -25.74484330896417,
+            "t_hac": -7.408388717877955
+          },
+          "rv": {
+            "beta": -0.0764515698261019,
+            "t": -13.226863853398948,
+            "t_hac": -3.2686893386738407
+          },
+          "gz": {
+            "beta": 0.004205312105875295,
+            "t": 8.546094069564758,
+            "t_hac": 2.856046512299044
+          }
+        },
+        "ols_fdd_on_rv": {
+          "n": 3762,
+          "r2": 0.0664,
+          "hac_lag": 21,
+          "const": {
+            "beta": -0.02371579740441726,
+            "t": -24.049029929257788,
+            "t_hac": -6.466329504493089
+          },
+          "rv": {
+            "beta": -0.09242191152073981,
+            "t": -16.35003260158744,
+            "t_hac": -3.5541475705129892
+          }
+        },
+        "incr_r2_from_gz": 0.0213
+      }
+    }
+  },
+  "early_warning": {
+    "n_events": 20,
+    "gex_lead": {
+      "n": 20,
+      "median": 26.0,
+      "mean": 24.7,
+      "min": 4,
+      "max": 41
+    },
+    "rv_lead": {
+      "n": 16,
+      "median": 23.0,
+      "mean": 22.9,
+      "min": 2,
+      "max": 41
+    },
+    "gex_fired_frac": 1.0,
+    "rv_fired_frac": 0.8,
+    "both_fired": 16,
+    "gex_earlier_of_both": 8,
+    "gex_earlier_frac_of_both": 0.5,
+    "median_lead_diff_gex_minus_rv": 3.0,
+    "events": [
+      {
+        "event_date": "2020-02-21",
+        "trough_date": "2020-03-23",
+        "fwd_dd": -0.3297,
+        "trough_off_days": 21,
+        "gex_lead_days": 39,
+        "rv_lead_days": 20,
+        "gex_earlier": true
+      },
+      {
+        "event_date": "2011-07-15",
+        "trough_date": "2011-08-08",
+        "fwd_dd": -0.1677,
+        "trough_off_days": 16,
+        "gex_lead_days": 4,
+        "rv_lead_days": null,
+        "gex_earlier": null
+      },
+      {
+        "event_date": "2018-11-21",
+        "trough_date": "2018-12-24",
+        "fwd_dd": -0.1574,
+        "trough_off_days": 21,
+        "gex_lead_days": 41,
+        "rv_lead_days": 41,
+        "gex_earlier": false
+      },
+      {
+        "event_date": "2025-03-12",
+        "trough_date": "2025-04-08",
+        "fwd_dd": -0.1374,
+        "trough_off_days": 19,
+        "gex_lead_days": 32,
+        "rv_lead_days": 25,
+        "gex_earlier": true
+      },
+      {
+        "event_date": "2022-08-25",
+        "trough_date": "2022-09-26",
+        "fwd_dd": -0.1296,
+        "trough_off_days": 21,
+        "gex_lead_days": 18,
+        "rv_lead_days": null,
+        "gex_earlier": null
+      },
+      {
+        "event_date": "2020-01-29",
+        "trough_date": "2020-02-28",
+        "fwd_dd": -0.1276,
+        "trough_off_days": 21,
+        "gex_lead_days": 23,
+        "rv_lead_days": 4,
+        "gex_earlier": true
+      },
+      {
+        "event_date": "2022-04-20",
+        "trough_date": "2022-05-19",
+        "fwd_dd": -0.1253,
+        "trough_off_days": 21,
+        "gex_lead_days": 27,
+        "rv_lead_days": 41,
+        "gex_earlier": false
+      },
+      {
+        "event_date": "2022-05-27",
+        "trough_date": "2022-06-16",
+        "fwd_dd": -0.1221,
+        "trough_off_days": 13,
+        "gex_lead_days": 33,
+        "rv_lead_days": 33,
+        "gex_earlier": false
+      },
+      {
+        "event_date": "2020-03-16",
+        "trough_date": "2020-03-23",
+        "fwd_dd": -0.1153,
+        "trough_off_days": 5,
+        "gex_lead_days": 20,
+        "rv_lead_days": 20,
+        "gex_earlier": false
+      },
+      {
+        "event_date": "2015-07-28",
+        "trough_date": "2015-08-25",
+        "fwd_dd": -0.1143,
+        "trough_off_days": 20,
+        "gex_lead_days": 40,
+        "rv_lead_days": 2,
+        "gex_earlier": true
+      },
+      {
+        "event_date": "2018-12-13",
+        "trough_date": "2018-12-24",
+        "fwd_dd": -0.113,
+        "trough_off_days": 7,
+        "gex_lead_days": 27,
+        "rv_lead_days": 27,
+        "gex_earlier": false
+      },
+      {
+        "event_date": "2015-12-17",
+        "trough_date": "2016-01-20",
+        "fwd_dd": -0.1054,
+        "trough_off_days": 21,
+        "gex_lead_days": 25,
+        "rv_lead_days": 21,
+        "gex_earlier": true
+      },
+      {
+        "event_date": "2015-08-19",
+        "trough_date": "2015-08-25",
+        "fwd_dd": -0.1019,
+        "trough_off_days": 4,
+        "gex_lead_days": 22,
+        "rv_lead_days": 2,
+        "gex_earlier": true
+      },
+      {
+        "event_date": "2018-01-22",
+        "trough_date": "2018-02-08",
+        "fwd_dd": -0.1016,
+        "trough_off_days": 13,
+        "gex_lead_days": 4,
+        "rv_lead_days": 7,
+        "gex_earlier": false
+      },
+      {
+        "event_date": "2025-02-14",
+        "trough_date": "2025-03-13",
+        "fwd_dd": -0.1013,
+        "trough_off_days": 18,
+        "gex_lead_days": 14,
+        "rv_lead_days": 38,
+        "gex_earlier": false
+      },
+      {
+        "event_date": "2022-03-25",
+        "trough_date": "2022-04-26",
+        "fwd_dd": -0.0985,
+        "trough_off_days": 21,
+        "gex_lead_days": 36,
+        "rv_lead_days": 41,
+        "gex_earlier": false
+      },
+      {
+        "event_date": "2011-10-27",
+        "trough_date": "2011-11-25",
+        "fwd_dd": -0.0984,
+        "trough_off_days": 20,
+        "gex_lead_days": 4,
+        "rv_lead_days": null,
+        "gex_earlier": null
+      },
+      {
+        "event_date": "2022-01-03",
+        "trough_date": "2022-01-27",
+        "fwd_dd": -0.098,
+        "trough_off_days": 17,
+        "gex_lead_days": 37,
+        "rv_lead_days": 35,
+        "gex_earlier": true
+      },
+      {
+        "event_date": "2018-10-03",
+        "trough_date": "2018-10-29",
+        "fwd_dd": -0.0972,
+        "trough_off_days": 18,
+        "gex_lead_days": 37,
+        "rv_lead_days": 9,
+        "gex_earlier": true
+      },
+      {
+        "event_date": "2020-08-24",
+        "trough_date": "2020-09-23",
+        "fwd_dd": -0.096,
+        "trough_off_days": 21,
+        "gex_lead_days": 11,
+        "rv_lead_days": null,
+        "gex_earlier": null
+      }
+    ]
+  },
+  "gate_compare": {
+    "full": {
+      "buy_hold_long": {
+        "sharpe": 0.737,
+        "maxdd": -0.3392,
+        "cvar5": -0.0264,
+        "expo": 1.0,
+        "n": 3797,
+        "cum_ret": 4.4405,
+        "trim_frac": 0.0
+      },
+      "vol_only": {
+        "sharpe": 0.838,
+        "maxdd": -0.2168,
+        "cvar5": -0.02131,
+        "expo": 1.0,
+        "n": 3797,
+        "cum_ret": 4.0302,
+        "trim_frac": 0.177
+      },
+      "gex_only": {
+        "sharpe": 0.785,
+        "maxdd": -0.2419,
+        "cvar5": -0.02179,
+        "expo": 1.0,
+        "n": 3797,
+        "cum_ret": 3.5504,
+        "trim_frac": 0.143
+      },
+      "combined": {
+        "sharpe": 0.762,
+        "maxdd": -0.2043,
+        "cvar5": -0.02036,
+        "expo": 1.0,
+        "n": 3797,
+        "cum_ret": 2.9667,
+        "trim_frac": 0.249
+      }
+    },
+    "subperiods": {
+      "2015_china": {
+        "buy_hold_long": {
+          "sharpe": -0.537,
+          "maxdd": -0.1124,
+          "cvar5": -0.03563,
+          "expo": 1.0,
+          "n": 53,
+          "cum_ret": -0.0309
+        },
+        "vol_only": {
+          "sharpe": -1.282,
+          "maxdd": -0.088,
+          "cvar5": -0.02648,
+          "expo": 1.0,
+          "n": 53,
+          "cum_ret": -0.0405
+        },
+        "gex_only": {
+          "sharpe": -0.931,
+          "maxdd": -0.0788,
+          "cvar5": -0.0204,
+          "expo": 1.0,
+          "n": 53,
+          "cum_ret": -0.0273
+        },
+        "combined": {
+          "sharpe": -1.159,
+          "maxdd": -0.0788,
+          "cvar5": -0.0204,
+          "expo": 1.0,
+          "n": 53,
+          "cum_ret": -0.0327
+        }
+      },
+      "2018Q4": {
+        "buy_hold_long": {
+          "sharpe": -2.457,
+          "maxdd": -0.1963,
+          "cvar5": -0.032,
+          "expo": 1.0,
+          "n": 63,
+          "cum_ret": -0.1418
+        },
+        "vol_only": {
+          "sharpe": -2.397,
+          "maxdd": -0.1313,
+          "cvar5": -0.0286,
+          "expo": 1.0,
+          "n": 63,
+          "cum_ret": -0.1019
+        },
+        "gex_only": {
+          "sharpe": -2.978,
+          "maxdd": -0.13,
+          "cvar5": -0.02284,
+          "expo": 1.0,
+          "n": 63,
+          "cum_ret": -0.1005
+        },
+        "combined": {
+          "sharpe": -2.524,
+          "maxdd": -0.1132,
+          "cvar5": -0.02139,
+          "expo": 1.0,
+          "n": 63,
+          "cum_ret": -0.0832
+        }
+      },
+      "2020_covid": {
+        "buy_hold_long": {
+          "sharpe": -0.298,
+          "maxdd": -0.3392,
+          "cvar5": -0.09697,
+          "expo": 1.0,
+          "n": 72,
+          "cum_ret": -0.0933
+        },
+        "vol_only": {
+          "sharpe": -0.066,
+          "maxdd": -0.2003,
+          "cvar5": -0.04849,
+          "expo": 1.0,
+          "n": 72,
+          "cum_ret": -0.0188
+        },
+        "gex_only": {
+          "sharpe": -0.031,
+          "maxdd": -0.2141,
+          "cvar5": -0.04849,
+          "expo": 1.0,
+          "n": 72,
+          "cum_ret": -0.0203
+        },
+        "combined": {
+          "sharpe": -0.066,
+          "maxdd": -0.2003,
+          "cvar5": -0.04849,
+          "expo": 1.0,
+          "n": 72,
+          "cum_ret": -0.0188
+        }
+      },
+      "2022_bear": {
+        "buy_hold_long": {
+          "sharpe": -0.82,
+          "maxdd": -0.2538,
+          "cvar5": -0.03395,
+          "expo": 1.0,
+          "n": 251,
+          "cum_ret": -0.2027
+        },
+        "vol_only": {
+          "sharpe": -0.946,
+          "maxdd": -0.2166,
+          "cvar5": -0.02577,
+          "expo": 1.0,
+          "n": 251,
+          "cum_ret": -0.1764
+        },
+        "gex_only": {
+          "sharpe": -0.905,
+          "maxdd": -0.2391,
+          "cvar5": -0.02878,
+          "expo": 1.0,
+          "n": 251,
+          "cum_ret": -0.1884
+        },
+        "combined": {
+          "sharpe": -0.944,
+          "maxdd": -0.195,
+          "cvar5": -0.02426,
+          "expo": 1.0,
+          "n": 251,
+          "cum_ret": -0.1651
+        }
+      },
+      "2023_svb": {
+        "buy_hold_long": {
+          "sharpe": 2.542,
+          "maxdd": -0.0476,
+          "cvar5": -0.01846,
+          "expo": 1.0,
+          "n": 32,
+          "cum_ret": 0.0506
+        },
+        "vol_only": {
+          "sharpe": 2.542,
+          "maxdd": -0.0476,
+          "cvar5": -0.01846,
+          "expo": 1.0,
+          "n": 32,
+          "cum_ret": 0.0506
+        },
+        "gex_only": {
+          "sharpe": 2.582,
+          "maxdd": -0.0469,
+          "cvar5": -0.01846,
+          "expo": 1.0,
+          "n": 32,
+          "cum_ret": 0.0514
+        },
+        "combined": {
+          "sharpe": 2.582,
+          "maxdd": -0.0469,
+          "cvar5": -0.01846,
+          "expo": 1.0,
+          "n": 32,
+          "cum_ret": 0.0514
+        }
+      },
+      "2025_tariff": {
+        "buy_hold_long": {
+          "sharpe": 0.339,
+          "maxdd": -0.1472,
+          "cvar5": -0.04758,
+          "expo": 1.0,
+          "n": 63,
+          "cum_ret": 0.0147
+        },
+        "vol_only": {
+          "sharpe": 0.135,
+          "maxdd": -0.0754,
+          "cvar5": -0.02379,
+          "expo": 1.0,
+          "n": 63,
+          "cum_ret": 0.0022
+        },
+        "gex_only": {
+          "sharpe": 1.073,
+          "maxdd": -0.0799,
+          "cvar5": -0.02379,
+          "expo": 1.0,
+          "n": 63,
+          "cum_ret": 0.0458
+        },
+        "combined": {
+          "sharpe": 0.283,
+          "maxdd": -0.0754,
+          "cvar5": -0.02379,
+          "expo": 1.0,
+          "n": 63,
+          "cum_ret": 0.0084
+        }
+      }
+    },
+    "trigger_frac": {
+      "vol": 0.177,
+      "gex": 0.143,
+      "combined": 0.249
+    }
+  },
+  "caveats": [
+    "GEX_z adds incremental fwd-dd info beyond rv (overlap-corrected HAC t=2.86, non-overlap pcorr=0.229, incr R\u00b2=0.0213) \u2014 but incr R\u00b2 is tiny (~2%) and the naive OLS t (~8-11) is overlap-inflated; effect is real but small.",
+    "GEX_z and realized vol are themselves correlated (both rise in stress) \u2014 much of GEX's raw fwd-dd corr is shared with vol; partial corr is the honest test.",
+    "Standalone 2011-26; trim gate is rebound-safe (trim-only) so it cannot profit from shorting \u2014 it can only reduce drawdown at the cost of upside in calm regimes."
+  ],
+  "_verdict_inputs": {
+    "partial_gz_fwddd_given_rv_N21": 0.1389,
+    "n_partial": 3718,
+    "partial_gz_fwddd_given_rv_N21_nonoverlap": 0.229,
+    "ols_gz_tstat_N21_naive": 8.55,
+    "ols_gz_tstat_N21_hac": 2.86,
+    "incr_r2_N21": 0.0213,
+    "gz_signif_beyond_rv": true,
+    "comb_maxdd": -0.2043,
+    "vol_maxdd": -0.2168,
+    "gex_maxdd": -0.2419,
+    "bh_maxdd": -0.3392,
+    "combined_beats_best_single_dd": true,
+    "comb_sharpe": 0.762,
+    "vol_sharpe": 0.838,
+    "gex_sharpe": 0.785,
+    "sharpe_not_materially_worse": false
+  },
+  "verdict": "MARGINAL"
+}

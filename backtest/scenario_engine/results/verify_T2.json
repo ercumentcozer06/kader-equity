@@ -1,0 +1,444 @@
+{
+ "comparisons": [
+  {
+   "name": "SPY P(CW touch) own=+1",
+   "study": "p=0.3109 k=37 n=119",
+   "mine": "p=0.3109 k=37 n=119",
+   "match": true
+  },
+  {
+   "name": "SPY P(break|CW touch) own=+1",
+   "study": "p=0.8108 k=30 n=37",
+   "mine": "p=0.8108 k=30 n=37",
+   "match": true
+  },
+  {
+   "name": "SPY P(CW touch) own=-1",
+   "study": "p=0.2288 k=27 n=118",
+   "mine": "p=0.2288 k=27 n=118",
+   "match": true
+  },
+  {
+   "name": "SPY P(break|CW touch) own=-1",
+   "study": "p=0.7778 k=21 n=27",
+   "mine": "p=0.7778 k=21 n=27",
+   "match": true
+  },
+  {
+   "name": "SPY P(CW touch) own=all",
+   "study": "p=0.2700 k=64 n=237",
+   "mine": "p=0.2700 k=64 n=237",
+   "match": true
+  },
+  {
+   "name": "SPY P(break|CW touch) own=all",
+   "study": "p=0.7969 k=51 n=64",
+   "mine": "p=0.7969 k=51 n=64",
+   "match": true
+  },
+  {
+   "name": "SPY S1 skips (all)",
+   "study": "10",
+   "mine": "10",
+   "match": true
+  },
+  {
+   "name": "SPY S2A all net bps (extra)",
+   "study": "-15.62 n=51",
+   "mine": "-15.62 n=51",
+   "match": true
+  },
+  {
+   "name": "SPY S4A all net bps (extra)",
+   "study": "-20.04 n=99",
+   "mine": "-20.04 n=99",
+   "match": true
+  },
+  {
+   "name": "SPY S4B all net bps (extra)",
+   "study": "-1.34 n=99",
+   "mine": "-1.34 n=99",
+   "match": true
+  },
+  {
+   "name": "QQQ P(CW touch) own=+1",
+   "study": "p=0.3511 k=46 n=131",
+   "mine": "p=0.3511 k=46 n=131",
+   "match": true
+  },
+  {
+   "name": "QQQ P(break|CW touch) own=+1",
+   "study": "p=0.9348 k=43 n=46",
+   "mine": "p=0.9348 k=43 n=46",
+   "match": true
+  },
+  {
+   "name": "QQQ P(CW touch) own=-1",
+   "study": "p=0.1887 k=20 n=106",
+   "mine": "p=0.1887 k=20 n=106",
+   "match": true
+  },
+  {
+   "name": "QQQ P(break|CW touch) own=-1",
+   "study": "p=0.8000 k=16 n=20",
+   "mine": "p=0.8000 k=16 n=20",
+   "match": true
+  },
+  {
+   "name": "QQQ P(CW touch) own=all",
+   "study": "p=0.2785 k=66 n=237",
+   "mine": "p=0.2785 k=66 n=237",
+   "match": true
+  },
+  {
+   "name": "QQQ P(break|CW touch) own=all",
+   "study": "p=0.8939 k=59 n=66",
+   "mine": "p=0.8939 k=59 n=66",
+   "match": true
+  },
+  {
+   "name": "QQQ S1 skips (all)",
+   "study": "7",
+   "mine": "7",
+   "match": true
+  },
+  {
+   "name": "QQQ S2A all net bps (extra)",
+   "study": "-22.11 n=59",
+   "mine": "-22.11 n=59",
+   "match": true
+  },
+  {
+   "name": "QQQ S4A all net bps (extra)",
+   "study": "-31.89 n=95",
+   "mine": "-31.89 n=95",
+   "match": true
+  },
+  {
+   "name": "QQQ S4B all net bps (extra)",
+   "study": "-2.16 n=95",
+   "mine": "-2.16 n=95",
+   "match": true
+  },
+  {
+   "name": "QQQ S2A net bps own=-1",
+   "study": "-29.82 t=-2.65 n=16",
+   "mine": "-29.82 t=-2.65 n=16",
+   "match": true
+  },
+  {
+   "name": "QQQ S2B net bps own=-1 (extra)",
+   "study": "-16.24 n=16",
+   "mine": "-16.24 n=16",
+   "match": true
+  },
+  {
+   "name": "QQQ S2A net bps own=+1",
+   "study": "-19.25 t=-3.95 n=43",
+   "mine": "-19.25 t=-3.95 n=43",
+   "match": true
+  },
+  {
+   "name": "QQQ S2B net bps own=+1 (extra)",
+   "study": "8.98 n=43",
+   "mine": "8.98 n=43",
+   "match": true
+  },
+  {
+   "name": "SPY S4B net bps own=-1",
+   "study": "-4.02 t=-0.44 n=60",
+   "mine": "-4.02 t=-0.44 n=60",
+   "match": true
+  },
+  {
+   "name": "SPY P(VU|CW break) all (extra)",
+   "study": "p=0.8627 k=44 n=51",
+   "mine": "p=0.8627 k=44 n=51",
+   "match": true
+  },
+  {
+   "name": "QQQ P(VU|CW break) all (extra)",
+   "study": "p=0.8983 k=53 n=59",
+   "mine": "p=0.8983 k=53 n=59",
+   "match": true
+  }
+ ],
+ "verify": {
+  "SPY": {
+   "audit": {
+    "rows": 237,
+    "join_mismatch": 0,
+    "N_not_next_session": 0,
+    "cw_late_only": 4,
+    "tie_stops_A": 8,
+    "tie_stops_B": 8
+   },
+   "probs_own": {
+    "+1": {
+     "cw_touch": {
+      "k": 37,
+      "n": 119,
+      "p": 0.31092436974789917,
+      "lo": 0.2347704609230304,
+      "hi": 0.39890370387434176
+     },
+     "break_given_touch": {
+      "k": 30,
+      "n": 37,
+      "p": 0.8108108108108109,
+      "lo": 0.6579530307016159,
+      "hi": 0.9052002126968799
+     }
+    },
+    "-1": {
+     "cw_touch": {
+      "k": 27,
+      "n": 118,
+      "p": 0.2288135593220339,
+      "lo": 0.16228680042994797,
+      "hi": 0.3124404342941168
+     },
+     "break_given_touch": {
+      "k": 21,
+      "n": 27,
+      "p": 0.7777777777777778,
+      "lo": 0.5924307113336742,
+      "hi": 0.8939276054763996
+     }
+    },
+    "all": {
+     "cw_touch": {
+      "k": 64,
+      "n": 237,
+      "p": 0.270042194092827,
+      "lo": 0.21751807796185352,
+      "hi": 0.3299020359432434
+     },
+     "break_given_touch": {
+      "k": 51,
+      "n": 64,
+      "p": 0.796875,
+      "lo": 0.6828636426898583,
+      "hi": 0.8772658218081634
+     }
+    }
+   },
+   "p_vu_given_break_all": {
+    "k": 44,
+    "n": 51,
+    "p": 0.8627450980392157
+   },
+   "S1": {
+    "skips": 10,
+    "trades": 13,
+    "skips_le_boundary": 10
+   },
+   "S2A": {
+    "+1": {
+     "n": 30,
+     "mean_net_bps": -10.352670662851985,
+     "t_net": -3.586919858024588
+    },
+    "-1": {
+     "n": 21,
+     "mean_net_bps": -23.156804803778282,
+     "t_net": -2.057903932216005
+    },
+    "all": {
+     "n": 51,
+     "mean_net_bps": -15.624961191468696,
+     "t_net": -3.1572603641567905
+    }
+   },
+   "S2B": {
+    "+1": {
+     "n": 30,
+     "mean_net_bps": 2.066617029573746,
+     "t_net": 0.3312292844833435
+    },
+    "-1": {
+     "n": 21,
+     "mean_net_bps": -21.081446777773824,
+     "t_net": -1.3047613780912655
+    },
+    "all": {
+     "n": 51,
+     "mean_net_bps": -7.464938655804665,
+     "t_net": -0.9728832799702982
+    }
+   },
+   "S4A": {
+    "+1": {
+     "n": 39,
+     "mean_net_bps": -14.02887925917666,
+     "t_net": -2.9678813950310206
+    },
+    "-1": {
+     "n": 60,
+     "mean_net_bps": -23.953542503072832,
+     "t_net": -6.104781230300375
+    },
+    "all": {
+     "n": 99,
+     "mean_net_bps": -20.043826679719796,
+     "t_net": -6.583089165226247
+    }
+   },
+   "S4B": {
+    "+1": {
+     "n": 39,
+     "mean_net_bps": 2.779082092579542,
+     "t_net": 0.4827309760090904
+    },
+    "-1": {
+     "n": 60,
+     "mean_net_bps": -4.023882983455423,
+     "t_net": -0.43553080865780913
+    },
+    "all": {
+     "n": 99,
+     "mean_net_bps": -1.343927044411346,
+     "t_net": -0.22299619964517534
+    }
+   }
+  },
+  "QQQ": {
+   "audit": {
+    "rows": 237,
+    "join_mismatch": 0,
+    "N_not_next_session": 0,
+    "cw_late_only": 2,
+    "tie_stops_A": 12,
+    "tie_stops_B": 12
+   },
+   "probs_own": {
+    "+1": {
+     "cw_touch": {
+      "k": 46,
+      "n": 131,
+      "p": 0.3511450381679389,
+      "lo": 0.2747078882294117,
+      "hi": 0.4360635589123729
+     },
+     "break_given_touch": {
+      "k": 43,
+      "n": 46,
+      "p": 0.9347826086956522,
+      "lo": 0.8249725891809578,
+      "hi": 0.9775721385707115
+     }
+    },
+    "-1": {
+     "cw_touch": {
+      "k": 20,
+      "n": 106,
+      "p": 0.18867924528301888,
+      "lo": 0.12559299901393337,
+      "hi": 0.27354098273936067
+     },
+     "break_given_touch": {
+      "k": 16,
+      "n": 20,
+      "p": 0.8,
+      "lo": 0.5839825677481064,
+      "hi": 0.919342337420202
+     }
+    },
+    "all": {
+     "cw_touch": {
+      "k": 66,
+      "n": 237,
+      "p": 0.27848101265822783,
+      "lo": 0.22529268993538337,
+      "hi": 0.3387358601566825
+     },
+     "break_given_touch": {
+      "k": 59,
+      "n": 66,
+      "p": 0.8939393939393939,
+      "lo": 0.7968769124835199,
+      "hi": 0.9476665274452051
+     }
+    }
+   },
+   "p_vu_given_break_all": {
+    "k": 53,
+    "n": 59,
+    "p": 0.8983050847457628
+   },
+   "S1": {
+    "skips": 7,
+    "trades": 17,
+    "skips_le_boundary": 7
+   },
+   "S2A": {
+    "+1": {
+     "n": 43,
+     "mean_net_bps": -19.246792517570547,
+     "t_net": -3.9475632191348526
+    },
+    "-1": {
+     "n": 16,
+     "mean_net_bps": -29.816841001701356,
+     "t_net": -2.6505069800964103
+    },
+    "all": {
+     "n": 59,
+     "mean_net_bps": -22.113246343775515,
+     "t_net": -4.735915317051729
+    }
+   },
+   "S2B": {
+    "+1": {
+     "n": 43,
+     "mean_net_bps": 8.976363524119678,
+     "t_net": 1.3153414992528483
+    },
+    "-1": {
+     "n": 16,
+     "mean_net_bps": -16.243595931855143,
+     "t_net": -0.579974577953805
+    },
+    "all": {
+     "n": 59,
+     "mean_net_bps": 2.1370524852112522,
+     "t_net": 0.23634286908602767
+    }
+   },
+   "S4A": {
+    "+1": {
+     "n": 46,
+     "mean_net_bps": -24.68283688221599,
+     "t_net": -5.402680446308786
+    },
+    "-1": {
+     "n": 49,
+     "mean_net_bps": -38.651434493980496,
+     "t_net": -5.100041858081392
+    },
+    "all": {
+     "n": 95,
+     "mean_net_bps": -31.887692492494526,
+     "t_net": -7.0455144998009995
+    }
+   },
+   "S4B": {
+    "+1": {
+     "n": 46,
+     "mean_net_bps": -2.6498607538158128,
+     "t_net": -0.2552566915798256
+    },
+    "-1": {
+     "n": 49,
+     "mean_net_bps": -1.7079312801922297,
+     "t_net": -0.13051851456955108
+    },
+    "all": {
+     "n": 95,
+     "mean_net_bps": -2.1640234463678607,
+     "t_net": -0.25849519077712846
+    }
+   }
+  }
+ }
+}

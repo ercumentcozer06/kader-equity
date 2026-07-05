@@ -1,0 +1,480 @@
+{
+  "meta": {
+    "sym": "SPY",
+    "n_days": 237,
+    "n_days_flip_nan_skipped": 2,
+    "n_days_no_bars": 0,
+    "n_breakdowns": 147,
+    "n_reclaims": 51,
+    "n_failed": 96,
+    "share_breakdowns_opened_below_flip": 0.7483,
+    "share_reclaims_opened_below_flip": 0.5098,
+    "entry_cutoff_et": "14:45",
+    "cost_rt_bps": 2.0,
+    "control_n_bars": 5201
+  },
+  "reclaim": {
+    "all": {
+      "n": 51,
+      "mean_gross_bps": -3.35,
+      "mean_net_bps": -5.35,
+      "median_gross_bps": 2.63,
+      "std_bps": 30.52,
+      "t_gross": -0.78,
+      "t_net": -1.25,
+      "hit_gross": 0.5294,
+      "hit_gross_wilson95": [
+        0.3952,
+        0.6595
+      ],
+      "hit_net": 0.5098,
+      "hit_net_wilson95": [
+        0.3768,
+        0.6414
+      ]
+    },
+    "by_regime_own": {
+      "-1": {
+        "n": 28,
+        "mean_gross_bps": 4.13,
+        "mean_net_bps": 2.13,
+        "median_gross_bps": 7.61,
+        "std_bps": 31.56,
+        "t_gross": 0.69,
+        "t_net": 0.36,
+        "hit_gross": 0.6071,
+        "hit_gross_wilson95": [
+          0.4241,
+          0.7643
+        ],
+        "hit_net": 0.6071,
+        "hit_net_wilson95": [
+          0.4241,
+          0.7643
+        ]
+      },
+      "+1": {
+        "n": 23,
+        "mean_gross_bps": -12.46,
+        "mean_net_bps": -14.46,
+        "median_gross_bps": -5.93,
+        "std_bps": 27.14,
+        "t_gross": -2.2,
+        "t_net": -2.55,
+        "hit_gross": 0.4348,
+        "hit_gross_wilson95": [
+          0.2563,
+          0.6319
+        ],
+        "hit_net": 0.3913,
+        "hit_net_wilson95": [
+          0.2216,
+          0.5921
+        ]
+      }
+    },
+    "by_regime_idx": {
+      "-1": {
+        "n": 9,
+        "mean_gross_bps": -9.17,
+        "mean_net_bps": -11.17,
+        "median_gross_bps": -10.52,
+        "std_bps": 30.09,
+        "t_gross": -0.91,
+        "t_net": -1.11,
+        "hit_gross": 0.3333,
+        "hit_gross_wilson95": [
+          0.1206,
+          0.6458
+        ],
+        "hit_net": 0.3333,
+        "hit_net_wilson95": [
+          0.1206,
+          0.6458
+        ],
+        "flag": "YETERSIZ-N"
+      },
+      "+1": {
+        "n": 42,
+        "mean_gross_bps": -2.11,
+        "mean_net_bps": -4.11,
+        "median_gross_bps": 5.24,
+        "std_bps": 30.83,
+        "t_gross": -0.44,
+        "t_net": -0.86,
+        "hit_gross": 0.5714,
+        "hit_gross_wilson95": [
+          0.4221,
+          0.7088
+        ],
+        "hit_net": 0.5476,
+        "hit_net_wilson95": [
+          0.3995,
+          0.6878
+        ]
+      }
+    },
+    "pooled_syms": {
+      "all": {
+        "n": 87,
+        "mean_gross_bps": 2.67,
+        "mean_net_bps": 0.67,
+        "median_gross_bps": 2.9,
+        "std_bps": 42.36,
+        "t_gross": 0.59,
+        "t_net": 0.15,
+        "hit_gross": 0.5517,
+        "hit_gross_wilson95": [
+          0.4472,
+          0.6518
+        ],
+        "hit_net": 0.5287,
+        "hit_net_wilson95": [
+          0.4249,
+          0.6302
+        ]
+      },
+      "by_regime_own": {
+        "-1": {
+          "n": 44,
+          "mean_gross_bps": 6.86,
+          "mean_net_bps": 4.86,
+          "median_gross_bps": 7.61,
+          "std_bps": 32.82,
+          "t_gross": 1.39,
+          "t_net": 0.98,
+          "hit_gross": 0.6136,
+          "hit_gross_wilson95": [
+            0.4662,
+            0.7428
+          ],
+          "hit_net": 0.5909,
+          "hit_net_wilson95": [
+            0.4441,
+            0.7231
+          ]
+        },
+        "+1": {
+          "n": 43,
+          "mean_gross_bps": -1.62,
+          "mean_net_bps": -3.62,
+          "median_gross_bps": -0.36,
+          "std_bps": 50.35,
+          "t_gross": -0.21,
+          "t_net": -0.47,
+          "hit_gross": 0.4884,
+          "hit_gross_wilson95": [
+            0.3462,
+            0.6325
+          ],
+          "hit_net": 0.4651,
+          "hit_net_wilson95": [
+            0.3251,
+            0.6108
+          ]
+        }
+      },
+      "note": "SPY+QQQ pooled; days overlap across symbols -> NOT independent samples"
+    }
+  },
+  "next_day": {
+    "all": {
+      "n": 51,
+      "mean_gross_bps": -12.62,
+      "mean_net_bps": -14.62,
+      "median_gross_bps": -10.3,
+      "std_bps": 67.08,
+      "t_gross": -1.34,
+      "t_net": -1.56,
+      "hit_gross": 0.451,
+      "hit_gross_wilson95": [
+        0.3227,
+        0.5862
+      ],
+      "hit_net": 0.4314,
+      "hit_net_wilson95": [
+        0.305,
+        0.5673
+      ]
+    },
+    "by_regime_own": {
+      "-1": {
+        "n": 28,
+        "mean_gross_bps": -5.24,
+        "mean_net_bps": -7.24,
+        "median_gross_bps": -7.24,
+        "std_bps": 50.53,
+        "t_gross": -0.55,
+        "t_net": -0.76,
+        "hit_gross": 0.4286,
+        "hit_gross_wilson95": [
+          0.2651,
+          0.6093
+        ],
+        "hit_net": 0.3929,
+        "hit_net_wilson95": [
+          0.2357,
+          0.5759
+        ]
+      },
+      "+1": {
+        "n": 23,
+        "mean_gross_bps": -21.61,
+        "mean_net_bps": -23.61,
+        "median_gross_bps": -10.3,
+        "std_bps": 83.31,
+        "t_gross": -1.24,
+        "t_net": -1.36,
+        "hit_gross": 0.4783,
+        "hit_gross_wilson95": [
+          0.2924,
+          0.6704
+        ],
+        "hit_net": 0.4783,
+        "hit_net_wilson95": [
+          0.2924,
+          0.6704
+        ]
+      }
+    },
+    "n_dropped_no_next_panel_row": 0
+  },
+  "control": {
+    "overall": {
+      "n": 5201,
+      "mean_gross_bps": 0.08,
+      "mean_net_bps": -1.92,
+      "median_gross_bps": 2.22,
+      "std_bps": 40.37,
+      "t_gross": 0.15,
+      "t_net": -3.42,
+      "hit_gross": 0.5376,
+      "hit_gross_wilson95": [
+        0.524,
+        0.5511
+      ],
+      "hit_net": 0.5043,
+      "hit_net_wilson95": [
+        0.4907,
+        0.5179
+      ]
+    },
+    "by_hour": {
+      "09": {
+        "n": 474,
+        "mean_gross_bps": 0.25,
+        "mean_net_bps": -1.75,
+        "median_gross_bps": 4.99,
+        "std_bps": 59.69,
+        "t_gross": 0.09,
+        "t_net": -0.64,
+        "hit_gross": 0.5464,
+        "hit_gross_wilson95": [
+          0.5014,
+          0.5907
+        ],
+        "hit_net": 0.5274,
+        "hit_net_wilson95": [
+          0.4824,
+          0.572
+        ]
+      },
+      "10": {
+        "n": 948,
+        "mean_gross_bps": -1.16,
+        "mean_net_bps": -3.16,
+        "median_gross_bps": 2.74,
+        "std_bps": 52.82,
+        "t_gross": -0.68,
+        "t_net": -1.84,
+        "hit_gross": 0.5401,
+        "hit_gross_wilson95": [
+          0.5083,
+          0.5716
+        ],
+        "hit_net": 0.5105,
+        "hit_net_wilson95": [
+          0.4787,
+          0.5423
+        ]
+      },
+      "11": {
+        "n": 948,
+        "mean_gross_bps": 0.23,
+        "mean_net_bps": -1.77,
+        "median_gross_bps": 3.95,
+        "std_bps": 41.19,
+        "t_gross": 0.17,
+        "t_net": -1.32,
+        "hit_gross": 0.5517,
+        "hit_gross_wilson95": [
+          0.5199,
+          0.5831
+        ],
+        "hit_net": 0.5222,
+        "hit_net_wilson95": [
+          0.4903,
+          0.5538
+        ]
+      },
+      "12": {
+        "n": 948,
+        "mean_gross_bps": 0.69,
+        "mean_net_bps": -1.31,
+        "median_gross_bps": 2.93,
+        "std_bps": 34.61,
+        "t_gross": 0.62,
+        "t_net": -1.16,
+        "hit_gross": 0.5591,
+        "hit_gross_wilson95": [
+          0.5273,
+          0.5904
+        ],
+        "hit_net": 0.5232,
+        "hit_net_wilson95": [
+          0.4914,
+          0.5548
+        ]
+      },
+      "13": {
+        "n": 943,
+        "mean_gross_bps": 0.52,
+        "mean_net_bps": -1.48,
+        "median_gross_bps": 1.45,
+        "std_bps": 29.74,
+        "t_gross": 0.53,
+        "t_net": -1.53,
+        "hit_gross": 0.527,
+        "hit_gross_wilson95": [
+          0.4951,
+          0.5587
+        ],
+        "hit_net": 0.4942,
+        "hit_net_wilson95": [
+          0.4623,
+          0.526
+        ]
+      },
+      "14": {
+        "n": 940,
+        "mean_gross_bps": 0.07,
+        "mean_net_bps": -1.93,
+        "median_gross_bps": 0.3,
+        "std_bps": 24.65,
+        "t_gross": 0.08,
+        "t_net": -2.41,
+        "hit_gross": 0.5053,
+        "hit_gross_wilson95": [
+          0.4734,
+          0.5372
+        ],
+        "hit_net": 0.4596,
+        "hit_net_wilson95": [
+          0.4279,
+          0.4915
+        ]
+      }
+    },
+    "reclaim_entry_hour_distribution": {
+      "09": 0.0588,
+      "10": 0.3725,
+      "11": 0.1961,
+      "12": 0.1569,
+      "13": 0.1176,
+      "14": 0.098
+    },
+    "matched_baseline_mean_gross_bps": -0.2,
+    "matched_baseline_mean_net_bps": -2.2,
+    "reclaim_minus_matched_gross_bps": -3.15
+  },
+  "failed": {
+    "all": {
+      "n": 96,
+      "mean_gross_bps": -9.64,
+      "mean_net_bps": -11.64,
+      "median_gross_bps": -0.99,
+      "std_bps": 73.84,
+      "t_gross": -1.28,
+      "t_net": -1.54,
+      "hit_gross": 0.4688,
+      "hit_gross_wilson95": [
+        0.3721,
+        0.5678
+      ],
+      "hit_net": 0.4688,
+      "hit_net_wilson95": [
+        0.3721,
+        0.5678
+      ]
+    },
+    "by_regime_own": {
+      "-1": {
+        "n": 84,
+        "mean_gross_bps": -8.42,
+        "mean_net_bps": -10.42,
+        "median_gross_bps": 0.96,
+        "std_bps": 77.2,
+        "t_gross": -1.0,
+        "t_net": -1.24,
+        "hit_gross": 0.5,
+        "hit_gross_wilson95": [
+          0.3954,
+          0.6046
+        ],
+        "hit_net": 0.5,
+        "hit_net_wilson95": [
+          0.3954,
+          0.6046
+        ]
+      },
+      "+1": {
+        "n": 12,
+        "mean_gross_bps": -18.14,
+        "mean_net_bps": -20.14,
+        "median_gross_bps": -9.81,
+        "std_bps": 45.05,
+        "t_gross": -1.39,
+        "t_net": -1.55,
+        "hit_gross": 0.25,
+        "hit_gross_wilson95": [
+          0.0889,
+          0.5323
+        ],
+        "hit_net": 0.25,
+        "hit_net_wilson95": [
+          0.0889,
+          0.5323
+        ]
+      }
+    },
+    "n_late_reclaim_after_cutoff": 4
+  },
+  "regime_context": {
+    "+1": {
+      "n": 119,
+      "intraday_range_pct_mean": 0.771,
+      "intraday_range_pct_median": 0.671,
+      "abs_cc_ret_pct_mean": 0.488,
+      "abs_cc_ret_pct_median": 0.392
+    },
+    "-1": {
+      "n": 118,
+      "intraday_range_pct_mean": 1.077,
+      "intraday_range_pct_median": 0.955,
+      "abs_cc_ret_pct_mean": 0.695,
+      "abs_cc_ret_pct_median": 0.517
+    }
+  },
+  "caveats": [
+    "SPY: flip NaN 2 gun atlandi; bar'i olmayan gun 0.",
+    "Tek donem (2025-06-13..2026-06-09, 237 gun) — tek-rejim ornek, cok-dongulu degil.",
+    "RECLAIM tanimi kilitli-muhafazakar: ilk breakdown-sonrasi 15-dk close>flip BAR BASLANGICI <=14:45 ET olmali; ilk close>flip 14:45'ten SONRAki barda gerceklesen gunler FAILED sayildi (n_late_reclaim_after_cutoff).",
+    "Acilis zaten flip altinda olan seanslar dogal olarak dahil (ozel-durum yok); pay meta'da: share_breakdowns_opened_below_flip / share_reclaims_opened_below_flip.",
+    "FAILED hucresi islem degil baglam olcumu: breakdown bar-kapanisindan c1'e LONG-yonlu getiri, bar saati kisiti YOK (son barda breakdown ~0 getiri verir); net sutunu sadece simetri icin.",
+    "close==flip esitligi kesin esitsizlikle ele alindi (ne breakdown ne reclaim).",
+    "Kontrol bazi TUM panel gunleri (olay gunleri dahil) — kosulsuz, literal okuma.",
+    "pooled_syms hucresi SPY+QQQ ayni gunleri icerir — bagimsiz orneklem DEGIL, t-stat iyimser.",
+    "regime_idx==0 olan 1'er gun by_regime_idx'te ayri hucre olarak raporlanir (YETERSIZ-N).",
+    "Cikis c1 = panel gunluk kapanis (= son 1-dk close); MOC slippage modellenmedi, maliyet sabit 2bps RT."
+  ]
+}

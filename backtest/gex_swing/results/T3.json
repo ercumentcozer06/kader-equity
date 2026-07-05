@@ -1,0 +1,538 @@
+{
+  "meta": {
+    "test": "T3_opex_vanna_charm_x_gex_regime",
+    "date": "2026-06-12",
+    "baseline_stack": {
+      "SPX": 1.64,
+      "NDX": 1.77,
+      "source": "finalize_stack @2019+"
+    },
+    "standalone_span": "2011-05-02..2026-06-08",
+    "n_standalone": 3798,
+    "windows": {
+      "PRE": [
+        -5,
+        -1
+      ],
+      "OPEX": 0,
+      "POST": [
+        1,
+        5
+      ]
+    },
+    "pit": "signal[D] earns D->D+1; standalone ret=pct_change().shift(-1); ablation=strat_ret lag=1"
+  },
+  "unconditional_profile": {
+    "by_offset": {
+      "-5": {
+        "mean": 0.000233,
+        "t": 0.247,
+        "n": 181
+      },
+      "-4": {
+        "mean": 0.00239,
+        "t": 3.28,
+        "n": 181
+      },
+      "-3": {
+        "mean": -0.000785,
+        "t": -1.055,
+        "n": 181
+      },
+      "-2": {
+        "mean": -6.9e-05,
+        "t": -0.098,
+        "n": 181
+      },
+      "-1": {
+        "mean": -0.000475,
+        "t": -0.712,
+        "n": 181
+      },
+      "0": {
+        "mean": 0.000248,
+        "t": 0.34,
+        "n": 181
+      },
+      "1": {
+        "mean": 0.001501,
+        "t": 1.684,
+        "n": 181
+      },
+      "2": {
+        "mean": 0.000686,
+        "t": 1.04,
+        "n": 181
+      },
+      "3": {
+        "mean": 0.000605,
+        "t": 0.721,
+        "n": 181
+      },
+      "4": {
+        "mean": 0.000473,
+        "t": 0.626,
+        "n": 181
+      },
+      "5": {
+        "mean": 0.001375,
+        "t": 1.885,
+        "n": 181
+      }
+    },
+    "pooled": {
+      "PRE": {
+        "mean": 0.000259,
+        "t": 0.757,
+        "n": 905
+      },
+      "OPEX": {
+        "mean": 0.000248,
+        "t": 0.34,
+        "n": 181
+      },
+      "POST": {
+        "mean": 0.000928,
+        "t": 2.667,
+        "n": 905
+      },
+      "ALL": {
+        "mean": 0.000506,
+        "t": 2.861,
+        "n": 3797
+      }
+    },
+    "thesis": {
+      "pre_positive": true,
+      "post_negative": false,
+      "pre_beats_allday": false,
+      "post_lags_allday": false
+    }
+  },
+  "regime_conditioned": {
+    "cells": {
+      "PRE_POS": {
+        "mean": 0.00059,
+        "t": 2.036,
+        "n": 810
+      },
+      "PRE_NEG": {
+        "mean": -0.002564,
+        "t": -1.213,
+        "n": 95
+      },
+      "OPEX_POS": {
+        "mean": 0.000476,
+        "t": 0.709,
+        "n": 161
+      },
+      "OPEX_NEG": {
+        "mean": -0.001583,
+        "t": -0.41,
+        "n": 20
+      },
+      "POST_POS": {
+        "mean": 0.00051,
+        "t": 1.673,
+        "n": 826
+      },
+      "POST_NEG": {
+        "mean": 0.005298,
+        "t": 2.253,
+        "n": 79
+      }
+    },
+    "hypotheses": {
+      "H1_pre_pos_stronger": true,
+      "H2_post_neg_sharper": false
+    },
+    "subperiods": {
+      "full_2011_26": {
+        "PRE_POS": {
+          "mean": 0.00059,
+          "t": 2.036,
+          "n": 810
+        },
+        "POST_NEG": {
+          "mean": 0.005298,
+          "t": 2.253,
+          "n": 79
+        }
+      },
+      "2015_china": {
+        "PRE_POS": {
+          "mean": -0.002303,
+          "t": -0.784,
+          "n": 12
+        },
+        "POST_NEG": {
+          "mean": 0.002609,
+          "t": 0.313,
+          "n": 7
+        }
+      },
+      "2018Q4": {
+        "PRE_POS": {
+          "mean": -0.008027,
+          "t": -1.509,
+          "n": 4
+        },
+        "POST_NEG": {
+          "mean": 0.004595,
+          "t": 0.871,
+          "n": 12
+        }
+      },
+      "2020_covid": {
+        "PRE_POS": {
+          "mean": -7.5e-05,
+          "t": -0.016,
+          "n": 13
+        },
+        "POST_NEG": {
+          "mean": 0.018669,
+          "t": 1.101,
+          "n": 8
+        }
+      },
+      "2022_bear": {
+        "PRE_POS": {
+          "mean": -0.005306,
+          "t": -2.116,
+          "n": 32
+        },
+        "POST_NEG": {
+          "mean": 0.001455,
+          "t": 0.512,
+          "n": 24
+        }
+      },
+      "2023_svb": {
+        "PRE_POS": {
+          "mean": -0.003857,
+          "t": -0.538,
+          "n": 2
+        },
+        "POST_NEG": {
+          "mean": NaN,
+          "t": null,
+          "n": 0
+        }
+      },
+      "2025_tariff": {
+        "PRE_POS": {
+          "mean": 0.004219,
+          "t": 1.241,
+          "n": 14
+        },
+        "POST_NEG": {
+          "mean": 0.025117,
+          "t": null,
+          "n": 1
+        }
+      }
+    },
+    "regime_mix": {
+      "pos_frac": 0.909,
+      "neg_frac": 0.091
+    }
+  },
+  "overlay": {
+    "with_regime": {
+      "sharpe": 0.677,
+      "maxdd": -0.3245,
+      "cvar5": -0.02609,
+      "expo": 1.0,
+      "n": 3797,
+      "cum_ret": 3.472
+    },
+    "without_regime": {
+      "sharpe": 0.63,
+      "maxdd": -0.3245,
+      "cvar5": -0.02468,
+      "expo": 1.0,
+      "n": 3797,
+      "cum_ret": 2.7103
+    },
+    "bh": {
+      "sharpe": 0.737,
+      "maxdd": -0.3392,
+      "cvar5": -0.0264,
+      "expo": 1.0,
+      "n": 3797,
+      "cum_ret": 4.4405
+    },
+    "impl": "base=always-long 1.0; with_regime: POST&neg-gamma->0.5; opex_only: POST(any)->0.5; PRE-boost is no-op on 1.0 book",
+    "subperiods": {
+      "full_2011_26": {
+        "bh": {
+          "sharpe": 0.737,
+          "maxdd": -0.3392,
+          "cvar5": -0.0264,
+          "expo": 1.0,
+          "n": 3797,
+          "cum_ret": 4.4405
+        },
+        "with_regime": {
+          "sharpe": 0.677,
+          "maxdd": -0.3245,
+          "cvar5": -0.02609,
+          "expo": 1.0,
+          "n": 3797,
+          "cum_ret": 3.472
+        },
+        "opex_only": {
+          "sharpe": 0.63,
+          "maxdd": -0.3245,
+          "cvar5": -0.02468,
+          "expo": 1.0,
+          "n": 3797,
+          "cum_ret": 2.7103
+        }
+      },
+      "2015_china": {
+        "bh": {
+          "sharpe": -0.537,
+          "maxdd": -0.1124,
+          "cvar5": -0.03563,
+          "expo": 1.0,
+          "n": 53,
+          "cum_ret": -0.0309
+        },
+        "with_regime": {
+          "sharpe": -0.815,
+          "maxdd": -0.1129,
+          "cvar5": -0.03563,
+          "expo": 1.0,
+          "n": 53,
+          "cum_ret": -0.0387
+        },
+        "opex_only": {
+          "sharpe": -0.587,
+          "maxdd": -0.1086,
+          "cvar5": -0.03563,
+          "expo": 1.0,
+          "n": 53,
+          "cum_ret": -0.0289
+        }
+      },
+      "2018Q4": {
+        "bh": {
+          "sharpe": -2.457,
+          "maxdd": -0.1963,
+          "cvar5": -0.032,
+          "expo": 1.0,
+          "n": 63,
+          "cum_ret": -0.1418
+        },
+        "with_regime": {
+          "sharpe": -3.314,
+          "maxdd": -0.1913,
+          "cvar5": -0.032,
+          "expo": 1.0,
+          "n": 63,
+          "cum_ret": -0.1639
+        },
+        "opex_only": {
+          "sharpe": -3.093,
+          "maxdd": -0.1775,
+          "cvar5": -0.03077,
+          "expo": 1.0,
+          "n": 63,
+          "cum_ret": -0.1496
+        }
+      },
+      "2020_covid": {
+        "bh": {
+          "sharpe": -0.298,
+          "maxdd": -0.3392,
+          "cvar5": -0.09697,
+          "expo": 1.0,
+          "n": 72,
+          "cum_ret": -0.0933
+        },
+        "with_regime": {
+          "sharpe": -0.81,
+          "maxdd": -0.3245,
+          "cvar5": -0.09697,
+          "expo": 1.0,
+          "n": 72,
+          "cum_ret": -0.1528
+        },
+        "opex_only": {
+          "sharpe": -0.862,
+          "maxdd": -0.3245,
+          "cvar5": -0.09697,
+          "expo": 1.0,
+          "n": 72,
+          "cum_ret": -0.1564
+        }
+      },
+      "2022_bear": {
+        "bh": {
+          "sharpe": -0.82,
+          "maxdd": -0.2538,
+          "cvar5": -0.03395,
+          "expo": 1.0,
+          "n": 251,
+          "cum_ret": -0.2027
+        },
+        "with_regime": {
+          "sharpe": -0.92,
+          "maxdd": -0.2575,
+          "cvar5": -0.03395,
+          "expo": 1.0,
+          "n": 251,
+          "cum_ret": -0.2152
+        },
+        "opex_only": {
+          "sharpe": -1.02,
+          "maxdd": -0.2621,
+          "cvar5": -0.03322,
+          "expo": 1.0,
+          "n": 251,
+          "cum_ret": -0.2211
+        }
+      },
+      "2023_svb": {
+        "bh": {
+          "sharpe": 2.542,
+          "maxdd": -0.0476,
+          "cvar5": -0.01846,
+          "expo": 1.0,
+          "n": 32,
+          "cum_ret": 0.0506
+        },
+        "with_regime": {
+          "sharpe": 2.542,
+          "maxdd": -0.0476,
+          "cvar5": -0.01846,
+          "expo": 1.0,
+          "n": 32,
+          "cum_ret": 0.0506
+        },
+        "opex_only": {
+          "sharpe": 2.522,
+          "maxdd": -0.0476,
+          "cvar5": -0.01846,
+          "expo": 1.0,
+          "n": 32,
+          "cum_ret": 0.0472
+        }
+      },
+      "2025_tariff": {
+        "bh": {
+          "sharpe": 0.339,
+          "maxdd": -0.1472,
+          "cvar5": -0.04758,
+          "expo": 1.0,
+          "n": 63,
+          "cum_ret": 0.0147
+        },
+        "with_regime": {
+          "sharpe": 0.183,
+          "maxdd": -0.1472,
+          "cvar5": -0.04758,
+          "expo": 1.0,
+          "n": 63,
+          "cum_ret": 0.0023
+        },
+        "opex_only": {
+          "sharpe": 0.116,
+          "maxdd": -0.1354,
+          "cvar5": -0.04758,
+          "expo": 1.0,
+          "n": 63,
+          "cum_ret": -0.0025
+        }
+      }
+    }
+  },
+  "ablation": {
+    "SPX": {
+      "frozen stack": {
+        "sharpe": 1.636,
+        "maxdd": -0.1321,
+        "cvar5": -0.01863,
+        "expo": 0.724,
+        "p_gt_frozen": 0.0,
+        "dsr": 0.9847,
+        "n": 1928
+      },
+      "stack \u00d7 OPEX(with-regime)": {
+        "sharpe": 1.667,
+        "maxdd": -0.1321,
+        "cvar5": -0.01828,
+        "expo": 0.724,
+        "p_gt_frozen": 0.844,
+        "dsr": 0.9877,
+        "n": 1928
+      },
+      "stack \u00d7 OPEX(no-regime)": {
+        "sharpe": 1.611,
+        "maxdd": -0.1286,
+        "cvar5": -0.01696,
+        "expo": 0.724,
+        "p_gt_frozen": 0.36,
+        "dsr": 0.9809,
+        "n": 1928
+      }
+    },
+    "NDX": {
+      "frozen stack": {
+        "sharpe": 1.773,
+        "maxdd": -0.1559,
+        "cvar5": -0.02335,
+        "expo": 0.725,
+        "p_gt_frozen": 0.0,
+        "dsr": 0.9943,
+        "n": 1928
+      },
+      "stack \u00d7 OPEX(with-regime)": {
+        "sharpe": 1.806,
+        "maxdd": -0.1559,
+        "cvar5": -0.02302,
+        "expo": 0.725,
+        "p_gt_frozen": 0.864,
+        "dsr": 0.9957,
+        "n": 1928
+      },
+      "stack \u00d7 OPEX(no-regime)": {
+        "sharpe": 1.769,
+        "maxdd": -0.1371,
+        "cvar5": -0.0216,
+        "expo": 0.725,
+        "p_gt_frozen": 0.47,
+        "dsr": 0.994,
+        "n": 1928
+      }
+    }
+  },
+  "ablation_diagnostics": {
+    "post_neg_trim_days_2019plus": 53,
+    "shield_already_trimming": 38,
+    "shield_overlap_frac": 0.717,
+    "reversed_overlay_sharpe": {
+      "SPX": 1.577,
+      "NDX": 1.732
+    },
+    "note": "72%+ of trimmed days are already shield-trimmed; reversed overlay still moves Sharpe -> the small gain is incidental de-risking inside a single regime, not the OPEX/charm structure"
+  },
+  "verdict": "TIDE_ABSORBED",
+  "verdict_logic": {
+    "standalone_helps": false,
+    "regime_over_plain": true,
+    "ablation_helps_raw": true,
+    "ablation_gain_is_incidental": true,
+    "sub_wins": "0/7",
+    "charm_thesis_holds": false,
+    "H2_post_neg_sharper": false
+  },
+  "caveats": [
+    "PRE-window 'boost-to-1.0' is a no-op on a 1.0-capped long-bias book; the only active move is the POST-window trim-to-0.5. Trim-only / rebound-safe by construction (never short, never >1.0).",
+    "Standalone is multi-regime 2011-26 but the OPEX\u00d7regime overlay reduces EXPOSURE (trims POST&neg days); a Sharpe gain from de-risking is variance-reduction, not predictive alpha.",
+    "Ablation window is 2019+ (m9-era single regime); frozen stack already includes a GEX-shield that fires on the SAME deep-negative-gamma days the POST&neg trim targets \u2014 heavy overlap, so the OPEX overlay has little orthogonal room left inside the stack.",
+    "OPEX dates derived from calendar 3rd-Friday (np.busday); no holiday-shift handling \u2014 a few OPEX days may be off by the index 'nearest' snap. Offset coverage ~95%.",
+    "DSR uses N=60 (optimistic lower bound per finalize_stack note); honest N\u2248150-200 lowers it. n reported per cell."
+  ]
+}

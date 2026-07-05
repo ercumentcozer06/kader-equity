@@ -1,0 +1,2276 @@
+{
+ "script": "backtest/remeasure/RC1_determinism.py",
+ "run_utc": "2026-06-11T14:40:25+00:00",
+ "config_sha": "c80e6558181015a6",
+ "gate_spec": {
+  "compare_cols": [
+   "net_gex",
+   "flip",
+   "call_wall",
+   "put_wall",
+   "hvl",
+   "max_pain",
+   "atm_iv",
+   "em1",
+   "gamma_dollar"
+  ],
+  "rel_tol": 1e-09,
+  "abs_floor": 1e-12,
+  "min_days": 230,
+  "wall_ok_min": 0.99,
+  "flip_found_min": 0.95,
+  "regime_allowed": [
+   -1,
+   1
+  ]
+ },
+ "series": {
+  "livematch_spy": {
+   "file": "level_series_livematch_spy.parquet",
+   "build": {
+    "status": "REBUILT",
+    "meta_json": true,
+    "built_utc": "2026-06-11T14:22:39.425957+00:00",
+    "meta_config_sha": "c80e6558181015a6",
+    "new_mtime": "2026-06-11T17:22:39",
+    "identical_to_archive": false,
+    "extends_archive": true
+   },
+   "determinism": {
+    "n_common": 158,
+    "n_new": 245,
+    "n_old": 158,
+    "cols": {
+     "net_gex": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "flip": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "call_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "put_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "hvl": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "max_pain": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "atm_iv": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "em1": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "gamma_dollar": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     }
+    },
+    "fail_cols": [],
+    "pass": true
+   },
+   "health": {
+    "n_days": {
+     "value": 245,
+     "min": 230,
+     "pass": true
+    },
+    "call_wall_ge_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "put_wall_le_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "flip_found": {
+     "share": 0.9918367346938776,
+     "min": 0.95,
+     "pass": true,
+     "missing_dates": [
+      "2026-03-27",
+      "2026-04-17"
+     ]
+    },
+    "regime_pm1": {
+     "values": [
+      -1,
+      1
+     ],
+     "pass": true
+    },
+    "pass": true
+   },
+   "pass": true
+  },
+  "livematch_spy_nohyg": {
+   "file": "level_series_livematch_spy_nohyg.parquet",
+   "build": {
+    "status": "REBUILT",
+    "meta_json": true,
+    "built_utc": "2026-06-11T14:22:55.859637+00:00",
+    "meta_config_sha": "c80e6558181015a6",
+    "new_mtime": "2026-06-11T17:22:55",
+    "identical_to_archive": false,
+    "extends_archive": true
+   },
+   "determinism": {
+    "n_common": 158,
+    "n_new": 245,
+    "n_old": 158,
+    "cols": {
+     "net_gex": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "flip": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "call_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "put_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "hvl": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "max_pain": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "atm_iv": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "em1": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "gamma_dollar": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     }
+    },
+    "fail_cols": [],
+    "pass": true
+   },
+   "health": {
+    "n_days": {
+     "value": 245,
+     "min": 230,
+     "pass": true
+    },
+    "call_wall_ge_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "put_wall_le_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "flip_found": {
+     "share": 1.0,
+     "min": 0.95,
+     "pass": true,
+     "missing_dates": []
+    },
+    "regime_pm1": {
+     "values": [
+      -1,
+      1
+     ],
+     "pass": true
+    },
+    "pass": true
+   },
+   "pass": true
+  },
+  "livematch_qqq": {
+   "file": "level_series_livematch_qqq.parquet",
+   "build": {
+    "status": "REBUILT",
+    "meta_json": true,
+    "built_utc": "2026-06-11T14:22:32.926335+00:00",
+    "meta_config_sha": "c80e6558181015a6",
+    "new_mtime": "2026-06-11T17:22:32",
+    "identical_to_archive": false,
+    "extends_archive": true
+   },
+   "determinism": {
+    "n_common": 157,
+    "n_new": 245,
+    "n_old": 157,
+    "cols": {
+     "net_gex": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "flip": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 1,
+      "bad_dates": [],
+      "pass": true
+     },
+     "call_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "put_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "hvl": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "max_pain": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "atm_iv": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "em1": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "gamma_dollar": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     }
+    },
+    "fail_cols": [],
+    "pass": true
+   },
+   "health": {
+    "n_days": {
+     "value": 245,
+     "min": 230,
+     "pass": true
+    },
+    "call_wall_ge_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "put_wall_le_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "flip_found": {
+     "share": 0.9755102040816327,
+     "min": 0.95,
+     "pass": true,
+     "missing_dates": [
+      "2025-06-20",
+      "2026-03-27",
+      "2026-05-08",
+      "2026-05-15",
+      "2026-05-29",
+      "2026-06-05"
+     ]
+    },
+    "regime_pm1": {
+     "values": [
+      -1,
+      1
+     ],
+     "pass": true
+    },
+    "pass": true
+   },
+   "pass": true
+  },
+  "livematch_qqq_nohyg": {
+   "file": "level_series_livematch_qqq_nohyg.parquet",
+   "build": {
+    "status": "REBUILT",
+    "meta_json": true,
+    "built_utc": "2026-06-11T14:22:46.696005+00:00",
+    "meta_config_sha": "c80e6558181015a6",
+    "new_mtime": "2026-06-11T17:22:46",
+    "identical_to_archive": false,
+    "extends_archive": true
+   },
+   "determinism": {
+    "n_common": 157,
+    "n_new": 245,
+    "n_old": 157,
+    "cols": {
+     "net_gex": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "flip": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "call_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "put_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "hvl": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "max_pain": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "atm_iv": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "em1": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "gamma_dollar": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     }
+    },
+    "fail_cols": [],
+    "pass": true
+   },
+   "health": {
+    "n_days": {
+     "value": 245,
+     "min": 230,
+     "pass": true
+    },
+    "call_wall_ge_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "put_wall_le_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "flip_found": {
+     "share": 1.0,
+     "min": 0.95,
+     "pass": true,
+     "missing_dates": []
+    },
+    "regime_pm1": {
+     "values": [
+      -1,
+      1
+     ],
+     "pass": true
+    },
+    "pass": true
+   },
+   "pass": true
+  },
+  "livematch_spx": {
+   "file": "level_series_livematch_spx.parquet",
+   "build": {
+    "status": "REBUILT",
+    "meta_json": true,
+    "built_utc": "2026-06-11T14:06:15.274453+00:00",
+    "meta_config_sha": "c80e6558181015a6",
+    "new_mtime": "2026-06-11T17:06:15",
+    "identical_to_archive": false,
+    "extends_archive": true
+   },
+   "determinism": {
+    "n_common": 155,
+    "n_new": 244,
+    "n_old": 155,
+    "cols": {
+     "net_gex": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "flip": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 1,
+      "bad_dates": [],
+      "pass": true
+     },
+     "call_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "put_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "hvl": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "max_pain": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "atm_iv": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "em1": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "gamma_dollar": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     }
+    },
+    "fail_cols": [],
+    "pass": true
+   },
+   "health": {
+    "n_days": {
+     "value": 244,
+     "min": 230,
+     "pass": true
+    },
+    "call_wall_ge_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "put_wall_le_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "flip_found": {
+     "share": 0.9918032786885246,
+     "min": 0.95,
+     "pass": true,
+     "missing_dates": [
+      "2025-12-19",
+      "2026-03-27"
+     ]
+    },
+    "regime_pm1": {
+     "values": [
+      -1,
+      1
+     ],
+     "pass": true
+    },
+    "pass": true
+   },
+   "pass": true
+  },
+  "livematch_spx_nohyg": {
+   "file": "level_series_livematch_spx_nohyg.parquet",
+   "build": {
+    "status": "REBUILT",
+    "meta_json": true,
+    "built_utc": "2026-06-11T14:06:42.285368+00:00",
+    "meta_config_sha": "c80e6558181015a6",
+    "new_mtime": "2026-06-11T17:06:42",
+    "identical_to_archive": false,
+    "extends_archive": true
+   },
+   "determinism": {
+    "n_common": 155,
+    "n_new": 244,
+    "n_old": 155,
+    "cols": {
+     "net_gex": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "flip": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "call_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "put_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "hvl": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "max_pain": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "atm_iv": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "em1": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "gamma_dollar": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     }
+    },
+    "fail_cols": [],
+    "pass": true
+   },
+   "health": {
+    "n_days": {
+     "value": 244,
+     "min": 230,
+     "pass": true
+    },
+    "call_wall_ge_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "put_wall_le_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "flip_found": {
+     "share": 1.0,
+     "min": 0.95,
+     "pass": true,
+     "missing_dates": []
+    },
+    "regime_pm1": {
+     "values": [
+      -1,
+      1
+     ],
+     "pass": true
+    },
+    "pass": true
+   },
+   "pass": true
+  },
+  "livematch_ndx": {
+   "file": "level_series_livematch_ndx.parquet",
+   "build": {
+    "status": "REBUILT",
+    "meta_json": true,
+    "built_utc": "2026-06-11T14:30:49.817356+00:00",
+    "meta_config_sha": "c80e6558181015a6",
+    "new_mtime": "2026-06-11T17:30:49",
+    "identical_to_archive": false,
+    "extends_archive": true
+   },
+   "determinism": {
+    "n_common": 157,
+    "n_new": 244,
+    "n_old": 157,
+    "cols": {
+     "net_gex": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "flip": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 3,
+      "bad_dates": [],
+      "pass": true
+     },
+     "call_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "put_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "hvl": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "max_pain": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "atm_iv": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "em1": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "gamma_dollar": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     }
+    },
+    "fail_cols": [],
+    "pass": true
+   },
+   "health": {
+    "n_days": {
+     "value": 244,
+     "min": 230,
+     "pass": true
+    },
+    "call_wall_ge_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "put_wall_le_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "flip_found": {
+     "share": 0.9549180327868853,
+     "min": 0.95,
+     "pass": true,
+     "missing_dates": [
+      "2025-07-14",
+      "2025-07-23",
+      "2025-07-30",
+      "2026-03-27",
+      "2026-03-30",
+      "2026-04-10",
+      "2026-04-13",
+      "2026-05-14",
+      "2026-05-15",
+      "2026-05-28"
+     ]
+    },
+    "regime_pm1": {
+     "values": [
+      -1,
+      1
+     ],
+     "pass": true
+    },
+    "pass": true
+   },
+   "pass": true
+  },
+  "livematch_ndx_nohyg": {
+   "file": "level_series_livematch_ndx_nohyg.parquet",
+   "build": {
+    "status": "REBUILT",
+    "meta_json": true,
+    "built_utc": "2026-06-11T14:31:30.934261+00:00",
+    "meta_config_sha": "c80e6558181015a6",
+    "new_mtime": "2026-06-11T17:31:30",
+    "identical_to_archive": false,
+    "extends_archive": true
+   },
+   "determinism": {
+    "n_common": 157,
+    "n_new": 244,
+    "n_old": 157,
+    "cols": {
+     "net_gex": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "flip": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "call_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "put_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "hvl": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "max_pain": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "atm_iv": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "em1": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "gamma_dollar": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     }
+    },
+    "fail_cols": [],
+    "pass": true
+   },
+   "health": {
+    "n_days": {
+     "value": 244,
+     "min": 230,
+     "pass": true
+    },
+    "call_wall_ge_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "put_wall_le_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "flip_found": {
+     "share": 0.9959016393442623,
+     "min": 0.95,
+     "pass": true,
+     "missing_dates": [
+      "2026-05-28"
+     ]
+    },
+    "regime_pm1": {
+     "values": [
+      -1,
+      1
+     ],
+     "pass": true
+    },
+    "pass": true
+   },
+   "pass": true
+  },
+  "fullsurface_spy": {
+   "file": "level_series_fullsurface_spy.parquet",
+   "build": {
+    "status": "REBUILT",
+    "meta_json": true,
+    "built_utc": "2026-06-11T14:28:30.287562+00:00",
+    "meta_config_sha": "c80e6558181015a6",
+    "new_mtime": "2026-06-11T17:28:30",
+    "identical_to_archive": false,
+    "extends_archive": true
+   },
+   "determinism": {
+    "n_common": 158,
+    "n_new": 245,
+    "n_old": 158,
+    "cols": {
+     "net_gex": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "flip": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "call_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "put_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "hvl": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "max_pain": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "atm_iv": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "em1": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "gamma_dollar": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     }
+    },
+    "fail_cols": [],
+    "pass": true
+   },
+   "health": {
+    "n_days": {
+     "value": 245,
+     "min": 230,
+     "pass": true
+    },
+    "call_wall_ge_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "put_wall_le_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "flip_found": {
+     "share": 0.9918367346938776,
+     "min": 0.95,
+     "pass": true,
+     "missing_dates": [
+      "2026-03-27",
+      "2026-03-30"
+     ]
+    },
+    "regime_pm1": {
+     "values": [
+      -1,
+      1
+     ],
+     "pass": true
+    },
+    "pass": true
+   },
+   "pass": true
+  },
+  "fullsurface_spy_nohyg": {
+   "file": "level_series_fullsurface_spy_nohyg.parquet",
+   "build": {
+    "status": "REBUILT",
+    "meta_json": true,
+    "built_utc": "2026-06-11T14:28:42.904684+00:00",
+    "meta_config_sha": "c80e6558181015a6",
+    "new_mtime": "2026-06-11T17:28:42",
+    "identical_to_archive": false,
+    "extends_archive": true
+   },
+   "determinism": {
+    "n_common": 158,
+    "n_new": 245,
+    "n_old": 158,
+    "cols": {
+     "net_gex": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "flip": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "call_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "put_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "hvl": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "max_pain": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "atm_iv": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "em1": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "gamma_dollar": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     }
+    },
+    "fail_cols": [],
+    "pass": true
+   },
+   "health": {
+    "n_days": {
+     "value": 245,
+     "min": 230,
+     "pass": true
+    },
+    "call_wall_ge_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "put_wall_le_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "flip_found": {
+     "share": 1.0,
+     "min": 0.95,
+     "pass": true,
+     "missing_dates": []
+    },
+    "regime_pm1": {
+     "values": [
+      -1,
+      1
+     ],
+     "pass": true
+    },
+    "pass": true
+   },
+   "pass": true
+  },
+  "fullsurface_qqq": {
+   "file": "level_series_fullsurface_qqq.parquet",
+   "build": {
+    "status": "REBUILT",
+    "meta_json": true,
+    "built_utc": "2026-06-11T14:28:28.495559+00:00",
+    "meta_config_sha": "c80e6558181015a6",
+    "new_mtime": "2026-06-11T17:28:28",
+    "identical_to_archive": false,
+    "extends_archive": true
+   },
+   "determinism": {
+    "n_common": 157,
+    "n_new": 245,
+    "n_old": 157,
+    "cols": {
+     "net_gex": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "flip": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "call_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "put_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "hvl": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "max_pain": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "atm_iv": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "em1": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "gamma_dollar": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     }
+    },
+    "fail_cols": [],
+    "pass": true
+   },
+   "health": {
+    "n_days": {
+     "value": 245,
+     "min": 230,
+     "pass": true
+    },
+    "call_wall_ge_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "put_wall_le_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "flip_found": {
+     "share": 0.9836734693877551,
+     "min": 0.95,
+     "pass": true,
+     "missing_dates": [
+      "2026-03-20",
+      "2026-03-27",
+      "2026-03-30",
+      "2026-05-08"
+     ]
+    },
+    "regime_pm1": {
+     "values": [
+      -1,
+      1
+     ],
+     "pass": true
+    },
+    "pass": true
+   },
+   "pass": true
+  },
+  "fullsurface_qqq_nohyg": {
+   "file": "level_series_fullsurface_qqq_nohyg.parquet",
+   "build": {
+    "status": "REBUILT",
+    "meta_json": true,
+    "built_utc": "2026-06-11T14:28:48.997513+00:00",
+    "meta_config_sha": "c80e6558181015a6",
+    "new_mtime": "2026-06-11T17:28:48",
+    "identical_to_archive": false,
+    "extends_archive": true
+   },
+   "determinism": {
+    "n_common": 157,
+    "n_new": 245,
+    "n_old": 157,
+    "cols": {
+     "net_gex": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "flip": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "call_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "put_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "hvl": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "max_pain": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "atm_iv": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "em1": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "gamma_dollar": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     }
+    },
+    "fail_cols": [],
+    "pass": true
+   },
+   "health": {
+    "n_days": {
+     "value": 245,
+     "min": 230,
+     "pass": true
+    },
+    "call_wall_ge_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "put_wall_le_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "flip_found": {
+     "share": 1.0,
+     "min": 0.95,
+     "pass": true,
+     "missing_dates": []
+    },
+    "regime_pm1": {
+     "values": [
+      -1,
+      1
+     ],
+     "pass": true
+    },
+    "pass": true
+   },
+   "pass": true
+  },
+  "fullsurface_spx": {
+   "file": "level_series_fullsurface_spx.parquet",
+   "build": {
+    "status": "REBUILT",
+    "meta_json": true,
+    "built_utc": "2026-06-11T14:39:31.850220+00:00",
+    "meta_config_sha": "c80e6558181015a6",
+    "new_mtime": "2026-06-11T17:39:31",
+    "identical_to_archive": false,
+    "extends_archive": true
+   },
+   "determinism": {
+    "n_common": 155,
+    "n_new": 244,
+    "n_old": 155,
+    "cols": {
+     "net_gex": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "flip": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "call_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "put_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "hvl": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "max_pain": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "atm_iv": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "em1": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "gamma_dollar": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     }
+    },
+    "fail_cols": [],
+    "pass": true
+   },
+   "health": {
+    "n_days": {
+     "value": 244,
+     "min": 230,
+     "pass": true
+    },
+    "call_wall_ge_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "put_wall_le_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "flip_found": {
+     "share": 0.9918032786885246,
+     "min": 0.95,
+     "pass": true,
+     "missing_dates": [
+      "2026-03-27",
+      "2026-03-30"
+     ]
+    },
+    "regime_pm1": {
+     "values": [
+      -1,
+      1
+     ],
+     "pass": true
+    },
+    "pass": true
+   },
+   "pass": true
+  },
+  "fullsurface_spx_nohyg": {
+   "file": "level_series_fullsurface_spx_nohyg.parquet",
+   "build": {
+    "status": "REBUILT",
+    "meta_json": true,
+    "built_utc": "2026-06-11T14:39:52.545879+00:00",
+    "meta_config_sha": "c80e6558181015a6",
+    "new_mtime": "2026-06-11T17:39:52",
+    "identical_to_archive": false,
+    "extends_archive": true
+   },
+   "determinism": {
+    "n_common": 155,
+    "n_new": 244,
+    "n_old": 155,
+    "cols": {
+     "net_gex": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "flip": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "call_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "put_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "hvl": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "max_pain": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "atm_iv": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "em1": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "gamma_dollar": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     }
+    },
+    "fail_cols": [],
+    "pass": true
+   },
+   "health": {
+    "n_days": {
+     "value": 244,
+     "min": 230,
+     "pass": true
+    },
+    "call_wall_ge_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "put_wall_le_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "flip_found": {
+     "share": 1.0,
+     "min": 0.95,
+     "pass": true,
+     "missing_dates": []
+    },
+    "regime_pm1": {
+     "values": [
+      -1,
+      1
+     ],
+     "pass": true
+    },
+    "pass": true
+   },
+   "pass": true
+  },
+  "fullsurface_ndx": {
+   "file": "level_series_fullsurface_ndx.parquet",
+   "build": {
+    "status": "REBUILT",
+    "meta_json": true,
+    "built_utc": "2026-06-11T14:34:15.684621+00:00",
+    "meta_config_sha": "c80e6558181015a6",
+    "new_mtime": "2026-06-11T17:34:15",
+    "identical_to_archive": false,
+    "extends_archive": true
+   },
+   "determinism": {
+    "n_common": 157,
+    "n_new": 244,
+    "n_old": 157,
+    "cols": {
+     "net_gex": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "flip": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 4,
+      "bad_dates": [],
+      "pass": true
+     },
+     "call_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "put_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "hvl": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "max_pain": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "atm_iv": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "em1": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "gamma_dollar": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     }
+    },
+    "fail_cols": [],
+    "pass": true
+   },
+   "health": {
+    "n_days": {
+     "value": 244,
+     "min": 230,
+     "pass": true
+    },
+    "call_wall_ge_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "put_wall_le_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "flip_found": {
+     "share": 0.8483606557377049,
+     "min": 0.95,
+     "pass": false,
+     "missing_dates": [
+      "2025-10-27",
+      "2025-10-28",
+      "2025-10-29",
+      "2025-10-31",
+      "2026-03-27",
+      "2026-03-30",
+      "2026-04-13",
+      "2026-04-17",
+      "2026-04-20",
+      "2026-04-21"
+     ]
+    },
+    "regime_pm1": {
+     "values": [
+      -1,
+      1
+     ],
+     "pass": true
+    },
+    "pass": false
+   },
+   "pass": false,
+   "reason": "sağlık.flip_found=0.8483606557377049"
+  },
+  "fullsurface_ndx_nohyg": {
+   "file": "level_series_fullsurface_ndx_nohyg.parquet",
+   "build": {
+    "status": "REBUILT",
+    "meta_json": true,
+    "built_utc": "2026-06-11T14:34:48.536327+00:00",
+    "meta_config_sha": "c80e6558181015a6",
+    "new_mtime": "2026-06-11T17:34:48",
+    "identical_to_archive": false,
+    "extends_archive": true
+   },
+   "determinism": {
+    "n_common": 157,
+    "n_new": 244,
+    "n_old": 157,
+    "cols": {
+     "net_gex": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "flip": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "call_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "put_wall": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "hvl": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "max_pain": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "atm_iv": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "em1": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     },
+     "gamma_dollar": {
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0,
+      "n_viol": 0,
+      "n_one_sided_nan": 0,
+      "n_both_nan": 0,
+      "bad_dates": [],
+      "pass": true
+     }
+    },
+    "fail_cols": [],
+    "pass": true
+   },
+   "health": {
+    "n_days": {
+     "value": 244,
+     "min": 230,
+     "pass": true
+    },
+    "call_wall_ge_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "put_wall_le_spot": {
+     "share": 1.0,
+     "n_null": 0,
+     "min": 0.99,
+     "pass": true
+    },
+    "flip_found": {
+     "share": 0.9672131147540983,
+     "min": 0.95,
+     "pass": true,
+     "missing_dates": [
+      "2026-04-20",
+      "2026-05-04",
+      "2026-05-05",
+      "2026-05-06",
+      "2026-05-07",
+      "2026-05-08",
+      "2026-05-22",
+      "2026-05-28"
+     ]
+    },
+    "regime_pm1": {
+     "values": [
+      -1,
+      1
+     ],
+     "pass": true
+    },
+    "pass": true
+   },
+   "pass": true
+  }
+ },
+ "summary": {
+  "n_pass": 15,
+  "n_total": 16,
+  "pass_16_16": false,
+  "fails": [
+   {
+    "series": "fullsurface_ndx",
+    "reason": "sağlık.flip_found=0.8483606557377049"
+   }
+  ]
+ },
+ "flip_exception_note": "fullsurface_ndx flip_found %84.8<%95: KOK-NEDEN olculdu (build-hatasi DEGIL) — 37 eksik gunun 35i derin-pozitif-gamma (net_gex med +4.65bn, Nis-May 2026 ralli); zero-crossing ±%6 scan-bandinin DISINDA (p95 |flip-spot| %5.0). Yapisal+deterministik (max|d|=0); scan genisletme=yeni-parametre=YASAK. RC2 etkisi SIFIR: hicbir RC2 olcumu bu serinin flipini kullanmiyor (regime/duvar/atm kullaniliyor; NDX-full yalniz QQQ INDEX-FLAG rejim kaynagi). KARAR: belgelenmis-istisna ile WAVE-2 ACILDI.",
+ "gate_final": "15/16 PASS + 1 belgelenmis-istisna (flip-band, RC2-etkisiz); determinizm 16/16 max|d|=0"
+}

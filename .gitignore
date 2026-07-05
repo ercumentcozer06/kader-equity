@@ -1,0 +1,49 @@
+# ============================================================================
+# kader-equity .gitignore
+# Commit: code + config + tests + FROZEN SPINE artifacts + forward-performance
+#         ledgers. EXCLUDE: secrets, venv/caches, and bulk re-downloadable data.
+# ============================================================================
+
+# ── SECRETS — ASLA commit edilmez (live API keys: Alpaca, MarketData.app) ──
+.env
+*.env
+.env.*
+**/.env
+**/secrets*
+*.key
+*.pem
+credentials*
+
+# ── venv / byte-cache ──
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# ── BULK DATA CACHES (re-downloadable; root data/ = ~4.0GB) ──
+# The root data/ dir holds only re-downloadable API caches / raw chains / bars.
+# No frozen/lock/anchor artifact lives under it (verified), so exclude all.
+/data/
+
+# nested re-downloadable market-data caches (yfinance snapshots)
+backtest/karsan/data/
+
+# ── OUTPUT — exclude live logs / images / scratch, KEEP forward-perf ledgers ──
+output/*.log
+output/*.png
+output/_m6fix_check/
+output/*.txt
+
+# keep forward-performance ledgers + gap ledger (small, document real-time
+# forward record — valuable history for the drift-guard):
+!output/forward_ledger.parquet
+!output/forward_ledger_gaps.json
+!output/gamma_forward_ledger.parquet
+!output/gamma_levels_ledger.parquet
+
+# ── misc OS / editor cruft ──
+.DS_Store
+Thumbs.db
+*.swp

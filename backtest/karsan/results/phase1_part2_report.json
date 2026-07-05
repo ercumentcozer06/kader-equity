@@ -1,0 +1,324 @@
+{
+ "C7": {
+  "SPX": {
+   "r2": 0.3029,
+   "n": 9171,
+   "coef": {
+    "const": {
+     "beta": 0.004615744834631291,
+     "se": 0.00016212855473159447,
+     "t": 28.47,
+     "p": 0.0,
+     "ci5": 0.004324038969857884,
+     "ci95": 0.004950878931808588
+    },
+    "absr": {
+     "beta": 0.2678403935262215,
+     "se": 0.02164269498483432,
+     "t": 12.376,
+     "p": 0.0,
+     "ci5": 0.22051965395089929,
+     "ci95": 0.30588102606371154
+    },
+    "down": {
+     "beta": 0.0009441827124970451,
+     "se": 9.564682577169981e-05,
+     "t": 9.872,
+     "p": 0.0,
+     "ci5": 0.0007669860089149234,
+     "ci95": 0.001138644119019473
+    }
+   }
+  },
+  "NDX": {
+   "r2": 0.2901,
+   "n": 9171,
+   "coef": {
+    "const": {
+     "beta": 0.006926471348483307,
+     "se": 0.00018274831217555526,
+     "t": 37.902,
+     "p": 0.0,
+     "ci5": 0.006585880911661887,
+     "ci95": 0.007300278901578586
+    },
+    "absr": {
+     "beta": 0.266868177023232,
+     "se": 0.01304749408421906,
+     "t": 20.454,
+     "p": 0.0,
+     "ci5": 0.2392402489237258,
+     "ci95": 0.2903515938923318
+    },
+    "down": {
+     "beta": 0.0012213431180828397,
+     "se": 0.0001264189365902129,
+     "t": 9.661,
+     "p": 0.0,
+     "ci5": 0.0009756156973996108,
+     "ci95": 0.0014696226932576896
+    }
+   }
+  }
+ },
+ "C8": {
+  "VIX/VIX3M.monthly": {
+   "H8a": {
+    "obs": -0.004666424938692959,
+    "se": 0.0032438203588582098,
+    "t": -1.439,
+    "p": 0.1502756875000717,
+    "ci5": -0.011032369687445715,
+    "ci95": 0.0017455669552422326,
+    "n_in": 1110,
+    "n_out": 3545
+   },
+   "H8b": {
+    "obs": -0.004382413998375911,
+    "se": 0.003293775351536095,
+    "t": -1.331,
+    "p": 0.18334899871533072,
+    "ci5": -0.010824505528320242,
+    "ci95": 0.0020843671209947196,
+    "n_in": 1110,
+    "n_out": 3545
+   }
+  },
+  "VIX/VIX3M.quarterly": {
+   "H8a": {
+    "obs": -0.0037868099711475534,
+    "se": 0.007595784803489456,
+    "t": -0.499,
+    "p": 0.6181027952702853,
+    "ci5": -0.01857818446385382,
+    "ci95": 0.011143994264690356,
+    "n_in": 370,
+    "n_out": 4285
+   },
+   "H8b": {
+    "obs": -0.007437051419543539,
+    "se": 0.008238618649898461,
+    "t": -0.903,
+    "p": 0.3666818911134804,
+    "ci5": -0.023486251898890993,
+    "ci95": 0.008784883643922636,
+    "n_in": 370,
+    "n_out": 4285
+   }
+  },
+  "VIX9D/VIX.monthly": {
+   "H8a": {
+    "obs": -0.00021484858427922582,
+    "se": 0.005698391633231135,
+    "t": -0.038,
+    "p": 0.9699241867810771,
+    "ci5": -0.011481850889776251,
+    "ci95": 0.010569317666803682,
+    "n_in": 925,
+    "n_out": 2957
+   },
+   "H8b": {
+    "obs": 0.004406644446310892,
+    "se": 0.005501424207572397,
+    "t": 0.801,
+    "p": 0.42313126112060084,
+    "ci5": -0.006143965497404416,
+    "ci95": 0.015468850057358366,
+    "n_in": 925,
+    "n_out": 2957
+   }
+  },
+  "VIX9D/VIX.quarterly": {
+   "H8a": {
+    "obs": 0.038075956600304384,
+    "se": 0.009023083224159695,
+    "t": 4.22,
+    "p": 2.4447707493990833e-05,
+    "ci5": 0.02059635168564453,
+    "ci95": 0.05590251485637856,
+    "n_in": 305,
+    "n_out": 3577
+   },
+   "H8b": {
+    "obs": 0.014581498823894146,
+    "se": 0.01189653665985316,
+    "t": 1.226,
+    "p": 0.22031431667785517,
+    "ci5": -0.008816330616583004,
+    "ci95": 0.03829729194098405,
+    "n_in": 305,
+    "n_out": 3577
+   }
+  }
+ },
+ "C9": {
+  "tr21": {
+   "r2": 0.0197,
+   "n": 9137,
+   "coef": {
+    "const": {
+     "beta": 122.74519721853632,
+     "se": 0.489958904340097,
+     "t": 250.521,
+     "p": 0.0,
+     "ci5": 121.7650122995659,
+     "ci95": 123.69360365682013
+    },
+    "tr21": {
+     "beta": 36.3676448739708,
+     "se": 7.588070499562543,
+     "t": 4.793,
+     "p": 1.6451922535409835e-06,
+     "ci5": 21.966537653712358,
+     "ci95": 51.7221188384667
+    }
+   }
+  },
+  "tr63": {
+   "r2": 0.0401,
+   "n": 9095,
+   "coef": {
+    "const": {
+     "beta": 122.25489085636008,
+     "se": 0.469625217472208,
+     "t": 260.324,
+     "p": 0.0,
+     "ci5": 121.34815383284881,
+     "ci95": 123.16223020475613
+    },
+    "tr63": {
+     "beta": 31.631248899282678,
+     "se": 5.748287648421616,
+     "t": 5.503,
+     "p": 3.739644882649884e-08,
+     "ci5": 20.70936939285519,
+     "ci95": 43.56346812746203
+    }
+   }
+  }
+ },
+ "trials": [
+  {
+   "id": "C7.H7.SPX",
+   "desc": "SPX fwd-5g GK-vol: down-day move-kontrollü fazla",
+   "p": 0.0,
+   "effect": "down β +9.4bps/gün (t9.872)",
+   "label": "IDENTITY (leverage effect, tradeable DEĞİL)",
+   "note": "R²=0.3029",
+   "p_bh": 0.0,
+   "pass_bh": true
+  },
+  {
+   "id": "C7.H7.NDX",
+   "desc": "NDX fwd-5g GK-vol: down-day move-kontrollü fazla",
+   "p": 0.0,
+   "effect": "down β +12.2bps/gün (t9.661)",
+   "label": "IDENTITY (leverage effect, tradeable DEĞİL)",
+   "note": "R²=0.2901",
+   "p_bh": 0.0,
+   "pass_bh": true
+  },
+  {
+   "id": "C8.H8a.VIX/VIX3M.monthly",
+   "desc": "VIX/VIX3M into-OpEx slope (monthly)",
+   "p": 0.1502756875000717,
+   "effect": "-0.0047 (t-1.439)",
+   "label": "CONFIRMATORY (term-structure, Tier-1)",
+   "note": "n_in=1110; tez: elevated/inverted",
+   "p_bh": 0.3005513750001434,
+   "pass_bh": false
+  },
+  {
+   "id": "C8.H8b.VIX/VIX3M.monthly",
+   "desc": "VIX/VIX3M post-OpEx slope (monthly)",
+   "p": 0.18334899871533072,
+   "effect": "-0.0044 (t-1.331)",
+   "label": "CONFIRMATORY",
+   "note": "n_in=1110; tez: normalize/geri-dön",
+   "p_bh": 0.31431256922628126,
+   "pass_bh": false
+  },
+  {
+   "id": "C8.H8a.VIX/VIX3M.quarterly",
+   "desc": "VIX/VIX3M into-OpEx slope (quarterly)",
+   "p": 0.6181027952702853,
+   "effect": "-0.0038 (t-0.499)",
+   "label": "CONFIRMATORY (term-structure, Tier-1)",
+   "note": "n_in=370; tez: elevated/inverted",
+   "p_bh": 0.674293958476675,
+   "pass_bh": false
+  },
+  {
+   "id": "C8.H8b.VIX/VIX3M.quarterly",
+   "desc": "VIX/VIX3M post-OpEx slope (quarterly)",
+   "p": 0.3666818911134804,
+   "effect": "-0.0074 (t-0.903)",
+   "label": "CONFIRMATORY",
+   "note": "n_in=370; tez: normalize/geri-dön",
+   "p_bh": 0.4889091881513072,
+   "pass_bh": false
+  },
+  {
+   "id": "C8.H8a.VIX9D/VIX.monthly",
+   "desc": "VIX9D/VIX into-OpEx slope (monthly)",
+   "p": 0.9699241867810771,
+   "effect": "-0.0002 (t-0.038)",
+   "label": "CONFIRMATORY (term-structure, Tier-1)",
+   "note": "n_in=925; tez: elevated/inverted [0DTE-flag 2023+]",
+   "p_bh": 0.9699241867810771,
+   "pass_bh": false
+  },
+  {
+   "id": "C8.H8b.VIX9D/VIX.monthly",
+   "desc": "VIX9D/VIX post-OpEx slope (monthly)",
+   "p": 0.42313126112060084,
+   "effect": "+0.0044 (t0.801)",
+   "label": "CONFIRMATORY",
+   "note": "n_in=925; tez: normalize/geri-dön [0DTE-flag 2023+]",
+   "p_bh": 0.507757513344721,
+   "pass_bh": false
+  },
+  {
+   "id": "C8.H8a.VIX9D/VIX.quarterly",
+   "desc": "VIX9D/VIX into-OpEx slope (quarterly)",
+   "p": 2.4447707493990833e-05,
+   "effect": "+0.0381 (t4.22)",
+   "label": "CONFIRMATORY (term-structure, Tier-1)",
+   "note": "n_in=305; tez: elevated/inverted [0DTE-flag 2023+]",
+   "p_bh": 5.8674497985578e-05,
+   "pass_bh": true
+  },
+  {
+   "id": "C8.H8b.VIX9D/VIX.quarterly",
+   "desc": "VIX9D/VIX post-OpEx slope (quarterly)",
+   "p": 0.22031431667785517,
+   "effect": "+0.0146 (t1.226)",
+   "label": "CONFIRMATORY",
+   "note": "n_in=305; tez: normalize/geri-dön [0DTE-flag 2023+]",
+   "p_bh": 0.33047147501678276,
+   "pass_bh": false
+  },
+  {
+   "id": "C9.H9.tr21",
+   "desc": "SKEW ~ trailing-21g return (up-run→steepen?)",
+   "p": 1.6451922535409835e-06,
+   "effect": "β +36.4 SKEW-pt /100% (t4.793)",
+   "label": "EXPLORATORY (gürültülü)",
+   "note": "R²=0.0197; pozitif=up-run skew-steepen",
+   "p_bh": 4.935576760622951e-06,
+   "pass_bh": true
+  },
+  {
+   "id": "C9.H9.tr63",
+   "desc": "SKEW ~ trailing-63g return (up-run→steepen?)",
+   "p": 3.739644882649884e-08,
+   "effect": "β +31.6 SKEW-pt /100% (t5.503)",
+   "label": "EXPLORATORY (gürültülü)",
+   "note": "R²=0.0401; pozitif=up-run skew-steepen",
+   "p_bh": 1.4958579530599536e-07,
+   "pass_bh": true
+  }
+ ],
+ "n_trials": 12,
+ "family": "PART-2 (Part-1'in 28'ine POOL EDİLMEDİ)"
+}

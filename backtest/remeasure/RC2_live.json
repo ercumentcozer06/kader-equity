@@ -1,0 +1,213 @@
+{
+  "config_sha": "c80e6558181015a6",
+  "generated_utc": "2026-06-11T17:51:46Z",
+  "script": "backtest/remeasure/RC2_live.py",
+  "methodology": "Canlı motor snapshot'ı (gamma_{sym}/<date>.json, alan net_gex_bn) ile LIVE-MATCH level serisinin aynı-gün regime'i karşılaştırılır; agree = sign(net_gex_bn)==regime(level). İki hizalama: A) as_of-join (asıl, prompt tanımı); B) chain-EOD-join (provenance: snapshot spot'u level EOD spot'una 2-ondalık TAM eşitse zincirin gerçek günü o gündür — as_of damgası canlı motorda 'hizmet edilen seans' olarak atılıyor, ts alanı kanıt; eşleşme yoksa seans-içi capture → as_of). Uzatma günleri (06-09/06-10) pre-registered panel-DIŞI; yalnız RC2.8 canlı-uyum için.",
+  "results": {
+    "SPY": {
+      "level_series": "C:\\Users\\admin\\Downloads\\kader-equity\\data\\cache\\level_series_livematch_spy.parquet",
+      "level_rows": 245,
+      "level_last_day": "2026-06-10",
+      "snapshot_dir": "C:\\Users\\admin\\Downloads\\kader-equity\\data\\cache\\gamma_spy",
+      "snapshot_n": 3,
+      "asof_join": {
+        "rows": [
+          {
+            "as_of": "2026-06-09",
+            "snapshot_ts_utc": "2026-06-09T01:01:18.272579+00:00",
+            "live_net_gex_bn": -3.732,
+            "live_sign": -1,
+            "live_regime_str": "SHORT GAMMA",
+            "live_spot": 739.22,
+            "level_date": "2026-06-09",
+            "bt_net_gex_bn": -4.807,
+            "bt_regime": -1,
+            "bt_sign": -1,
+            "level_spot": 737.05,
+            "spot_delta": 2.17,
+            "agree": true
+          },
+          {
+            "as_of": "2026-06-10",
+            "snapshot_ts_utc": "2026-06-10T18:30:14.166948+00:00",
+            "live_net_gex_bn": -6.96,
+            "live_sign": -1,
+            "live_regime_str": "SHORT GAMMA",
+            "live_spot": 729.37,
+            "level_date": "2026-06-10",
+            "bt_net_gex_bn": -9.493,
+            "bt_regime": -1,
+            "bt_sign": -1,
+            "level_spot": 725.43,
+            "spot_delta": 3.94,
+            "agree": true
+          },
+          {
+            "as_of": "2026-06-11",
+            "snapshot_ts_utc": "2026-06-10T22:08:16.366172+00:00",
+            "live_net_gex_bn": -3.776,
+            "live_sign": -1,
+            "live_regime_str": "SHORT GAMMA",
+            "live_spot": 725.43,
+            "level_date": null,
+            "agree": null,
+            "neden": "level serisi bu günü kapsamıyor (seri sonu) → ölçülemedi"
+          }
+        ],
+        "n": 2,
+        "agree_n": 2,
+        "unmatched_n": 1
+      },
+      "chain_eod_join": {
+        "rows": [
+          {
+            "as_of": "2026-06-09",
+            "snapshot_ts_utc": "2026-06-09T01:01:18.272579+00:00",
+            "live_net_gex_bn": -3.732,
+            "live_sign": -1,
+            "live_regime_str": "SHORT GAMMA",
+            "live_spot": 739.22,
+            "level_date": "2026-06-08",
+            "bt_net_gex_bn": -0.662,
+            "bt_regime": -1,
+            "bt_sign": -1,
+            "level_spot": 739.22,
+            "spot_delta": 0.0,
+            "agree": true,
+            "chain_basis": "EOD-chain (spot tam-eşit)"
+          },
+          {
+            "as_of": "2026-06-10",
+            "snapshot_ts_utc": "2026-06-10T18:30:14.166948+00:00",
+            "live_net_gex_bn": -6.96,
+            "live_sign": -1,
+            "live_regime_str": "SHORT GAMMA",
+            "live_spot": 729.37,
+            "level_date": "2026-06-10",
+            "bt_net_gex_bn": -9.493,
+            "bt_regime": -1,
+            "bt_sign": -1,
+            "level_spot": 725.43,
+            "spot_delta": 3.94,
+            "agree": true,
+            "chain_basis": "seans-içi capture (spot EOD'den farklı)"
+          },
+          {
+            "as_of": "2026-06-11",
+            "snapshot_ts_utc": "2026-06-10T22:08:16.366172+00:00",
+            "live_net_gex_bn": -3.776,
+            "live_sign": -1,
+            "live_regime_str": "SHORT GAMMA",
+            "live_spot": 725.43,
+            "level_date": "2026-06-10",
+            "bt_net_gex_bn": -9.493,
+            "bt_regime": -1,
+            "bt_sign": -1,
+            "level_spot": 725.43,
+            "spot_delta": 0.0,
+            "agree": true,
+            "chain_basis": "EOD-chain (spot tam-eşit)"
+          }
+        ],
+        "n": 3,
+        "agree_n": 3,
+        "unmatched_n": 0
+      }
+    },
+    "QQQ": {
+      "level_series": "C:\\Users\\admin\\Downloads\\kader-equity\\data\\cache\\level_series_livematch_qqq.parquet",
+      "level_rows": 245,
+      "level_last_day": "2026-06-10",
+      "snapshot_dir": "C:\\Users\\admin\\Downloads\\kader-equity\\data\\cache\\gamma_qqq",
+      "snapshot_n": 2,
+      "asof_join": {
+        "rows": [
+          {
+            "as_of": "2026-06-10",
+            "snapshot_ts_utc": "2026-06-10T18:30:22.093724+00:00",
+            "live_net_gex_bn": -1.875,
+            "live_sign": -1,
+            "live_regime_str": "SHORT GAMMA",
+            "live_spot": 697.83,
+            "level_date": "2026-06-10",
+            "bt_net_gex_bn": -2.434,
+            "bt_regime": -1,
+            "bt_sign": -1,
+            "level_spot": 693.69,
+            "spot_delta": 4.14,
+            "agree": true
+          },
+          {
+            "as_of": "2026-06-11",
+            "snapshot_ts_utc": "2026-06-10T22:08:25.156556+00:00",
+            "live_net_gex_bn": -1.39,
+            "live_sign": -1,
+            "live_regime_str": "SHORT GAMMA",
+            "live_spot": 693.69,
+            "level_date": null,
+            "agree": null,
+            "neden": "level serisi bu günü kapsamıyor (seri sonu) → ölçülemedi"
+          }
+        ],
+        "n": 1,
+        "agree_n": 1,
+        "unmatched_n": 1
+      },
+      "chain_eod_join": {
+        "rows": [
+          {
+            "as_of": "2026-06-10",
+            "snapshot_ts_utc": "2026-06-10T18:30:22.093724+00:00",
+            "live_net_gex_bn": -1.875,
+            "live_sign": -1,
+            "live_regime_str": "SHORT GAMMA",
+            "live_spot": 697.83,
+            "level_date": "2026-06-10",
+            "bt_net_gex_bn": -2.434,
+            "bt_regime": -1,
+            "bt_sign": -1,
+            "level_spot": 693.69,
+            "spot_delta": 4.14,
+            "agree": true,
+            "chain_basis": "seans-içi capture (spot EOD'den farklı)"
+          },
+          {
+            "as_of": "2026-06-11",
+            "snapshot_ts_utc": "2026-06-10T22:08:25.156556+00:00",
+            "live_net_gex_bn": -1.39,
+            "live_sign": -1,
+            "live_regime_str": "SHORT GAMMA",
+            "live_spot": 693.69,
+            "level_date": "2026-06-10",
+            "bt_net_gex_bn": -2.434,
+            "bt_regime": -1,
+            "bt_sign": -1,
+            "level_spot": 693.69,
+            "spot_delta": 0.0,
+            "agree": true,
+            "chain_basis": "EOD-chain (spot tam-eşit)"
+          }
+        ],
+        "n": 2,
+        "agree_n": 2,
+        "unmatched_n": 0
+      }
+    }
+  },
+  "totals": {
+    "asof_join": {
+      "n": 3,
+      "agree_n": 3
+    },
+    "chain_eod_join": {
+      "n": 5,
+      "agree_n": 5
+    }
+  },
+  "madde_4_status": "İLK CANLI ÖRTÜŞME ÖLÇÜLDÜ (artık yalnız 'ileriye-dönük ölçülür' değil): as_of-join 3/3 uyum, chain-EOD-join 5/5 uyum. n KÜÇÜK → istatistiksel güç yok; kanıt niteliği 'tutarlılık-kontrolü geçti' seviyesinde. Forward-collector her gün +1 örtüşme ekler; tam-güçlü sign-agreement zaten RC2_sign.py'de 243g SqueezeMetrics karşılaştırmasıyla ölçüldü.",
+  "honesty_notes": [
+    "Örtüşme küçüktür (as_of-join toplam n=3, chain-EOD-join toplam n=5); bu bir güç-iddiası DEĞİL, canlı motor ile yeniden-kurulan serinin tutarlılık kontrolüdür.",
+    "as_of=2026-06-11 snapshot'ları level serisi 2026-06-10'da bittiği için as_of-join'de ölçülemedi; ts+spot kanıtıyla 06-10 EOD zincirinden üretildikleri gösterildi ve chain-EOD-join'de ölçüldü.",
+    "Canlı net_gex_bn ile backtest net_gex büyüklükleri seans-içi capture günlerinde farklı spot/zincir anı yüzünden ayrışabilir; bu ölçüm yalnız İŞARET/regime uyumudur."
+  ]
+}

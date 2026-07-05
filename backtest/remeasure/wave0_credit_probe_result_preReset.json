@@ -1,0 +1,32 @@
+{
+  "probe": {
+    "url": "https://api.marketdata.app/v1/options/chain/SPY/",
+    "date": "2026-06-08",
+    "symbol": "SPY"
+  },
+  "ts_utc": "2026-06-11T13:14:45+00:00",
+  "pass_threshold": 5200,
+  "need_estimate": {
+    "days": 80,
+    "credits_per_day": {
+      "SPY": 9,
+      "QQQ": 9,
+      "SPX": 23,
+      "NDX": 16
+    },
+    "total": 4560
+  },
+  "config_sha": "c80e6558181015a6",
+  "http_status": 203,
+  "ratelimit": {
+    "remaining": 74,
+    "limit": 10000,
+    "consumed_this_call": 1,
+    "reset_epoch": 1781184600,
+    "reset_utc": "2026-06-11T13:30:00+00:00",
+    "hours_to_reset": 0.25
+  },
+  "body_s": "ok",
+  "n_contracts_returned": 528,
+  "pass": false
+}

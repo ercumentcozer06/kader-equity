@@ -1,0 +1,124 @@
+{
+ "config_sha": "c80e6558181015a6",
+ "script": "backtest/remeasure/RC3_assert.py",
+ "n_rc2": 7,
+ "n_meta": 16,
+ "all_match": true,
+ "files": [
+  {
+   "file": "backtest\\remeasure\\RC2_battery_results.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "backtest\\remeasure\\RC2_confound.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "backtest\\remeasure\\RC2_events.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "backtest\\remeasure\\RC2_fragile.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "backtest\\remeasure\\RC2_live.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "backtest\\remeasure\\RC2_pool.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "backtest\\remeasure\\RC2_sign.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "data\\cache\\level_series_fullsurface_ndx.parquet.meta.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "data\\cache\\level_series_fullsurface_ndx_nohyg.parquet.meta.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "data\\cache\\level_series_fullsurface_qqq.parquet.meta.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "data\\cache\\level_series_fullsurface_qqq_nohyg.parquet.meta.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "data\\cache\\level_series_fullsurface_spx.parquet.meta.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "data\\cache\\level_series_fullsurface_spx_nohyg.parquet.meta.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "data\\cache\\level_series_fullsurface_spy.parquet.meta.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "data\\cache\\level_series_fullsurface_spy_nohyg.parquet.meta.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "data\\cache\\level_series_livematch_ndx.parquet.meta.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "data\\cache\\level_series_livematch_ndx_nohyg.parquet.meta.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "data\\cache\\level_series_livematch_qqq.parquet.meta.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "data\\cache\\level_series_livematch_qqq_nohyg.parquet.meta.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "data\\cache\\level_series_livematch_spx.parquet.meta.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "data\\cache\\level_series_livematch_spx_nohyg.parquet.meta.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "data\\cache\\level_series_livematch_spy.parquet.meta.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  },
+  {
+   "file": "data\\cache\\level_series_livematch_spy_nohyg.parquet.meta.json",
+   "config_sha": "c80e6558181015a6",
+   "match": true
+  }
+ ]
+}
