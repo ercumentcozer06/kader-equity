@@ -56,9 +56,10 @@ class TestCor1mStaleGate:
                                         "max_age_days": 4}}}
 
     def test_stale_cor1m_disarms_and_flags(self, monkeypatch):
+        # 2026-07-06: birincil kaynak artık canlı quote → gate'i sınamak için ONU bayat yap.
         from modules import cor1m_froth
-        old = pd.Series([8.0], index=[pd.Timestamp("2026-05-01")])           # ~7 hafta bayat
-        monkeypatch.setattr(cor1m_froth, "fetch_cor1m_live", lambda timeout=20: old)
+        monkeypatch.setattr(cor1m_froth, "fetch_cor1m_quote",
+                            lambda timeout=15: (8.0, "2026-05-01"))          # ~7 hafta bayat
         r = cor1m_froth.evaluate(self.CFG)
         assert r["available"] is False
         assert r.get("stale") is True
@@ -67,11 +68,86 @@ class TestCor1mStaleGate:
     def test_fresh_cor1m_active(self, monkeypatch):
         from modules import cor1m_froth
         today = datetime.now(timezone.utc).date()
-        fresh = pd.Series([8.02], index=[pd.Timestamp(today)])
-        monkeypatch.setattr(cor1m_froth, "fetch_cor1m_live", lambda timeout=20: fresh)
+        monkeypatch.setattr(cor1m_froth, "fetch_cor1m_quote",
+                            lambda timeout=15: (8.02, today.isoformat()))
         r = cor1m_froth.evaluate(self.CFG)
         assert r["available"] is True
         assert r.get("stale") is not True
+        assert r["source"] == "cboe_quote_live"
+
+    def test_quote_fails_falls_back_to_daily_csv(self, monkeypatch):
+        # Canlı quote düşerse günlük CSV son kapanışına düşmeli (fail-open değil, taze-yedek).
+        from modules import cor1m_froth
+        def _boom(timeout=15):
+            raise RuntimeError("quote endpoint down")
+        today = datetime.now(timezone.utc).date()
+        fresh = pd.Series([8.05], index=[pd.Timestamp(today)])
+        monkeypatch.setattr(cor1m_froth, "fetch_cor1m_quote", _boom)
+        monkeypatch.setattr(cor1m_froth, "fetch_cor1m_live", lambda timeout=20: fresh)
+        r = cor1m_froth.evaluate(self.CFG)
+        assert r["available"] is True
+        assert r["source"] == "cboe_daily_csv_fallback"
+
+
+# ── Fail-closed tepe-kapı: HERHANGİ pozisyon-overlay data-fail → no-trade (denetim 2026-07-06) ──
+class TestPositionOverlayBlock:
+    """cor1m/gex bayat→sessiz-flip asimetrisi kapatıldı: run.position_overlay_block jenerik fail-closed."""
+
+    def test_stale_cor1m_blocks(self):
+        from run import position_overlay_block
+        ov = {"cor1m_froth": {"available": False, "stale": True, "factor": 1.0,
+                              "reason": "COR1M STALE: ..."},
+              "gex_shield": {"available": True, "factor": 1.0}}
+        blk, reason = position_overlay_block(ov)
+        assert blk is True and "cor1m_froth" in reason      # bayat cor1m artık bloke
+
+    def test_gex_fail_safe_blocks(self):
+        from run import position_overlay_block
+        ov = {"gex_shield": {"available": False, "fail_safe_block": True, "error": "GEX DONMUŞ"}}
+        assert position_overlay_block(ov)[0] is True
+
+    def test_legit_neutral_does_not_block(self):
+        # COR1M≥11 / GEX z≥−thr → available True, factor 1.0: de-risk-yok KARARI, veri-fail DEĞİL → bloke YOK.
+        from run import position_overlay_block
+        ov = {"cor1m_froth": {"available": True, "factor": 1.0, "froth": False},
+              "gex_shield": {"available": True, "factor": 1.0}}
+        assert position_overlay_block(ov)[0] is False
+
+    def test_disabled_does_not_block(self):
+        from run import position_overlay_block
+        ov = {"cor1m_froth": {"available": False, "factor": 1.0, "reason": "disabled"}}
+        assert position_overlay_block(ov)[0] is False
+
+    def test_frozen_missing_keys_no_block(self):
+        # Frozen yol: info dict'lerinde available/stale/fail_safe_block YOK → None → bloke YOK.
+        from run import position_overlay_block
+        ov = {"cor1m_froth": {"factor": 0.0, "as_of": "2026-05-22"},
+              "gex_shield": {"factor": 1.0, "as_of": "2026-05-22"}}
+        assert position_overlay_block(ov)[0] is False
+
+
+# ── M3 auction tazelik kör-noktası kapatıldı (P1-C, denetim 2026-07-07) ──
+class TestM3AuctionFreshness:
+    """fetch_auctions boş/donuk dönerse m3 sessizce 0'a düşüp çağrı 'current' kalıyordu → artık input_stale."""
+
+    def test_empty_auctions_flagged(self):
+        import datetime as dt
+        from spine.reconstruct import _audit_m3_freshness
+        r = _audit_m3_freshness(None, dt.date(2026, 7, 7))
+        assert r is not None and r["module"] == "m3" and "BOŞ" in r["error"]
+
+    def test_frozen_feed_flagged(self):
+        import datetime as dt
+        import pandas as pd
+        from spine.reconstruct import _audit_m3_freshness, M3_MAX_BD
+        r = _audit_m3_freshness(pd.Timestamp("2026-05-20"), dt.date(2026, 7, 7))
+        assert r is not None and r["age_bd"] > M3_MAX_BD
+
+    def test_fresh_auctions_clean(self):
+        import datetime as dt
+        import pandas as pd
+        from spine.reconstruct import _audit_m3_freshness
+        assert _audit_m3_freshness(pd.Timestamp("2026-07-02"), dt.date(2026, 7, 7)) is None
 
 
 # ── K2 supply_demand_derisk CANLI-tide enjeksiyonu (#4) ────────────────

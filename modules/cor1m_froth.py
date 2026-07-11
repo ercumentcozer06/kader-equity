@@ -27,6 +27,7 @@ import numpy as np
 import pandas as pd
 
 CBOE_COR1M = "https://cdn.cboe.com/api/global/us_indices/daily_prices/COR1M_History.csv"
+CBOE_COR1M_QUOTE = "https://cdn.cboe.com/api/global/delayed_quotes/quotes/_COR1M.json"
 
 
 def froth_factor(cor1m: float | None, lo: float = 8.0, hi: float = 11.0, floor: float = 0.0) -> float:
@@ -42,9 +43,8 @@ def froth_factor_series(cor1m: pd.Series, lo: float = 8.0, hi: float = 11.0, flo
 
 def fetch_cor1m_live(timeout: int = 20) -> pd.Series:
     """CBOE CDN'den günlük COR1M (free, abonelik gerektirmez)."""
-    import requests
-    r = requests.get(CBOE_COR1M, timeout=timeout, headers={"User-Agent": "Mozilla/5.0"})
-    r.raise_for_status()
+    from modules._netutil import http_get_retry
+    r = http_get_retry(CBOE_COR1M, timeout=timeout)     # 3-deneme backoff (geçici hıçkırık = bayatlık DEĞİL)
     df = pd.read_csv(io.StringIO(r.text))
     dcol = [c for c in df.columns if "date" in c.lower()][0]
     vcol = [c for c in df.columns if c != dcol][-1]
@@ -53,17 +53,50 @@ def fetch_cor1m_live(timeout: int = 20) -> pd.Series:
     return s.sort_index()
 
 
+def fetch_cor1m_quote(timeout: int = 15) -> tuple[float, str]:
+    """CBOE canlı gecikmeli quote (~15dk) — BUGÜNÜN baskısı. (price, as_of ISO-tarih) döndürür.
+
+    Günlük COR1M_History.csv yalnız TAMAMLANMIŞ kapanışları taşır; seans-içi (ve CBOE'nin EOD
+    dosyayı henüz basmadığı sabahlarda) bugünün değerini KAÇIRIR. Bu endpoint current_price +
+    last_trade_time verir → model en güncel COR1M'yi görür, tatil-sınırı STALE-flip riski ölür.
+    """
+    from datetime import datetime as _dt
+    from modules._netutil import http_get_retry
+    r = http_get_retry(CBOE_COR1M_QUOTE, timeout=timeout)   # 3-deneme backoff: transient timeout → CSV'ye erken düşmesin
+    d = r.json().get("data", {}) or {}
+    px = d.get("current_price")
+    if px is None:
+        px = d.get("close")
+    if px is None:
+        raise ValueError("quote'ta current_price/close yok")
+    ltt = str(d.get("last_trade_time", ""))[:10]
+    if not ltt:
+        raise ValueError("quote'ta last_trade_time yok")
+    asof = _dt.fromisoformat(ltt).date().isoformat()
+    return float(px), asof
+
+
 def evaluate(cfg: dict) -> dict:
     """Canlı froth overlay. Döndürür factor (tide pozisyonunu çarpan) + bağlam. Flag OFF → factor 1.0."""
     o = ((cfg.get("overlays", {}) or {}).get("cor1m_froth", {}) or {})
     if not bool(o.get("enabled")):
         return {"available": False, "factor": 1.0, "reason": "disabled"}
     lo, hi, fl = float(o.get("lo", 8.0)), float(o.get("hi", 11.0)), float(o.get("floor", 0.0))
+    # Freshness fix (2026-07-06, Emir): BİRİNCİL = CBOE canlı quote (bugünün current_price),
+    # YEDEK = günlük CSV son kapanış. Günlük CSV bugünün baskısını kaçırıyordu (tatil-sınırında
+    # age=4 → STALE-flip riski). Eşik/mimari AYNI, yalnız input tazelendi. Not: seans-içi quote
+    # backtest'in kapanış-serisine göre biraz oynak olabilir; band geniş (8-11) + trim-only → güvenli.
     try:
-        s = fetch_cor1m_live()
-        c, asof = float(s.iloc[-1]), str(s.index[-1].date())
-    except Exception as e:
-        return {"available": False, "factor": 1.0, "error": f"{type(e).__name__}: {str(e)[:100]}"}
+        c, asof = fetch_cor1m_quote()
+        src = "cboe_quote_live"
+    except Exception as e_live:
+        try:
+            s = fetch_cor1m_live()
+            c, asof = float(s.iloc[-1]), str(s.index[-1].date())
+            src = "cboe_daily_csv_fallback"
+        except Exception as e_csv:
+            return {"available": False, "factor": 1.0,
+                    "error": f"live={type(e_live).__name__}; csv={type(e_csv).__name__}: {str(e_csv)[:80]}"}
     # Audit 2026-06-19: as_of was recorded but NEVER gated — a stale COR1M would silently drive the
     # de-risk factor as if live. Treat a beyond-tolerance print like "no data" (factor 1.0, neutral,
     # consistent with the disabled/error path) and surface it, instead of hiding the staleness.
@@ -72,10 +105,10 @@ def evaluate(cfg: dict) -> dict:
     age_days = (_date.today() - _dt.fromisoformat(asof).date()).days
     if age_days > max_age:
         return {"available": False, "factor": 1.0, "cor1m": round(c, 2), "as_of": asof,
-                "stale": True, "age_days": age_days,
+                "source": src, "stale": True, "age_days": age_days,
                 "reason": f"COR1M STALE: as_of {asof} ({age_days}g > {max_age}g) → de-risk OFF (factor 1.0)"}
     f = froth_factor(c, lo, hi, fl)
     return {"available": True, "cor1m": round(c, 2), "as_of": asof, "factor": round(f, 3),
-            "froth": bool(c < hi), "age_days": age_days,
+            "source": src, "froth": bool(c < hi), "age_days": age_days,
             "reason": (f"COR1M {c:.1f} < {hi:.0f} → froth de-risk (factor {f:.2f})" if c < hi
                        else f"COR1M {c:.1f} ≥ {hi:.0f} → normal (factor 1.0)")}

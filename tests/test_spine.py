@@ -80,14 +80,63 @@ def test_cor1m_froth_factor():
     assert froth_factor(float("nan"), 8, 11, 0.0) == 1.0
 
 
-def test_cor1m_froth_overlay_active():
-    """Overlay ON: cor1m_froth aktif + pozisyon ≤ tide_dir (trim-only) + [0,1]."""
+def test_cor1m_froth_superseded():
+    """2026-07-08: cor1m_froth dispersion_ensemble ile SUPERSEDED (config enabled:false) → aktif DEĞİL.
+    (froth_factor math testi test_cor1m_froth_factor'da korunur; modül geri-alınabilir fallback olarak durur.)"""
     from config import load_config
     import run
     d = run.build_decision(load_config())
-    assert "cor1m_froth" in d["active_overlays"]
+    assert "cor1m_froth" not in d["active_overlays"]      # halef devraldı, çift-say yok
+
+
+def test_dispersion_ensemble_factor():
+    """ensemble_factor: yüksek froth_pct → trim (ramp), [floor,1] sınırlı, veri-yok → 1.0 (asla agresif)."""
+    from modules.dispersion_ensemble import ensemble_factor
+    assert ensemble_factor(0.50, 0.70, 0.95, 0.0) == 1.0           # düşük froth → normal
+    assert ensemble_factor(0.70, 0.70, 0.95, 0.0) == 1.0           # lo sınırı → henüz trim yok
+    assert abs(ensemble_factor(0.825, 0.70, 0.95, 0.0) - 0.5) < 1e-9  # orta → ramp 0.5
+    assert ensemble_factor(0.95, 0.70, 0.95, 0.0) == 0.0           # hi → floor (derin froth = full trim)
+    assert ensemble_factor(0.99, 0.70, 0.95, 0.0) == 0.0           # hi üstü → floor (clip)
+    assert ensemble_factor(0.90, 0.70, 0.95, 0.4) == 0.4           # floor=0.4 → max %60 trim
+    assert ensemble_factor(None, 0.70, 0.95, 0.0) == 1.0           # veri yok → nötr
+    assert ensemble_factor(float("nan"), 0.70, 0.95, 0.0) == 1.0
+
+
+def test_dispersion_ensemble_froth_orientation():
+    """froth_pct yön: SON gözlemde yüksek spread/DSPX + DÜŞÜK COR1M → froth_pct yüksek; tersi → düşük."""
+    import numpy as np
+    from modules.dispersion_ensemble import froth_pct_series
+    idx = pd.date_range("2020-01-01", periods=120, freq="B")
+    base = pd.Series(np.linspace(10, 20, 120), index=idx)
+    # froth SONU: spread & dspx tırmanır (yüksek=froth), COR1M çöker (düşük=froth) → froth_pct→~1
+    fp_hi = froth_pct_series(20 - base, base, base, win=60, min_periods=20)   # cor=20-base (son=min)
+    # anti-froth SONU: hepsi ters
+    fp_lo = froth_pct_series(base, 20 - base, 20 - base, win=60, min_periods=20)
+    assert fp_hi.dropna().iloc[-1] > 0.9        # üç bileşen de froth → yüksek
+    assert fp_lo.dropna().iloc[-1] < 0.1        # üç bileşen de sakin → düşük
+
+
+def test_dispersion_ensemble_overlay_active():
+    """Overlay ON (default config): dispersion_ensemble aktif + pozisyon ≤ tide_dir (trim-only) + [0,1]."""
+    from config import load_config
+    import run
+    d = run.build_decision(load_config())
+    assert "dispersion_ensemble" in d["active_overlays"]
     assert d["position_target"] <= float(d["tide_dir"]) + 1e-9      # trim-only (asla > tide)
     assert 0.0 <= d["position_target"] <= 1.0
+
+
+def test_dispersion_ensemble_fail_closed(monkeypatch):
+    """Fail-closed: kaynak fetch patlarsa → fail_safe_block (sessiz factor=1.0 YOK); disabled → nötr."""
+    from modules import dispersion_ensemble as DE
+    CFG = {"overlays": {"dispersion_ensemble": {"enabled": True, "lo": 0.70, "hi": 0.95, "floor": 0.0}}}
+    def _boom(*a, **k): raise RuntimeError("CBOE down")
+    monkeypatch.setattr(DE, "_fetch_cboe", _boom)
+    r = DE.evaluate(CFG)
+    assert r["available"] is False and r.get("fail_safe_block") is True
+    # disabled → nötr factor 1.0 (asla bloke)
+    r2 = DE.evaluate({"overlays": {"dispersion_ensemble": {"enabled": False}}})
+    assert r2["available"] is False and r2["factor"] == 1.0 and r2["reason"] == "disabled"
 
 
 def test_gex_shield_factor():

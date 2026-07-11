@@ -127,6 +127,30 @@ def main() -> int:
         print(f"  [!!] TAZELİK GARANTİSİ İHLALİ — bu koşuda yazılamayan: {still} → exit 1 (bayat veri defterlere YAZILMADI)")
         return 1
 
+    # ── G1c: NDX ENDEKS-evreni (2026-07-10, iki-evren diverjans arşivi) — BEST-EFFORT: çekirdek
+    # tazelik-kapısına GİRMEZ (ince NDX kompleksi fetch-hatası günü ÖLDÜRMEZ; betimsel bacak) ──
+    lev["NDX"] = _gamma_levels("NDX")
+    if lev["NDX"] is None:
+        print("  [~] NDX-endeks gamma alınamadı (best-effort; SPY/QQQ defterleri etkilenmez)")
+    # G1c-2: SLV gerçek-OI GEX arşivi (07-11 gamma-lab: hacim-proxy KANITSIZ → gerçek-OI forward-birikimi)
+    lev["SLV"] = _gamma_levels("SLV")
+    if lev["SLV"] is None:
+        print("  [~] SLV gamma alınamadı (best-effort)")
+    # G1d: COMBO (endeks+ETF birleşik, SpotGamma-tarzı — Emir kararı 07-11 "profesyoneller nasıl
+    # yapıyorsa"); gamma_combo_{spx,ndx} cache'ini yazar; BEST-EFFORT (çekirdek kapıya girmez)
+    try:    # Denetim 07-11 P3 ([33]): timeout'suz best-effort asilirsa TUM zinciri kilitliyordu
+        subprocess.run([PY, str(ROOT / "screen" / "gamma_combo.py")],
+                       cwd=str(ROOT), encoding="utf-8", errors="replace", timeout=600)
+    except subprocess.TimeoutExpired:
+        print("  [~] gamma_combo TIMEOUT (600s) — atlandi (best-effort)")
+    # G1e: naive-net vs SqueezeMetrics nöbetçisi (07-11) — bizim zincir-okuma SM serisiyle
+    # ko-hareket ediyor mu; ~6 ayda korelasyon testi. BEST-EFFORT.
+    try:
+        subprocess.run([PY, str(ROOT / "screen" / "gex_naive_sentinel.py")],
+                       cwd=str(ROOT), encoding="utf-8", errors="replace", timeout=300)
+    except subprocess.TimeoutExpired:
+        print("  [~] gex_naive_sentinel TIMEOUT (300s) — atlandi (best-effort)")
+
     # ── F7 (denetim 2026-07-05): HAYALET-SATIR koruması — hafta sonu / NYSE tatili koşusu ÖNCEKİ kapanışın
     # donmuş zincirini işlem-görmemiş bir tarihe damgalayıp deftere yazıyordu (gerçek örnekler:
     # 2026-06-13 Cumartesi, 2026-06-19 Juneteenth [spx_spot 06-22 ile birebir], 2026-07-05 Pazar) ve
@@ -149,7 +173,7 @@ def main() -> int:
     print(f"  + {rec['as_of']}: SPX atm {rec['spx_atm_iv']} flip {rec['spx_gex_flip']} | "
           f"NDX atm {rec['ndx_atm_iv']} flip {rec['ndx_gex_flip']}  → surface-ledger {nsurf} satır")
     print(f"  ledger → {ROOT/'output'/'gamma_forward_ledger.parquet'}")
-    nlev = _append_levels([lev.get("SPY"), lev.get("QQQ")])
+    nlev = _append_levels([r for r in (lev.get("SPY"), lev.get("QQQ"), lev.get("NDX"), lev.get("SLV")) if r])
     print(f"  gamma-levels ledger → {ROOT/'output'/'gamma_levels_ledger.parquet'} ({nlev} satır)")
     return 0
 

@@ -64,19 +64,41 @@ def load_permanent_gaps() -> set[str]:
     return dates
 
 
+def _atomic_to_parquet(df: pd.DataFrame, p: Path) -> None:
+    """Denetim 07-11 P2: dei-ra'nin CANLI okudugu dosya yarim-yazimda bozulmasin — tmp+replace."""
+    import os
+    import tempfile
+    fd, tmp = tempfile.mkstemp(dir=str(p.parent), prefix=p.name + ".", suffix=".tmp")
+    os.close(fd)
+    df.to_parquet(tmp)
+    os.replace(tmp, str(p))
+
+
 def append_call(record: dict) -> Path:
     p = ledger_path()
     p.parent.mkdir(parents=True, exist_ok=True)
     rec = {c: record.get(c) for c in _COLS}
+    # Denetim 07-11 P1-B kuyrugu: price_stale mark_to_market tamamlanana dek FAIL-CLOSED (True) —
+    # eskiden None kaliyordu; append sonrasi mark cokerse dei-ra None'i (falsy) temiz saniyordu.
+    if rec.get("price_stale") is None:
+        rec["price_stale"] = True
     df = pd.read_parquet(p) if p.exists() else pd.DataFrame(columns=_COLS)
     for c in _COLS:                                  # şema göçü (eski parquet'te eksik kolon → NaN)
         if c not in df.columns:
             df[c] = pd.NA
     if not df.empty:
+        _old = df[df["as_of"].astype(str) == str(rec["as_of"])]
+        if len(_old):
+            # Denetim 07-11 P2 ([17]): ayni-gun re-run satiri SESSIZCE yeniden yaziyordu — dei-ra'nin
+            # tukettigi deger degisir, iz kalmazdi. Davranis ayni (son kosu kazanir) ama BAGIRARAK.
+            _op = _old.iloc[-1].get("position_target")
+            if pd.notna(_op) and _op != rec.get("position_target"):
+                print(f"  ⚠ LEDGER: {rec['as_of']} satiri YENIDEN yazildi — position_target "
+                      f"{_op} -> {rec.get('position_target')} (gun-ici re-run; dei-ra onceki degeri okumus olabilir)")
         df = df[df["as_of"].astype(str) != str(rec["as_of"])]
     df = pd.concat([df, pd.DataFrame([rec])], ignore_index=True)[_COLS]
     df = df.sort_values("as_of").reset_index(drop=True)
-    df.to_parquet(p)
+    _atomic_to_parquet(df, p)
     return p
 
 
@@ -119,16 +141,36 @@ def mark_to_market(asset: str = REF_ASSET, closes: pd.Series | None = None) -> p
     if df.empty:
         return df
     cl = closes if closes is not None else _index_closes(asset)
-    # H4: fiyat-yaşı kontrolü — closes CANLI çekildiyse ve son fiyat >2 işlem günü bayatsa ALARM + STALE damga
-    # (yfinance düşüp frozen-fallback'e düşerse sessiz çöp signal_pnl birikimi YOK; satır STALE işaretlenir).
     src_stale_bd = 0
     if closes is None:
+        # Denetim 07-11 P0: seans icinde yfinance gunluk tarihce BUGUNUN devam-eden barini icerir —
+        # dunku satirin signal_pnl'i KISMI fiyatla FINAL gibi muhurlenip gun boyu kaliyordu (deira
+        # paneli yanlis accrual; ertesi sabah sessiz degisim). Bugunun bari yalniz seans KAPANDIYSA
+        # (>= ~17:00 ET, konservatif UTC-5) marka girer; oncesinde dusulur -> dun durustce BEKLEMEDE.
+        try:
+            _et = datetime.now(timezone.utc) - pd.Timedelta(hours=5)
+            if _et.hour < 17:
+                _today_et = pd.Timestamp(_et.date())
+                _n_before = len(cl)
+                cl = cl[cl.index.normalize() < _today_et]
+                if len(cl) < _n_before:
+                    print("  forward-score: bugunun DEVAM-EDEN bari marka alinmadi (seans acik) — "
+                          "dunku satir kapanista skorlanacak (kismi-bar muhru yok)")
+        except Exception as e:
+            print(f"  ⚠ LEDGER: kismi-bar korumasi hesaplanamadi ({type(e).__name__}: {e})")
+        # H4: fiyat-yaşı kontrolü — canlı kaynak >2 işlem günü bayatsa ALARM + STALE damga
         try:
             today = pd.Timestamp(datetime.now(timezone.utc).date())
             src_stale_bd = max(0, len(pd.bdate_range(cl.index.max().normalize(), today)) - 1)
             if src_stale_bd > 2:
                 print(f"  ⚠ LEDGER ALARM: fiyat serisi {src_stale_bd} işlem günü bayat (son {cl.index.max().date()}) "
                       f"→ yeni signal_pnl GÜVENİLMEZ, satırlar STALE damgalı.")
+                try:   # Denetim 07-11 P1: alarm print-only idi — push'a da cikar (best-effort)
+                    import notify
+                    notify.alert("EQUITY fiyat-kaynagi BAYAT",
+                                 f"{src_stale_bd} isgunu (son {cl.index.max().date()}) — signal_pnl guvenilmez")
+                except Exception:
+                    pass
         except Exception as e:   # EQ-1: sessiz yutma kaldırıldı — bekçi körse bunu GÖRÜNÜR söyle
             print(f"  ⚠ LEDGER: fiyat-yaşı kontrolü hesaplanamadı ({type(e).__name__}: {e}) — H4 bekçisi bu koşuda KÖR")
     clmax = cl.index.max()
@@ -138,21 +180,41 @@ def mark_to_market(asset: str = REF_ASSET, closes: pd.Series | None = None) -> p
     # Örneklemi sessizce küçültmek yerine: satır varsa signal_pnl=None + GÖRÜNÜR not (sayıya katılmaz).
     gap_dates = load_permanent_gaps()
     n_gap_skipped = 0
+    n_ghost = 0
+    _trade_days = set(cl.index.normalize())
+    _prev_sig = df["signal_pnl"] if "signal_pnl" in df.columns else pd.Series([None] * len(df))
+    _keep_before = clmax - pd.Timedelta(days=21)
     sig, prc_stale = [], []
-    for _, r in df.iterrows():
+    for _i, r in df.iterrows():
         a = pd.Timestamp(str(r["as_of"]))
         if a.strftime("%Y-%m-%d") in gap_dates:      # KALICI-GAP → skorlanmaz, uydurulmaz, sayılmaz
             sig.append(None)
             prc_stale.append(False)                  # bayat-kaynak DEĞİL — ayrı, dürüst 'kalıcı-boşluk' kategorisi
             n_gap_skipped += 1
             continue
+        # Denetim 07-11 P2 ([8]/[13]): işlem-günü-olmayan as_of (tatil hayaleti, ör. Juneteenth
+        # 2026-06-19) searchsorted'la ÖNCEKİ günün getirisine yapışıp ÇİFT sayılıyordu → skorlanmaz.
+        if a <= clmax and a.normalize() not in _trade_days:
+            sig.append(None)
+            prc_stale.append(False)
+            n_ghost += 1
+            continue
+        # Denetim 07-11 P2 ([12]): yıkıcı yeniden-yazım koruması — eski (>21g) ve DOLU signal_pnl
+        # korunur; tek bozuk closes-cekimi tum tarihi yeniden yazamaz (yakin satirlar tazelenir).
+        _old_v = _prev_sig.iloc[_i] if _i < len(_prev_sig) else None
+        if a < _keep_before and _old_v is not None and pd.notna(_old_v):
+            sig.append(round(float(_old_v), 6))
+            prc_stale.append(False)
+            continue
         pos = r.get("position_target")
         idx = cl.index.searchsorted(a, side="right") - 1
         has_next = (0 <= idx < len(fwd1)) and pd.notna(fwd1.iloc[idx])
         rr = float(fwd1.iloc[idx]) if has_next else None
         sig.append(None if (rr is None or pd.isna(pos)) else round(float(pos) * rr, 6))
-        # bu satır işaretlenemedi VE kaynak bayat VE as_of yakın → bayat-kaynak yüzünden (normal bugün-beklemede DEĞİL)
-        prc_stale.append(bool((not has_next) and src_stale_bd > 2 and a <= clmax + pd.Timedelta(days=10)))
+        # Denetim 07-11 P1 ([1]/[4]/[5]): eski kosul `a <= clmax+10g` tavani yuzunden frozen-fallback'te
+        # (clmax donuk) 10 gunden DERIN kesintide yeni satirlar False aliyordu = tam en kotu anda
+        # fail-open. Yeni kural: kaynak bayatsa (>2 isgunu) ve satir işaretlenemediyse -> STALE, nokta.
+        prc_stale.append(bool((not has_next) and src_stale_bd > 2))
     if gap_dates:                                    # her koşuda GÖRÜNÜR not (defterde satır olsa da olmasa da)
         print(f"  forward-score: {len(gap_dates)} gün KALICI-GAP atlandı (2026-06-23..07-02, machine-off) "
               f"— defterde {n_gap_skipped} satır eşleşti, uydurulmadı/sayılmadı")
@@ -162,7 +224,7 @@ def mark_to_market(asset: str = REF_ASSET, closes: pd.Series | None = None) -> p
         (None if (pd.isna(s) or pd.isna(e)) else round(float(s) - float(e), 6))
         for s, e in zip(df["signal_pnl"], df["expression_pnl"])
     ]
-    df.to_parquet(ledger_path())
+    _atomic_to_parquet(df, ledger_path())
     return df
 
 
@@ -176,7 +238,7 @@ def record_expression(as_of: str, expression_pnl_nav: float) -> pd.DataFrame:
     s = df.loc[m, "signal_pnl"]
     df.loc[m, "expression_drag"] = (None if s.isna().all()
                                     else float(s.iloc[0]) - float(expression_pnl_nav))
-    df.to_parquet(ledger_path())
+    _atomic_to_parquet(df, ledger_path())
     return df
 
 

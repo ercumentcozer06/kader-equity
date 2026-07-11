@@ -408,7 +408,9 @@ def test_v13_wilson_lo():
     from backtest import prop_sim_v13 as V
     assert 0.95 < V.wilson_lo(100, 100) < 1.0
     assert V.wilson_lo(50, 100) < 0.5
-    assert V.wilson_lo(0, 0) != V.wilson_lo(0, 0) or True                          # n=0 → nan (crash yok)
+    import math
+    _w00 = V.wilson_lo(0, 0)                       # Denetim 07-11 P3 ([35]): eski assert totolojikti
+    assert _w00 is None or (isinstance(_w00, float) and (math.isnan(_w00) or _w00 == 0.0))  # n=0 -> nan/0/None, crash yok
 
 
 # ── ŞERİT-3: ENTEGRASYON — decision tüm dalları / trade tüm yapılar / risk / brief end-to-end ──

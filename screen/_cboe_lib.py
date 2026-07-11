@@ -32,9 +32,16 @@ def _is_third_friday(d):
 
 
 def fetch(sym, timeout=60):
+    # P1-A (denetim 2026-07-07): tek-deneme → geçici timeout/5xx = gamma ledger'ın günü kaçar (time-decay,
+    # geri gelmez). 3-deneme üstel-backoff transient'i yutar (tek CBOE vendor, yfinance-fallback 2026-06'da kalktı).
     url = f"https://cdn.cboe.com/api/global/delayed_quotes/options/{sym}.json"
-    r = requests.get(url, timeout=timeout, headers=UA)
-    r.raise_for_status()
+    try:
+        from modules._netutil import http_get_retry
+    except ImportError:                                   # _netutil yoksa (bağımsız çağrı) → tek-deneme
+        r = requests.get(url, timeout=timeout, headers=UA)
+        r.raise_for_status()
+        return r.json()
+    r = http_get_retry(url, timeout=timeout, headers=UA)  # 3-deneme backoff; hepsi patlarsa fail-loud (raise)
     return r.json()
 
 

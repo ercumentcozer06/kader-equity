@@ -204,11 +204,48 @@ def main() -> int:
     results.append(_step("forward-watch (attribution)", _forward_watch))
     results.append(_step("lock drift-guard (reproduce_baseline)", _lock_guard))
     n_fail = sum(1 for ok, _ in results if not ok)
+    _alert_if_degraded(n_fail, results)                      # P0-A: bayatlık/degradasyon → ANINDA push
     if n_fail:
         _log(f"⛔ run_daily BİTTİ — {n_fail} ADIM PATLADI (fail-loud, exit 1). Üstteki FAIL satırlarına bak.")
         return 1
     _log("✓ run_daily BİTTİ — tüm adımlar OK")
     return 0
+
+
+def _alert_if_degraded(n_fail: int, results: list) -> None:
+    """P0-A anında-alarm (denetim 2026-07-07): koşu-sonu latest.json'ı denetle; bayat/degrade/adım-patlağı varsa
+    notify.alert → Emir'e push (webhook varsa) + yerel STALE_ALERT.json. Temizse önceki alarmı sil. BEST-EFFORT."""
+    try:
+        import json as _json
+        import notify
+        reasons = []
+        if n_fail:
+            failed = [n for (ok, tb), n in zip(results, ("collect", "constan", "brief+ledger", "forward-watch", "lock-guard")) if not ok]
+            reasons.append(f"{n_fail} adım PATLADI ({', '.join(failed)})")
+        p = ROOT / "output" / "kader_equity_latest.json"   # run.write_latest bu dosyayı yazar (2026-07-07 fix: eski 'latest.json' HİÇ yoktu → her koşu sahte 'latest.json YOK' alarmı + clear_alert asla çağrılmıyordu)
+        if p.exists():
+            d = _json.loads(p.read_text(encoding="utf-8"))
+            if d.get("call_status") != "current":
+                fr = d.get("freshness", {}) or {}
+                reasons.append(f"call_status={d.get('call_status')} (as_of {d.get('as_of')}, {fr.get('age_days')}g)")
+            if d.get("data_source_stale"):
+                reasons.append(f"BAYAT GİRDİ: {d['data_source_stale']}")
+            if d.get("overlay_block"):
+                reasons.append(f"overlay_block: {d.get('overlay_block_reason')}")
+            if (d.get("spine") or {}).get("tide_degraded"):
+                # Denetim 07-11 KOK C: degraded tide artik push-alarmda da (stale-damga run.py'de)
+                reasons.append(f"TIDE DEGRADED: eksik modul, kayip agirlik "
+                               f"{(d.get('spine') or {}).get('missing_weight_frac', '?')}")
+        else:
+            reasons.append("latest.json YOK (brief/ledger üretmedi)")
+        if reasons:
+            notify.alert("VERİ BAYAT / DEGRADE", " | ".join(str(r) for r in reasons))
+            _log(f"🔔 ALARM gönderildi: {' | '.join(str(r) for r in reasons)}")
+        else:
+            notify.clear_alert()
+            _log("alarm: temiz (call current + tüm adımlar OK)")
+    except Exception as e:
+        _log(f"⚠ alarm-adımı hata verdi (best-effort, run'ı öldürmez): {type(e).__name__}: {e}")
 
 
 if __name__ == "__main__":

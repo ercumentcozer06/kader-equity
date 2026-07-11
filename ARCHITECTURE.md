@@ -223,6 +223,29 @@ nihai_pozisyon(t) = TIDE_DIR(t)  ×  COR1M-froth-factor(t)  ×  GEX-shield-facto
 (ağsız, byte-aynı); live path CBOE COR1M + SqueezeMetrics GEX CSV'sini canlı çeker. Veri yok/bayat → factor 1.0
 (nötr, asla agresif). `config.yaml overlays.{cor1m_froth,gex_shield}` ile flag'li; OFF → çıktı == tide_dir (invariant test).
 
+### 10.1 DEPLOY 2026-07-08 — COR1M-froth → **dispersion_ensemble** (HALEF, Emir-onaylı)
+
+Froth ekseni **3-way tam-konstitüent ensemble**'a yükseltildi: `froth_pct = mean( pit(VIXEQ−VIX spread),
+pit(DSPX), 1−pit(COR1M) )` [eşit-ağırlık, **FIT YOK**, PIT trailing-756g]; `factor = ramp(froth_pct; lo.70/hi.95/fl0)`.
+COR1M zaten 1/3 bileşen → `cor1m_froth` SUPERSEDED (`config.enabled:false`, kod+testler intact = **geri-alınabilir**).
+`modules/dispersion_ensemble.py` + `screen/fetch_dispersion.py` → `data/cache/dispersion.parquet` (VIXEQ/DSPX/VIX 2014+).
+
+**DÜRÜST ETİKET — bu bir Sharpe-alfası DEĞİL, maxDD/TAIL upgrade'i.** Deploy-gate = MC forward-dağılım
+(`mc_implied_distribution` block-bootstrap 10k, eşleştirilmiş, 3-way vs canlı):
+
+| | ΔmaxDD p50 | P(3-way daha sığ) | ΔSharpe | P(Sh≥canlı−0.1) |
+|---|---|---|---|---|
+| **NDX** | **+2.1pp daha sığ** | %88-90 (blok 10/21/42) | p50 +0.07..+0.11 | %93-97 |
+| **SPX** | +1.5-1.8pp daha sığ | %84-87 | p50 ≈ 0 (nötr) | %85-90 |
+
+Nokta: SPX 1.64/−13% → **1.62/−13%** (Sharpe-nötr); NDX 1.77/−16% → **1.83/−12%**. Overfit-bataryası (T1-T4):
+Sharpe-gain FWER-fail + param-hassas (bu yüzden Sharpe-alfası SAYILMAZ) AMA maxDD faydası param-robust (tüm
+grid) + MC-robust (blok-bağımsız) → drawdown-kısıtlı book için (Alpha Swing bariyer) meşru. **MEKANİK:** NDX =
+Mag-7 ~%50 = tekil-isim dispersion'ın ta kendisi (SPX geniş) → NDX>SPX asimetrisi artefakt DEĞİL. **ÜRÜN-NOTU:**
+VIXEQ/DSPX yeni ürün → 2014+ backfill; kazanç 2022-26 konsantrasyon-rejimine yaslı = ürünün doğası (post-2020
+mega-cap dispersion yapısal). Fail-closed: 3 kaynaktan biri bayat → bloke. Bugün canlı: froth_pct 0.99 → factor 0.0 = FLAT.
+reproduce spine 1.43/1.49 byte-exact (overlay değişimi spine'a dokunmaz); 182 test PASS. Detay: [[kader_equity_vixeq_vix_spread_tested]].
+
 **CAVEAT:** 2019+ m9-çağı tek-rejim (1.64/1.77 ceiling değil hedef; honest forward ~1.0-1.3). COR1M-froth
 genç (2024+ rejim, 3 episode) → forward-watch. Finer gamma (flip-distance/vanna/charm) FORWARD-only —
 `screen/gamma_engine.py` + `collect_daily.py` günlük topluyor. **Free-backtestlenebilir arama TÜKETİLDİ**

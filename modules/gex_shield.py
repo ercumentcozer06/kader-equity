@@ -69,13 +69,17 @@ def gex_zscore(gex: pd.Series, win: int = 252, min_periods: int = 60) -> pd.Seri
 
 
 def fetch_gex_live(timeout: int = 30) -> pd.Series:
-    """SqueezeMetrics CDN'den günlük GEX serisi (free, abonelik gerektirmez)."""
-    import requests
+    """SqueezeMetrics CDN'den günlük GEX serisi (free, abonelik gerektirmez).
+
+    Bayatlık-önleme (denetim 2026-07-07): her URL 3-deneme üstel-backoff (geçici timeout/5xx = bayatlık DEĞİL,
+    kurtarılabilir). Tek-vendor olduğu için transient-yutma kritik. İki URL de tümden ölürse fail-loud (RuntimeError)
+    → evaluate() fail_safe_block → no-trade (sessiz factor=1.0 ASLA)."""
+    from modules._netutil import http_get_retry
     last = None
     for url in SQUEEZE_URLS:
         try:
-            r = requests.get(url, timeout=timeout, headers={"User-Agent": "Mozilla/5.0"})
-            if r.status_code == 200 and "," in r.text[:200]:
+            r = http_get_retry(url, timeout=timeout)        # 3× 0/3/10s backoff
+            if "," in r.text[:200]:
                 df = pd.read_csv(io.StringIO(r.text))
                 dcol = [c for c in df.columns if "date" in c.lower()][0]
                 gcol = [c for c in df.columns if c.lower() == "gex"][0]

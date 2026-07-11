@@ -245,5 +245,8 @@ def evaluate(cfg: dict | None = None, *, tide_score=None, tide_dir=None, as_of=N
             res["tide_source"] = tide_source     # live | live_series | frozen — talep-girdisinin kaynağı (görünür)
         return res
     except Exception as e:
-        log.warning("sd_derisk evaluate failed: %s", e)
+        # Denetim 07-11 P3 ([28]): pozisyon-etkili trim'in sessizce devre-disi kalmasi log.warning'de
+        # kayboluyordu -> ERROR + tip; None doner (fail-soft ama BAGIRARAK; overlay_block katmani
+        # available=False'i zaten yakalar).
+        log.error("sd_derisk evaluate FAILED (trim devre-disi bu kosuda): %s: %s", type(e).__name__, e)
         return None

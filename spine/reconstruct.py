@@ -38,14 +38,19 @@ MODS = ["m0", "m1", "m2", "m3", "m4", "m5", "m6", "m8", "m9", "m10", "m11"]
 GRID_BUFFER_DAYS = 60          # bugüne kadar kısa grid (rolling z tüm seriyi kullanır → buffer yeterli)
 
 
-def _inject_m3_m6(cfg: dict, dl, sg, index: pd.DatetimeIndex) -> dict:
-    """m3 (auction-demand pctl) + m6 (Moody's Baa-Aaa kredi-stres) — build_module_matrix ile BİREBİR aynı."""
+def _inject_m3_m6(cfg: dict, dl, sg, index: pd.DatetimeIndex) -> tuple[dict, object]:
+    """m3 (auction-demand pctl) + m6 (Moody's Baa-Aaa kredi-stres) — build_module_matrix ile BİREBİR aynı.
+
+    Döndürür (out, m3_asof): m3_asof = son geçerli auction tarihi (None=boş/erişilemez) → P1-C tazelik-denetimi
+    (denetim 2026-07-07): M3 SPECS-dışıydı, fetch_auctions boş dönerse m3 sessizce 0'a düşüp çağrı 'current'
+    kalıyordu (KÖR-NOKTA). Artık m3_asof _build_live_panel'de denetlenip bayatsa input_stale'e girer."""
     import requests
     out: dict = {}
     # m3 — canlı auction talebi (cache-gap düzeltmesi, build_module_matrix ile aynı)
     auctions = dl.fetch_auctions(cfg)
     pctl = sg.auction_demand_pctl(auctions)
     pctl = pctl[~pctl.index.duplicated(keep="last")].sort_index()
+    m3_asof = pctl.index[-1] if len(pctl) else None       # M3 tazelik-imzası (boş→None→STALE)
     out["m3"] = ((pctl.reindex(index, method="ffill") - 0.5) * 40).clip(-20, 20)
     # m6 — Moody's Baa-Aaa spread (FRED DBAA/DAAA, ICE-kısıtsız tam tarih); genişleme = stres = negatif
     key = os.environ.get("FRED_API_KEY")
@@ -63,7 +68,24 @@ def _inject_m3_m6(cfg: dict, dl, sg, index: pd.DatetimeIndex) -> dict:
     rs = spr.rolling(504, min_periods=126).std()
     z = (spr - rm) / rs
     out["m6"] = (-z * 8.0).clip(-20, 20).reindex(index, method="ffill")
-    return out
+    return out, m3_asof
+
+
+M3_MAX_BD = 10   # auctions >=haftalık (bill'ler Pzt/Sal); 10 işgünü yeni-auction yoksa FiscalData feed donmuş/kırık
+
+
+def _audit_m3_freshness(m3_asof, today: date) -> dict | None:
+    """P1-C (denetim 2026-07-07): M3 auction (FiscalData) SPECS-dışı ayrı kaynak → ayrı tazelik-denetimi.
+    Boş (API timeout/erişilemez) VEYA donuk (>M3_MAX_BD) → input_stale satırı (dict); temiz → None."""
+    if m3_asof is None:
+        return {"series": "FISCALDATA_AUCTIONS", "module": "m3",
+                "error": "auction verisi BOŞ (API timeout/erişilemez) → m3 kör"}
+    last = m3_asof.date() if hasattr(m3_asof, "date") else m3_asof
+    age = _bd_age(last, today)
+    if age > M3_MAX_BD:
+        return {"series": "FISCALDATA_AUCTIONS", "module": "m3", "age_bd": int(age), "max_bd": M3_MAX_BD,
+                "error": f"auction feed DONMUŞ (son {last} {int(age)}bd > {M3_MAX_BD}bd)"}
+    return None
 
 
 # ── Tazelik-denetimi çekirdeği (F1/F2/F4, denetim 2026-07-05) — SAF, test-edilebilir, ağ/IO yok ──────
@@ -227,6 +249,40 @@ def _evict_macro_modules(macro_repo: Path) -> None:
                 break
 
 
+# kader-equity ile kader-macro AYNI isimli kaynak paketlere sahip → macro işine girmeden önce equity'ninkini at.
+_MACRO_EQUITY_COLLISIONS = ("modules", "backtest", "signals", "integrity", "validation", "analysis", "datafeed")
+
+
+def _evict_equity_shadows() -> None:
+    """macro_repo sys.path[0]'dayken macro'nun paketleri TAZE çözülsün diye, equity-konumlu ÇAKIŞAN paketleri
+    (modules/backtest/…) sys.modules'tan at. NEDEN gerekli (2026-07-07 kök-neden): run.py, reconstruct_live'dan
+    ÖNCE equity'nin `modules`'ünü import ediyor (market_closed_reason → `from modules.opex_calendar import
+    is_market_holiday`), böylece `modules` sys.modules'a girer. sys.path.insert TEK BAŞINA gölgeyi kaldırmaz —
+    zaten-import edilmiş paket path'e BAKILMADAN döner → macro data_loader.py:26 `from modules import _fred`
+    equity'nin (_fred'siz) modules'üne düşer → ImportError → canlı tide çöker, run.py STALE damgalar. Simetrik:
+    çıkışta _evict_macro_modules macro'nunkileri atar → equity taze döner. SADECE equity-repo konumlu paketleri
+    atar (site-packages/kurulu paketlere ve macro'nunkine DOKUNMAZ) → fail-safe."""
+    eq_root = os.path.normcase(str(Path(__file__).resolve().parents[1]))
+    for name in list(sys.modules):
+        if name.split(".", 1)[0] not in _MACRO_EQUITY_COLLISIONS:
+            continue
+        mod = sys.modules.get(name)
+        if mod is None:
+            continue
+        locs = []
+        f = getattr(mod, "__file__", None)
+        if f:
+            locs.append(f)
+        pth = getattr(mod, "__path__", None)
+        if pth:
+            try:
+                locs.extend(list(pth))
+            except TypeError:
+                pass
+        if any(os.path.normcase(str(loc)).startswith(eq_root) for loc in locs if loc):
+            del sys.modules[name]                           # YALNIZ equity-repo konumlu → at (macro/kurulu DOKUNULMAZ)
+
+
 def _build_live_panel(macro_repo: Path) -> pd.DataFrame:
     """PIT-replay'i bugüne uzatılmış kısa grid üzerinde koş → m0..m11 canlı panel (m2 RAW, m3/m6 enjekte).
 
@@ -240,6 +296,7 @@ def _build_live_panel(macro_repo: Path) -> pd.DataFrame:
     sys.path.insert(0, str(macro_repo))
     os.environ.pop("SMART_M2", None)                       # RAW m2 zorla (smart-RRP DEĞİL)
     try:
+        _evict_equity_shadows()                            # equity'nin çakışan paketlerini at → macro'nunki (modules._fred dahil) taze çözülür
         from dotenv import load_dotenv                      # noqa: E402
         import yaml                                         # noqa: E402
         from backtest.revalidation import oos_judge as J    # noqa: E402
@@ -262,7 +319,7 @@ def _build_live_panel(macro_repo: Path) -> pd.DataFrame:
         if df.empty:
             raise RuntimeError("run_pit_signals boş panel döndü (FRED/veri sorunu).")
 
-        inj = _inject_m3_m6(cfg_km, dl, sg, df.index)       # m3/m6 build_module_matrix ile aynı enjeksiyon
+        inj, m3_asof = _inject_m3_m6(cfg_km, dl, sg, df.index)   # m3/m6 enjeksiyon + M3 tazelik-imzası
         for m, s in inj.items():
             df[m] = s
         # Audit 2026-06-19 (Emir, KRİTİK): backtest harness 'always fresh' varsayar (freshness=1.0).
@@ -270,6 +327,10 @@ def _build_live_panel(macro_repo: Path) -> pd.DataFrame:
         # sessizce bayat son-değeri ffill'leyip 'current' damgalıyordu. Burada GERÇEK son-tarihleri
         # cadence'ine göre denetle → bayatsa fail-LOUD (run.py call_status=STALE + log.error).
         input_stale = _audit_input_freshness(cfg_km)
+        # P1-C (denetim 2026-07-07): M3 auction SPECS-dışı → ayrıca denetle (boş/donuk → STALE, kör-nokta kapandı).
+        m3_stale = _audit_m3_freshness(m3_asof, today)
+        if m3_stale:
+            input_stale.append(m3_stale)
         return df[MODS], input_stale
     finally:
         sys.path[:] = saved_path                            # macro_repo'yu yoldan çıkar (gölgeleme bitsin)
@@ -278,7 +339,36 @@ def _build_live_panel(macro_repo: Path) -> pd.DataFrame:
         _evict_macro_modules(macro_repo)                    # macro paketlerini sys.modules'tan at → equity taze resolve
 
 
-def _read_cache_today() -> dict | None:
+def _build_live_panel_subprocess(macro_repo: Path) -> tuple[pd.DataFrame, list]:
+    """CANLI paneli AYRI SUBPROCESS'te üret — KALICI `modules`-gölge izolasyonu (gold/silver deseni).
+
+    spine/build_live_panel.py, TEMİZ bir child interpreter'da _build_live_panel'i çağırır: child'ın sys.modules'ü
+    boş başlar → macro_repo sys.path[0]'a sokulunca `from modules import _fred` DOĞRUDAN macro'ya çözülür →
+    equity'nin kendi `modules`'ü asla gölgeleyemez (in-process yolun 46-gün STALE yapan kök-nedeni yapısal biter).
+    Aynı _build_live_panel çağrıldığı için panel BYTE-AYNI (Sharpe değişmez). Fail-closed: child exit!=0 → raise →
+    reconstruct_live'ın çağıranı (run.py) frozen-STALE'e düşer, ASLA sessiz-frozen 'current'."""
+    import subprocess
+    import tempfile
+    script = Path(__file__).resolve().parent / "build_live_panel.py"
+    root = Path(__file__).resolve().parents[1]
+    with tempfile.TemporaryDirectory() as td:
+        out = Path(td) / "panel.json"
+        # Denetim 07-11 P2 ([10]): timeout'suz subprocess run_daily'yi SURESIZ asabiliyordu
+        # (satir yok, exit-code yok, sebep izsiz) -> 10dk tavan; asim = gorunur RuntimeError.
+        r = subprocess.run([sys.executable, str(script), str(macro_repo), str(out)],
+                           cwd=str(root), capture_output=True, text=True,
+                           encoding="utf-8", errors="replace", timeout=600,
+                           env={"PYTHONIOENCODING": "utf-8", **os.environ})
+        if r.returncode != 0 or not out.exists():
+            tail = (r.stderr or r.stdout or "").strip().splitlines()[-3:]
+            raise RuntimeError(f"build_live_panel subprocess başarısız (exit {r.returncode}): "
+                               f"{' | '.join(tail)[:220]}")
+        payload = json.loads(out.read_text(encoding="utf-8"))
+    df = pd.DataFrame(payload["data"], index=pd.to_datetime(payload["index"]), columns=payload["columns"])
+    return df, payload.get("input_stale", [])
+
+
+def _read_cache_today(max_age_h: float = 4.0) -> dict | None:
     if not LIVE_CACHE.exists():
         return None
     try:
@@ -286,6 +376,15 @@ def _read_cache_today() -> dict | None:
     except Exception:
         return None
     if c.get("computed_date") == datetime.now(timezone.utc).date().isoformat():
+        # Denetim 07-11 P2 ([14]): gun-cache 09:31 panelini TUM UTC-gunu pinliyordu — aksam
+        # deira kosusu sabah panelini yiyordu. 4 saatten yasli ayni-gun cache = yeniden hesap
+        # (mtime-tabanli; hesap zaten ~dk, gunde 2-3 tazeleme ucuz).
+        try:
+            age_h = (datetime.now(timezone.utc).timestamp() - LIVE_CACHE.stat().st_mtime) / 3600
+            if age_h > max_age_h:
+                return None
+        except Exception:
+            pass
         return c
     return None
 
@@ -324,7 +423,13 @@ def reconstruct_live(cfg: dict, force: bool = False) -> tuple[dict, dict, pd.Tim
             return cached["scores_row"], vector, as_of, "live", cached.get("input_stale", [])
         # cache as_of çok eski → düş, _build_live_panel ile tazele (yine eski gelirse run.py STALE damgalar)
 
-    df, input_stale = _build_live_panel(macro_repo)
+    # KALICI (2026-07-07): panel'i AYRI SUBPROCESS'te üret → `modules`-gölge yapısal olarak imkansız (varsayılan).
+    # Rollback gerekirse config spine.panel_isolation: inprocess (eski eviction'lı in-process yol). Byte-aynı.
+    iso = str((cfg.get("spine", {}) or {}).get("panel_isolation", "subprocess")).lower()
+    if iso == "inprocess":
+        df, input_stale = _build_live_panel(macro_repo)
+    else:
+        df, input_stale = _build_live_panel_subprocess(macro_repo)
     as_of = df.index[-1]
     row = df.loc[as_of]
     scores_row = {m: (None if pd.isna(v) else float(v)) for m, v in row.items()}

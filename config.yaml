@@ -19,11 +19,27 @@ overlays:
   # COR1M-froth — kader-equity'nin İLK alfa modülü. Düşük COR1M (CBOE 1ay implied corr) = call-froth/
   # complacency → tide-long'u kıs. strict-FDR PASS (5 form, robust 8-12 bölgesi), 3 episode (2024/25/26).
   # Form: ramp — COR1M≤lo→floor, ≥hi→1.0, arası lineer. CAVEAT: 2024+ rejimi (genç) → forward-watch.
+  # 2026-07-08 (Emir-onaylı): SUPERSEDED by dispersion_ensemble (3-way tam-konstitüent froth; COR1M zaten
+  # 1/3 bileşen → çift-say olmasın diye enabled:false). Modül KODU/testleri intact = GERİ-ALINABILIR
+  # (enabled:true + dispersion_ensemble:false ile eski canlı stack'e dön). Gerekçe: modules/dispersion_ensemble docstring.
   cor1m_froth:
-    enabled: true
+    enabled: false
     lo: 8.0        # A PRİORİ (SpotGamma froth~8), grid-doğrulandı [GÖREV 5]
     hi: 11.0       # FITTED (verify_cor1m 5-ramp seçimi), DSR-muhasebesinde
     floor: 0.0     # FITTED (3-floor seçimi). DSR N=60 İYİMSER → dürüst ~0.96/0.98
+  # dispersion_ensemble — 3-WAY tekil-hisse dispersion froth (cor1m_froth HALEFİ). Bileşen: pit(VIXEQ−VIX
+  # spread) + pit(DSPX) + (1−pit(COR1M)), eşit-ağırlık [FIT YOK], ramp trim-only. Deploy = MC forward-dağılım
+  # (block-boot 10k): ΔmaxDD +2.1pp daha sığ, P(daha sığ) %88-90 NDX / %84-87 SPX, Sharpe non-inferior
+  # (P(≥canlı−0.1) %93-97). Sharpe-ALFASI DEĞİL (FWER-fail) → param-robust maxDD/TAIL upgrade (drawdown-book).
+  # Veri: screen/fetch_dispersion → dispersion.parquet (VIXEQ/DSPX/VIX 2014+). Fail-closed: 3 kaynak bayat→bloke.
+  dispersion_ensemble:
+    enabled: true
+    lo: 0.70            # A PRİORİ (üst-çeyrek froth-percentile); T1-grid: maxDD faydası tüm grid'de robust
+    hi: 0.95           # A PRİORİ (üst-yaprak = derin froth → max trim); Sharpe param-hassas, eşik maxDD-motive
+    floor: 0.0         # derin-froth (pct≥hi) tam-flat; trim-only + geniş band → rebound-safe
+    win: 756           # trailing-3y PIT percentile penceresi (A PRİORİ, taranmadı)
+    min_periods: 252   # ≥1y trailing → percentile geçerli
+    max_age_days: 4    # 3 kaynağın en bayatı > 4 işgünü → STALE → de-risk OFF (fail-closed)
   # GEX-shield — 2. overlay (DRAWDOWN KALKANI, alfa değil). z(GEX, 252g) derin-düşük = dealer SHORT
   # gamma = kırılgan → tide-long'u kıs. standalone sub-strict-FDR ama STACK'te ödüyor (kader-btc B8):
   # maxDD SPX −17→−13% / NDX −20→−16%, CVaR↓, P(stack>tide) %100, DSR 0.985/0.994.
@@ -94,3 +110,16 @@ supply_demand_derisk:
   # Aramco). KRİTİK: TALEP-ZAYIF kapısı DEĞİŞMEZ → mega-IPO TEK BAŞINA tetiklemez (2020-tipi güçlü
   # talepte SUSAR). SpaceX 2026-06-03 S-1/A tavan $86.25B → mega kol AKTİF.
   mega_ceiling_thr_usd: 50e9
+
+# ── ANINDA ALARM (P0-A, denetim 2026-07-07): veri bayat/degrade → Emir'e ANINDA push ──────────────
+# Emir'in emri: "veri bayat = ANINDA haberim olsun". run_daily koşu-sonu latest.json'ı denetler;
+# call_status!=current / bayat-girdi / overlay_block / adım-patlağı varsa notify.alert ateşler.
+# TELEFONA push için AŞAĞIDAN BİRİNİ doldur (ücretsiz, ~2dk); boşsa yalnız output/STALE_ALERT.json + log.
+alert:
+  # (A) Telegram (önerilen — telefon push, ücretsiz): @BotFather'dan bot aç → token; @userinfobot'tan chat_id.
+  telegram_token: ""        # örn "8123456:AAH..."
+  telegram_chat_id: ""      # örn "123456789"
+  # (B) Discord webhook (kanal → Ayarlar → Integrations → Webhooks → URL kopyala):
+  discord_webhook: ""       # örn "https://discord.com/api/webhooks/..."
+  # (C) Genel webhook (POST {"text": msg}):
+  webhook_url: ""

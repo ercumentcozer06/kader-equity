@@ -15,7 +15,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -43,6 +43,28 @@ def market_closed_reason(today) -> str | None:
     if is_market_holiday(today):
         return "NYSE tatili"
     return None
+
+
+def position_overlay_block(overlays_out: dict) -> tuple[bool, str | None]:
+    """Fail-closed tepe-kapı (denetim 2026-07-06): HERHANGİ pozisyon-etkileyen overlay data-fail ise no-trade.
+
+    Eskiden overlay_block YALNIZ gex_shield.fail_safe_block'tan besleniyordu → cor1m BAYATLAYIP factor=1.0'a
+    düşünce froth de-risk SESSİZCE kalkıyor (FLAT→LONG, ~%28 exposure↑), call_status "current" kalıp deftere
+    giriyordu (asimetri). Artık HERHANGİ overlay data-fail (fail_safe_block / available=False / stale=True) →
+    bloke. LEGİT-NÖTR (COR1M≥11 veya GEX z≥−thr → available=True, factor 1.0) ve config-'disabled' DOKUNULMAZ;
+    frozen yolda info dict'lerinde bu anahtarlar yok → None → bloke YOK (frozen davranışı korunur).
+    """
+    blocking = []
+    for name, inf in (overlays_out or {}).items():
+        inf = inf or {}
+        failed = (bool(inf.get("fail_safe_block"))
+                  or (inf.get("available") is False and inf.get("reason") != "disabled")
+                  or inf.get("stale") is True)
+        if failed:
+            blocking.append((name, inf.get("error") or inf.get("reason") or "stale/unavailable"))
+    if not blocking:
+        return False, None
+    return True, "; ".join(f"{n}: {r}" for n, r in blocking)
 
 
 def ledger_eligible(d: dict) -> tuple[bool, str]:
@@ -94,7 +116,7 @@ def build_decision(cfg: dict) -> dict:
 
     # ── OVERLAY'LER (trim-only, rebound-safe; nihai pozisyon = tide_dir × Π faktör, kaldıraçsız). ──
     #    frozen → sinyali data/cache parquet'inden tide as-of'ta hesapla (ağsız); live → canlı fetch.
-    from modules import cor1m_froth, gex_shield            # noqa: E402
+    from modules import cor1m_froth, gex_shield, dispersion_ensemble   # noqa: E402
     overlays_cfg = cfg.get("overlays", {}) or {}
     factor, overlays_out, active_overlays = 1.0, {}, []
 
@@ -139,9 +161,36 @@ def build_decision(cfg: dict) -> dict:
         overlays_out["gex_shield"] = info2
         active_overlays.append("gex_shield")
 
-    # H3 fail-safe: GEX-z taşınamaz-bayat (>5g) → sessiz koruma-kapalı YERİNE no-trade bloğu (brief honor eder)
-    overlay_block = bool((overlays_out.get("gex_shield", {}) or {}).get("fail_safe_block"))
-    overlay_block_reason = (overlays_out.get("gex_shield", {}) or {}).get("error") if overlay_block else None
+    # OVERLAY 3: dispersion_ensemble — 3-way tekil-hisse dispersion froth (cor1m_froth HALEFİ; COR1M zaten
+    # 1/3 bileşen → cor1m_froth ile MUTUALLY-EXCLUSIVE, config: biri açık). Deploy gerekçesi = MC forward-dağılım
+    # (block-bootstrap 10k): ΔmaxDD +2.1pp daha sığ, P(daha sığ) %88-90 NDX / %84-87 SPX, Sharpe non-inferior
+    # (P(≥canlı−0.1) %93-97). Sharpe-alfası DEĞİL (FWER-fail); param-robust maxDD/TAIL upgrade → drawdown-book.
+    ov3 = overlays_cfg.get("dispersion_ensemble", {}) or {}
+    if bool(ov3.get("enabled")):
+        lo3, hi3, fl3 = float(ov3.get("lo", 0.70)), float(ov3.get("hi", 0.95)), float(ov3.get("floor", 0.0))
+        win3, mp3 = int(ov3.get("win", 756)), int(ov3.get("min_periods", 252))
+        if data_source == "frozen":
+            dpp = ROOT / "data" / "cache" / "dispersion.parquet"
+            cpp3 = ROOT / "data" / "cache" / "corr_pc.parquet"
+            f3, fpv = 1.0, None
+            if dpp.exists() and cpp3.exists():
+                disp = pd.read_parquet(dpp); corr3 = pd.read_parquet(cpp3)["COR1M"].dropna()
+                fps = dispersion_ensemble.froth_pct_series(corr3, disp["spread"].dropna(),
+                                                           disp["dspx"].dropna(), win3, mp3)
+                fpsd = fps.dropna()
+                fpv = float(fpsd.asof(as_of)) if len(fpsd) else None
+                f3 = dispersion_ensemble.ensemble_factor(fpv, lo3, hi3, fl3)
+            info3 = {"froth_pct": round(fpv, 3) if fpv is not None and not pd.isna(fpv) else None,
+                     "factor": round(f3, 3), "as_of": "frozen(@tide as_of)"}
+        else:
+            info3 = dispersion_ensemble.evaluate(cfg)
+            f3 = float(info3.get("factor", 1.0))
+        factor *= f3
+        overlays_out["dispersion_ensemble"] = info3
+        active_overlays.append("dispersion_ensemble")
+
+    # Fail-closed tepe-kapı (denetim 2026-07-06): H3'ü GEX'ten TÜM pozisyon-etkileyen overlay'lere genişlet.
+    overlay_block, overlay_block_reason = position_overlay_block(overlays_out)
 
     pos = float(td["tide_dir"]) * factor                  # tide_dir × Π overlay-faktör (kaldıraçsız, trim-only)
     deploy = min(cap, pos)
@@ -152,14 +201,28 @@ def build_decision(cfg: dict) -> dict:
         _logging.getLogger("kader_equity").error(
             "CANLI TIDE BAYAT FRED GİRDİSİ: %s — çağrı STALE damgalanıyor (current DEĞİL)",
             ", ".join(f"{s.get('series')}({s.get('age_bd', s.get('error'))})" for s in input_stale))
-    stale = bool(fresh["stale"]) or (live_error is not None) or bool(input_stale)   # canlı-patlak/bayat-girdi ASLA "current" değil
+    # FIX B (2026-07-06): overlay data-fail de call_status'u STALE yapmalı (yalnız defter-dışı değil, damga da
+    # dürüst). overlay_block satır ~143'te tanımlı (sıra korunmalı). Bayat overlay = bayat çağrı = "current" DEĞİL.
+    stale = bool(fresh["stale"]) or (live_error is not None) or bool(input_stale) or bool(overlay_block)  # canlı-patlak/bayat-girdi/bayat-overlay ASLA "current" değil
+    # Denetim 07-11 P1 (KOK C): degraded tide (eksik/NaN modul skoru; m9 tek basina agirligin ~%56'si)
+    # SESSIZCE "current" damgali position_target uretiyordu — hayalet FLAT kitabin en buyuk sleeve'ini
+    # sifirlar, push gitmezdi. Kayip agirlik >%5 ise cagri STALE (F8 defteri de keser; alarm asagida).
+    _tide_deg = bool(td.get("degraded")) and float(td.get("missing_weight_frac") or 0) > 0.05
+    if _tide_deg:
+        import logging as _lg2
+        _lg2.getLogger("kader_equity").error(
+            "TIDE DEGRADED: eksik modul %s (kayip agirlik %.0f%%) — cagri STALE damgalaniyor",
+            td.get("modules_missing"), 100 * float(td.get("missing_weight_frac") or 0))
+    stale = stale or _tide_deg
 
     # ── OpEx TAKTİK KAPISI (frozen stack DIŞI; per-asset ifade override + takvim uyarısı). ──
     #    position_target DEĞİŞMEZ; yalnız NDX sleeve OpEx günü deploy→0 (FINDING 23, p=0.001 anomali).
     #    Referans = BUGÜN (ileriye-dönük bilinen takvim; bayat snapshot tarihine bağlı DEĞİL → "3 gün önce uyar" çalışır).
     from modules import opex_calendar
     ocfg = cfg.get("opex_gate", {}) or {}
-    today = datetime.now(timezone.utc).date()
+    # Denetim 07-11 P3 ([34]): UTC-takvim gec-aksam ET kosusunda gunu yanlis siniflandiriyordu
+    # (market_open/OpEx) -> ET is-gunu (konservatif UTC-5).
+    today = (datetime.now(timezone.utc) - timedelta(hours=5)).date()
     opex = opex_calendar.evaluate(today, ocfg) if bool(ocfg.get("enabled")) else None
 
     # ── CONSTAN BAĞLAM BANTLARI (2026-06-13; pozisyon etkisi SIFIR — OpEx-etiket emsali). ──
@@ -486,6 +549,13 @@ def main(argv=None) -> int:
         try:
             from validation import ledger as _ledger
             _ledger.append_call(ledger_record(d))         # EQ-3 (denetim 2026-07-04): tek şema + m9/m5/m2 dolu
+            # Denetim 07-11 P2 ([7]/[31]): CLI yolu mark'siz birakiyordu -> son satir price_stale=True
+            # (fail-closed default) kalir ve deira HALT'a gidebilirdi; append sonrasi mark best-effort.
+            try:
+                _ledger.mark_to_market()
+            except Exception as _me:
+                if not args.quiet:
+                    print(f"  (mark_to_market atlandı — satır fail-closed STALE kaldı: {_me})")
         except Exception as e:
             if not args.quiet:
                 print(f"  (forward-ledger atlandı: {e})")

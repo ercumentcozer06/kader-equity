@@ -42,7 +42,11 @@ R, Q = 0.04, 0.013                                   # PUT_WEIGHT _cboe_lib'den 
 BAND = 0.15                  # ±15% strike (load_rows zaten uygular; wall/max-pain için geniş)
 
 # arg(ETF etiketi) -> (CBOE sembolü, indeks-etiketi, indeks-çarpanı). SPY->gerçek _SPX index; QQQ->QQQ ETF.
-CFG = {"SPY": ("_SPX", "SPX", 1), "QQQ": ("QQQ", "NDX", 41)}
+CFG = {"SPY": ("_SPX", "SPX", 1), "QQQ": ("QQQ", "NDX", 41),
+       "NDX": ("_NDX", "NDX", 1),  # NDX ENDEKS-evreni (2026-07-10): QQQ-ETF'le iki-evren diverjans arşivi;
+                                   # betimsel — MFGL NAS100 bu kompleksi okuyor (flip-farkının kökü buydu)
+       "SLV": ("SLV", "SLV", 1)}   # SLV GERCEK-OI GEX arşivi (2026-07-11 gamma-lab): hacim-proxy tarihsel
+                                   # test KANITSIZ çıktı → gerçek-OI forward-birikimi tek dürüst retest yolu
 
 
 def _npdf(x): return exp(-x * x / 2) / sqrt(2 * pi)
