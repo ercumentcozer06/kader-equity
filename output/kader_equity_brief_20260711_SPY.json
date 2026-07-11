@@ -1,11 +1,11 @@
 {
-  "computed_at": "2026-07-11T17:28:49.133039+00:00",
+  "computed_at": "2026-07-11T19:07:38.202606+00:00",
   "ticker": "SPY",
   "index": "SPX",
   "model": {
     "model_tag": "kader-equity-stack-2026-06-09",
     "as_of": "2026-07-10",
-    "computed_at": "2026-07-11T17:28:48.140335+00:00",
+    "computed_at": "2026-07-11T19:07:36.990857+00:00",
     "data_source": "live",
     "call_status": "current",
     "data_source_stale": null,
