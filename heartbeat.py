@@ -26,7 +26,26 @@ try:
 except Exception:
     pass
 
-MAX_SILENCE_H = 36.0        # son başarılı koşudan bu kadar saat geçtiyse ALARM (hafta-sonu+1 outage toleransı)
+MAX_SILENCE_H = 36.0        # (ESKİ/kullanılmıyor) ham-saat eşiği hafta-sonu boşluğunu (~64-72s) SAHTE-tetikliyordu
+MISS_TRIGGER = 2            # 07-12 FIX: 2+ İŞGÜNÜ kaçınca ALARM (hafta-sonu/tatil sayılmaz = gerçek "hafta-sonu+1 outage")
+
+
+def _trading_days_missed(last: "datetime", now: "datetime") -> int:
+    """Son başarıdan bu yana KAÇIRILAN işgünü (bugün HARİÇ; hafta-sonu+tatil sayılmaz). Piyasa-tatil
+    takvimi varsa kullanır, yoksa hafta-içi'ne düşer (hafta-sonu sahte-tetiği yine de kapanır)."""
+    try:
+        from modules.opex_calendar import is_market_holiday
+        _hol = is_market_holiday
+    except Exception:
+        def _hol(_d):
+            return False
+    from datetime import timedelta
+    n, d, today = 0, last.date() + timedelta(days=1), now.date()
+    while d < today:
+        if d.weekday() < 5 and not _hol(d):
+            n += 1
+        d += timedelta(days=1)
+    return n
 
 
 def _last_success_utc() -> datetime | None:
@@ -71,12 +90,14 @@ def main() -> int:
         _fire("run_daily HİÇ başarıyla koşmamış (log'da 'BİTTİ OK' yok)", now)
         return 1
     silence_h = (now - last).total_seconds() / 3600.0
-    print(f"heartbeat: son başarılı run_daily {last:%Y-%m-%d %H:%MZ} ({silence_h:.1f}s önce) | "
-          f"latest.call_status={call_status} | piyasa-bugün-açık={_market_open_today()}")
+    missed = _trading_days_missed(last, now)
+    print(f"heartbeat: son başarılı run_daily {last:%Y-%m-%d %H:%MZ} ({silence_h:.1f}s / "
+          f"{missed} işgünü önce) | latest.call_status={call_status} | piyasa-bugün-açık={_market_open_today()}")
 
-    if silence_h > MAX_SILENCE_H:
-        _fire(f"run_daily {silence_h:.0f}s sessiz (> {MAX_SILENCE_H:.0f}s) — koşu düşmüş olabilir; "
-              f"son başarı {last:%Y-%m-%d %H:%MZ}, latest.call_status={call_status}", now)
+    # 07-12 FIX: yalnız 2+ İŞGÜNÜ kaçınca ateşle — hafta-sonu/tatil boşluğu artık SAHTE-tetiklemez
+    if missed >= MISS_TRIGGER:
+        _fire(f"run_daily {missed} İŞGÜNÜ koşmadı (son başarı {last:%Y-%m-%d %H:%MZ}, "
+              f"{silence_h:.0f}s; call_status={call_status}) — koşu düşmüş olabilir", now)
         return 1
     return 0
 

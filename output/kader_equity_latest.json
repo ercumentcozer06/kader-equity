@@ -1,7 +1,7 @@
 {
   "model_tag": "kader-equity-stack-2026-06-09",
   "as_of": "2026-07-10",
-  "computed_at": "2026-07-11T23:40:29.244925+00:00",
+  "computed_at": "2026-07-12T01:05:47.036761+00:00",
   "data_source": "live",
   "call_status": "current",
   "data_source_stale": null,
@@ -10,8 +10,8 @@
   "_live_error": null,
   "freshness": {
     "as_of": "2026-07-10",
-    "today": "2026-07-11",
-    "age_days": 1,
+    "today": "2026-07-12",
+    "age_days": 2,
     "max_staleness_days": 5,
     "stale": false
   },
@@ -141,7 +141,7 @@
     "z10y": 0.67,
     "last90d_new": 363,
     "z90": 0.38,
-    "live_as_of": "2026-07-11",
+    "live_as_of": "2026-07-12",
     "stale": false,
     "mega_hits_120d": [
       {
