@@ -1,11 +1,11 @@
 {
-  "computed_at": "2026-07-12T01:05:31.391973+00:00",
+  "computed_at": "2026-07-12T19:23:50.374590+00:00",
   "ticker": "SPY",
   "index": "SPX",
   "model": {
     "model_tag": "kader-equity-stack-2026-06-09",
     "as_of": "2026-07-10",
-    "computed_at": "2026-07-12T01:05:29.953971+00:00",
+    "computed_at": "2026-07-12T19:23:49.364980+00:00",
     "data_source": "live",
     "call_status": "current",
     "data_source_stale": null,
@@ -19,7 +19,7 @@
       "max_staleness_days": 5,
       "stale": false
     },
-    "tide_score": 9.9045,
+    "tide_score": 9.9046,
     "tide_dir": 1,
     "module_scores": {
       "m0": 0.0,
@@ -32,7 +32,7 @@
       "m8": -6.0798,
       "m9": 9.53,
       "m10": -4.0,
-      "m11": 3.33
+      "m11": 3.87
     },
     "direction": "LONG",
     "position_target": 0.0,
@@ -93,7 +93,7 @@
       "NDX": 0.0
     },
     "santa_context": {
-      "as_of": "2026-07-11",
+      "as_of": "2026-07-12",
       "window_months": [
         11,
         12
@@ -127,7 +127,7 @@
         }
       },
       "pit_date": "2026-06-15",
-      "pit_age_days": 26,
+      "pit_age_days": 27,
       "stale": false,
       "ratio4q_nfc_pct_ngdp": -0.48,
       "z10y_nfc": 1.29,
@@ -160,7 +160,7 @@
       "label": "dosyalama = NIYET, gerceklesme degil; kayit-tavani != arz-buyuklugu; baglam-bandi — pozisyon etkisi SIFIR"
     },
     "ipo_supply_waves": {
-      "as_of": "2026-07-11",
+      "as_of": "2026-07-12",
       "n_active": 1,
       "waves": [
         {
@@ -176,14 +176,14 @@
           ],
           "lockup_status": "parse-ok",
           "lockup_expiry_date": "2027-06-04",
-          "days_to_lockup": 328,
+          "days_to_lockup": 327,
           "lockup_shares_est": 7800000000.0,
           "lockup_pct_note": "greater than 63% of shares outstanding (pre-offering)",
           "index_incl_eligible": true,
           "index_incl_window": {
             "earliest": "2026-09-01",
             "latest": "2027-06-03",
-            "days_to_earliest": 52
+            "days_to_earliest": 51
           },
           "forced_passive_demand_usd_lo": 12937499982.0,
           "forced_passive_demand_usd_hi": 17249999976.0,
