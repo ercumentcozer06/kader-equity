@@ -47,7 +47,10 @@ def test_h4_guard_fresh_source_no_alarm(tmp_path, monkeypatch, capsys):
     idx = pd.bdate_range(end=pd.Timestamp.now(tz="UTC").tz_localize(None).normalize(), periods=9)
     closes = pd.Series([100.0 + i for i in range(9)], index=idx)
     monkeypatch.setattr(L, "_index_closes", lambda asset=L.REF_ASSET: closes)
-    _seed_call(L, str(idx[-2].date()))
+    # Pazartesi seans-kapanisi oncesinde canli koruma bugunun tamamlanmamis
+    # barini dusurur. Bir onceki isgununu seed etmek bu durumda "next close"
+    # birakmaz; iki isgunu geriden baslat ki test saat/gun bagimsiz olsun.
+    _seed_call(L, str(idx[-3].date()))
     df = L.mark_to_market()
     out = capsys.readouterr().out
     assert "LEDGER ALARM" not in out
