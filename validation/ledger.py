@@ -74,6 +74,28 @@ def _atomic_to_parquet(df: pd.DataFrame, p: Path) -> None:
     os.replace(tmp, str(p))
 
 
+def _close_cache_path(asset: str) -> Path:
+    """Son başarılı CANLI endeks kapanışları; tek ağ arızasında frozen'a geri düşmeyi önler."""
+    return ROOT / "data" / "cache" / f"index_closes_{asset.lower()}.parquet"
+
+
+def _clean_closes(raw, asset: str = REF_ASSET) -> pd.Series:
+    """Ticker.history / yf.download çıktılarını aynı tz-naive Series biçimine getir."""
+    if isinstance(raw, pd.DataFrame):
+        if "Close" in raw.columns:
+            raw = raw["Close"]
+        elif isinstance(raw.columns, pd.MultiIndex) and "Close" in raw.columns.get_level_values(0):
+            raw = raw.xs("Close", axis=1, level=0)
+        if isinstance(raw, pd.DataFrame):
+            raw = raw.iloc[:, 0] if len(raw.columns) else pd.Series(dtype=float)
+    s = pd.to_numeric(pd.Series(raw), errors="coerce").dropna()
+    idx = pd.to_datetime(s.index)
+    if getattr(idx, "tz", None) is not None:
+        idx = idx.tz_localize(None)
+    s.index = idx.normalize()
+    return s[~s.index.duplicated(keep="last")].sort_index().rename(asset)
+
+
 def append_call(record: dict) -> Path:
     p = ledger_path()
     p.parent.mkdir(parents=True, exist_ok=True)
@@ -113,25 +135,52 @@ def load_ledger() -> pd.DataFrame:
 
 def _index_closes(asset: str = REF_ASSET) -> pd.Series:
     """Endeks günlük kapanışları. FORWARD ledger → CANLI gerekli (frozen prices 05-22'de biter, forward
-    günleri işaretleyemez) → önce canlı yfinance (^GSPC/^NDX, son ~2y), ağ koparsa frozen fallback."""
+    günleri işaretleyemez) → iki yfinance yolunu dene; ağ koparsa son başarılı CANLI cache,
+    ancak o da yoksa frozen fallback. Tazelik kararı mark_to_market'te ayrıca fail-closed verilir."""
     sym = {"SPX": "^GSPC", "NDX": "^NDX"}.get(asset, "^GSPC")
+    errors = []
     try:
         import yfinance as yf
-        h = yf.Ticker(sym).history(period="2y")["Close"]
-        h.index = pd.to_datetime(h.index).tz_localize(None)
-        h = h.dropna().sort_index()
-        if len(h):
-            return h
-    except Exception:
-        pass
+        attempts = (
+            ("Ticker.history", lambda: yf.Ticker(sym).history(period="2y")),
+            ("download", lambda: yf.download(sym, period="2y", progress=False, auto_adjust=False)),
+        )
+        for label, fetch in attempts:
+            try:
+                h = _clean_closes(fetch(), asset)
+                if not len(h):
+                    raise RuntimeError("boş seri")
+                cp = _close_cache_path(asset)
+                cp.parent.mkdir(parents=True, exist_ok=True)
+                _atomic_to_parquet(h.to_frame(), cp)
+                return h
+            except Exception as e:
+                errors.append(f"{label}: {type(e).__name__}: {str(e)[:90]}")
+    except Exception as e:
+        errors.append(f"yfinance import: {type(e).__name__}: {str(e)[:90]}")
+
+    cp = _close_cache_path(asset)
+    if cp.exists():
+        try:
+            cached = pd.read_parquet(cp)
+            h = _clean_closes(cached, asset)
+            if len(h):
+                print(f"  ⚠ LEDGER: canlı endeks fetch başarısız → son CANLI cache kullanılıyor "
+                      f"(son {h.index.max().date()}; {' | '.join(errors)})")
+                return h
+        except Exception as e:
+            errors.append(f"live-cache: {type(e).__name__}: {str(e)[:90]}")
+
     fp = ROOT / "spine" / "frozen" / "prices.parquet"     # fallback (ağ yok) — yalnız backtest-tarihi kapsar
     if fp.exists():
         px = pd.read_parquet(fp)
         if asset in px.columns:
-            s = px[asset].dropna()
-            s.index = pd.to_datetime(s.index)
-            return s.sort_index()
-    raise RuntimeError("endeks kapanışı alınamadı (yfinance + frozen ikisi de yok)")
+            s = _clean_closes(px[asset], asset)
+            print(f"  ⚠ LEDGER: canlı endeks + live-cache yok → FROZEN fallback "
+                  f"(son {s.index.max().date()}; {' | '.join(errors)})")
+            return s
+    raise RuntimeError("endeks kapanışı alınamadı (yfinance + live-cache + frozen yok): "
+                       + " | ".join(errors))
 
 
 def mark_to_market(asset: str = REF_ASSET, closes: pd.Series | None = None) -> pd.DataFrame:

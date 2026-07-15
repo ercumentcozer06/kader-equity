@@ -34,9 +34,11 @@ def build_brief(ticker: str = "SPY") -> dict:
     cfg = load_config()
     acc = yaml.safe_load(CFG_ACC.read_text(encoding="utf-8"))
     model, st, meta = S.build_state(cfg, ticker)
-    block = meta.get("data_junk") or model.get("overlay_block")    # 6b veri-çöp VEYA H3 overlay fail-safe
+    block = meta.get("data_junk") or model.get("overlay_block") or model.get("_live_error")   # 6b veri-çöp / H3 overlay / canlı-fetch exception (fail-closed)
     if block:                                          # → TRADE ÜRETME (fail-loud)
-        why = "VERİ ÇÖP" if meta.get("data_junk") else f"OVERLAY FAIL-SAFE: {model.get('overlay_block_reason')}"
+        why = ("VERİ ÇÖP" if meta.get("data_junk")
+               else f"OVERLAY FAIL-SAFE: {model.get('overlay_block_reason')}" if model.get("overlay_block")
+               else f"CANLI-FETCH HATASI (bayat, karar yok): {model.get('_live_error')}")
         meta["block_reason"] = why
         dec = {"direction": model.get("direction", "?"), "conviction": 0.0, "horizon": "—",
                "vehicle": {"class": "stand_aside", "expression": f"{why} → işlem yok", "instrument": None},

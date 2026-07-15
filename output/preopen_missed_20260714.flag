@@ -1,0 +1,1 @@
+[2026-07-14 17:00:12Z] run_preopen: KAÇIRILMIŞ İŞGÜNÜ — 09:31 ET penceresi geçti, run_daily bugün hiç koşmadı (yanlış pencere (ET Sal 13:00; yalnız 09:31 ET koşar)); gamma-ledger günü geri gelmez, elle telafi: python run_daily.py

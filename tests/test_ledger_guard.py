@@ -59,6 +59,40 @@ def test_h4_guard_fresh_source_no_alarm(tmp_path, monkeypatch, capsys):
     assert df["signal_pnl"].iloc[-1] is not None       # taze kaynakta işaretleme çalışıyor
 
 
+def test_index_closes_uses_last_live_cache_when_both_fetch_paths_fail(tmp_path, monkeypatch):
+    """Tek Yahoo kesintisi 05-22 frozen'a sıçramamalı; son başarılı canlı seri kullanılmalı."""
+    import yfinance as yf
+    from validation import ledger as L
+
+    monkeypatch.setattr(L, "ROOT", tmp_path)
+    idx = pd.bdate_range("2026-07-06", periods=5)
+    live = pd.DataFrame({"Close": [100.0, 101.0, 102.0, 103.0, 104.0]}, index=idx)
+
+    class GoodTicker:
+        def __init__(self, symbol):
+            self.symbol = symbol
+
+        def history(self, period):
+            return live
+
+    monkeypatch.setattr(yf, "Ticker", GoodTicker)
+    first = L._index_closes("SPX")
+    assert first.index.max() == idx.max()
+    assert L._close_cache_path("SPX").exists()
+
+    class BadTicker:
+        def __init__(self, symbol):
+            self.symbol = symbol
+
+        def history(self, period):
+            raise ConnectionError("offline")
+
+    monkeypatch.setattr(yf, "Ticker", BadTicker)
+    monkeypatch.setattr(yf, "download", lambda *a, **k: (_ for _ in ()).throw(ConnectionError("offline")))
+    cached = L._index_closes("SPX")
+    pd.testing.assert_series_equal(cached, first)
+
+
 def test_write_latest_updates_artifact(tmp_path, monkeypatch):
     import run
     monkeypatch.setattr(run, "ROOT", tmp_path)

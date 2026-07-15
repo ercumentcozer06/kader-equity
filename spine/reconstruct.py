@@ -412,6 +412,7 @@ def reconstruct_live(cfg: dict, force: bool = False) -> tuple[dict, dict, pd.Tim
             raise RuntimeError("KİLİT: vector.json ≠ provenance['vector'] — donmuş tide vektörü drift etti. "
                                "Kasıtlıysa gen_snapshot + provenance'ı birlikte güncelle.")
 
+    force = force or bool(os.environ.get("DEIRA_FORCE_FRESH"))   # full `run deira` -> gunluk cache baypas
     cached = None if force else _read_cache_today()
     if cached is not None:
         as_of = pd.Timestamp(cached["as_of"])

@@ -74,6 +74,7 @@ def build_state(cfg: dict, ticker: str = "SPY") -> tuple[dict, dict, dict]:
         cfg_frozen.setdefault("spine", {})["source"] = "frozen"
         model = run.build_decision(cfg_frozen)
         model["_live_error"] = f"{type(e).__name__}: {e}"
+        model["call_status"] = "STALE"                      # exception-fallback frozen = KARAR icin guncel DEGIL (fail-closed)
     # H7: QQQ gamma yoksa SPY'a düşüş SESSİZ değil — açık flag (brief'te uyarı). Ticker-doğru tercih edilir.
     gsub = "gamma_spy" if ticker == "SPY" else f"gamma_{ticker.lower()}"
     gamma = _latest(gsub)
