@@ -1,0 +1,62 @@
+{
+  "run_utc": "2026-07-17T10:35:04.128477+00:00",
+  "prospective_start": "2026-07-17",
+  "shadow": {
+    "SPY|P4_forced_selling|2R": {
+      "n": 0
+    },
+    "QQQ|P4_forced_selling|2R": {
+      "n": 0
+    },
+    "QQQ|P3_forced_buying|2R": {
+      "n": 0
+    },
+    "QQQ|P6_PDL_acceptance_short|2R": {
+      "n": 0
+    }
+  },
+  "prospective": {
+    "SPY|P4_forced_selling|2R": {
+      "status": "COLLECTING",
+      "n": 0,
+      "reason": "no prospective event yet"
+    },
+    "QQQ|P4_forced_selling|2R": {
+      "status": "COLLECTING",
+      "n": 0,
+      "reason": "no prospective event yet"
+    },
+    "QQQ|P3_forced_buying|2R": {
+      "status": "COLLECTING",
+      "n": 0,
+      "reason": "no prospective event yet"
+    },
+    "QQQ|P6_PDL_acceptance_short|2R": {
+      "status": "COLLECTING",
+      "n": 0,
+      "reason": "no prospective event yet"
+    }
+  },
+  "power_reference": {
+    "SPY|P4_forced_selling|2R": {
+      "historical_mean_2bps": 1.523170165165645,
+      "historical_sd_bps": 20.71722673839554,
+      "n_for_99pct_one_sided_90pct_power_if_effect_stable": 2409
+    },
+    "QQQ|P4_forced_selling|2R": {
+      "historical_mean_2bps": 3.5421543599972383,
+      "historical_sd_bps": 31.30469326061408,
+      "n_for_99pct_one_sided_90pct_power_if_effect_stable": 1017
+    },
+    "QQQ|P3_forced_buying|2R": {
+      "historical_mean_2bps": -1.3241586139935346,
+      "historical_sd_bps": 17.231886121228996,
+      "n_for_99pct_one_sided_90pct_power_if_effect_stable": 0
+    },
+    "QQQ|P6_PDL_acceptance_short|2R": {
+      "historical_mean_2bps": 3.329316649598528,
+      "historical_sd_bps": 32.97189533782448,
+      "n_for_99pct_one_sided_90pct_power_if_effect_stable": 1277
+    }
+  }
+}

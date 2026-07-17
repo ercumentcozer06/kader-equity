@@ -1,5 +1,13 @@
 """
-screen/snapshot_chains.py — RC0.3 GÜNLÜK SNAPSHOT JOB (FAZ-R sonrası da yaşar).
+screen/snapshot_chains.py — legacy MarketData collector / scheduled-task compatibility entry point.
+
+IMPORTANT (2026-07-16): the Windows task still points at this filename because
+its ACL is administrator-owned. The ``__main__`` block delegates to
+``snapshot_cboe_chains.py`` so all four full chains are archived without the
+MarketData free-credit bottleneck. The functions below remain available only
+for historical MarketData backfill compatibility.
+
+RC0.3 GÜNLÜK SNAPSHOT JOB (FAZ-R sonrası da yaşar).
 
 Her çağrıda config.SYMS (4 sembol) için EN-YENİ-MEVCUT işlem-gününü çeker:
 bugün-1 işlem-gününden geriye; 402 (veya başka hata) → bir işlem-günü daha geri; max MAX_TRIES deneme.
@@ -112,4 +120,13 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    # The MarketData.app free-credit budget cannot capture all four full
+    # chains every day (SPY consumed the allowance and the remaining symbols
+    # drifted stale).  Keep this legacy task entry point so the existing
+    # Windows task does not need administrator-only ACL changes, but route
+    # scheduled runs to the complete CBOE archive used by the live GEX engine.
+    try:
+        from screen.snapshot_cboe_chains import main as cboe_main
+    except ImportError:
+        from snapshot_cboe_chains import main as cboe_main
+    raise SystemExit(cboe_main())

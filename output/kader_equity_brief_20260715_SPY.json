@@ -1,11 +1,11 @@
 {
-  "computed_at": "2026-07-15T13:32:47.441754+00:00",
+  "computed_at": "2026-07-15T22:29:52.378625+00:00",
   "ticker": "SPY",
   "index": "SPX",
   "model": {
     "model_tag": "kader-equity-stack-2026-06-09",
     "as_of": "2026-07-15",
-    "computed_at": "2026-07-15T13:32:46.035209+00:00",
+    "computed_at": "2026-07-15T22:29:51.277647+00:00",
     "data_source": "live",
     "call_status": "current",
     "data_source_stale": null,
@@ -19,7 +19,7 @@
       "max_staleness_days": 5,
       "stale": false
     },
-    "tide_score": 8.4837,
+    "tide_score": 9.1047,
     "tide_dir": 1,
     "module_scores": {
       "m0": 0.0,
@@ -27,9 +27,9 @@
       "m2": 1.3994,
       "m3": 3.0,
       "m4": -2.76,
-      "m5": 12.7495,
+      "m5": 15.6608,
       "m6": 20.0,
-      "m8": -6.216,
+      "m8": -6.6645,
       "m9": 9.53,
       "m10": -14.19,
       "m11": 3.87
@@ -47,29 +47,29 @@
     "overlays": {
       "gex_shield": {
         "available": true,
-        "gex_z": 0.18,
-        "as_of": "2026-07-14",
+        "gex_z": 0.61,
+        "as_of": "2026-07-15",
         "factor": 1.0,
         "short_gamma": false,
         "z_stale": false,
         "z_stale_obs": 0,
-        "src_age_td": 1,
-        "reason": "z(GEX) +0.2 ≥ −1 → normal (factor 1.0)"
+        "src_age_td": 0,
+        "reason": "z(GEX) +0.6 ≥ −1 → normal (factor 1.0)"
       },
       "dispersion_ensemble": {
         "available": true,
         "factor": 0.0,
-        "froth_pct": 0.993,
+        "froth_pct": 0.996,
         "components": {
           "spread_pct": 0.997,
           "dspx_pct": 0.999,
-          "cor1m_inv_pct": 0.984
+          "cor1m_inv_pct": 0.996
         },
         "spread": 33.62,
         "as_of": "2026-07-14",
-        "age_days": 1,
+        "age_days": 2,
         "froth": true,
-        "reason": "froth_pct 0.99 ≥ 0.70 → dispersion de-risk (factor 0.00; spr1.00/dspx1.00/¬cor0.98)"
+        "reason": "froth_pct 1.00 ≥ 0.70 → dispersion de-risk (factor 0.00; spr1.00/dspx1.00/¬cor1.00)"
       }
     },
     "opex_gate": {
@@ -143,9 +143,9 @@
       "last_closed_quarter": "2026Q2",
       "roll4q_filings": 1531,
       "z10y": 0.67,
-      "last90d_new": 362,
-      "z90": 0.37,
-      "live_as_of": "2026-07-15",
+      "last90d_new": 354,
+      "z90": 0.31,
+      "live_as_of": "2026-07-16",
       "stale": false,
       "mega_hits_120d": [
         {
@@ -212,7 +212,7 @@
       "mega_ceiling_usd": 1000000000.0,
       "mega_label": "Space Exploration Technologies",
       "mega_hi": false,
-      "tide_score": 8.48,
+      "tide_score": 9.1,
       "tide_dir": 1,
       "tide_declining_63d": false,
       "demand_weak": false,
@@ -263,29 +263,29 @@
   },
   "state": {
     "ticker": "SPY",
-    "spot": 7543.59,
-    "net_gex_bn": -22.558,
-    "net_vanna_m": 38669.42,
-    "net_charm_m": -37941.11,
-    "gex_flip": 7585.2,
+    "spot": 7572.4,
+    "net_gex_bn": -3.968,
+    "net_vanna_m": 36502.79,
+    "net_charm_m": -14249.11,
+    "gex_flip": 7578.86,
     "call_wall": 8000.0,
     "ghost": 7600.0,
-    "put_wall": 7500.0,
-    "max_pain": 7400.0,
-    "exp_move_1d": 64.2,
+    "put_wall": 7550.0,
+    "max_pain": 7380.0,
+    "exp_move_1d": 61.82,
     "rv_ratio": 0.76,
     "gamma_regime": "SHORT GAMMA",
     "cor1m": null,
-    "atm_iv": 10.76,
-    "rr_skew": 3.02,
-    "ts_ratio": 0.649,
-    "atm_iv_30d": 13.51,
-    "realized_vol": 12.85,
-    "vrp": 0.66
+    "atm_iv": 10.31,
+    "rr_skew": 2.59,
+    "ts_ratio": 0.63,
+    "atm_iv_30d": 12.96,
+    "realized_vol": 13.11,
+    "vrp": -0.15
   },
   "meta": {
-    "snapshot_as_of": "2026-07-15",
-    "snapshot_age_days": 0,
+    "snapshot_as_of": "2026-07-16",
+    "snapshot_age_days": -1,
     "gamma_available": true,
     "surface_available": true,
     "model_call_status": "current",
@@ -293,10 +293,10 @@
     "data_ok": true,
     "data_fails": [],
     "data_checks": {
-      "spot": 7543.59,
-      "front_atm_iv": 10.76,
-      "exp_move_1d": 64.2,
-      "net_gex_bn": -22.558,
+      "spot": 7572.4,
+      "front_atm_iv": 10.31,
+      "exp_move_1d": 61.82,
+      "net_gex_bn": -3.968,
       "em_cross_ratio": 1.26
     },
     "data_junk": false,
@@ -317,19 +317,19 @@
     "regime": {
       "short_gamma": true,
       "above_flip": false,
-      "dist_flip_em": 0.6481308411214902,
+      "dist_flip_em": 0.10449692656098408,
       "froth": false,
       "froth_soft": false,
-      "near_wall": false,
+      "near_wall": true,
       "backwardation": false,
       "calm": true,
       "cor1m": null,
-      "vrp": 0.66,
+      "vrp": -0.15,
       "vrp_rich": false,
-      "vrp_cheap": false,
+      "vrp_cheap": true,
       "ticker": "SPY"
     },
-    "rationale": "model LONG (konviksiyon 0.00); rejim: kısa-gamma, flip-altı, froth-yok, vol-sakin → konviksiyon 0.00 < 0.15 → işlem yok"
+    "rationale": "model LONG (konviksiyon 0.00); rejim: kısa-gamma, flip-altı, froth-yok, vol-sakin, duvara-yakın → konviksiyon 0.00 < 0.15 → işlem yok"
   },
   "trade": {
     "class": "stand_aside",

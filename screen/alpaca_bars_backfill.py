@@ -81,10 +81,17 @@ def backfill(start: str = "2020-09-01", end: str = None) -> int:    # IEX-free d
             ex = pd.read_parquet(p); parts.append(ex)
             have_months = set(pd.to_datetime(ex.index.get_level_values(-1)).strftime("%Y-%m")) if len(ex) else set()
         months = pd.date_range(start, end, freq="MS")
+        # Merely seeing a month in the parquet does not mean that month is
+        # complete. The old resumable logic skipped a current month forever after
+        # its first partial fetch (the local files therefore stopped at
+        # 2026-06-10). Re-fetch the final two calendar months on every run and
+        # de-duplicate; this is only two API calls per symbol and also repairs a
+        # truncated previous month after the calendar rolls forward.
+        refresh_months = set(m.strftime("%Y-%m") for m in months[-2:])
         n_new = 0
         for m in months:
             mk = m.strftime("%Y-%m")
-            if mk in have_months:
+            if mk in have_months and mk not in refresh_months:
                 continue
             s = m.tz_localize("UTC"); e = (m + pd.offsets.MonthEnd(1)).tz_localize("UTC")
             try:

@@ -1,0 +1,144 @@
+{
+  "audited_utc": "2026-07-16T19:54:55.725020+00:00",
+  "status": "ok",
+  "checks": [
+    {
+      "name": "alpaca_intraday.SPY.exists",
+      "passed": true,
+      "value": 7,
+      "threshold": ">=1 file"
+    },
+    {
+      "name": "alpaca_intraday.SPY.oi_coverage",
+      "passed": true,
+      "value": 0.678,
+      "threshold": ">=0.50"
+    },
+    {
+      "name": "alpaca_intraday.SPY.iv_coverage",
+      "passed": true,
+      "value": 0.8866,
+      "threshold": ">=0.70"
+    },
+    {
+      "name": "alpaca_intraday.SPY.quote_coverage",
+      "passed": true,
+      "value": 1.0,
+      "threshold": ">=0.90"
+    },
+    {
+      "name": "alpaca_intraday.QQQ.exists",
+      "passed": true,
+      "value": 7,
+      "threshold": ">=1 file"
+    },
+    {
+      "name": "alpaca_intraday.QQQ.oi_coverage",
+      "passed": true,
+      "value": 0.6834,
+      "threshold": ">=0.50"
+    },
+    {
+      "name": "alpaca_intraday.QQQ.iv_coverage",
+      "passed": true,
+      "value": 0.8632,
+      "threshold": ">=0.70"
+    },
+    {
+      "name": "alpaca_intraday.QQQ.quote_coverage",
+      "passed": true,
+      "value": 1.0,
+      "threshold": ">=0.90"
+    },
+    {
+      "name": "alpaca_eod.SPY.exists",
+      "passed": true,
+      "value": 3,
+      "threshold": ">=1 file"
+    },
+    {
+      "name": "alpaca_eod.SPY.oi_coverage",
+      "passed": true,
+      "value": 0.7097,
+      "threshold": ">=0.50"
+    },
+    {
+      "name": "alpaca_eod.SPY.iv_coverage",
+      "passed": true,
+      "value": 0.8689,
+      "threshold": ">=0.70"
+    },
+    {
+      "name": "alpaca_eod.SPY.quote_coverage",
+      "passed": true,
+      "value": 1.0,
+      "threshold": ">=0.90"
+    },
+    {
+      "name": "alpaca_eod.QQQ.exists",
+      "passed": true,
+      "value": 1,
+      "threshold": ">=1 file"
+    },
+    {
+      "name": "alpaca_eod.QQQ.oi_coverage",
+      "passed": true,
+      "value": 0.6811,
+      "threshold": ">=0.50"
+    },
+    {
+      "name": "alpaca_eod.QQQ.iv_coverage",
+      "passed": true,
+      "value": 0.8301,
+      "threshold": ">=0.70"
+    },
+    {
+      "name": "alpaca_eod.QQQ.quote_coverage",
+      "passed": true,
+      "value": 1.0,
+      "threshold": ">=0.90"
+    },
+    {
+      "name": "occ.exists",
+      "passed": true,
+      "value": "C:\\Users\\admin\\Downloads\\kader-equity\\data\\option_research\\occ_participant_daily.parquet",
+      "threshold": "file exists"
+    },
+    {
+      "name": "occ.symbols",
+      "passed": true,
+      "value": {
+        "NDX": 477,
+        "QQQ": 477,
+        "SPX": 477,
+        "SPY": 477
+      },
+      "threshold": "all four products"
+    },
+    {
+      "name": "occ.unique_keys",
+      "passed": true,
+      "value": 0,
+      "threshold": "0 duplicates"
+    },
+    {
+      "name": "features.exists",
+      "passed": true,
+      "value": "C:\\Users\\admin\\Downloads\\kader-equity\\data\\option_research\\dynamic_surface_features.parquet",
+      "threshold": "file exists"
+    },
+    {
+      "name": "features.schema",
+      "passed": true,
+      "value": [],
+      "threshold": "no missing required columns"
+    },
+    {
+      "name": "features.atm_iv",
+      "passed": true,
+      "value": 0,
+      "threshold": "0 missing"
+    }
+  ],
+  "failed": []
+}
