@@ -1,7 +1,7 @@
 {
   "model_tag": "kader-equity-stack-2026-06-09",
   "as_of": "2026-07-17",
-  "computed_at": "2026-07-17T20:07:55.319329+00:00",
+  "computed_at": "2026-07-17T23:36:31.862156+00:00",
   "data_source": "live",
   "call_status": "current",
   "data_source_stale": null,
@@ -19,7 +19,7 @@
   "tide_dir": 1,
   "module_scores": {
     "m0": 0.0,
-    "m1": -1.9593,
+    "m1": -1.7513,
     "m2": 7.4388,
     "m3": 3.0,
     "m4": -3.127,
@@ -43,29 +43,29 @@
   "overlays": {
     "gex_shield": {
       "available": true,
-      "gex_z": -0.13,
-      "as_of": "2026-07-16",
+      "gex_z": -0.23,
+      "as_of": "2026-07-17",
       "factor": 1.0,
       "short_gamma": false,
       "z_stale": false,
       "z_stale_obs": 0,
-      "src_age_td": 1,
-      "reason": "z(GEX) -0.1 ≥ −1 → normal (factor 1.0)"
+      "src_age_td": 0,
+      "reason": "z(GEX) -0.2 ≥ −1 → normal (factor 1.0)"
     },
     "dispersion_ensemble": {
       "available": true,
       "factor": 0.0,
-      "froth_pct": 0.988,
+      "froth_pct": 0.978,
       "components": {
         "spread_pct": 0.991,
-        "dspx_pct": 0.991,
-        "cor1m_inv_pct": 0.981
+        "dspx_pct": 0.996,
+        "cor1m_inv_pct": 0.96
       },
       "spread": 32.66,
       "as_of": "2026-07-16",
-      "age_days": 1,
+      "age_days": 2,
       "froth": true,
-      "reason": "froth_pct 0.99 ≥ 0.70 → dispersion de-risk (factor 0.00; spr0.99/dspx0.99/¬cor0.98)"
+      "reason": "froth_pct 0.98 ≥ 0.70 → dispersion de-risk (factor 0.00; spr0.99/dspx1.00/¬cor0.96)"
     }
   },
   "opex_gate": {
@@ -146,7 +146,7 @@
     "z10y": 0.67,
     "last90d_new": 349,
     "z90": 0.28,
-    "live_as_of": "2026-07-17",
+    "live_as_of": "2026-07-18",
     "stale": false,
     "mega_hits_120d": [
       {

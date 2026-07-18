@@ -1,11 +1,11 @@
 {
-  "computed_at": "2026-07-17T20:06:22.415879+00:00",
+  "computed_at": "2026-07-17T23:35:12.474086+00:00",
   "ticker": "SPY",
   "index": "SPX",
   "model": {
     "model_tag": "kader-equity-stack-2026-06-09",
     "as_of": "2026-07-17",
-    "computed_at": "2026-07-17T20:06:21.421490+00:00",
+    "computed_at": "2026-07-17T23:35:11.479550+00:00",
     "data_source": "live",
     "call_status": "current",
     "data_source_stale": null,
@@ -23,7 +23,7 @@
     "tide_dir": 1,
     "module_scores": {
       "m0": 0.0,
-      "m1": -1.9593,
+      "m1": -1.7513,
       "m2": 7.4388,
       "m3": 3.0,
       "m4": -3.127,
@@ -47,29 +47,29 @@
     "overlays": {
       "gex_shield": {
         "available": true,
-        "gex_z": -0.13,
-        "as_of": "2026-07-16",
+        "gex_z": -0.23,
+        "as_of": "2026-07-17",
         "factor": 1.0,
         "short_gamma": false,
         "z_stale": false,
         "z_stale_obs": 0,
-        "src_age_td": 1,
-        "reason": "z(GEX) -0.1 ≥ −1 → normal (factor 1.0)"
+        "src_age_td": 0,
+        "reason": "z(GEX) -0.2 ≥ −1 → normal (factor 1.0)"
       },
       "dispersion_ensemble": {
         "available": true,
         "factor": 0.0,
-        "froth_pct": 0.988,
+        "froth_pct": 0.978,
         "components": {
           "spread_pct": 0.991,
-          "dspx_pct": 0.991,
-          "cor1m_inv_pct": 0.981
+          "dspx_pct": 0.996,
+          "cor1m_inv_pct": 0.96
         },
         "spread": 32.66,
         "as_of": "2026-07-16",
-        "age_days": 1,
+        "age_days": 2,
         "froth": true,
-        "reason": "froth_pct 0.99 ≥ 0.70 → dispersion de-risk (factor 0.00; spr0.99/dspx0.99/¬cor0.98)"
+        "reason": "froth_pct 0.98 ≥ 0.70 → dispersion de-risk (factor 0.00; spr0.99/dspx1.00/¬cor0.96)"
       }
     },
     "opex_gate": {
@@ -150,7 +150,7 @@
       "z10y": 0.67,
       "last90d_new": 349,
       "z90": 0.28,
-      "live_as_of": "2026-07-17",
+      "live_as_of": "2026-07-18",
       "stale": false,
       "mega_hits_120d": [
         {
@@ -268,29 +268,29 @@
   },
   "state": {
     "ticker": "SPY",
-    "spot": 7464.05,
-    "net_gex_bn": -49.32,
-    "net_vanna_m": 36350.49,
-    "net_charm_m": -34483.42,
-    "gex_flip": 7762.75,
+    "spot": 7457.69,
+    "net_gex_bn": -29.449,
+    "net_vanna_m": 35455.82,
+    "net_charm_m": -8088.14,
+    "gex_flip": 7761.84,
     "call_wall": 8000.0,
     "ghost": 8000.0,
     "put_wall": 7000.0,
-    "max_pain": 7400.0,
-    "exp_move_1d": 69.12,
-    "rv_ratio": 0.844,
+    "max_pain": 7375.0,
+    "exp_move_1d": 69.11,
+    "rv_ratio": 0.839,
     "gamma_regime": "SHORT GAMMA",
     "cor1m": null,
-    "atm_iv": 14.03,
-    "rr_skew": 4.7,
-    "ts_ratio": 0.827,
-    "atm_iv_30d": 14.7,
-    "realized_vol": 13.05,
-    "vrp": 1.65
+    "atm_iv": 14.22,
+    "rr_skew": 4.26,
+    "ts_ratio": 0.832,
+    "atm_iv_30d": 14.71,
+    "realized_vol": 13.02,
+    "vrp": 1.69
   },
   "meta": {
-    "snapshot_as_of": "2026-07-17",
-    "snapshot_age_days": 0,
+    "snapshot_as_of": "2026-07-18",
+    "snapshot_age_days": -1,
     "gamma_available": true,
     "surface_available": true,
     "model_call_status": "current",
@@ -298,11 +298,11 @@
     "data_ok": true,
     "data_fails": [],
     "data_checks": {
-      "spot": 7464.05,
-      "front_atm_iv": 14.03,
-      "exp_move_1d": 69.12,
-      "net_gex_bn": -49.32,
-      "em_cross_ratio": 1.05
+      "spot": 7457.69,
+      "front_atm_iv": 14.22,
+      "exp_move_1d": 69.11,
+      "net_gex_bn": -29.449,
+      "em_cross_ratio": 1.03
     },
     "data_junk": false,
     "gamma_fallback_to_spy": false,
@@ -322,14 +322,14 @@
     "regime": {
       "short_gamma": true,
       "above_flip": false,
-      "dist_flip_em": 4.321469907407405,
+      "dist_flip_em": 4.400954999276523,
       "froth": false,
       "froth_soft": false,
       "near_wall": false,
       "backwardation": false,
       "calm": true,
       "cor1m": null,
-      "vrp": 1.65,
+      "vrp": 1.69,
       "vrp_rich": false,
       "vrp_cheap": false,
       "ticker": "SPY"

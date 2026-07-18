@@ -1,11 +1,11 @@
 {
-  "computed_at": "2026-07-17T20:07:07.121030+00:00",
+  "computed_at": "2026-07-17T23:35:52.409074+00:00",
   "ticker": "QQQ",
   "index": "NDX",
   "model": {
     "model_tag": "kader-equity-stack-2026-06-09",
     "as_of": "2026-07-17",
-    "computed_at": "2026-07-17T20:07:06.960754+00:00",
+    "computed_at": "2026-07-17T23:35:52.264438+00:00",
     "data_source": "live",
     "call_status": "current",
     "data_source_stale": null,
@@ -23,7 +23,7 @@
     "tide_dir": 1,
     "module_scores": {
       "m0": 0.0,
-      "m1": -1.9593,
+      "m1": -1.7513,
       "m2": 7.4388,
       "m3": 3.0,
       "m4": -3.127,
@@ -47,29 +47,29 @@
     "overlays": {
       "gex_shield": {
         "available": true,
-        "gex_z": -0.13,
-        "as_of": "2026-07-16",
+        "gex_z": -0.23,
+        "as_of": "2026-07-17",
         "factor": 1.0,
         "short_gamma": false,
         "z_stale": false,
         "z_stale_obs": 0,
-        "src_age_td": 1,
-        "reason": "z(GEX) -0.1 ≥ −1 → normal (factor 1.0)"
+        "src_age_td": 0,
+        "reason": "z(GEX) -0.2 ≥ −1 → normal (factor 1.0)"
       },
       "dispersion_ensemble": {
         "available": true,
         "factor": 0.0,
-        "froth_pct": 0.988,
+        "froth_pct": 0.978,
         "components": {
           "spread_pct": 0.991,
-          "dspx_pct": 0.991,
-          "cor1m_inv_pct": 0.981
+          "dspx_pct": 0.996,
+          "cor1m_inv_pct": 0.96
         },
         "spread": 32.66,
         "as_of": "2026-07-16",
-        "age_days": 1,
+        "age_days": 2,
         "froth": true,
-        "reason": "froth_pct 0.99 ≥ 0.70 → dispersion de-risk (factor 0.00; spr0.99/dspx0.99/¬cor0.98)"
+        "reason": "froth_pct 0.98 ≥ 0.70 → dispersion de-risk (factor 0.00; spr0.99/dspx1.00/¬cor0.96)"
       }
     },
     "opex_gate": {
@@ -150,7 +150,7 @@
       "z10y": 0.67,
       "last90d_new": 349,
       "z90": 0.28,
-      "live_as_of": "2026-07-17",
+      "live_as_of": "2026-07-18",
       "stale": false,
       "mega_hits_120d": [
         {
@@ -268,29 +268,29 @@
   },
   "state": {
     "ticker": "QQQ",
-    "spot": 696.74,
-    "net_gex_bn": -7.267,
-    "net_vanna_m": 1299.78,
-    "net_charm_m": -9727.9,
-    "gex_flip": 751.71,
-    "call_wall": 800.0,
+    "spot": 694.28,
+    "net_gex_bn": -2.513,
+    "net_vanna_m": 1032.95,
+    "net_charm_m": -662.88,
+    "gex_flip": 796.95,
+    "call_wall": 730.0,
     "ghost": 730.0,
-    "put_wall": 695.0,
-    "max_pain": 705.0,
-    "exp_move_1d": 11.43,
+    "put_wall": 690.0,
+    "max_pain": 700.0,
+    "exp_move_1d": 11.6,
     "rv_ratio": 0.764,
     "gamma_regime": "SHORT GAMMA",
     "cor1m": null,
-    "atm_iv": 25.72,
-    "rr_skew": 7.08,
-    "ts_ratio": 0.992,
-    "atm_iv_30d": 26.04,
+    "atm_iv": 26.87,
+    "rr_skew": 7.69,
+    "ts_ratio": 1.038,
+    "atm_iv_30d": 26.52,
     "realized_vol": 25.54,
-    "vrp": 0.5
+    "vrp": 0.98
   },
   "meta": {
-    "snapshot_as_of": "2026-07-17",
-    "snapshot_age_days": 0,
+    "snapshot_as_of": "2026-07-18",
+    "snapshot_age_days": -1,
     "gamma_available": true,
     "surface_available": true,
     "model_call_status": "current",
@@ -298,11 +298,11 @@
     "data_ok": true,
     "data_fails": [],
     "data_checks": {
-      "spot": 696.74,
-      "front_atm_iv": 25.72,
-      "exp_move_1d": 11.43,
-      "net_gex_bn": -7.267,
-      "em_cross_ratio": 1.01
+      "spot": 694.28,
+      "front_atm_iv": 26.87,
+      "exp_move_1d": 11.6,
+      "net_gex_bn": -2.513,
+      "em_cross_ratio": 0.99
     },
     "data_junk": false,
     "gamma_fallback_to_spy": false,
@@ -322,19 +322,19 @@
     "regime": {
       "short_gamma": true,
       "above_flip": false,
-      "dist_flip_em": 4.809273840769906,
+      "dist_flip_em": 8.850862068965524,
       "froth": false,
       "froth_soft": false,
       "near_wall": true,
-      "backwardation": false,
+      "backwardation": true,
       "calm": false,
       "cor1m": null,
-      "vrp": 0.5,
+      "vrp": 0.98,
       "vrp_rich": false,
       "vrp_cheap": false,
       "ticker": "QQQ"
     },
-    "rationale": "model LONG (konviksiyon 0.00); rejim: kısa-gamma, flip-altı, froth-yok, vol-nötr, duvara-yakın → konviksiyon 0.00 < 0.15 → işlem yok"
+    "rationale": "model LONG (konviksiyon 0.00); rejim: kısa-gamma, flip-altı, froth-yok, vol-backward/stres, duvara-yakın → konviksiyon 0.00 < 0.15 → işlem yok"
   },
   "trade": {
     "class": "stand_aside",
