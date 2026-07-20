@@ -1,17 +1,17 @@
 {
   "model_tag": "kader-equity-stack-2026-06-09",
   "as_of": "2026-07-17",
-  "computed_at": "2026-07-17T23:36:31.862156+00:00",
+  "computed_at": "2026-07-18T22:39:57.420430+00:00",
   "data_source": "live",
   "call_status": "current",
   "data_source_stale": null,
-  "market_open": true,
-  "market_closed_reason": null,
+  "market_open": false,
+  "market_closed_reason": "hafta sonu",
   "_live_error": null,
   "freshness": {
     "as_of": "2026-07-17",
-    "today": "2026-07-17",
-    "age_days": 0,
+    "today": "2026-07-18",
+    "age_days": 1,
     "max_staleness_days": 5,
     "stale": false
   },
@@ -49,44 +49,39 @@
       "short_gamma": false,
       "z_stale": false,
       "z_stale_obs": 0,
-      "src_age_td": 0,
+      "src_age_td": 1,
       "reason": "z(GEX) -0.2 ≥ −1 → normal (factor 1.0)"
     },
     "dispersion_ensemble": {
       "available": true,
       "factor": 0.0,
-      "froth_pct": 0.978,
+      "froth_pct": 0.981,
       "components": {
-        "spread_pct": 0.991,
+        "spread_pct": 0.988,
         "dspx_pct": 0.996,
         "cor1m_inv_pct": 0.96
       },
-      "spread": 32.66,
-      "as_of": "2026-07-16",
-      "age_days": 2,
+      "spread": 31.69,
+      "as_of": "2026-07-17",
+      "age_days": 1,
       "froth": true,
       "reason": "froth_pct 0.98 ≥ 0.70 → dispersion de-risk (factor 0.00; spr0.99/dspx1.00/¬cor0.96)"
     }
   },
   "opex_gate": {
-    "next_opex": "2026-07-17",
+    "next_opex": "2026-08-21",
     "next_opex_weekday": "Friday",
-    "third_friday": "2026-07-17",
+    "third_friday": "2026-08-21",
     "holiday_shifted": false,
     "is_quad_witch_next": false,
-    "trading_days_until": 0,
-    "is_opex_today": true,
-    "warn": true,
+    "trading_days_until": 24,
+    "is_opex_today": false,
+    "warn": false,
     "warn_days": 3,
     "flat_assets": [
       "NDX"
     ],
-    "asset_overrides": {
-      "NDX": {
-        "deploy": 0.0,
-        "reason": "monthly OpEx günü → NDX FLAT (anomali p=0.001, NDX)"
-      }
-    },
+    "asset_overrides": {},
     "note": "veri-doğrulanmış (FINDING 23: NDX OpEx −14bps p=0.001, 4 on yıl); taktik NDX de-risk + uyarı; 3.-Cuma NYSE tatiliyse fiili vade Perşembe'ye kayar (Juneteenth/Good Friday vb.)"
   },
   "asset_deploy": {
@@ -94,7 +89,7 @@
     "NDX": 0.0
   },
   "santa_context": {
-    "as_of": "2026-07-17",
+    "as_of": "2026-07-18",
     "window_months": [
       11,
       12
@@ -128,7 +123,7 @@
       }
     },
     "pit_date": "2026-06-15",
-    "pit_age_days": 32,
+    "pit_age_days": 33,
     "stale": false,
     "ratio4q_nfc_pct_ngdp": -0.48,
     "z10y_nfc": 1.29,
@@ -144,9 +139,9 @@
     "last_closed_quarter": "2026Q2",
     "roll4q_filings": 1531,
     "z10y": 0.67,
-    "last90d_new": 349,
-    "z90": 0.28,
-    "live_as_of": "2026-07-18",
+    "last90d_new": 360,
+    "z90": 0.36,
+    "live_as_of": "2026-07-19",
     "stale": false,
     "mega_hits_120d": [
       {
@@ -161,7 +156,7 @@
     "label": "dosyalama = NIYET, gerceklesme degil; kayit-tavani != arz-buyuklugu; baglam-bandi — pozisyon etkisi SIFIR"
   },
   "ipo_supply_waves": {
-    "as_of": "2026-07-17",
+    "as_of": "2026-07-18",
     "n_active": 1,
     "waves": [
       {
@@ -177,14 +172,14 @@
         ],
         "lockup_status": "parse-ok",
         "lockup_expiry_date": "2027-06-04",
-        "days_to_lockup": 322,
+        "days_to_lockup": 321,
         "lockup_shares_est": 7800000000.0,
         "lockup_pct_note": "greater than 63% of shares outstanding (pre-offering)",
         "index_incl_eligible": true,
         "index_incl_window": {
           "earliest": "2026-09-01",
           "latest": "2027-06-03",
-          "days_to_earliest": 46
+          "days_to_earliest": 45
         },
         "forced_passive_demand_usd_lo": 12937499982.0,
         "forced_passive_demand_usd_hi": 17249999976.0,
