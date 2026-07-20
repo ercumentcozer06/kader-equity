@@ -13,6 +13,11 @@ from screen.collect_option_research import collect  # noqa: E402
 from backtest.gex_master.build_dynamic_option_features import main as build_features  # noqa: E402
 from screen.export_authorized_gex_forward import main as export_forward  # noqa: E402
 
+# Mag-7 (NDX ~%50) — dispersion-RV implied-leg (tek-isim ATM-IV) arşivi. YALNIZ EOD (gunluk sinyal;
+# intraday'e gerek yok). Hafif pencere (yakin-vade ±%12) = ATM-30d IV yeterli, full-chain degil.
+# Feasibility (2026-07-20): froth-directional zaten deploy; RV edge'i implied-realized icin bu leg SART.
+MAG7 = ["AAPL", "MSFT", "NVDA", "GOOGL", "AMZN", "META", "TSLA"]
+
 
 def main(argv=None) -> int:
     p = argparse.ArgumentParser()
@@ -23,6 +28,15 @@ def main(argv=None) -> int:
     try:
         rc = collect(a.mode, ["SPY", "QQQ"], 45 if a.mode == "intraday" else 365,
                      0.12 if a.mode == "intraday" else 0.35, a.force)
+        # Mag-7 implied-leg (EOD-only, hafif): ayri cagri, dispersion-RV arsivini besler. HATASI ana
+        # GEX borusunu KESMEZ (deneysel lane) — sadece pipeline log'una uyari dusurur.
+        if a.mode == "eod":
+            try:
+                m7 = collect("eod", MAG7, 45, 0.12, a.force)
+                if m7 != 0:
+                    print(json.dumps({"warn": "mag7_collect", "rc": m7}))
+            except Exception as _m7e:
+                print(json.dumps({"warn": "mag7_collect", "error": f"{type(_m7e).__name__}:{str(_m7e)[:160]}"}))
         if rc == 0:
             rc = build_features()
         if rc == 0 and a.mode == "eod":

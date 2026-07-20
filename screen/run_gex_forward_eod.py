@@ -62,6 +62,9 @@ def main() -> int:
         old = pd.read_parquet(LEDGER)
         new = pd.concat([old, new], ignore_index=True)
     new["as_of"] = pd.to_datetime(new["as_of"])
+    # capture_ts_utc: yeni satirlar .isoformat() ile STRING uretir, eski defter datetime64[UTC] tutar
+    # -> concat'ta object-mix -> pyarrow to_parquet coker (ArrowTypeError). Yazmadan once tek-tipe zorla.
+    new["capture_ts_utc"] = pd.to_datetime(new["capture_ts_utc"], utc=True, errors="coerce")
     new = new.sort_values(["as_of", "ticker", "capture_ts_utc"]).drop_duplicates(
         ["as_of", "ticker"], keep="last")
     LEDGER.parent.mkdir(parents=True, exist_ok=True)
