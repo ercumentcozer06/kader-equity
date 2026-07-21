@@ -1,12 +1,33 @@
 {
-  "run_utc": "2026-07-20T16:55:43.939887+00:00",
+  "run_utc": "2026-07-20T21:21:00.476281+00:00",
   "prospective_start": "2026-07-17",
   "shadow": {
     "SPY|P4_forced_selling|2R": {
       "n": 0
     },
     "QQQ|P4_forced_selling|2R": {
-      "n": 0
+      "n": 1,
+      "mean_net_bps": -28.7520710904523,
+      "median_net_bps": -28.7520710904523,
+      "t": NaN,
+      "p_one_sided": NaN,
+      "hit": 0.0,
+      "profit_factor": 0.0,
+      "mean_r_gross": -1.0,
+      "mean_mfe_r": 0.6200647617872372,
+      "mean_mae_r": 1.0156233167205513,
+      "block5_ci95_bps": [
+        NaN,
+        NaN
+      ],
+      "block5_probability_mean_gt0": NaN,
+      "cum_return": -0.002875207109045208,
+      "max_drawdown": 0.0,
+      "top3_pnl_share": NaN,
+      "underpowered_n_lt_30": true,
+      "exit_reasons": {
+        "stop": 1
+      }
     },
     "QQQ|P3_forced_buying|2R": {
       "n": 0
@@ -23,8 +44,62 @@
     },
     "QQQ|P4_forced_selling|2R": {
       "status": "COLLECTING",
-      "n": 0,
-      "reason": "no prospective event yet"
+      "n": 1,
+      "metrics_2bps": {
+        "n": 1,
+        "mean_net_bps": -28.7520710904523,
+        "median_net_bps": -28.7520710904523,
+        "t": NaN,
+        "p_one_sided": NaN,
+        "hit": 0.0,
+        "profit_factor": 0.0,
+        "mean_r_gross": -1.0,
+        "mean_mfe_r": 0.6200647617872372,
+        "mean_mae_r": 1.0156233167205513,
+        "block5_ci95_bps": [
+          NaN,
+          NaN
+        ],
+        "block5_probability_mean_gt0": NaN,
+        "cum_return": -0.002875207109045208,
+        "max_drawdown": 0.0,
+        "top3_pnl_share": NaN,
+        "underpowered_n_lt_30": true,
+        "exit_reasons": {
+          "stop": 1
+        }
+      },
+      "metrics_5bps": {
+        "n": 1,
+        "mean_net_bps": -31.7520710904523,
+        "median_net_bps": -31.7520710904523,
+        "t": NaN,
+        "p_one_sided": NaN,
+        "hit": 0.0,
+        "profit_factor": 0.0,
+        "mean_r_gross": -1.0,
+        "mean_mfe_r": 0.6200647617872372,
+        "mean_mae_r": 1.0156233167205513,
+        "block5_ci95_bps": [
+          NaN,
+          NaN
+        ],
+        "block5_probability_mean_gt0": NaN,
+        "cum_return": -0.003175207109045175,
+        "max_drawdown": 0.0,
+        "top3_pnl_share": NaN,
+        "underpowered_n_lt_30": true,
+        "exit_reasons": {
+          "stop": 1
+        }
+      },
+      "bootstrap_lower99_mean_bps_5bps": null,
+      "bootstrap_upper95_mean_bps_5bps": null,
+      "half_means_bps_5bps": [
+        null,
+        null
+      ],
+      "top5_share_5bps": null
     },
     "QQQ|P3_forced_buying|2R": {
       "status": "COLLECTING",
