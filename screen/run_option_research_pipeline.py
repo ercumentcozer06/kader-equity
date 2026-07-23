@@ -19,6 +19,18 @@ from screen.export_authorized_gex_forward import main as export_forward  # noqa:
 MAG7 = ["AAPL", "MSFT", "NVDA", "GOOGL", "AMZN", "META", "TSLA"]
 
 
+def _alert_mag7_fail(detail: str) -> None:
+    """Mag-7 IV toplama arizasi ana GEX borusunu KESMEZ (deneysel lane, satir 31-39 yorumu) ama sessiz
+    print-only kalirsa kalici bir Alpaca auth/quota arizasi dispersion-RV arsivini fark edilmeden
+    biriktirmeyi durdurabilirdi. Repo-konvansiyonu (run_daily.py/heartbeat.py): notify.alert, best-effort,
+    cooldown/dedup notify icinde zaten var -> ayrica tekrar-sayaci gerekmez."""
+    try:
+        import notify
+        notify.alert("MAG7 implied-IV EOD toplama basarisiz", detail)
+    except Exception:
+        pass
+
+
 def main(argv=None) -> int:
     p = argparse.ArgumentParser()
     p.add_argument("mode", choices=("intraday", "eod"))
@@ -35,8 +47,11 @@ def main(argv=None) -> int:
                 m7 = collect("eod", MAG7, 45, 0.12, a.force)
                 if m7 != 0:
                     print(json.dumps({"warn": "mag7_collect", "rc": m7}))
+                    _alert_mag7_fail(f"rc={m7}")
             except Exception as _m7e:
-                print(json.dumps({"warn": "mag7_collect", "error": f"{type(_m7e).__name__}:{str(_m7e)[:160]}"}))
+                _m7err = f"{type(_m7e).__name__}:{str(_m7e)[:160]}"
+                print(json.dumps({"warn": "mag7_collect", "error": _m7err}))
+                _alert_mag7_fail(_m7err)
         if rc == 0:
             rc = build_features()
         if rc == 0 and a.mode == "eod":

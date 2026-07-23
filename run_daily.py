@@ -232,6 +232,13 @@ def _alert_if_degraded(n_fail: int, results: list) -> None:
                 reasons.append(f"BAYAT GİRDİ: {d['data_source_stale']}")
             if d.get("overlay_block"):
                 reasons.append(f"overlay_block: {d.get('overlay_block_reason')}")
+            # K2 sessiz-karanlık FIX (2026-07-22): IPO-arz sigortası (supply_demand_derisk) evaluate()
+            # None dönerse run.py artık overlays_out'a available=False kaydeder (overlay_block yukarıda
+            # zaten yakalar) — burada AYRICA açık isimle uyarır ki brief'te "hangi overlay" hemen görülsün
+            # (overlay_block satırı birden çok overlay'i tek string'e karıştırabilir).
+            sd = (d.get("overlays") or {}).get("supply_demand_derisk")
+            if sd and sd.get("available") is False:
+                reasons.append(f"sd_derisk (K2) UNAVAILABLE: {sd.get('error') or sd.get('reason')}")
             if (d.get("spine") or {}).get("tide_degraded"):
                 # Denetim 07-11 KOK C: degraded tide artik push-alarmda da (stale-damga run.py'de)
                 reasons.append(f"TIDE DEGRADED: eksik modul, kayip agirlik "

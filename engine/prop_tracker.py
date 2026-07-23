@@ -43,7 +43,12 @@ def append_day(account: str, date_: str, phase: str, day_index_return: float, po
     rec = {"date": date_, "account": account, "phase": phase, "model_equity": round(model_eq, 6),
            "platform_equity": platform_equity, "day_pnl": round(day_pnl, 6), "cum_pnl": round(model_eq - 1, 6),
            "dist_to_target_pp": round(100 * (1 + tgt - model_eq), 2),          # +%X hedefe ne kadar kaldı
-           "dist_to_daily_pp": round(100 * (model_eq * DAILY_LIM if False else DAILY_LIM), 2),  # günlük marj sabit %5
+           # Denetim 07-22: eski `(model_eq * DAILY_LIM if False else DAILY_LIM)` her zaman DAILY_LIM'e
+           # (sabit %5) düşüyordu — modelin gün-içi PnL'ini hiç görmeyen ölü ifade. dist_to_target_pp/
+           # dist_to_totaldd_pp deseniyle aynı: model_eq'dan gün-başı çapasına (prev_eq) göre kurulan
+           # taban (prev_eq×(1−DAILY_LIM)) mesafesi, pp cinsinden — günlük-limit ANCAK gün-başı bakiyeye
+           # görecelidir (position_translator.daily_limit_level ile aynı prev-çapa konvansiyonu).
+           "dist_to_daily_pp": round(100 * (model_eq - prev_eq * (1 - DAILY_LIM)), 2),
            "dist_to_totaldd_pp": round(100 * (model_eq - (1 - TOTAL_LIM)), 2), # toplam-DD'ye mesafe
            "trading_days": td, "position_exposure": round(float(position_exposure), 4),
            "lot": (round(float(lot), 4) if lot is not None else None), "note": note}

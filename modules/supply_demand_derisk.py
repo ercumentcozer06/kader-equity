@@ -246,7 +246,12 @@ def evaluate(cfg: dict | None = None, *, tide_score=None, tide_dir=None, as_of=N
         return res
     except Exception as e:
         # Denetim 07-11 P3 ([28]): pozisyon-etkili trim'in sessizce devre-disi kalmasi log.warning'de
-        # kayboluyordu -> ERROR + tip; None doner (fail-soft ama BAGIRARAK; overlay_block katmani
-        # available=False'i zaten yakalar).
+        # kayboluyordu -> ERROR + tip; None doner (fail-soft ama BAGIRARAK).
+        # DUZELTME 2026-07-22 (K2 sessiz-karanlik denetimi): bu yorum eskiden "overlay_block katmani
+        # available=False'i zaten yakalar" diyordu — bu YANLISTI: K2 hicbir zaman overlays_out'a
+        # KAYDOLMUYORDU, dolayisiyla run.py'deki position_overlay_block bu basariszligi GOREMIYORDU
+        # (call_status "current" kaliyor, trim sessizce 1.0'a dusuyordu). Fix run.py::build_decision'da:
+        # evaluate() None donerse cagiran K2'yi overlays_out'a available=False olarak kaydeder ve
+        # overlay_block'u yeniden degerlendirir (diger 3 overlayle ayni sozlesme).
         log.error("sd_derisk evaluate FAILED (trim devre-disi bu kosuda): %s: %s", type(e).__name__, e)
         return None

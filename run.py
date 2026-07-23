@@ -283,6 +283,18 @@ def build_decision(cfg: dict) -> dict:
             sdrisk = supply_demand_derisk.evaluate(dcfg, live_tide_score=_lts, live_tide_dir=_ltd)
         except Exception as _e:
             print(f"  [!] supply_demand_derisk hata (trim atlandi): {_e}", file=sys.stderr)
+        if sdrisk is None:
+            # Denetim 2026-07-22 (K2 sessiz-karanlık FIX): evaluate() None (iç hata veya veri yok) döndüğünde
+            # eskiden _k2_factor sessizce 1.0'a düşüyordu VE K2 overlays_out'ta HİÇ yoktu → position_overlay_block
+            # (satır ~48) onu göremiyordu, call_status "current" kalıyordu (sigorta katmanı görünmez şekilde
+            # sönüyordu). Artık diğer 3 overlay ile AYNI sözleşme: available=False → fail-closed kapı K2'yi de
+            # görsün diye YENİDEN değerlendirilir (politika değişmedi, yalnız K2 artık kapıya dahil).
+            overlays_out["supply_demand_derisk"] = {
+                "available": False, "factor": 1.0,
+                "error": "sd_derisk evaluate() None döndü (iç hata veya veri yok) — trim sessizce 1.0'a düştü, log'a bak",
+            }
+            overlay_block, overlay_block_reason = position_overlay_block(overlays_out)
+            stale = stale or overlay_block
 
     asset_deploy = {}
     # K2 trim faktörü: ateşlediyse SPX+NDX deploy'una OpEx'le ÇARPIMSAL uygulanır (rejim-değişim
