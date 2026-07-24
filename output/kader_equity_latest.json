@@ -1,7 +1,7 @@
 {
   "model_tag": "kader-equity-stack-2026-06-09",
   "as_of": "2026-07-24",
-  "computed_at": "2026-07-24T14:08:17.671016+00:00",
+  "computed_at": "2026-07-24T21:50:11.942067+00:00",
   "data_source": "live",
   "call_status": "current",
   "data_source_stale": null,
@@ -15,16 +15,16 @@
     "max_staleness_days": 5,
     "stale": false
   },
-  "tide_score": 7.4124,
+  "tide_score": 7.4023,
   "tide_dir": 1,
   "module_scores": {
     "m0": 0.0,
-    "m1": -1.9744,
+    "m1": 0.7576,
     "m2": 3.3664,
     "m3": -10.5,
     "m4": -5.038,
     "m5": 7.6296,
-    "m6": 20.0,
+    "m6": 18.9511,
     "m8": -5.9774,
     "m9": 9.76,
     "m10": -18.69,
@@ -63,7 +63,7 @@
       },
       "spread": 30.82,
       "as_of": "2026-07-23",
-      "age_days": 1,
+      "age_days": 2,
       "froth": true,
       "reason": "froth_pct 0.97 ≥ 0.70 → dispersion de-risk (factor 0.00; spr0.98/dspx0.98/¬cor0.95)"
     }
@@ -141,7 +141,7 @@
     "z10y": 0.67,
     "last90d_new": 358,
     "z90": 0.34,
-    "live_as_of": "2026-07-24",
+    "live_as_of": "2026-07-25",
     "stale": false,
     "mega_hits_120d": [
       {
@@ -208,7 +208,7 @@
     "mega_ceiling_usd": 1000000000.0,
     "mega_label": "Space Exploration Technologies",
     "mega_hi": false,
-    "tide_score": 7.41,
+    "tide_score": 7.4,
     "tide_dir": 1,
     "tide_declining_63d": true,
     "demand_weak": false,
