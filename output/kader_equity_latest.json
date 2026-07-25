@@ -1,17 +1,17 @@
 {
   "model_tag": "kader-equity-stack-2026-06-09",
   "as_of": "2026-07-24",
-  "computed_at": "2026-07-24T21:50:11.942067+00:00",
+  "computed_at": "2026-07-25T20:05:26.674602+00:00",
   "data_source": "live",
   "call_status": "current",
   "data_source_stale": null,
-  "market_open": true,
-  "market_closed_reason": null,
+  "market_open": false,
+  "market_closed_reason": "hafta sonu",
   "_live_error": null,
   "freshness": {
     "as_of": "2026-07-24",
-    "today": "2026-07-24",
-    "age_days": 0,
+    "today": "2026-07-25",
+    "age_days": 1,
     "max_staleness_days": 5,
     "stale": false
   },
@@ -43,29 +43,29 @@
   "overlays": {
     "gex_shield": {
       "available": true,
-      "gex_z": -1.09,
-      "as_of": "2026-07-23",
-      "factor": 0.953,
+      "gex_z": -1.19,
+      "as_of": "2026-07-24",
+      "factor": 0.904,
       "short_gamma": true,
       "z_stale": false,
       "z_stale_obs": 0,
       "src_age_td": 1,
-      "reason": "z(GEX) -1.1 < −1 → dealer short-gamma kalkan (factor 0.95)"
+      "reason": "z(GEX) -1.2 < −1 → dealer short-gamma kalkan (factor 0.90)"
     },
     "dispersion_ensemble": {
       "available": true,
       "factor": 0.0,
-      "froth_pct": 0.968,
+      "froth_pct": 0.958,
       "components": {
-        "spread_pct": 0.978,
-        "dspx_pct": 0.98,
-        "cor1m_inv_pct": 0.946
+        "spread_pct": 0.97,
+        "dspx_pct": 0.974,
+        "cor1m_inv_pct": 0.932
       },
-      "spread": 30.82,
-      "as_of": "2026-07-23",
-      "age_days": 2,
+      "spread": 29.24,
+      "as_of": "2026-07-24",
+      "age_days": 1,
       "froth": true,
-      "reason": "froth_pct 0.97 ≥ 0.70 → dispersion de-risk (factor 0.00; spr0.98/dspx0.98/¬cor0.95)"
+      "reason": "froth_pct 0.96 ≥ 0.70 → dispersion de-risk (factor 0.00; spr0.97/dspx0.97/¬cor0.93)"
     }
   },
   "opex_gate": {
@@ -74,7 +74,7 @@
     "third_friday": "2026-08-21",
     "holiday_shifted": false,
     "is_quad_witch_next": false,
-    "trading_days_until": 20,
+    "trading_days_until": 19,
     "is_opex_today": false,
     "warn": false,
     "warn_days": 3,
@@ -89,7 +89,7 @@
     "NDX": 0.0
   },
   "santa_context": {
-    "as_of": "2026-07-24",
+    "as_of": "2026-07-25",
     "window_months": [
       11,
       12
@@ -123,7 +123,7 @@
       }
     },
     "pit_date": "2026-06-15",
-    "pit_age_days": 39,
+    "pit_age_days": 40,
     "stale": false,
     "ratio4q_nfc_pct_ngdp": -0.48,
     "z10y_nfc": 1.29,
@@ -139,8 +139,8 @@
     "last_closed_quarter": "2026Q2",
     "roll4q_filings": 1531,
     "z10y": 0.67,
-    "last90d_new": 358,
-    "z90": 0.34,
+    "last90d_new": 364,
+    "z90": 0.39,
     "live_as_of": "2026-07-25",
     "stale": false,
     "mega_hits_120d": [
@@ -156,7 +156,7 @@
     "label": "dosyalama = NIYET, gerceklesme degil; kayit-tavani != arz-buyuklugu; baglam-bandi — pozisyon etkisi SIFIR"
   },
   "ipo_supply_waves": {
-    "as_of": "2026-07-24",
+    "as_of": "2026-07-25",
     "n_active": 1,
     "waves": [
       {
@@ -172,14 +172,14 @@
         ],
         "lockup_status": "parse-ok",
         "lockup_expiry_date": "2027-06-04",
-        "days_to_lockup": 315,
+        "days_to_lockup": 314,
         "lockup_shares_est": 7800000000.0,
         "lockup_pct_note": "greater than 63% of shares outstanding (pre-offering)",
         "index_incl_eligible": true,
         "index_incl_window": {
           "earliest": "2026-09-01",
           "latest": "2027-06-03",
-          "days_to_earliest": 39
+          "days_to_earliest": 38
         },
         "forced_passive_demand_usd_lo": 12937499982.0,
         "forced_passive_demand_usd_hi": 17249999976.0,

@@ -113,6 +113,26 @@ class TestPositionOverlayBlock:
               "gex_shield": {"available": True, "factor": 1.0}}
         assert position_overlay_block(ov)[0] is False
 
+    def test_eq6_frozen_missing_cache_blocks(self):
+        """EQ-6 (2026-07-25): FROZEN yolda overlay cache'i YOK/BOŞ ise (cor1m/gex/dispersion parquet'i
+        okunamadı → değer None → factor 1.0) info artık available=False taşır → sessiz-nötr yerine bloke.
+        Önceden frozen info dict'lerinde bu anahtar HİÇ yoktu → None → kapı görmüyordu."""
+        from run import position_overlay_block
+        for name, inf in (("cor1m_froth", {"cor1m": None, "factor": 1.0, "available": False}),
+                          ("gex_shield", {"gex_z": None, "factor": 1.0, "available": False}),
+                          ("dispersion_ensemble", {"froth_pct": None, "factor": 1.0, "available": False})):
+            blk, reason = position_overlay_block({name: inf})
+            assert blk is True and name in reason
+
+    def test_eq6_frozen_resolved_value_does_not_block(self):
+        """Frozen yolda değer ÇÖZÜLDÜYSE (legit-nötr dahil, factor 1.0) available=True → bloke YOK;
+        frozen repro davranışı değişmez (yalnız gerçek veri-yokluğu eskale eder)."""
+        from run import position_overlay_block
+        ov = {"cor1m_froth": {"cor1m": 12.4, "factor": 1.0, "available": True},
+              "gex_shield": {"gex_z": 0.3, "factor": 1.0, "available": True},
+              "dispersion_ensemble": {"froth_pct": 0.42, "factor": 1.0, "available": True}}
+        assert position_overlay_block(ov)[0] is False
+
     def test_disabled_does_not_block(self):
         from run import position_overlay_block
         ov = {"cor1m_froth": {"available": False, "factor": 1.0, "reason": "disabled"}}

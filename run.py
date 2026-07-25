@@ -131,8 +131,13 @@ def build_decision(cfg: dict) -> dict:
                 cser = pd.read_parquet(cpp)["COR1M"].dropna()
                 cval = float(cser.asof(as_of)) if len(cser) else None
             f1 = cor1m_froth.froth_factor(cval, lo, hi, fl)
+            # EQ-6 (2026-07-25): cache YOK/BOŞ → cval None → factor 1.0 = SESSİZ nötr (de-risk silinmiş gibi).
+            # Bugün zararsız (frozen snapshot takvim-yaşı zaten STALE damgalıyor) ama snapshot tazelenirse
+            # açık olurdu. available=False → position_overlay_block bloke eder. Değeri ÇÖZÜLEN legit-nötr
+            # (COR1M≥hi → factor 1.0) available=True kalır → frozen repro davranışı DEĞİŞMEZ.
             info1 = {"cor1m": round(cval, 2) if cval is not None and not pd.isna(cval) else None,
-                     "factor": round(f1, 3), "cor1m_as_of": "frozen(@tide as_of)"}
+                     "factor": round(f1, 3), "cor1m_as_of": "frozen(@tide as_of)",
+                     "available": bool(cval is not None and not pd.isna(cval))}
         else:
             info1 = cor1m_froth.evaluate(cfg)
             f1 = float(info1.get("factor", 1.0))
@@ -152,8 +157,9 @@ def build_decision(cfg: dict) -> dict:
                 zs = gex_shield.gex_zscore(pd.read_parquet(gpp)["gex"].dropna(), win)
                 zval = float(zs.asof(as_of)) if len(zs) else None
             f2 = gex_shield.shield_factor(zval, k, thr, fl2)
-            info2 = {"gex_z": round(zval, 2) if zval is not None and not pd.isna(zval) else None,
-                     "factor": round(f2, 3), "gex_as_of": "frozen(@tide as_of)"}
+            info2 = {"gex_z": round(zval, 2) if zval is not None and not pd.isna(zval) else None,   # EQ-6: bkz. cor1m
+                     "factor": round(f2, 3), "gex_as_of": "frozen(@tide as_of)",
+                     "available": bool(zval is not None and not pd.isna(zval))}
         else:
             info2 = gex_shield.evaluate(cfg)
             f2 = float(info2.get("factor", 1.0))
@@ -180,8 +186,9 @@ def build_decision(cfg: dict) -> dict:
                 fpsd = fps.dropna()
                 fpv = float(fpsd.asof(as_of)) if len(fpsd) else None
                 f3 = dispersion_ensemble.ensemble_factor(fpv, lo3, hi3, fl3)
-            info3 = {"froth_pct": round(fpv, 3) if fpv is not None and not pd.isna(fpv) else None,
-                     "factor": round(f3, 3), "as_of": "frozen(@tide as_of)"}
+            info3 = {"froth_pct": round(fpv, 3) if fpv is not None and not pd.isna(fpv) else None,  # EQ-6: bkz. cor1m
+                     "factor": round(f3, 3), "as_of": "frozen(@tide as_of)",
+                     "available": bool(fpv is not None and not pd.isna(fpv))}
         else:
             info3 = dispersion_ensemble.evaluate(cfg)
             f3 = float(info3.get("factor", 1.0))
