@@ -1,0 +1,7 @@
+{
+  "ts": "2026-07-26 18:17Z",
+  "subject": "VERİ BAYAT / DEGRADE",
+  "body": "call_status=STALE (as_of 2026-07-24, 2g) | BAYAT GİRDİ: [{'series': 'MTSO133FMS', 'module': 'm9', 'last_date': '2026-06-01', 'age_bd': 38, 'meta_last_updated': '2026-06-10 14:04:38-05', 'meta_age_cal': 46, 'reason': 'FRED last_updated 46 takvim günü eski (>45) → kaynak DONMUŞ'}, {'series': 'MTSR133FMS', 'module': 'm9', 'last_date': '2026-06-01', 'age_bd': 38, 'meta_last_updated': '2026-06-10 14:04:35-05', 'meta_age_cal': 46, 'reason': 'FRED last_updated 46 takvim günü eski (>45) → kaynak DONMUŞ'}]",
+  "channels_fired": [],
+  "suppressed": true
+}

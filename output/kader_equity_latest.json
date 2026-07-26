@@ -1,17 +1,36 @@
 {
   "model_tag": "kader-equity-stack-2026-06-09",
   "as_of": "2026-07-24",
-  "computed_at": "2026-07-25T20:05:26.674602+00:00",
+  "computed_at": "2026-07-26T18:17:16.600879+00:00",
   "data_source": "live",
-  "call_status": "current",
-  "data_source_stale": null,
+  "call_status": "STALE",
+  "data_source_stale": [
+    {
+      "series": "MTSO133FMS",
+      "module": "m9",
+      "last_date": "2026-06-01",
+      "age_bd": 38,
+      "meta_last_updated": "2026-06-10 14:04:38-05",
+      "meta_age_cal": 46,
+      "reason": "FRED last_updated 46 takvim günü eski (>45) → kaynak DONMUŞ"
+    },
+    {
+      "series": "MTSR133FMS",
+      "module": "m9",
+      "last_date": "2026-06-01",
+      "age_bd": 38,
+      "meta_last_updated": "2026-06-10 14:04:35-05",
+      "meta_age_cal": 46,
+      "reason": "FRED last_updated 46 takvim günü eski (>45) → kaynak DONMUŞ"
+    }
+  ],
   "market_open": false,
   "market_closed_reason": "hafta sonu",
   "_live_error": null,
   "freshness": {
     "as_of": "2026-07-24",
-    "today": "2026-07-25",
-    "age_days": 1,
+    "today": "2026-07-26",
+    "age_days": 2,
     "max_staleness_days": 5,
     "stale": false
   },
@@ -89,7 +108,7 @@
     "NDX": 0.0
   },
   "santa_context": {
-    "as_of": "2026-07-25",
+    "as_of": "2026-07-26",
     "window_months": [
       11,
       12
@@ -123,7 +142,7 @@
       }
     },
     "pit_date": "2026-06-15",
-    "pit_age_days": 40,
+    "pit_age_days": 41,
     "stale": false,
     "ratio4q_nfc_pct_ngdp": -0.48,
     "z10y_nfc": 1.29,
@@ -141,7 +160,7 @@
     "z10y": 0.67,
     "last90d_new": 364,
     "z90": 0.39,
-    "live_as_of": "2026-07-25",
+    "live_as_of": "2026-07-26",
     "stale": false,
     "mega_hits_120d": [
       {
@@ -156,7 +175,7 @@
     "label": "dosyalama = NIYET, gerceklesme degil; kayit-tavani != arz-buyuklugu; baglam-bandi — pozisyon etkisi SIFIR"
   },
   "ipo_supply_waves": {
-    "as_of": "2026-07-25",
+    "as_of": "2026-07-26",
     "n_active": 1,
     "waves": [
       {
@@ -172,14 +191,14 @@
         ],
         "lockup_status": "parse-ok",
         "lockup_expiry_date": "2027-06-04",
-        "days_to_lockup": 314,
+        "days_to_lockup": 313,
         "lockup_shares_est": 7800000000.0,
         "lockup_pct_note": "greater than 63% of shares outstanding (pre-offering)",
         "index_incl_eligible": true,
         "index_incl_window": {
           "earliest": "2026-09-01",
           "latest": "2027-06-03",
-          "days_to_earliest": 38
+          "days_to_earliest": 37
         },
         "forced_passive_demand_usd_lo": 12937499982.0,
         "forced_passive_demand_usd_hi": 17249999976.0,
