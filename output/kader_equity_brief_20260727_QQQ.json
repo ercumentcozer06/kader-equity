@@ -1,25 +1,25 @@
 {
-  "computed_at": "2026-07-26T22:44:49.067193+00:00",
+  "computed_at": "2026-07-27T10:05:44.439730+00:00",
   "ticker": "QQQ",
   "index": "NDX",
   "model": {
     "model_tag": "kader-equity-stack-2026-06-09",
-    "as_of": "2026-07-24",
-    "computed_at": "2026-07-26T22:44:48.926593+00:00",
+    "as_of": "2026-07-27",
+    "computed_at": "2026-07-27T10:05:44.294111+00:00",
     "data_source": "live",
     "call_status": "current",
     "data_source_stale": null,
-    "market_open": false,
-    "market_closed_reason": "hafta sonu",
+    "market_open": true,
+    "market_closed_reason": null,
     "_live_error": null,
     "freshness": {
-      "as_of": "2026-07-24",
-      "today": "2026-07-26",
-      "age_days": 2,
+      "as_of": "2026-07-27",
+      "today": "2026-07-27",
+      "age_days": 0,
       "max_staleness_days": 5,
       "stale": false
     },
-    "tide_score": 7.4023,
+    "tide_score": 7.4024,
     "tide_dir": 1,
     "module_scores": {
       "m0": 0.0,
@@ -29,10 +29,10 @@
       "m4": -5.038,
       "m5": 7.6296,
       "m6": 18.9511,
-      "m8": -5.9774,
+      "m8": -6.0009,
       "m9": 9.76,
       "m10": -18.69,
-      "m11": 3.19
+      "m11": 4.08
     },
     "direction": "LONG",
     "position_target": 0.0,
@@ -93,7 +93,7 @@
       "NDX": 0.0
     },
     "santa_context": {
-      "as_of": "2026-07-26",
+      "as_of": "2026-07-27",
       "window_months": [
         11,
         12
@@ -127,7 +127,7 @@
         }
       },
       "pit_date": "2026-06-15",
-      "pit_age_days": 41,
+      "pit_age_days": 42,
       "stale": false,
       "ratio4q_nfc_pct_ngdp": -0.48,
       "z10y_nfc": 1.29,
@@ -160,7 +160,7 @@
       "label": "dosyalama = NIYET, gerceklesme degil; kayit-tavani != arz-buyuklugu; baglam-bandi — pozisyon etkisi SIFIR"
     },
     "ipo_supply_waves": {
-      "as_of": "2026-07-26",
+      "as_of": "2026-07-27",
       "n_active": 1,
       "waves": [
         {
@@ -176,14 +176,14 @@
           ],
           "lockup_status": "parse-ok",
           "lockup_expiry_date": "2027-06-04",
-          "days_to_lockup": 313,
+          "days_to_lockup": 312,
           "lockup_shares_est": 7800000000.0,
           "lockup_pct_note": "greater than 63% of shares outstanding (pre-offering)",
           "index_incl_eligible": true,
           "index_incl_window": {
             "earliest": "2026-09-01",
             "latest": "2027-06-03",
-            "days_to_earliest": 37
+            "days_to_earliest": 36
           },
           "forced_passive_demand_usd_lo": 12937499982.0,
           "forced_passive_demand_usd_hi": 17249999976.0,
@@ -263,29 +263,29 @@
   },
   "state": {
     "ticker": "QQQ",
-    "spot": 683.9,
-    "net_gex_bn": -3.486,
-    "net_vanna_m": 751.3,
-    "net_charm_m": -572.84,
-    "gex_flip": 784.37,
+    "spot": 695.26,
+    "net_gex_bn": -2.992,
+    "net_vanna_m": 1243.94,
+    "net_charm_m": -1430.86,
+    "gex_flip": 764.14,
     "call_wall": 730.0,
     "ghost": 700.0,
-    "put_wall": 680.0,
+    "put_wall": 690.0,
     "max_pain": 700.0,
-    "exp_move_1d": 11.18,
+    "exp_move_1d": 10.81,
     "rv_ratio": 0.995,
     "gamma_regime": "SHORT GAMMA",
     "cor1m": null,
-    "atm_iv": 26.03,
-    "rr_skew": 5.56,
-    "ts_ratio": 1.005,
-    "atm_iv_30d": 25.94,
+    "atm_iv": 24.16,
+    "rr_skew": 5.32,
+    "ts_ratio": 0.955,
+    "atm_iv_30d": 24.68,
     "realized_vol": 24.83,
-    "vrp": 1.11
+    "vrp": -0.15
   },
   "meta": {
     "snapshot_as_of": "2026-07-27",
-    "snapshot_age_days": -1,
+    "snapshot_age_days": 0,
     "gamma_available": true,
     "surface_available": true,
     "model_call_status": "current",
@@ -293,11 +293,11 @@
     "data_ok": true,
     "data_fails": [],
     "data_checks": {
-      "spot": 683.9,
-      "front_atm_iv": 26.03,
-      "exp_move_1d": 11.18,
-      "net_gex_bn": -3.486,
-      "em_cross_ratio": 1.0
+      "spot": 695.26,
+      "front_atm_iv": 24.16,
+      "exp_move_1d": 10.81,
+      "net_gex_bn": -2.992,
+      "em_cross_ratio": 1.02
     },
     "data_junk": false,
     "gamma_fallback_to_spy": false,
@@ -317,19 +317,19 @@
     "regime": {
       "short_gamma": true,
       "above_flip": false,
-      "dist_flip_em": 8.986583184257606,
+      "dist_flip_em": 6.371877890841812,
       "froth": false,
       "froth_soft": false,
       "near_wall": true,
-      "backwardation": true,
+      "backwardation": false,
       "calm": false,
       "cor1m": null,
-      "vrp": 1.11,
+      "vrp": -0.15,
       "vrp_rich": false,
-      "vrp_cheap": false,
+      "vrp_cheap": true,
       "ticker": "QQQ"
     },
-    "rationale": "model LONG (konviksiyon 0.00); rejim: kısa-gamma, flip-altı, froth-yok, vol-backward/stres, duvara-yakın → konviksiyon 0.00 < 0.15 → işlem yok"
+    "rationale": "model LONG (konviksiyon 0.00); rejim: kısa-gamma, flip-altı, froth-yok, vol-nötr, duvara-yakın → konviksiyon 0.00 < 0.15 → işlem yok"
   },
   "trade": {
     "class": "stand_aside",

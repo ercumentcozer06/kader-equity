@@ -1,40 +1,21 @@
 {
   "model_tag": "kader-equity-stack-2026-06-09",
-  "as_of": "2026-07-24",
-  "computed_at": "2026-07-26T18:17:16.600879+00:00",
+  "as_of": "2026-07-27",
+  "computed_at": "2026-07-27T10:06:29.536865+00:00",
   "data_source": "live",
-  "call_status": "STALE",
-  "data_source_stale": [
-    {
-      "series": "MTSO133FMS",
-      "module": "m9",
-      "last_date": "2026-06-01",
-      "age_bd": 38,
-      "meta_last_updated": "2026-06-10 14:04:38-05",
-      "meta_age_cal": 46,
-      "reason": "FRED last_updated 46 takvim günü eski (>45) → kaynak DONMUŞ"
-    },
-    {
-      "series": "MTSR133FMS",
-      "module": "m9",
-      "last_date": "2026-06-01",
-      "age_bd": 38,
-      "meta_last_updated": "2026-06-10 14:04:35-05",
-      "meta_age_cal": 46,
-      "reason": "FRED last_updated 46 takvim günü eski (>45) → kaynak DONMUŞ"
-    }
-  ],
-  "market_open": false,
-  "market_closed_reason": "hafta sonu",
+  "call_status": "current",
+  "data_source_stale": null,
+  "market_open": true,
+  "market_closed_reason": null,
   "_live_error": null,
   "freshness": {
-    "as_of": "2026-07-24",
-    "today": "2026-07-26",
-    "age_days": 2,
+    "as_of": "2026-07-27",
+    "today": "2026-07-27",
+    "age_days": 0,
     "max_staleness_days": 5,
     "stale": false
   },
-  "tide_score": 7.4023,
+  "tide_score": 7.4024,
   "tide_dir": 1,
   "module_scores": {
     "m0": 0.0,
@@ -44,10 +25,10 @@
     "m4": -5.038,
     "m5": 7.6296,
     "m6": 18.9511,
-    "m8": -5.9774,
+    "m8": -6.0009,
     "m9": 9.76,
     "m10": -18.69,
-    "m11": 3.19
+    "m11": 4.08
   },
   "direction": "LONG",
   "position_target": 0.0,
@@ -108,7 +89,7 @@
     "NDX": 0.0
   },
   "santa_context": {
-    "as_of": "2026-07-26",
+    "as_of": "2026-07-27",
     "window_months": [
       11,
       12
@@ -142,7 +123,7 @@
       }
     },
     "pit_date": "2026-06-15",
-    "pit_age_days": 41,
+    "pit_age_days": 42,
     "stale": false,
     "ratio4q_nfc_pct_ngdp": -0.48,
     "z10y_nfc": 1.29,
@@ -158,9 +139,9 @@
     "last_closed_quarter": "2026Q2",
     "roll4q_filings": 1531,
     "z10y": 0.67,
-    "last90d_new": 364,
-    "z90": 0.39,
-    "live_as_of": "2026-07-26",
+    "last90d_new": 357,
+    "z90": 0.33,
+    "live_as_of": "2026-07-27",
     "stale": false,
     "mega_hits_120d": [
       {
@@ -175,7 +156,7 @@
     "label": "dosyalama = NIYET, gerceklesme degil; kayit-tavani != arz-buyuklugu; baglam-bandi — pozisyon etkisi SIFIR"
   },
   "ipo_supply_waves": {
-    "as_of": "2026-07-26",
+    "as_of": "2026-07-27",
     "n_active": 1,
     "waves": [
       {
@@ -191,14 +172,14 @@
         ],
         "lockup_status": "parse-ok",
         "lockup_expiry_date": "2027-06-04",
-        "days_to_lockup": 313,
+        "days_to_lockup": 312,
         "lockup_shares_est": 7800000000.0,
         "lockup_pct_note": "greater than 63% of shares outstanding (pre-offering)",
         "index_incl_eligible": true,
         "index_incl_window": {
           "earliest": "2026-09-01",
           "latest": "2027-06-03",
-          "days_to_earliest": 37
+          "days_to_earliest": 36
         },
         "forced_passive_demand_usd_lo": 12937499982.0,
         "forced_passive_demand_usd_hi": 17249999976.0,
