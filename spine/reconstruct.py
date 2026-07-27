@@ -188,7 +188,17 @@ def _audit_input_freshness(cfg_km: dict) -> list:
     Eşikler yayın takvimini modeller (normal gecikme YANLIŞ-bayat tetiklemez); gerçek donma YÜKSEK SESLE."""
     from modules import _fred
     today = datetime.now(timezone.utc).date()
-    cache_dir = Path((cfg_km.get("fred", {}) or {}).get("cache_dir", "data/fred_cache"))
+    # YETİM-CACHE FIX (2026-07-27): cache_dir'i CWD'ye göre çözmek, `_fred.fetch_series`'in
+    # 07-11'de repo-köklü hale getirilen çözümüyle AYRIŞIYORDU. Sonuç: `last` (gözlem tarihi)
+    # DOĞRU cache'ten (kader-macro/data/fred_cache) okunurken, MTS donma-dedektörünün beslendiği
+    # `last_updated` meta'sı kader-equity/data/fred_cache altındaki 07-11'den kalma YETİM
+    # dosyadan okunuyordu (orada last_updated=2026-06-10 → 47 takvim günü > 45 → sahte
+    # "kaynak DONMUŞ") → call_status=STALE → deira GLOBAL HALT. FRED'in gerçek last_updated'ı
+    # 2026-07-13'tü (Haziran MTS baskısı yayımlanmış, veri elimizde TAZE).
+    # Kural: meta HER ZAMAN `_fred`'in FİİLEN yazdığı dizinden okunur — tek kaynak, tek yol.
+    _cc = (cfg_km.get("fred", {}) or {}).get("cache_dir", "data/fred_cache")
+    cache_dir = (Path(_cc) if Path(_cc).is_absolute()
+                 else Path(_fred.__file__).resolve().parents[1] / _cc)
     stale: list = []
     for sid, mod, max_bd in SPECS:
         try:
