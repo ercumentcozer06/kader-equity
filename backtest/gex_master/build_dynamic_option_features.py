@@ -17,7 +17,20 @@ FEATURE_SCHEMA_VERSION = 2
 
 
 def _adv20(symbol: str, ts: pd.Timestamp) -> float:
+    """ADV20; bar dosyasi YOKSA NaN (crash DEGIL).
+
+    2026-07-28: burada `read_parquet` korumasizdi. Mag-7 implied-IV EOD toplamasi 07-20'de
+    baslatildi ama o isimlerin 1-dakikalik bar dosyalari HIC indirilmemisti (klasorde yalniz
+    spy/qqq var) -> KaderEquity_OptionResearch_EOD gorevi o gunden beri HER kosuda
+    FileNotFoundError('alpaca_aapl_1m.parquet') ile rc=1 dusuyordu ve bunu goren yoktu
+    (gorev-sagligi bekcisi 07-28'de yakaladi). EKSIK BIR OPSIYONEL GIRDI, BORUNUN TAMAMINI
+    OLDURMEMELI: ADV20 NaN doner, o sembolun likidite-filtresi uygulanmaz ve bu durum
+    ciktida gorunur. Bar dosyasi eklenirse davranis kendiliginden eski haline doner."""
     p = ROOT / "data" / "historical_bars" / f"alpaca_{symbol.lower()}_1m.parquet"
+    if not p.exists():
+        print(f"  [uyari] ADV20 atlandi: {symbol} icin bar dosyasi yok ({p.name}) -> NaN "
+              f"(likidite-filtresi bu sembolde uygulanmaz)")
+        return float("nan")
     b = pd.read_parquet(p).reset_index()
     tcol = "timestamp" if "timestamp" in b else b.columns[1]
     b["date"] = pd.to_datetime(b[tcol], utc=True).dt.tz_convert("America/New_York").dt.date
