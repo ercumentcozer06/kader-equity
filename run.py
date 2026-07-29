@@ -1,5 +1,5 @@
 """
-run — kader-equity karar motoru. MODEL = tide × COR1M-froth × GEX-shield (SPX 1.64 / NDX 1.77 @2019+).
+run — kader-equity karar motoru. MODEL = tide × dispersion-ensemble × GEX-shield.
 
 Akış: spine (frozen 8-modül sweep vektörü → TIDE_SCORE → TIDE_DIR) → overlay'ler (trim-only) → tazelik
 kapısı → §çıktı kontratı. Aktif overlay'ler (strict-FDR/stack-doğrulanmış): COR1M-froth (İLK alfa, düşük
@@ -28,7 +28,7 @@ except Exception:
 from config import load_config                            # noqa: E402
 from spine import contract as C, tide as T                # noqa: E402
 
-MODEL_TAG = "kader-equity-stack-2026-06-09"  # tide × COR1M-froth × GEX-shield (SPX 1.64/NDX 1.77 @2019+; honest forward ~1.0-1.3)
+MODEL_TAG = "kader-equity-dispersion-v2-2026-07-28"
 
 # NYSE tatil takvimi (Audit 2026-06-19; F5 denetim 2026-07-05) — kapalı-piyasa gününde "current/age 0"
 # çağrı damgalanmasın. Eski sabit 2025-27 frozenset SESSİZ SON-KULLANMA tarihliydi: 2027-01-01 sonrası her

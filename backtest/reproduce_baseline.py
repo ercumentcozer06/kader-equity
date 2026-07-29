@@ -11,6 +11,8 @@ OLMADAN spine'ı ürettiğini kanıtlar (kader-btc reproduce_baseline disiplini)
 from __future__ import annotations
 
 import sys
+import json
+import hashlib
 from pathlib import Path
 
 import numpy as np
@@ -26,6 +28,27 @@ from spine import contract as C, tide as T          # noqa: E402
 from backtest import engine as E                     # noqa: E402
 
 
+def decision_fingerprint() -> str:
+    """Hash the complete live decision recipe, not only the tide spine."""
+    files = [ROOT / "run.py", ROOT / "config.yaml", ROOT / "spine" / "tide.py"]
+    files.extend((ROOT / "modules").rglob("*.py"))
+    h = hashlib.sha256()
+    for fp in sorted(set(files), key=lambda p: str(p.relative_to(ROOT))):
+        h.update(str(fp.relative_to(ROOT)).replace("\\", "/").encode())
+        h.update(fp.read_bytes())
+    return h.hexdigest()[:16]
+
+
+def decision_lock_match() -> tuple[bool, str, str | None]:
+    actual = decision_fingerprint()
+    lock = ROOT / "spine" / "frozen" / "full_decision_lock.json"
+    try:
+        expected = json.loads(lock.read_text(encoding="utf-8"))["fingerprint"]
+    except Exception:
+        expected = None
+    return actual == expected, actual, expected
+
+
 def main() -> int:
     scores, prices, vector, prov = C.read_frozen()
     score = T.tide_score_series(scores, vector)
@@ -39,7 +62,10 @@ def main() -> int:
     print("=" * 84)
     print(f"  {'asset':<7}{'Sharpe':>9}{'maxDD':>8}{'CVaR':>9}{'total':>9}{'expo':>7}   {'anchor':>8}{'  match':>8}")
 
-    ok = True
+    lock_ok, actual_fp, expected_fp = decision_lock_match()
+    print(f"  full-decision lock: actual={actual_fp} expected={expected_fp} "
+          f"{'PASS' if lock_ok else 'FAIL'}")
+    ok = lock_ok
     for a in ("SPX", "NDX"):
         res = E.backtest_dir(tdir, prices[a], lag=1)
         st = res["strat"]

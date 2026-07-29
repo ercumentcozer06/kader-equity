@@ -1,152 +1,167 @@
 {
-  "run_utc": "2026-07-24T21:20:59.895965+00:00",
+  "run_utc": "2026-07-28T12:37:38.860646+00:00",
   "prospective_start": "2026-07-17",
   "shadow": {
     "SPY|P4_forced_selling|2R": {
-      "n": 0
-    },
-    "QQQ|P4_forced_selling|2R": {
       "n": 2,
-      "mean_net_bps": -31.271481794819202,
-      "median_net_bps": -31.271481794819202,
-      "t": -12.412220739007054,
-      "p_one_sided": 0.9744103925528271,
-      "hit": 0.0,
-      "profit_factor": 0.0,
-      "mean_r_gross": -1.0,
-      "mean_mfe_r": 0.4751750491228868,
-      "mean_mae_r": 1.014707903897298,
+      "mean_net_bps": 10.7844119806092,
+      "median_net_bps": 10.7844119806092,
+      "t": 0.37469506238435907,
+      "p_one_sided": 0.38588485509238424,
+      "hit": 0.5,
+      "profit_factor": 2.198439480785532,
+      "mean_r_gross": 0.5,
+      "mean_mfe_r": 1.0372179336474672,
+      "mean_mae_r": 0.5333418582570711,
       "block5_ci95_bps": [
         NaN,
         NaN
       ],
       "block5_probability_mean_gt0": NaN,
-      "cum_return": -0.0062445807775303175,
-      "max_drawdown": -0.0033790892499185876,
+      "cum_return": 0.0021497614904812945,
+      "max_drawdown": 0.0,
       "top3_pnl_share": NaN,
       "underpowered_n_lt_30": true,
       "exit_reasons": {
-        "stop": 2
+        "stop": 1,
+        "target": 1
       }
     },
-    "QQQ|P3_forced_buying|2R": {
-      "n": 0
-    },
-    "QQQ|P6_PDL_acceptance_short|2R": {
+    "QQQ|P4_forced_selling|2R": {
       "n": 1,
-      "mean_net_bps": -48.74694179726657,
-      "median_net_bps": -48.74694179726657,
+      "mean_net_bps": -28.7520710904523,
+      "median_net_bps": -28.7520710904523,
       "t": NaN,
       "p_one_sided": NaN,
       "hit": 0.0,
       "profit_factor": 0.0,
       "mean_r_gross": -1.0,
-      "mean_mfe_r": 0.6644861235319391,
-      "mean_mae_r": 1.0014086650410694,
+      "mean_mfe_r": 0.6200647617872372,
+      "mean_mae_r": 1.0156233167205513,
       "block5_ci95_bps": [
         NaN,
         NaN
       ],
       "block5_probability_mean_gt0": NaN,
-      "cum_return": -0.004874694179726635,
+      "cum_return": -0.002875207109045208,
       "max_drawdown": 0.0,
       "top3_pnl_share": NaN,
       "underpowered_n_lt_30": true,
       "exit_reasons": {
         "stop": 1
       }
+    },
+    "QQQ|P3_forced_buying|2R": {
+      "n": 0
+    },
+    "QQQ|P6_PDL_acceptance_short|2R": {
+      "n": 2,
+      "mean_net_bps": 5.043437979151189,
+      "median_net_bps": 5.043437979151189,
+      "t": 0.09341871593881036,
+      "p_one_sided": 0.4703499518945097,
+      "hit": 0.5,
+      "profit_factor": 1.2060901048394135,
+      "mean_r_gross": 0.5,
+      "mean_mfe_r": 1.3838597797044763,
+      "mean_mae_r": 0.6518627637136591,
+      "block5_ci95_bps": [
+        NaN,
+        NaN
+      ],
+      "block5_probability_mean_gt0": NaN,
+      "cum_return": 0.0009797955141193082,
+      "max_drawdown": 0.0,
+      "top3_pnl_share": NaN,
+      "underpowered_n_lt_30": true,
+      "exit_reasons": {
+        "stop": 1,
+        "target": 1
+      }
     }
   },
   "prospective": {
     "SPY|P4_forced_selling|2R": {
       "status": "COLLECTING",
-      "n": 0,
-      "reason": "no prospective event yet"
-    },
-    "QQQ|P4_forced_selling|2R": {
-      "status": "COLLECTING",
       "n": 2,
       "metrics_2bps": {
         "n": 2,
-        "mean_net_bps": -31.271481794819202,
-        "median_net_bps": -31.271481794819202,
-        "t": -12.412220739007054,
-        "p_one_sided": 0.9744103925528271,
-        "hit": 0.0,
-        "profit_factor": 0.0,
-        "mean_r_gross": -1.0,
-        "mean_mfe_r": 0.4751750491228868,
-        "mean_mae_r": 1.014707903897298,
+        "mean_net_bps": 10.7844119806092,
+        "median_net_bps": 10.7844119806092,
+        "t": 0.37469506238435907,
+        "p_one_sided": 0.38588485509238424,
+        "hit": 0.5,
+        "profit_factor": 2.198439480785532,
+        "mean_r_gross": 0.5,
+        "mean_mfe_r": 1.0372179336474672,
+        "mean_mae_r": 0.5333418582570711,
         "block5_ci95_bps": [
           NaN,
           NaN
         ],
         "block5_probability_mean_gt0": NaN,
-        "cum_return": -0.0062445807775303175,
-        "max_drawdown": -0.0033790892499185876,
+        "cum_return": 0.0021497614904812945,
+        "max_drawdown": 0.0,
         "top3_pnl_share": NaN,
         "underpowered_n_lt_30": true,
         "exit_reasons": {
-          "stop": 2
+          "stop": 1,
+          "target": 1
         }
       },
       "metrics_5bps": {
         "n": 2,
-        "mean_net_bps": -34.2714817948192,
-        "median_net_bps": -34.2714817948192,
-        "t": -13.602975384448584,
-        "p_one_sided": 0.976641997438086,
-        "hit": 0.0,
-        "profit_factor": 0.0,
-        "mean_r_gross": -1.0,
-        "mean_mfe_r": 0.4751750491228868,
-        "mean_mae_r": 1.014707903897298,
+        "mean_net_bps": 7.7844119806092,
+        "median_net_bps": 7.7844119806092,
+        "t": 0.2704626583205838,
+        "p_one_sided": 0.41592066967910174,
+        "hit": 0.5,
+        "profit_factor": 1.7414635080857435,
+        "mean_r_gross": 0.5,
+        "mean_mfe_r": 1.0372179336474672,
+        "mean_mae_r": 0.5333418582570711,
         "block5_ci95_bps": [
           NaN,
           NaN
         ],
         "block5_probability_mean_gt0": NaN,
-        "cum_return": -0.006842614488622556,
-        "max_drawdown": -0.0036790892499185546,
+        "cum_return": 0.0015492044257625626,
+        "max_drawdown": 0.0,
         "top3_pnl_share": NaN,
         "underpowered_n_lt_30": true,
         "exit_reasons": {
-          "stop": 2
+          "stop": 1,
+          "target": 1
         }
       },
       "bootstrap_lower99_mean_bps_5bps": null,
       "bootstrap_upper95_mean_bps_5bps": null,
       "half_means_bps_5bps": [
-        -31.7520710904523,
-        -36.7908924991861
+        -20.997424406513083,
+        36.56624836773148
       ],
       "top5_share_5bps": null
     },
-    "QQQ|P3_forced_buying|2R": {
-      "status": "COLLECTING",
-      "n": 0,
-      "reason": "no prospective event yet"
-    },
-    "QQQ|P6_PDL_acceptance_short|2R": {
+    "QQQ|P4_forced_selling|2R": {
       "status": "COLLECTING",
       "n": 1,
       "metrics_2bps": {
         "n": 1,
-        "mean_net_bps": -48.74694179726657,
-        "median_net_bps": -48.74694179726657,
+        "mean_net_bps": -28.7520710904523,
+        "median_net_bps": -28.7520710904523,
         "t": NaN,
         "p_one_sided": NaN,
         "hit": 0.0,
         "profit_factor": 0.0,
         "mean_r_gross": -1.0,
-        "mean_mfe_r": 0.6644861235319391,
-        "mean_mae_r": 1.0014086650410694,
+        "mean_mfe_r": 0.6200647617872372,
+        "mean_mae_r": 1.0156233167205513,
         "block5_ci95_bps": [
           NaN,
           NaN
         ],
         "block5_probability_mean_gt0": NaN,
-        "cum_return": -0.004874694179726635,
+        "cum_return": -0.002875207109045208,
         "max_drawdown": 0.0,
         "top3_pnl_share": NaN,
         "underpowered_n_lt_30": true,
@@ -156,21 +171,21 @@
       },
       "metrics_5bps": {
         "n": 1,
-        "mean_net_bps": -51.74694179726657,
-        "median_net_bps": -51.74694179726657,
+        "mean_net_bps": -31.7520710904523,
+        "median_net_bps": -31.7520710904523,
         "t": NaN,
         "p_one_sided": NaN,
         "hit": 0.0,
         "profit_factor": 0.0,
         "mean_r_gross": -1.0,
-        "mean_mfe_r": 0.6644861235319391,
-        "mean_mae_r": 1.0014086650410694,
+        "mean_mfe_r": 0.6200647617872372,
+        "mean_mae_r": 1.0156233167205513,
         "block5_ci95_bps": [
           NaN,
           NaN
         ],
         "block5_probability_mean_gt0": NaN,
-        "cum_return": -0.005174694179726602,
+        "cum_return": -0.003175207109045175,
         "max_drawdown": 0.0,
         "top3_pnl_share": NaN,
         "underpowered_n_lt_30": true,
@@ -183,6 +198,72 @@
       "half_means_bps_5bps": [
         null,
         null
+      ],
+      "top5_share_5bps": null
+    },
+    "QQQ|P3_forced_buying|2R": {
+      "status": "COLLECTING",
+      "n": 0,
+      "reason": "no prospective event yet"
+    },
+    "QQQ|P6_PDL_acceptance_short|2R": {
+      "status": "COLLECTING",
+      "n": 2,
+      "metrics_2bps": {
+        "n": 2,
+        "mean_net_bps": 5.043437979151189,
+        "median_net_bps": 5.043437979151189,
+        "t": 0.09341871593881036,
+        "p_one_sided": 0.4703499518945097,
+        "hit": 0.5,
+        "profit_factor": 1.2060901048394135,
+        "mean_r_gross": 0.5,
+        "mean_mfe_r": 1.3838597797044763,
+        "mean_mae_r": 0.6518627637136591,
+        "block5_ci95_bps": [
+          NaN,
+          NaN
+        ],
+        "block5_probability_mean_gt0": NaN,
+        "cum_return": 0.0009797955141193082,
+        "max_drawdown": 0.0,
+        "top3_pnl_share": NaN,
+        "underpowered_n_lt_30": true,
+        "exit_reasons": {
+          "stop": 1,
+          "target": 1
+        }
+      },
+      "metrics_5bps": {
+        "n": 2,
+        "mean_net_bps": 2.0434379791511894,
+        "median_net_bps": 2.0434379791511894,
+        "t": 0.037850242810962324,
+        "p_one_sided": 0.48795764211484527,
+        "hit": 0.5,
+        "profit_factor": 1.078678485398247,
+        "mean_r_gross": 0.5,
+        "mean_mfe_r": 1.3838597797044763,
+        "mean_mae_r": 0.6518627637136591,
+        "block5_ci95_bps": [
+          NaN,
+          NaN
+        ],
+        "block5_probability_mean_gt0": NaN,
+        "cum_return": 0.0003795829078405699,
+        "max_drawdown": 0.0,
+        "top3_pnl_share": NaN,
+        "underpowered_n_lt_30": true,
+        "exit_reasons": {
+          "stop": 1,
+          "target": 1
+        }
+      },
+      "bootstrap_lower99_mean_bps_5bps": null,
+      "bootstrap_upper95_mean_bps_5bps": null,
+      "half_means_bps_5bps": [
+        -51.9440090593487,
+        56.03088501765108
       ],
       "top5_share_5bps": null
     }

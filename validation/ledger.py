@@ -109,7 +109,9 @@ def append_call(record: dict) -> Path:
         if c not in df.columns:
             df[c] = pd.NA
     if not df.empty:
-        _old = df[df["as_of"].astype(str) == str(rec["as_of"])]
+        _same_date = df["as_of"].astype(str) == str(rec["as_of"])
+        _same_model = df["model_tag"].astype(str) == str(rec["model_tag"])
+        _old = df[_same_date & _same_model]
         if len(_old):
             # Denetim 07-11 P2 ([17]): ayni-gun re-run satiri SESSIZCE yeniden yaziyordu — dei-ra'nin
             # tukettigi deger degisir, iz kalmazdi. Davranis ayni (son kosu kazanir) ama BAGIRARAK.
@@ -117,7 +119,7 @@ def append_call(record: dict) -> Path:
             if pd.notna(_op) and _op != rec.get("position_target"):
                 print(f"  ⚠ LEDGER: {rec['as_of']} satiri YENIDEN yazildi — position_target "
                       f"{_op} -> {rec.get('position_target')} (gun-ici re-run; dei-ra onceki degeri okumus olabilir)")
-        df = df[df["as_of"].astype(str) != str(rec["as_of"])]
+        df = df[~(_same_date & _same_model)]
     df = pd.concat([df, pd.DataFrame([rec])], ignore_index=True)[_COLS]
     df = df.sort_values("as_of").reset_index(drop=True)
     _atomic_to_parquet(df, p)
@@ -296,10 +298,19 @@ def drag_summary() -> dict:
     M1: n_permanent_gap = KALICI-GAP gün sayısı (2026-06-23..07-02) — aggregate SESSİZCE küçülmesin diye
     açıkça raporlanır (örneklem eksikliği görünür kalır)."""
     df = load_ledger()
+    total_calls = len(df)
+    current_tag = None
+    if len(df) and "model_tag" in df:
+        tags = df["model_tag"].dropna()
+        if len(tags):
+            current_tag = str(tags.iloc[-1])
+            df = df[df["model_tag"].astype(str) == current_tag]
     sp = pd.to_numeric(df["signal_pnl"], errors="coerce").dropna()
     ep = pd.to_numeric(df["expression_pnl"], errors="coerce").dropna()
     dg = pd.to_numeric(df["expression_drag"], errors="coerce").dropna()
-    return {"n_calls": int(len(df)), "n_signal_marked": int(len(sp)), "n_expression": int(len(ep)),
+    return {"n_calls": int(len(df)), "n_calls_excluded_old_recipe": int(total_calls - len(df)),
+            "model_tag": current_tag,
+            "n_signal_marked": int(len(sp)), "n_expression": int(len(ep)),
             "n_permanent_gap": int(len(load_permanent_gaps())),
             "cum_signal_pnl": round(float(sp.sum()), 5) if len(sp) else None,
             "cum_expression_pnl": round(float(ep.sum()), 5) if len(ep) else None,

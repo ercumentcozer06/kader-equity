@@ -1,7 +1,7 @@
 {
   "model_tag": "kader-equity-stack-2026-06-09",
-  "as_of": "2026-07-27",
-  "computed_at": "2026-07-27T10:06:29.536865+00:00",
+  "as_of": "2026-07-28",
+  "computed_at": "2026-07-28T13:36:08.449658+00:00",
   "data_source": "live",
   "call_status": "current",
   "data_source_stale": null,
@@ -9,25 +9,25 @@
   "market_closed_reason": null,
   "_live_error": null,
   "freshness": {
-    "as_of": "2026-07-27",
-    "today": "2026-07-27",
+    "as_of": "2026-07-28",
+    "today": "2026-07-28",
     "age_days": 0,
     "max_staleness_days": 5,
     "stale": false
   },
-  "tide_score": 7.4024,
+  "tide_score": 7.3724,
   "tide_dir": 1,
   "module_scores": {
     "m0": 0.0,
-    "m1": 0.7576,
+    "m1": 0.7961,
     "m2": 3.3664,
-    "m3": -10.5,
+    "m3": -16.5,
     "m4": -5.038,
-    "m5": 7.6296,
-    "m6": 18.9511,
-    "m8": -6.0009,
+    "m5": 8.1316,
+    "m6": 20.0,
+    "m8": -6.0739,
     "m9": 9.76,
-    "m10": -18.69,
+    "m10": -14.95,
     "m11": 4.08
   },
   "direction": "LONG",
@@ -43,29 +43,29 @@
   "overlays": {
     "gex_shield": {
       "available": true,
-      "gex_z": -1.19,
-      "as_of": "2026-07-24",
-      "factor": 0.904,
-      "short_gamma": true,
+      "gex_z": -0.79,
+      "as_of": "2026-07-27",
+      "factor": 1.0,
+      "short_gamma": false,
       "z_stale": false,
       "z_stale_obs": 0,
       "src_age_td": 1,
-      "reason": "z(GEX) -1.2 < −1 → dealer short-gamma kalkan (factor 0.90)"
+      "reason": "z(GEX) -0.8 ≥ −1 → normal (factor 1.0)"
     },
     "dispersion_ensemble": {
       "available": true,
       "factor": 0.0,
-      "froth_pct": 0.958,
+      "froth_pct": 0.962,
       "components": {
-        "spread_pct": 0.97,
-        "dspx_pct": 0.974,
-        "cor1m_inv_pct": 0.932
+        "spread_pct": 0.972,
+        "dspx_pct": 0.978,
+        "cor1m_inv_pct": 0.935
       },
-      "spread": 29.24,
-      "as_of": "2026-07-24",
+      "spread": 29.73,
+      "as_of": "2026-07-27",
       "age_days": 1,
       "froth": true,
-      "reason": "froth_pct 0.96 ≥ 0.70 → dispersion de-risk (factor 0.00; spr0.97/dspx0.97/¬cor0.93)"
+      "reason": "froth_pct 0.96 ≥ 0.70 → dispersion de-risk (factor 0.00; spr0.97/dspx0.98/¬cor0.94)"
     }
   },
   "opex_gate": {
@@ -74,7 +74,7 @@
     "third_friday": "2026-08-21",
     "holiday_shifted": false,
     "is_quad_witch_next": false,
-    "trading_days_until": 19,
+    "trading_days_until": 18,
     "is_opex_today": false,
     "warn": false,
     "warn_days": 3,
@@ -89,7 +89,7 @@
     "NDX": 0.0
   },
   "santa_context": {
-    "as_of": "2026-07-27",
+    "as_of": "2026-07-28",
     "window_months": [
       11,
       12
@@ -123,7 +123,7 @@
       }
     },
     "pit_date": "2026-06-15",
-    "pit_age_days": 42,
+    "pit_age_days": 43,
     "stale": false,
     "ratio4q_nfc_pct_ngdp": -0.48,
     "z10y_nfc": 1.29,
@@ -139,9 +139,9 @@
     "last_closed_quarter": "2026Q2",
     "roll4q_filings": 1531,
     "z10y": 0.67,
-    "last90d_new": 357,
-    "z90": 0.33,
-    "live_as_of": "2026-07-27",
+    "last90d_new": 353,
+    "z90": 0.3,
+    "live_as_of": "2026-07-28",
     "stale": false,
     "mega_hits_120d": [
       {
@@ -156,7 +156,7 @@
     "label": "dosyalama = NIYET, gerceklesme degil; kayit-tavani != arz-buyuklugu; baglam-bandi — pozisyon etkisi SIFIR"
   },
   "ipo_supply_waves": {
-    "as_of": "2026-07-27",
+    "as_of": "2026-07-28",
     "n_active": 1,
     "waves": [
       {
@@ -172,14 +172,14 @@
         ],
         "lockup_status": "parse-ok",
         "lockup_expiry_date": "2027-06-04",
-        "days_to_lockup": 312,
+        "days_to_lockup": 311,
         "lockup_shares_est": 7800000000.0,
         "lockup_pct_note": "greater than 63% of shares outstanding (pre-offering)",
         "index_incl_eligible": true,
         "index_incl_window": {
           "earliest": "2026-09-01",
           "latest": "2027-06-03",
-          "days_to_earliest": 36
+          "days_to_earliest": 35
         },
         "forced_passive_demand_usd_lo": 12937499982.0,
         "forced_passive_demand_usd_hi": 17249999976.0,
@@ -208,7 +208,7 @@
     "mega_ceiling_usd": 1000000000.0,
     "mega_label": "Space Exploration Technologies",
     "mega_hi": false,
-    "tide_score": 7.4,
+    "tide_score": 7.37,
     "tide_dir": 1,
     "tide_declining_63d": true,
     "demand_weak": false,
