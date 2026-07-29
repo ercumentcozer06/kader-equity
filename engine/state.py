@@ -86,6 +86,7 @@ def build_state(cfg: dict, ticker: str = "SPY") -> tuple[dict, dict, dict]:
     if surf is None and ticker != "SPY":
         surf = _latest("surface_spy"); surf_fallback = surf is not None
     cor1m = ((model.get("overlays", {}) or {}).get("cor1m_froth", {}) or {}).get("cor1m")
+    dispersion = ((model.get("overlays", {}) or {}).get("dispersion_ensemble", {}) or {})
 
     g = gamma or {}
     front = None
@@ -97,6 +98,11 @@ def build_state(cfg: dict, ticker: str = "SPY") -> tuple[dict, dict, dict]:
 
     state = {
         "ticker": ticker,
+        # Active sizing overlay.  COR1M remains available below for the legacy vehicle
+        # classifier, but rationale must describe the ensemble that actually sized deploy.
+        "dispersion_froth": (dispersion.get("froth") if dispersion.get("available") else None),
+        "dispersion_froth_pct": dispersion.get("froth_pct"),
+        "dispersion_factor": dispersion.get("factor"),
         "spot": g.get("spot"),
         "net_gex_bn": g.get("net_gex_bn"),
         "net_vanna_m": g.get("net_vanna_m"),

@@ -1,5 +1,5 @@
 {
-  "run_utc": "2026-07-28T12:37:38.860646+00:00",
+  "run_utc": "2026-07-29T01:00:59.837533+00:00",
   "prospective_start": "2026-07-17",
   "shadow": {
     "SPY|P4_forced_selling|2R": {
@@ -55,28 +55,28 @@
       "n": 0
     },
     "QQQ|P6_PDL_acceptance_short|2R": {
-      "n": 2,
-      "mean_net_bps": 5.043437979151189,
-      "median_net_bps": 5.043437979151189,
-      "t": 0.09341871593881036,
-      "p_one_sided": 0.4703499518945097,
-      "hit": 0.5,
-      "profit_factor": 1.2060901048394135,
-      "mean_r_gross": 0.5,
-      "mean_mfe_r": 1.3838597797044763,
-      "mean_mae_r": 0.6518627637136591,
+      "n": 3,
+      "mean_net_bps": 29.444965797481718,
+      "median_net_bps": 59.03088501765108,
+      "t": 0.7438390129047562,
+      "p_one_sided": 0.26724536730204107,
+      "hit": 0.6666666666666666,
+      "profit_factor": 2.8048153204068695,
+      "mean_r_gross": 1.0,
+      "mean_mfe_r": 1.6098420241611755,
+      "mean_mae_r": 0.5577416341767619,
       "block5_ci95_bps": [
         NaN,
         NaN
       ],
       "block5_probability_mean_gt0": NaN,
-      "cum_return": 0.0009797955141193082,
+      "cum_return": 0.008812264363572408,
       "max_drawdown": 0.0,
-      "top3_pnl_share": NaN,
+      "top3_pnl_share": 1.0,
       "underpowered_n_lt_30": true,
       "exit_reasons": {
-        "stop": 1,
-        "target": 1
+        "target": 2,
+        "stop": 1
       }
     }
   },
@@ -208,62 +208,62 @@
     },
     "QQQ|P6_PDL_acceptance_short|2R": {
       "status": "COLLECTING",
-      "n": 2,
+      "n": 3,
       "metrics_2bps": {
-        "n": 2,
-        "mean_net_bps": 5.043437979151189,
-        "median_net_bps": 5.043437979151189,
-        "t": 0.09341871593881036,
-        "p_one_sided": 0.4703499518945097,
-        "hit": 0.5,
-        "profit_factor": 1.2060901048394135,
-        "mean_r_gross": 0.5,
-        "mean_mfe_r": 1.3838597797044763,
-        "mean_mae_r": 0.6518627637136591,
+        "n": 3,
+        "mean_net_bps": 29.444965797481718,
+        "median_net_bps": 59.03088501765108,
+        "t": 0.7438390129047562,
+        "p_one_sided": 0.26724536730204107,
+        "hit": 0.6666666666666666,
+        "profit_factor": 2.8048153204068695,
+        "mean_r_gross": 1.0,
+        "mean_mfe_r": 1.6098420241611755,
+        "mean_mae_r": 0.5577416341767619,
         "block5_ci95_bps": [
           NaN,
           NaN
         ],
         "block5_probability_mean_gt0": NaN,
-        "cum_return": 0.0009797955141193082,
+        "cum_return": 0.008812264363572408,
         "max_drawdown": 0.0,
-        "top3_pnl_share": NaN,
+        "top3_pnl_share": 1.0,
         "underpowered_n_lt_30": true,
         "exit_reasons": {
-          "stop": 1,
-          "target": 1
+          "target": 2,
+          "stop": 1
         }
       },
       "metrics_5bps": {
-        "n": 2,
-        "mean_net_bps": 2.0434379791511894,
-        "median_net_bps": 2.0434379791511894,
-        "t": 0.037850242810962324,
-        "p_one_sided": 0.48795764211484527,
-        "hit": 0.5,
-        "profit_factor": 1.078678485398247,
-        "mean_r_gross": 0.5,
-        "mean_mfe_r": 1.3838597797044763,
-        "mean_mae_r": 0.6518627637136591,
+        "n": 3,
+        "mean_net_bps": 26.444965797481718,
+        "median_net_bps": 56.03088501765108,
+        "t": 0.6680529836710215,
+        "p_one_sided": 0.2864367520119333,
+        "hit": 0.6666666666666666,
+        "profit_factor": 2.5273156390720817,
+        "mean_r_gross": 1.0,
+        "mean_mfe_r": 1.6098420241611755,
+        "mean_mae_r": 0.5577416341767619,
         "block5_ci95_bps": [
           NaN,
           NaN
         ],
         "block5_probability_mean_gt0": NaN,
-        "cum_return": 0.0003795829078405699,
+        "cum_return": 0.0079072413375334,
         "max_drawdown": 0.0,
-        "top3_pnl_share": NaN,
+        "top3_pnl_share": 1.0,
         "underpowered_n_lt_30": true,
         "exit_reasons": {
-          "stop": 1,
-          "target": 1
+          "target": 2,
+          "stop": 1
         }
       },
       "bootstrap_lower99_mean_bps_5bps": null,
       "bootstrap_upper95_mean_bps_5bps": null,
       "half_means_bps_5bps": [
         -51.9440090593487,
-        56.03088501765108
+        65.63945322589693
       ],
       "top5_share_5bps": null
     }

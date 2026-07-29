@@ -444,6 +444,23 @@ def test_s3_decision_all_branches():
     assert veh("LONG", 0.05) == "stand_aside"                                       # konviksiyon eşik-altı
 
 
+@pytest.mark.parametrize("froth, expected", [
+    (True, "FROTH (aktif dispersion ensemble)"),
+    (False, "froth-yok (aktif dispersion ensemble)"),
+])
+def test_rationale_uses_active_dispersion_without_changing_decision_math(froth, expected):
+    from engine import decision as D
+    model = {"direction": "LONG", "position_target": 0.7}
+    state = _istate(cor1m=15.0, dispersion_froth=froth,
+                    dispersion_froth_pct=0.95 if froth else 0.30,
+                    dispersion_factor=0.0 if froth else 1.0)
+    before = D.pick_vehicle("LONG", 0.7, D.classify_regime(_istate(cor1m=15.0)), _icfg())
+    got = D.decide(model, state, _icfg())
+    assert expected in got["rationale"]
+    assert got["conviction"] == 0.7
+    assert got["vehicle"] == before
+
+
 def test_s3_trade_all_structures():
     """trade.construct 4 yapı + min-DTE floor + delta-one instrument."""
     from engine import trade as TR

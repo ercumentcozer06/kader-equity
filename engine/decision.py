@@ -35,6 +35,7 @@ def classify_regime(state: dict) -> dict:
     cor1m = state.get("cor1m")
     froth = (cor1m is not None and cor1m < 8.0)
     froth_soft = (cor1m is not None and cor1m < 11.0)
+    dispersion_froth = state.get("dispersion_froth")
     # duvara yakınlık (pin adayı): spot bir wall'a ~0.5 expected-move içinde
     cw, pw = state.get("call_wall"), state.get("put_wall")
     near_wall = False
@@ -53,6 +54,9 @@ def classify_regime(state: dict) -> dict:
     return {
         "short_gamma": short_gamma, "above_flip": above_flip, "dist_flip_em": dist_flip_em,
         "froth": froth, "froth_soft": froth_soft, "near_wall": near_wall,
+        "dispersion_froth": dispersion_froth,
+        "dispersion_froth_pct": state.get("dispersion_froth_pct"),
+        "dispersion_factor": state.get("dispersion_factor"),
         "backwardation": backwardation, "calm": calm, "cor1m": cor1m,
         "vrp": vrp, "vrp_rich": vrp_rich, "vrp_cheap": vrp_cheap,
         "ticker": state.get("ticker", "SPY"),
@@ -153,12 +157,18 @@ def decide(model: dict, state: dict, cfg: dict) -> dict:
     reg = classify_regime(state)
     horizon = pick_horizon(direction, reg)
     vehicle = pick_vehicle(direction, conviction, reg, cfg)
+    _active_froth = reg.get("dispersion_froth")
+    _froth_text = (
+        "FROTH (aktif dispersion ensemble)" if _active_froth is True else
+        "froth-yok (aktif dispersion ensemble)" if _active_froth is False else
+        "froth-bilinmiyor (aktif dispersion ensemble kullanilamadi)"
+    )
     if vehicle["class"] == "stand_aside":
         horizon = "—"
     rationale = (f"model {direction} (konviksiyon {conviction:.2f}); "
                  f"rejim: {'kısa' if reg['short_gamma'] else 'long'}-gamma, "
                  f"flip-{'üstü' if reg['above_flip'] else 'altı'}, "
-                 f"{'FROTH' if reg['froth'] else ('froth-soft' if reg['froth_soft'] else 'froth-yok')}, "
+                 f"{_froth_text}, "
                  f"vol-{'backward/stres' if reg['backwardation'] else ('sakin' if reg['calm'] else 'nötr')}"
                  f"{', duvara-yakın' if reg['near_wall'] else ''} → {vehicle['expression']}")
     return {"direction": direction, "conviction": round(conviction, 3), "horizon": horizon,
