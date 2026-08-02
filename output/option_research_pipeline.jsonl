@@ -971,3 +971,9 @@
 {"started_utc": "2026-08-02T19:55:11.776242+00:00", "finished_utc": "2026-08-02T19:55:12.021573+00:00", "mode": "intraday", "status": "ok"}
 {"started_utc": "2026-08-02T20:00:07.977810+00:00", "finished_utc": "2026-08-02T20:00:08.769378+00:00", "mode": "intraday", "status": "ok"}
 {"started_utc": "2026-08-02T20:03:08.945841+00:00", "finished_utc": "2026-08-02T20:03:09.700933+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-02T20:03:09.105844+00:00", "finished_utc": "2026-08-02T20:04:31.553865+00:00", "mode": "eod", "status": "ok"}
+{"started_utc": "2026-08-02T20:05:02.620739+00:00", "finished_utc": "2026-08-02T20:05:02.800773+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-02T20:10:01.346770+00:00", "finished_utc": "2026-08-02T20:10:01.491812+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-02T20:15:01.219640+00:00", "finished_utc": "2026-08-02T20:15:01.320037+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-02T20:20:01.232457+00:00", "finished_utc": "2026-08-02T20:20:01.331780+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-02T22:13:10.483882+00:00", "finished_utc": "2026-08-02T22:13:10.654575+00:00", "mode": "intraday", "status": "ok"}
