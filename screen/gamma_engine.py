@@ -32,6 +32,7 @@ except Exception:
     pass
 
 import numpy as np
+from modules.market_clock import market_date
 
 try:                                                 # script (screen/ path'te) ya da paket olarak
     from _cboe_lib import load_rows as cboe_load_rows, flip_bs, PUT_WEIGHT   # noqa: E402
@@ -194,7 +195,8 @@ def main() -> int:
     except Exception:
         pass
 
-    snap = {"as_of": date.today().isoformat(), "ts": datetime.now(timezone.utc).isoformat(), "underlying": cboe_sym,
+    as_of = market_date()
+    snap = {"as_of": as_of.isoformat(), "ts": datetime.now(timezone.utc).isoformat(), "underlying": cboe_sym,
             "index": idx_lbl, "spot": round(spot, 2), "net_gex_bn": round(net_gex/1e9, 3),
             "net_vanna_m": round(net_vanna/1e6, 2), "net_charm_m": round(net_charm/1e6, 2),
             "dealer_delta_m": round(dealer_delta/1e6, 2), "gex_flip": round(flip, 2) if flip else None,
@@ -207,9 +209,9 @@ def main() -> int:
             "shield_z": shield_z, "shield_short_gamma": shield_short, "source": "cboe"}
     outdir = ROOT / "data" / "cache" / f"gamma_{arg.lower()}"
     outdir.mkdir(parents=True, exist_ok=True)
-    (outdir / f"{date.today().isoformat()}.json").write_text(json.dumps(snap, indent=2), encoding="utf-8")
+    (outdir / f"{as_of.isoformat()}.json").write_text(json.dumps(snap, indent=2), encoding="utf-8")
     print(f"  HVL ≈ {idx_lbl} {hvl*mult:.0f}  | shield-z {shield_z} ({'short-γ' if shield_short else 'normal'})" if hvl else "")
-    print(f"  snapshot → {outdir / (date.today().isoformat()+'.json')}  (CBOE forward-collector {arg})")
+    print(f"  snapshot → {outdir / (as_of.isoformat()+'.json')}  (CBOE forward-collector {arg})")
     return 0
 
 

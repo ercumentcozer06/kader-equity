@@ -26,6 +26,8 @@ try:
 except Exception:
     pass
 
+from modules.market_clock import market_date
+
 try:                                                 # script (screen/) ya da paket
     from _cboe_lib import load_rows as cboe_load_rows, flip_bs, bs_gamma, PUT_WEIGHT   # noqa: E402
 except ImportError:
@@ -65,7 +67,7 @@ def main() -> int:
     if not isfinite(spot) or spot <= 0:                  # savunma (kök guard _cboe_lib'de): NaN/0 spot -> junk snapshot YAZMA
         print(f"  [!] geçersiz spot ({cboe_sym}): {spot}")
         return 1
-    today = date.today()
+    today = market_date()
 
     by_exp = {}
     for r in crows:

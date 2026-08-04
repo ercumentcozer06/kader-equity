@@ -7,8 +7,10 @@ okur (ayırma: collector=veri, motor=karar). Tazelik kapısı snapshot yaşını
 """
 from __future__ import annotations
 import json
-from datetime import date, datetime, timezone
+from datetime import date
 from pathlib import Path
+
+from modules.market_clock import market_date
 
 ROOT = Path(__file__).resolve().parents[1]
 CACHE = ROOT / "data" / "cache"
@@ -18,7 +20,25 @@ TIC_MULT = {"SPY": ("SPX", 1), "QQQ": ("NDX", 41)}  # SPY arg -> CBOE _SPX (spot
 def _latest(subdir: str) -> dict | None:
     d = CACHE / subdir
     files = sorted(d.glob("*.json")) if d.exists() else []
-    return json.loads(files[-1].read_text(encoding="utf-8")) if files else None
+    if not files:
+        return None
+    today = market_date()
+    newest = None
+    # Eski timezone bug'ının bıraktığı geleceğe tarihli dosyayı "latest" sanma.
+    # Geçerli en yeni snapshot'ı seç; yalnız gelecek dosyalar varsa aşağıdaki
+    # veri-kalite kapısı newest'i açıkça reddeder.
+    for p in reversed(files):
+        try:
+            snap = json.loads(p.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        newest = newest or snap
+        try:
+            if date.fromisoformat(str(snap.get("as_of"))) <= today:
+                return snap
+        except (TypeError, ValueError):
+            return snap
+    return newest
 
 
 def _ts_ratio(surface: dict | None) -> float | None:
@@ -128,7 +148,7 @@ def build_state(cfg: dict, ticker: str = "SPY") -> tuple[dict, dict, dict]:
     state["realized_vol"] = rvol
     state["vrp"] = (round(float(atm30) - float(rvol), 2) if (atm30 is not None and rvol is not None) else None)
     # tazelik: snapshot yaşı
-    today = datetime.now(timezone.utc).date()
+    today = market_date()
     snap_as_of = g.get("as_of") or (surf or {}).get("as_of")
     age = None
     if snap_as_of:
@@ -138,11 +158,28 @@ def build_state(cfg: dict, ticker: str = "SPY") -> tuple[dict, dict, dict]:
             pass
     from engine import dataguard as DG                  # GÖREV 6b: veri kalite kapısı
     dq = DG.validate(gamma, surf)
+    snapshot_dates = {
+        "gamma": (gamma or {}).get("as_of"),
+        "surface": (surf or {}).get("as_of"),
+    }
+    parsed_dates = {}
+    for name, raw in snapshot_dates.items():
+        if raw:
+            try:
+                parsed_dates[name] = date.fromisoformat(str(raw))
+            except ValueError:
+                dq["fails"].append(f"{name}: geçersiz as_of tarihi: {raw}")
+    future = {name: str(d) for name, d in parsed_dates.items() if d > today}
+    if future:
+        dq["fails"].append(f"snapshot gelecekte (NY bugün {today}): {future}")
+    if len(set(parsed_dates.values())) > 1:
+        dq["fails"].append(f"gamma/surface as_of uyuşmuyor: {snapshot_dates}")
+    dq["ok"] = len(dq["fails"]) == 0
     meta = {
         "snapshot_as_of": snap_as_of, "snapshot_age_days": age,
         "gamma_available": gamma is not None, "surface_available": surf is not None,
         "model_call_status": model.get("call_status"),
-        "stale": (age is not None and age > 3) or (model.get("call_status") == "STALE"),
+        "stale": (age is not None and (age < 0 or age > 3)) or (model.get("call_status") == "STALE"),
         "data_ok": dq["ok"], "data_fails": dq["fails"], "data_checks": dq["checks"],
         "data_junk": not dq["ok"],                      # True → trade üretme (VERİ ÇÖP)
         "gamma_fallback_to_spy": gamma_fallback,        # H7: QQQ→SPY gamma düşüşü (açık uyarı)

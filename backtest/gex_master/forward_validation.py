@@ -148,6 +148,19 @@ def required_n(mean: float, sd: float, alpha: float = .01, power: float = .90) -
     return int(np.ceil(((z_alpha + z_power) * sd / mean) ** 2))
 
 
+def strict_json_value(value):
+    """Recursively map non-finite research statistics to JSON ``null``."""
+    if isinstance(value, dict):
+        return {k: strict_json_value(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [strict_json_value(v) for v in value]
+    if isinstance(value, (float, np.floating)) and not np.isfinite(value):
+        return None
+    if isinstance(value, np.integer):
+        return int(value)
+    return value
+
+
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     t = collect_forward()
@@ -173,7 +186,9 @@ def main() -> int:
         }
     # Forced-selling family cannot pass unless both legs independently have at
     # least a positive 95% bootstrap lower bound. Individual gates remain visible.
-    (OUT / "forward_validation.json").write_text(json.dumps(result, indent=2, default=str), encoding="utf-8")
+    result = strict_json_value(result)
+    (OUT / "forward_validation.json").write_text(
+        json.dumps(result, indent=2, default=str, allow_nan=False), encoding="utf-8")
     print("CANONICAL GEX FORWARD VALIDATION")
     for k in result["prospective"]:
         sh = result["shadow"][k]; pr = result["prospective"][k]; pw = result["power_reference"][k]

@@ -15,6 +15,7 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 
 import pandas as pd
+from modules.market_clock import market_date as _market_date
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -33,7 +34,7 @@ LEVEL_COLS = ["as_of", "ticker", "snapshot_ts", "spot", "put_wall", "call_wall",
 def _snap(tick: str) -> dict | None:
     subprocess.run([PY, str(ROOT / "screen" / "surface_yf.py"), tick],
                    capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180)
-    p = ROOT / "data" / "cache" / f"surface_{tick.lower()}" / f"{date.today().isoformat()}.json"
+    p = ROOT / "data" / "cache" / f"surface_{tick.lower()}" / f"{_market_date().isoformat()}.json"
     if not p.exists():
         return None
     d = json.loads(p.read_text(encoding="utf-8"))
@@ -46,7 +47,7 @@ def _gamma_levels(tick: str) -> dict | None:
     """gamma_engine'i çalıştır → gamma_<tick> snapshot'ından seviye satırı (G1: analiz yok, sadece topla)."""
     subprocess.run([PY, str(ROOT / "screen" / "gamma_engine.py"), tick],
                    capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180)
-    p = ROOT / "data" / "cache" / f"gamma_{tick.lower()}" / f"{date.today().isoformat()}.json"
+    p = ROOT / "data" / "cache" / f"gamma_{tick.lower()}" / f"{_market_date().isoformat()}.json"
     if not p.exists():
         return None
     d = json.loads(p.read_text(encoding="utf-8"))
@@ -75,7 +76,7 @@ def _append_levels(rows: list) -> int:
 
 def _written_this_run(kind: str, tick: str, started: float) -> bool:
     """Bugünün snapshot dosyası BU KOŞUDA mı yazıldı (mtime >= başlangıç)? 'Dünden kalan dosya var' ≠ taze."""
-    p = ROOT / "data" / "cache" / f"{kind}_{tick.lower()}" / f"{date.today().isoformat()}.json"
+    p = ROOT / "data" / "cache" / f"{kind}_{tick.lower()}" / f"{_market_date().isoformat()}.json"
     return p.exists() and p.stat().st_mtime >= started
 
 
@@ -157,14 +158,15 @@ def main() -> int:
     # run-tarihi etiketi verinin gerçek yaşını 0'a kelepçeliyordu. Kapalı günde snapshot'lar yine alınır
     # (brief tüketebilir) ama DEFTERLERE SATIR YAZILMAZ — o verinin işlem-günü satırı zaten kendi gününde
     # yazıldı. Betimsel toplayıcı; sinyal matematiği yok. ──
-    if not _is_trading_day(date.today()):
+    as_of = _market_date()
+    if not _is_trading_day(as_of):
         print("  [i] piyasa kapalı (hafta sonu/NYSE tatili) — defter satırı YAZILMADI "
               "(hayalet as_of önlendi; snapshot'lar alındı, gerçek işlem gününün satırı zaten defterde)")
         return 0
 
     # ── yalnız HER ŞEY TAZE ise defterlere yaz (stale-türevli satır persist ETMEZ) ──
     spy, qqq = snaps["SPY"], snaps["QQQ"]
-    rec = {"as_of": date.today().isoformat(), "computed_at": datetime.now(timezone.utc).isoformat(),
+    rec = {"as_of": as_of.isoformat(), "computed_at": datetime.now(timezone.utc).isoformat(),
            "spx_spot": (spy or {}).get("spot"), "spx_atm_iv": (spy or {}).get("atm_iv"),
            "spx_gex_flip": (spy or {}).get("flip"), "spx_gex_net_bn": (spy or {}).get("gex"),
            "ndx_spot": (qqq or {}).get("spot"), "ndx_atm_iv": (qqq or {}).get("atm_iv"),

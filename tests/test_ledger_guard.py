@@ -28,7 +28,9 @@ def test_h4_guard_alive_and_marks_stale(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr(L, "gaps_path", lambda: tmp_path / "no_gaps.json")
     # bayat 'canlı' fiyat serisi: son kapanış haftalar önce (bugüne göre >2 işlem günü)
     idx = pd.bdate_range("2026-06-01", periods=9)
-    closes = pd.Series([100.0 + i for i in range(9)], index=idx)
+    # Pandas 3.0 hafta sonu bitişli bdate_range'de ``periods`` kadar değil,
+    # yalnız pencereye düşen iş günlerini döndürebiliyor; fixture indeks boyuna uysun.
+    closes = pd.Series([100.0 + i for i in range(len(idx))], index=idx)
     monkeypatch.setattr(L, "_index_closes", lambda asset=L.REF_ASSET: closes)
     _seed_call(L, str(idx[-1].date()))
     df = L.mark_to_market()            # closes=None → CANLI dal (kırık olan buydu)
@@ -45,7 +47,7 @@ def test_h4_guard_fresh_source_no_alarm(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr(L, "gaps_path", lambda: tmp_path / "no_gaps.json")
     # taze seri: bugüne kadar kapanışlar → alarm yok, guard sessiz-temiz
     idx = pd.bdate_range(end=pd.Timestamp.now(tz="UTC").tz_localize(None).normalize(), periods=9)
-    closes = pd.Series([100.0 + i for i in range(9)], index=idx)
+    closes = pd.Series([100.0 + i for i in range(len(idx))], index=idx)
     monkeypatch.setattr(L, "_index_closes", lambda asset=L.REF_ASSET: closes)
     # Pazartesi seans-kapanisi oncesinde canli koruma bugunun tamamlanmamis
     # barini dusurur. Bir onceki isgununu seed etmek bu durumda "next close"

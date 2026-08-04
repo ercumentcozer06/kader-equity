@@ -225,8 +225,14 @@ def evaluate(cfg: dict | None = None, *, tide_score=None, tide_dir=None, as_of=N
             frozen_last = tide_score.index[-1]
         # CANLI tide noktası enjekte (run.py canlı yolda geçer) → bayat-frozen-son-değer kapısını deler
         if live_tide_score is not None and live_tide_dir is not None:
-            ts_idx = pd.Timestamp(as_of) if as_of is not None else (
-                frozen_last + pd.Timedelta(days=1) if frozen_last is not None else tide_score.index[-1])
+            # Canlı nokta donmuş snapshot'ın son günü+1'e bağlanamaz: frozen kuyruk aylar
+            # gerideyse K2 güncel arz-z ve mega-IPO dosyalamalarını PIT filtresinde kaçırır.
+            # Çağıran gerçek model as_of'u vermelidir; bağımsız kullanımda NY piyasa tarihi
+            # güvenli varsayılandır.
+            if as_of is None:
+                from modules.market_clock import market_date
+                as_of = market_date()
+            ts_idx = pd.Timestamp(as_of)
             tide_score = tide_score.copy(); tide_score.loc[ts_idx] = float(live_tide_score)
             tide_dir = tide_dir.copy(); tide_dir.loc[ts_idx] = int(live_tide_dir)
             tide_score = tide_score.sort_index(); tide_dir = tide_dir.sort_index()

@@ -1,7 +1,8 @@
 # KADER-EQUITY — Mimari
 
-> **Durum: BUILT.** MODEL = **tide × COR1M-froth × GEX-shield** → SPX **1.64** / NDX **1.77** @2019+ frozen
-> (honest forward ~1.0-1.3, DSR 0.985/0.994). §1-9 = TIDE ayağı (spine, DONMUŞ); **§10 = as-built overlay stack**.
+> **Durum: BUILT.** CANLI MODEL = **tide × dispersion-ensemble × GEX-shield**. Donmuş tide çapası
+> SPX **1.43** / NDX **1.49** @2019+; honest forward ~1.0-1.3, spine DSR ≈0.62. §1-9 = TIDE
+> ayağı (spine, DONMUŞ); güncel overlay ve caveat'lar **§10**'da.
 > tide spine §1-9'da, 2 overlay modülü §10'da. pytest 11/11. Yazım: 2026-06-08 (seed) → 2026-06-09 (as-built §10).
 
 ---

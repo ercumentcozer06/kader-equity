@@ -88,8 +88,10 @@ def _bb_pull():
     elif st == "verify_failed":
         _log(f"  ⚠ buyback: {res.get('quarter')} AUTO-PARSE BELIRSIZ (12mo-self-check tutmadi) — "
              f"YAZILMADI, elle-dogrulama bekliyor: {res.get('detail')}")
+        raise RuntimeError(f"buyback verify_failed ({res.get('quarter')})")
     elif st in ("parse_failed", "no_listing"):
         _log(f"  ⚠ buyback: bulten cekimi/listesi alinamadi (status={st}) — atlandi, sonraki kosu dener")
+        raise RuntimeError(f"buyback {st}")
     else:
         _log(f"  buyback: {st} (son {res.get('quarter')}) — yeni ceyrek yok, dokunulmadi")
 
@@ -141,6 +143,10 @@ def _refresh_constan():
     n_ok += _substep("arz-talep denge (K1, turetir)", _balance_derive)
     _log(f"constan-refresh BITTI — {n_ok}/4 alt-adim OK "
          f"(dususler graceful-stale; daily-run akisini etkilemez)")
+    if n_ok < 4:
+        # Ana boru sonraki adımlara devam eder (_step exception'ı yakalar), fakat koşu
+        # sahte "tüm adımlar OK"/temiz alarm üretmez: exit 1 + degrade alarmı görünür.
+        raise RuntimeError(f"constan-refresh DEGRADED: {4 - n_ok}/4 alt-adim basarisiz")
 
 
 def _brief_and_ledger():
@@ -196,9 +202,8 @@ def main() -> int:
     _log("run_daily BAŞLADI")
     results = []
     results.append(_step("collect_daily (gamma+surface+levels)", _collect))
-    # Constan bant-tazeleme: brief'TEN ONCE (bantlar canli olsun) AMA NON-FATAL (_refresh_constan
-    # kendi-icinde her fetch'i _substep ile sarar; bir kaynak dususe exception SIZMAZ, _step yesil
-    # kalir, brief+ledger yine calisir). Constan dususe bile kritik trade-borusu etkilenmez.
+    # Constan bant-tazeleme brief'TEN ÖNCE çalışır. Alt kaynak arızası kritik boruyu
+    # durdurmaz (_step yakalar; brief+ledger devam eder) ama koşu DEGRADED/exit-1 olur.
     results.append(_step("constan-refresh (IPO+buyback+net-arz+denge, best-effort)", _refresh_constan))
     results.append(_step("brief SPY+QQQ + forward-ledger", _brief_and_ledger))
     results.append(_step("forward-watch (attribution)", _forward_watch))

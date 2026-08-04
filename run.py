@@ -15,7 +15,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -227,9 +227,10 @@ def build_decision(cfg: dict) -> dict:
     #    Referans = BUGÜN (ileriye-dönük bilinen takvim; bayat snapshot tarihine bağlı DEĞİL → "3 gün önce uyar" çalışır).
     from modules import opex_calendar
     ocfg = cfg.get("opex_gate", {}) or {}
-    # Denetim 07-11 P3 ([34]): UTC-takvim gec-aksam ET kosusunda gunu yanlis siniflandiriyordu
-    # (market_open/OpEx) -> ET is-gunu (konservatif UTC-5).
-    today = (datetime.now(timezone.utc) - timedelta(hours=5)).date()
+    # Tek takvim: gerçek America/New_York tarihi (DST dahil). Collector, brief ve
+    # market_open/OpEx aynı günü görür; sabit UTC-5 yaz/kış kayması üretmez.
+    from modules.market_clock import market_date
+    today = market_date()
     opex = opex_calendar.evaluate(today, ocfg) if bool(ocfg.get("enabled")) else None
 
     # ── CONSTAN BAĞLAM BANTLARI (2026-06-13; pozisyon etkisi SIFIR — OpEx-etiket emsali). ──
@@ -287,7 +288,10 @@ def build_decision(cfg: dict) -> dict:
             # #4 (2026-06-19): CANLI tide'ı geçir → K2 talep-kapısı 28g-bayat frozen-son-değeri kullanmasın
             _lts = td["tide_score"] if data_source == "live" else None
             _ltd = td["tide_dir"] if data_source == "live" else None
-            sdrisk = supply_demand_derisk.evaluate(dcfg, live_tide_score=_lts, live_tide_dir=_ltd)
+            # K2'nin PIT tarihi donmus spine kuyruğundan türetilmemeli. Canlı tide'ın gerçek
+            # model as_of'unu geçir; aksi halde güncel mega-IPO/z-arz bacağı aylarca görünmez.
+            sdrisk = supply_demand_derisk.evaluate(
+                dcfg, as_of=as_of, live_tide_score=_lts, live_tide_dir=_ltd)
         except Exception as _e:
             print(f"  [!] supply_demand_derisk hata (trim atlandi): {_e}", file=sys.stderr)
         if sdrisk is None:
@@ -551,7 +555,7 @@ def write_latest(d: dict) -> None:
 
 
 def main(argv=None) -> int:
-    ap = argparse.ArgumentParser(description="kader-equity karar motoru (tide × COR1M-froth × GEX-shield)")
+    ap = argparse.ArgumentParser(description="kader-equity karar motoru (tide × dispersion-ensemble × GEX-shield)")
     ap.add_argument("--json", action="store_true", help="output/kader_equity_YYYYMMDD.json yaz")
     ap.add_argument("--quiet", action="store_true")
     ap.add_argument("--validate", action="store_true", help="son JSON'u doğrula (fetch yok)")

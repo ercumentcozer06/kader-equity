@@ -241,11 +241,7 @@ class TestCollectClosedDay:
         monkeypatch.setattr(CD, "_append_levels",
                             lambda rows: calls.__setitem__("levels", calls["levels"] + 1) or 1)
 
-        class _FakeDate(date):
-            @classmethod
-            def today(cls):
-                return today
-        monkeypatch.setattr(CD, "date", _FakeDate)
+        monkeypatch.setattr(CD, "_market_date", lambda: today)
 
     def test_sunday_run_no_ledger_rows(self, monkeypatch):
         """2026-07-05 Pazar koşusu (gerçek örnek: hayalet 07-05 satırı) → exit 0, defterlere SIFIR yazım."""

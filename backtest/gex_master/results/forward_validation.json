@@ -1,5 +1,5 @@
 {
-  "run_utc": "2026-08-02T20:04:31.390828+00:00",
+  "run_utc": "2026-08-02T23:21:41.199033+00:00",
   "prospective_start": "2026-07-17",
   "shadow": {
     "SPY|P4_forced_selling|2R": {
@@ -14,13 +14,13 @@
       "mean_mfe_r": 1.0372179336474672,
       "mean_mae_r": 0.5333418582570711,
       "block5_ci95_bps": [
-        NaN,
-        NaN
+        null,
+        null
       ],
-      "block5_probability_mean_gt0": NaN,
+      "block5_probability_mean_gt0": null,
       "cum_return": 0.0021497614904812945,
       "max_drawdown": 0.0,
-      "top3_pnl_share": NaN,
+      "top3_pnl_share": null,
       "underpowered_n_lt_30": true,
       "exit_reasons": {
         "stop": 1,
@@ -31,21 +31,21 @@
       "n": 1,
       "mean_net_bps": -28.7520710904523,
       "median_net_bps": -28.7520710904523,
-      "t": NaN,
-      "p_one_sided": NaN,
+      "t": null,
+      "p_one_sided": null,
       "hit": 0.0,
       "profit_factor": 0.0,
       "mean_r_gross": -1.0,
       "mean_mfe_r": 0.6200647617872372,
       "mean_mae_r": 1.0156233167205513,
       "block5_ci95_bps": [
-        NaN,
-        NaN
+        null,
+        null
       ],
-      "block5_probability_mean_gt0": NaN,
+      "block5_probability_mean_gt0": null,
       "cum_return": -0.002875207109045208,
       "max_drawdown": 0.0,
-      "top3_pnl_share": NaN,
+      "top3_pnl_share": null,
       "underpowered_n_lt_30": true,
       "exit_reasons": {
         "stop": 1
@@ -66,10 +66,10 @@
       "mean_mfe_r": 1.2073815181208816,
       "mean_mae_r": 0.696118800662556,
       "block5_ci95_bps": [
-        NaN,
-        NaN
+        null,
+        null
       ],
-      "block5_probability_mean_gt0": NaN,
+      "block5_probability_mean_gt0": null,
       "cum_return": 0.006318772367707837,
       "max_drawdown": -0.002471710628377033,
       "top3_pnl_share": 1.769344678688094,
@@ -96,13 +96,13 @@
         "mean_mfe_r": 1.0372179336474672,
         "mean_mae_r": 0.5333418582570711,
         "block5_ci95_bps": [
-          NaN,
-          NaN
+          null,
+          null
         ],
-        "block5_probability_mean_gt0": NaN,
+        "block5_probability_mean_gt0": null,
         "cum_return": 0.0021497614904812945,
         "max_drawdown": 0.0,
-        "top3_pnl_share": NaN,
+        "top3_pnl_share": null,
         "underpowered_n_lt_30": true,
         "exit_reasons": {
           "stop": 1,
@@ -121,13 +121,13 @@
         "mean_mfe_r": 1.0372179336474672,
         "mean_mae_r": 0.5333418582570711,
         "block5_ci95_bps": [
-          NaN,
-          NaN
+          null,
+          null
         ],
-        "block5_probability_mean_gt0": NaN,
+        "block5_probability_mean_gt0": null,
         "cum_return": 0.0015492044257625626,
         "max_drawdown": 0.0,
-        "top3_pnl_share": NaN,
+        "top3_pnl_share": null,
         "underpowered_n_lt_30": true,
         "exit_reasons": {
           "stop": 1,
@@ -149,21 +149,21 @@
         "n": 1,
         "mean_net_bps": -28.7520710904523,
         "median_net_bps": -28.7520710904523,
-        "t": NaN,
-        "p_one_sided": NaN,
+        "t": null,
+        "p_one_sided": null,
         "hit": 0.0,
         "profit_factor": 0.0,
         "mean_r_gross": -1.0,
         "mean_mfe_r": 0.6200647617872372,
         "mean_mae_r": 1.0156233167205513,
         "block5_ci95_bps": [
-          NaN,
-          NaN
+          null,
+          null
         ],
-        "block5_probability_mean_gt0": NaN,
+        "block5_probability_mean_gt0": null,
         "cum_return": -0.002875207109045208,
         "max_drawdown": 0.0,
-        "top3_pnl_share": NaN,
+        "top3_pnl_share": null,
         "underpowered_n_lt_30": true,
         "exit_reasons": {
           "stop": 1
@@ -173,21 +173,21 @@
         "n": 1,
         "mean_net_bps": -31.7520710904523,
         "median_net_bps": -31.7520710904523,
-        "t": NaN,
-        "p_one_sided": NaN,
+        "t": null,
+        "p_one_sided": null,
         "hit": 0.0,
         "profit_factor": 0.0,
         "mean_r_gross": -1.0,
         "mean_mfe_r": 0.6200647617872372,
         "mean_mae_r": 1.0156233167205513,
         "block5_ci95_bps": [
-          NaN,
-          NaN
+          null,
+          null
         ],
-        "block5_probability_mean_gt0": NaN,
+        "block5_probability_mean_gt0": null,
         "cum_return": -0.003175207109045175,
         "max_drawdown": 0.0,
-        "top3_pnl_share": NaN,
+        "top3_pnl_share": null,
         "underpowered_n_lt_30": true,
         "exit_reasons": {
           "stop": 1
@@ -221,10 +221,10 @@
         "mean_mfe_r": 1.2073815181208816,
         "mean_mae_r": 0.696118800662556,
         "block5_ci95_bps": [
-          NaN,
-          NaN
+          null,
+          null
         ],
-        "block5_probability_mean_gt0": NaN,
+        "block5_probability_mean_gt0": null,
         "cum_return": 0.006318772367707837,
         "max_drawdown": -0.002471710628377033,
         "top3_pnl_share": 1.769344678688094,
@@ -246,10 +246,10 @@
         "mean_mfe_r": 1.2073815181208816,
         "mean_mae_r": 0.696118800662556,
         "block5_ci95_bps": [
-          NaN,
-          NaN
+          null,
+          null
         ],
-        "block5_probability_mean_gt0": NaN,
+        "block5_probability_mean_gt0": null,
         "cum_return": 0.005113614124300003,
         "max_drawdown": -0.002771710628377,
         "top3_pnl_share": 2.0063198742849804,

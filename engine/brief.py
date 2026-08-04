@@ -1,7 +1,7 @@
 """
 engine/brief — FAZ-4 motoru: model → STATE → DECISION → TRADE → RISK → günlük BRIEF (saf-sinyal; execution Emir'de).
 
-Akış: kilitli model (tide × COR1M-froth × GEX-shield) yön/konviksiyon verir; canlı gamma/vol state piyasayı okur;
+Akış: kilitli model (tide × dispersion-ensemble × GEX-shield) yön/konviksiyon verir; canlı gamma/vol state piyasayı okur;
 beyin rejime en uygun TEK ifadeyi (directional/options) + vade seçer; trade somut bileti kurar; risk hesaba
 ölçekler; brief tek rapor basar. Tazelik kapısı: snapshot bayatsa GÜNCEL-ÇAĞRI-DEĞİL uyarısı (Bible).
 
