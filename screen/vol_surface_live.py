@@ -32,7 +32,12 @@ except Exception:
     pass
 
 import yaml                                              # noqa: E402
-from modules.market_clock import market_date  # noqa: E402  (F7-sinifi: host-takvimi degil piyasa-gunu)
+# F7-sinifi fix: host-takvimi degil NY piyasa-gunu. modules paketi burada kader-macro'ya
+# pinli oldugundan (yukaridaki KMR yorumu) market_clock dosya-yolundan yuklenir.
+import importlib.util as _ilu  # noqa: E402
+_mc_spec = _ilu.spec_from_file_location("_eq_market_clock", Path(__file__).resolve().parents[1] / "modules" / "market_clock.py")
+_mc = _ilu.module_from_spec(_mc_spec); _mc_spec.loader.exec_module(_mc)
+market_date = _mc.market_date  # noqa: E402
 from dotenv import load_dotenv                           # noqa: E402
 from modules import _ibkr                                # noqa: E402
 
