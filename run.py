@@ -334,17 +334,59 @@ def build_decision(cfg: dict) -> dict:
             overlay_block, overlay_block_reason = position_overlay_block(overlays_out)
             stale = stale or overlay_block
 
+    # ── ÜÇ-GÜN KURALI (three_down_rule; DEPLOY 2026-08-05 EMİR KARARI — maxDD-taviziyle açık onay). ──
+    #    SPX-only YALNIZ-LONG boost (ablation E3 kolu): endeksin kendi kapanışında 3 ardışık aşağı →
+    #    izleyen 3 işgünü target>0 ise ×1.25, clip ≤1.25. TÜM overlay'lerden SONRA çarpımsal (crack-yön
+    #    emsali) — frozen position_target DEĞİŞMEZ, yalnız per-asset asset_deploy katmanı (OpEx/K2 emsali;
+    #    position_target şeması 0..1 + deira sleeve okuması kırılmaz). NDX ablation-FAIL → enable_ndx false.
+    #    Fail-closed NO-OP: seri eksik/bayat → factor 1.0 + reason (boost'un fail-safe yönü NÖTR;
+    #    position_overlay_block trim-kapısına BİLEREK girmez — veri-yokluğu boost'u susturur, modeli değil).
+    t3cfg = cfg.get("three_down_rule", {}) or {}
+    _assets = cfg.get("assets", []) or []
+    t3_enabled = {a: bool(t3cfg.get(f"enable_{a.lower()}", False)) for a in _assets}
+    three_down_info: dict = {}
+    three_down_active = three_down_boost_applied = None
+    if any(t3_enabled.values()):
+        from modules import three_down_rule
+        t3_boost, t3_win = float(t3cfg.get("boost", 1.25)), int(t3cfg.get("window_bd", 3))
+        for a in _assets:
+            if not t3_enabled.get(a):
+                three_down_info[a] = {"factor": 1.0, "available": False, "flag_active": False,
+                                      "days_left": 0, "last_flag_date": None,
+                                      "reason": "disabled (config; NDX ablation-FAIL)"}
+                continue
+            if data_source == "frozen":
+                # frozen yol: bayrak stack'in kendi frozen kapanış serisinden, tide as_of'a kadar (PIT;
+                # ablation ile aynı seri). Takvim-yaş kapısı yok — snapshot tazeliği üstte damgalanır.
+                _cl = _prices[a].loc[:as_of] if a in _prices.columns else None
+                snap = three_down_rule.three_down_snapshot(_cl, window_bd=t3_win, max_age_bd=None)
+                three_down_info[a] = {"factor": (t3_boost if (snap["available"] and snap["flag_active"])
+                                                 else 1.0), "as_of": "frozen(@tide as_of)", **snap}
+            else:
+                three_down_info[a] = three_down_rule.evaluate(cfg, asset=a)
+        three_down_active = {a: bool((three_down_info.get(a) or {}).get("flag_active", False))
+                             for a in _assets}
+        three_down_boost_applied = {a: 1.0 for a in _assets}     # asset_deploy döngüsünde gerçek uygulamayla dolar
+
     asset_deploy = {}
     # K2 trim faktörü: ateşlediyse SPX+NDX deploy'una OpEx'le ÇARPIMSAL uygulanır (rejim-değişim
     # sigortası; frozen position_target DEĞİŞMEZ — yalnız bu asset_deploy katmanı). position_effect
     # flag'i OFF ise trim hesaplanır+raporlanır ama deploy'a UYGULANMAZ (gözcü modu).
     _k2_factor = (float(sdrisk["trim_factor"]) if (sdrisk and sdrisk.get("fired")
                   and bool(dcfg.get("position_effect", True))) else 1.0)
-    if opex or _k2_factor != 1.0:
-        for a in (cfg.get("assets", []) or []):
+    _t3_factors = {a: float((three_down_info.get(a) or {}).get("factor", 1.0)) for a in _assets}
+    t3_cap = float(t3cfg.get("cap", 1.25))
+    if opex or _k2_factor != 1.0 or any(f != 1.0 for f in _t3_factors.values()):
+        for a in _assets:
             ov = (opex.get("asset_overrides", {}) or {}).get(a) if opex else None
             base_a = float(ov["deploy"]) if ov else deploy        # OpEx NDX günü→0
-            asset_deploy[a] = round(base_a * _k2_factor, 4)        # ×K2-trim (OpEx-0 ise 0 kalır)
+            base_a = base_a * _k2_factor                           # ×K2-trim (OpEx-0 ise 0 kalır)
+            # üç-gün boost EN SON, çarpımsal; yalnız target>0 (E3: long-boost, ≤0'a dokunma) + clip ≤cap
+            _f3 = _t3_factors.get(a, 1.0)
+            _applied = _f3 if (_f3 != 1.0 and base_a > 0) else 1.0
+            asset_deploy[a] = round(min(base_a * _applied, t3_cap) if _applied != 1.0 else base_a, 4)
+            if three_down_boost_applied is not None:
+                three_down_boost_applied[a] = _applied
 
     # Audit 2026-06-19: takvim tatil-farkındalığı yoktu → kapalı-piyasa gününde (örn. Juneteenth)
     # "current/age 0" çağrı damgalanıp ledger'a yazılıyordu. POZİSYONU DEĞİŞTİRMEZ (veri = son işgünü,
@@ -384,6 +426,11 @@ def build_decision(cfg: dict) -> dict:
         "supply_demand_balance": sdbal,                   # K1 arz-talep denge kadranı (betimsel; FINDING 27)
         "supply_demand_derisk": sdrisk,                   # K2 koşullu de-risk (asset_deploy trim; FINDING 27)
         "_sd_derisk_position_effect": bool(dcfg.get("position_effect", True)),
+        # ÜÇ-GÜN KURALI (2026-08-05 Emir deploy-emri): SPX-only long-boost ×1.25 (asset_deploy katmanı).
+        # Alanlar EK — mevcut alan silinmedi/yeniden adlandırılmadı (deira/downstream kırılmaz).
+        "three_down_active": three_down_active,           # per-asset bayrak-penceresi aktif mi (None=blok kapalı)
+        "three_down_boost_applied": three_down_boost_applied,  # per-asset FİİLEN uygulanan çarpan (1.0|boost)
+        "three_down_rule": three_down_info or None,       # detay: available/days_left/last_flag_date/reason
         "spine": {
             "recipe": "8-modül sweep winner (RAW m2, +1g lag); m9 .563/m5 .214/m2 .118/m0 .061/m3 .025/m6 .01/m8 .006/m4 .002",
             "vector": {k: round(float(v), 4) for k, v in vector.items() if abs(float(v)) > 1e-9},
@@ -540,6 +587,18 @@ def _render(d: dict) -> None:
                 arm = (f" [MEGA-IPO {dr.get('mega_label')} ${dr['mega_ceiling_usd']/1e9:.0f}B kayıtlı "
                        f"ama talep güçlü → SUSAR]")
             print(f"  arz-şoku de-risk: sus ({dr.get('reason')}){arm} [rejim-sigortası, alfa değil]")
+    t3 = d.get("three_down_rule") or {}
+    for a, inf in t3.items():
+        if (((inf or {}).get("reason")) or "").startswith("disabled"):
+            continue                                       # NDX config-kapali: satir basma (gurultu yok)
+        app = (d.get("three_down_boost_applied") or {}).get(a, 1.0)
+        if inf.get("available") is False:
+            print(f"  uc-gun kurali  : {a} NO-OP ({inf.get('reason')})")
+        elif inf.get("flag_active"):
+            print(f"  uc-gun kurali  : {a} AKTIF — bayrak {inf.get('last_flag_date')}, "
+                  f"kalan {inf.get('days_left')} isgunu -> boost x{app} (deploy {((d.get('asset_deploy') or {}).get(a))})")
+        else:
+            print(f"  uc-gun kurali  : {a} pasif (son bayrak {inf.get('last_flag_date') or 'yok'})")
     print("-" * 72)
 
 

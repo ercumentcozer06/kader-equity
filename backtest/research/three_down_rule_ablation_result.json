@@ -1,0 +1,363 @@
+{
+ "census": {
+  "SPX close (frozen prices)": {
+   "n": 1929,
+   "start": "2019-01-01",
+   "end": "2026-05-22"
+  },
+  "NDX close (frozen prices)": {
+   "n": 1929,
+   "start": "2019-01-01",
+   "end": "2026-05-22"
+  },
+  "tide dir (frozen spine)": {
+   "n": 1929,
+   "start": "2019-01-01",
+   "end": "2026-05-22"
+  },
+  "COR1M (froth)": {
+   "n": 5139,
+   "start": "2006-01-03",
+   "end": "2026-06-08"
+  },
+  "GEX (shield)": {
+   "n": 3835,
+   "start": "2011-05-02",
+   "end": "2026-07-31"
+  },
+  "ES basis (esb-gate)": {
+   "n": 4370,
+   "start": "2009-03-04",
+   "end": "2026-08-04"
+  }
+ },
+ "frozen_window": {
+  "start": "2019-01-01",
+  "end": "2026-05-22",
+  "n_days": 1929
+ },
+ "base_target_scale": {
+  "min": 0.0,
+  "max": 1.0,
+  "max_abs": 1.0,
+  "clip_cap": 1.25
+ },
+ "flag_counts": {
+  "SPX": {
+   "full": {
+    "flag_days": 147,
+    "active3_days": 321,
+    "active5_days": 487,
+    "n_days": 1929
+   },
+   "2014+": {
+    "flag_days": 147,
+    "active3_days": 321,
+    "active5_days": 487,
+    "n_days": 1929
+   },
+   "2020+": {
+    "flag_days": 132,
+    "active3_days": 290,
+    "active5_days": 441,
+    "n_days": 1668
+   },
+   "ex20H1": {
+    "flag_days": 140,
+    "active3_days": 308,
+    "active5_days": 468,
+    "n_days": 1799
+   }
+  },
+  "NDX": {
+   "full": {
+    "flag_days": 130,
+    "active3_days": 284,
+    "active5_days": 434,
+    "n_days": 1929
+   },
+   "2014+": {
+    "flag_days": 130,
+    "active3_days": 284,
+    "active5_days": 434,
+    "n_days": 1929
+   },
+   "2020+": {
+    "flag_days": 120,
+    "active3_days": 264,
+    "active5_days": 405,
+    "n_days": 1668
+   },
+   "ex20H1": {
+    "flag_days": 125,
+    "active3_days": 275,
+    "active5_days": 421,
+    "n_days": 1799
+   }
+  }
+ },
+ "arms": {
+  "SPX": {
+   "BASE": {
+    "full": {
+     "sharpe": 1.661,
+     "maxdd": -0.132
+    },
+    "2014+": {
+     "sharpe": 1.661,
+     "maxdd": -0.132
+    },
+    "2020+": {
+     "sharpe": 1.61,
+     "maxdd": -0.132
+    },
+    "ex20H1": {
+     "sharpe": 1.828,
+     "maxdd": -0.132
+    }
+   },
+   "E1 3g pencere +-1.25": {
+    "full": {
+     "sharpe": 1.695,
+     "maxdd": -0.141,
+     "d_sharpe": 0.034,
+     "d_maxdd": -0.0086,
+     "nw_t": 3.27
+    },
+    "2014+": {
+     "sharpe": 1.695,
+     "maxdd": -0.141,
+     "d_sharpe": 0.034,
+     "d_maxdd": -0.0086,
+     "nw_t": 3.27
+    },
+    "2020+": {
+     "sharpe": 1.65,
+     "maxdd": -0.141,
+     "d_sharpe": 0.04,
+     "d_maxdd": -0.0086,
+     "nw_t": 3.2
+    },
+    "ex20H1": {
+     "sharpe": 1.845,
+     "maxdd": -0.141,
+     "d_sharpe": 0.017,
+     "d_maxdd": -0.0086,
+     "nw_t": 3.12
+    },
+    "ann_pnl_diff": 0.0113,
+    "nw_t_full": 3.27,
+    "dd_tie_windows": [],
+    "evidence_weak": false,
+    "verdict": "RED"
+   },
+   "E2 5g pencere +-1.25 [SENS]": {
+    "full": {
+     "sharpe": 1.656,
+     "maxdd": -0.154,
+     "d_sharpe": -0.005,
+     "d_maxdd": -0.0222,
+     "nw_t": 2.24
+    },
+    "2014+": {
+     "sharpe": 1.656,
+     "maxdd": -0.154,
+     "d_sharpe": -0.005,
+     "d_maxdd": -0.0222,
+     "nw_t": 2.24
+    },
+    "2020+": {
+     "sharpe": 1.617,
+     "maxdd": -0.154,
+     "d_sharpe": 0.007,
+     "d_maxdd": -0.0222,
+     "nw_t": 2.33
+    },
+    "ex20H1": {
+     "sharpe": 1.785,
+     "maxdd": -0.154,
+     "d_sharpe": -0.042,
+     "d_maxdd": -0.0222,
+     "nw_t": 2.13
+    },
+    "ann_pnl_diff": 0.0107,
+    "nw_t_full": 2.24,
+    "dd_tie_windows": [],
+    "evidence_weak": false,
+    "verdict": "RED"
+   },
+   "E3 3g yalniz-long x1.25": {
+    "full": {
+     "sharpe": 1.695,
+     "maxdd": -0.141,
+     "d_sharpe": 0.034,
+     "d_maxdd": -0.0086,
+     "nw_t": 3.27
+    },
+    "2014+": {
+     "sharpe": 1.695,
+     "maxdd": -0.141,
+     "d_sharpe": 0.034,
+     "d_maxdd": -0.0086,
+     "nw_t": 3.27
+    },
+    "2020+": {
+     "sharpe": 1.65,
+     "maxdd": -0.141,
+     "d_sharpe": 0.04,
+     "d_maxdd": -0.0086,
+     "nw_t": 3.2
+    },
+    "ex20H1": {
+     "sharpe": 1.845,
+     "maxdd": -0.141,
+     "d_sharpe": 0.017,
+     "d_maxdd": -0.0086,
+     "nw_t": 3.12
+    },
+    "ann_pnl_diff": 0.0113,
+    "nw_t_full": 3.27,
+    "dd_tie_windows": [],
+    "evidence_weak": false,
+    "verdict": "RED"
+   }
+  },
+  "NDX": {
+   "BASE": {
+    "full": {
+     "sharpe": 1.81,
+     "maxdd": -0.156
+    },
+    "2014+": {
+     "sharpe": 1.81,
+     "maxdd": -0.156
+    },
+    "2020+": {
+     "sharpe": 1.78,
+     "maxdd": -0.156
+    },
+    "ex20H1": {
+     "sharpe": 1.76,
+     "maxdd": -0.156
+    }
+   },
+   "E1 3g pencere +-1.25": {
+    "full": {
+     "sharpe": 1.755,
+     "maxdd": -0.179,
+     "d_sharpe": -0.055,
+     "d_maxdd": -0.0231,
+     "nw_t": 0.41
+    },
+    "2014+": {
+     "sharpe": 1.755,
+     "maxdd": -0.179,
+     "d_sharpe": -0.055,
+     "d_maxdd": -0.0231,
+     "nw_t": 0.41
+    },
+    "2020+": {
+     "sharpe": 1.733,
+     "maxdd": -0.179,
+     "d_sharpe": -0.048,
+     "d_maxdd": -0.0231,
+     "nw_t": 0.53
+    },
+    "ex20H1": {
+     "sharpe": 1.693,
+     "maxdd": -0.179,
+     "d_sharpe": -0.067,
+     "d_maxdd": -0.0231,
+     "nw_t": 0.41
+    },
+    "ann_pnl_diff": 0.0021,
+    "nw_t_full": 0.41,
+    "dd_tie_windows": [],
+    "evidence_weak": true,
+    "verdict": "RED"
+   },
+   "E2 5g pencere +-1.25 [SENS]": {
+    "full": {
+     "sharpe": 1.749,
+     "maxdd": -0.18,
+     "d_sharpe": -0.061,
+     "d_maxdd": -0.0236,
+     "nw_t": 0.82
+    },
+    "2014+": {
+     "sharpe": 1.749,
+     "maxdd": -0.18,
+     "d_sharpe": -0.061,
+     "d_maxdd": -0.0236,
+     "nw_t": 0.82
+    },
+    "2020+": {
+     "sharpe": 1.722,
+     "maxdd": -0.18,
+     "d_sharpe": -0.058,
+     "d_maxdd": -0.0236,
+     "nw_t": 0.76
+    },
+    "ex20H1": {
+     "sharpe": 1.685,
+     "maxdd": -0.18,
+     "d_sharpe": -0.075,
+     "d_maxdd": -0.0236,
+     "nw_t": 0.82
+    },
+    "ann_pnl_diff": 0.0049,
+    "nw_t_full": 0.82,
+    "dd_tie_windows": [],
+    "evidence_weak": true,
+    "verdict": "RED"
+   },
+   "E3 3g yalniz-long x1.25": {
+    "full": {
+     "sharpe": 1.755,
+     "maxdd": -0.179,
+     "d_sharpe": -0.055,
+     "d_maxdd": -0.0231,
+     "nw_t": 0.41
+    },
+    "2014+": {
+     "sharpe": 1.755,
+     "maxdd": -0.179,
+     "d_sharpe": -0.055,
+     "d_maxdd": -0.0231,
+     "nw_t": 0.41
+    },
+    "2020+": {
+     "sharpe": 1.733,
+     "maxdd": -0.179,
+     "d_sharpe": -0.048,
+     "d_maxdd": -0.0231,
+     "nw_t": 0.53
+    },
+    "ex20H1": {
+     "sharpe": 1.693,
+     "maxdd": -0.179,
+     "d_sharpe": -0.067,
+     "d_maxdd": -0.0231,
+     "nw_t": 0.41
+    },
+    "ann_pnl_diff": 0.0021,
+    "nw_t_full": 0.41,
+    "dd_tie_windows": [],
+    "evidence_weak": true,
+    "verdict": "RED"
+   }
+  }
+ },
+ "notes": [
+  "frozen 2019+ -> '2014+' penceresi full ile OZDES (ayri veri yok)",
+  "ex20H1 = betimsel ek pencere (karar-disi; house-emsal)",
+  "bayrak per-endeks kendi frozen kapanis serisinden; ffill flat gun asagi sayilmaz",
+  "PIT: bayrak t kapanisinda; engine lag=1 -> ilk etkilenen getiri t+1",
+  "clip: factor<=1.25 oldugu icin |target|<=base_max_abs*1.25 otomatik saglanir"
+ ],
+ "final": {
+  "E1 3g pencere +-1.25": "RED",
+  "E2 5g pencere +-1.25 [SENS]": "RED",
+  "E3 3g yalniz-long x1.25": "RED"
+ }
+}

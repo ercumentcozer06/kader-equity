@@ -68,6 +68,24 @@ overlays:
     floor: 0.0     # tetikte tam-flat (binary; tetik-nadir → rebound-safe)
     max_age_bd: 4  # dispersion emsali: son veri >4 işgünü → available=False (fail-closed tepe-kapı)
 
+# ÜÇ-GÜN KURALI (three_down_rule) — SPX-only YALNIZ-LONG boost (E3 kolu; per-asset ifade katmanı,
+# OpEx/K2 emsali: frozen position_target DEĞİŞMEZ, yalnız asset_deploy). Endeksin KENDİ kapanış
+# serisinde 3 ardışık aşağı kapanış → izleyen 3 iş günü final target>0 ise ×1.25 (target≤0'a
+# dokunulmaz; sonuç clip ≤1.25). KANIT (backtest/research/three_down_rule_ablation, 2026-08-05):
+# SPX her pencerede (full/2014+/2020+/ex20H1) Sharpe 1.661→1.695, fark NW-t +3.27; maxDD
+# −13.2→−14.1 → house dd-kuralı FAIL ama Emir 2026-08-05 maxDD-taviziyle AÇIK ONAY verdi (deploy
+# emri). NDX her pencerede FAIL (ΔSh −0.055, NW-t 0.41) → enable_ndx: false KALICI.
+# Fail-closed NO-OP: kapanış serisi eksik/bayat (>max_age_bd işgünü) → boost uygulanmaz + reason
+# (boost'un fail-safe yönü NÖTR — trim-overlay tepe-kapısına BİLEREK girmez, model HALT olmaz).
+# ROLLBACK = enable_spx: false (tek anahtar).
+three_down_rule:
+  enable_spx: true     # SPX'te aktif (ablation E3: +0.034 Sh her pencere, NW-t +3.27)
+  enable_ndx: false    # NDX her pencerede FAIL → KAPALI kalacak (açma = yeni Sharpe-gate ister)
+  window_bd: 3         # bayrak-günü dahil aktivasyon penceresi (işgünü; ablation act3 birebir)
+  boost: 1.25          # aktif pencerede target>0 → ×1.25 (E2 5g kolu daha zayıftı → 3g kaldı)
+  cap: 1.25            # boost sonrası per-asset deploy tavanı (ablation clip ile birebir)
+  max_age_bd: 3        # son kapanış >3 işgünü eski → overlay no-op + reason (fail-closed)
+
 # OpEx taktik kapısı (overlay DEĞİL — frozen stack'e dokunmaz; per-asset ifade override + takvim uyarısı).
 # FINDING 23: NDX monthly OpEx günü −14.4bps/gün, block-boot t−3.35 p=0.001, OpEx-spesifik, 4 on yıl negatif.
 # Standalone flat-NDX-OpEx → NDX Sharpe +0.076. SPX zayıflığı anlamsız+modele-zarar → YALNIZ NDX (asimetrik).
