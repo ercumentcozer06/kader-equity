@@ -32,6 +32,7 @@ except Exception:
     pass
 
 import yaml                                              # noqa: E402
+from modules.market_clock import market_date  # noqa: E402  (F7-sinifi: host-takvimi degil piyasa-gunu)
 from dotenv import load_dotenv                           # noqa: E402
 from modules import _ibkr                                # noqa: E402
 
@@ -63,7 +64,7 @@ def _hv_from_bars(bars, n: int) -> float | None:
 
 
 def _pick_expiries(expirations: list[str]) -> list[str]:
-    today = date.today()
+    today = market_date()
     avail = []
     for s in sorted(set(expirations)):
         try:
@@ -143,7 +144,7 @@ def main() -> int:
             print("  [!] modelGreeks boş (delayed settle yetmedi → SETTLE arttır).")
             return 1
 
-        today = date.today()
+        today = market_date()
         print(f"\n  {'DTE':>5}{'ATM_IV':>8}{'25dPut':>8}{'25dCall':>9}{'RR(skew)':>10}   {'smile (moneyness:IV)':<48}")
         surface = {}
         for e in exps:

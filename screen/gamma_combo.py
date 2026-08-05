@@ -27,6 +27,7 @@ except Exception:
     pass
 
 import _cboe_lib as L  # noqa: E402
+from modules.market_clock import market_date  # noqa: E402  (F7-sinifi: host-takvimi degil piyasa-gunu)
 
 # combo -> [(CBOE sembol, etiket), (..)]; ilk eleman ENDEKS (flip o olcekte raporlanir)
 PAIRS = {"spx": [("_SPX", "SPX-endeks"), ("SPY", "SPY-ETF")],
@@ -72,7 +73,7 @@ def combo(tag: str) -> dict | None:
             flip_pct = p0 + (p1 - p0) * (0 - g0) / (g1 - g0) if g1 != g0 else p0
             break
     idx_spot = parts[0]["spot"]
-    snap = {"as_of": date.today().isoformat(), "ts": datetime.now(timezone.utc).isoformat(),
+    snap = {"as_of": market_date().isoformat(), "ts": datetime.now(timezone.utc).isoformat(),
             "combo": tag.upper(), "methodology": "combo-sum-monthly-bs-pw" + str(L.PUT_WEIGHT),
             "net_gex_bn": round(net_bn, 3),
             "regime": "LONG GAMMA" if net_bn >= 0 else "SHORT GAMMA",
@@ -91,7 +92,7 @@ def combo(tag: str) -> dict | None:
 
 
 def main() -> int:
-    print(f"GAMMA COMBO (endeks+ETF birlesik; SpotGamma-tarzi; betimsel)  {date.today()}")
+    print(f"GAMMA COMBO (endeks+ETF birlesik; SpotGamma-tarzi; betimsel)  {market_date()}")
     ok = [combo(t) for t in PAIRS]
     return 0 if any(ok) else 1
 

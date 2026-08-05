@@ -71,15 +71,38 @@ def test_k2_live_default_uses_market_date_not_frozen_tail(monkeypatch):
     assert out["supply_z"] == 1.29
 
 
-def test_buyback_unhealthy_status_counts_as_failed_substep(monkeypatch):
+def _sandbox_run_daily_log(monkeypatch, run_daily, tmp_path):
+    """run_daily._log'u PRODUCTION log'dan (output/run_daily.log) tmp_path'e yonlendir.
+
+    2026-08-05 DUZELTME: bu dosyanin run_daily'ye dokunan testleri her pytest kosusunda
+    prod log'a sahte 'FAIL constan ... RuntimeError: down' satirlari basiyordu -> sahte
+    olay sorusturmasi tetiklendi. Test log'u artik kum-havuzunda; satirlar ayrica listede
+    doner ki gorunurluk assert'leri LOG uzerinden yapilabilsin."""
+    lines: list[str] = []
+    logf = tmp_path / "run_daily.test.log"
+
+    def fake_log(msg: str):
+        lines.append(str(msg))
+        with open(logf, "a", encoding="utf-8") as f:
+            f.write(str(msg) + "\n")
+
+    monkeypatch.setattr(run_daily, "_log", fake_log)
+    return lines
+
+
+def test_buyback_unhealthy_status_counts_as_failed_substep(monkeypatch, tmp_path):
     import importlib
     import run_daily
+
+    log_lines = _sandbox_run_daily_log(monkeypatch, run_daily, tmp_path)
 
     class FakeSupplyComponents:
         @staticmethod
         def auto_pull_buyback(write=True):
             return {"status": "no_listing"}
 
+    # _bb_pull'un tek dis-dunya kapisi importlib.import_module -> Fake ile muhurlu,
+    # gercek ag cagrisi (S&P DJI) OLMAZ (sockspy ile 2026-08-05'te dogrulandi).
     real_import = importlib.import_module
     monkeypatch.setattr(
         importlib, "import_module",
@@ -87,9 +110,10 @@ def test_buyback_unhealthy_status_counts_as_failed_substep(monkeypatch):
     )
 
     assert run_daily._substep("buyback-test", run_daily._bb_pull) is False
+    assert any("FAIL constan: buyback-test" in x for x in log_lines)
 
 
-def test_constan_partial_failure_is_visible_degraded(monkeypatch):
+def test_constan_partial_failure_is_visible_degraded(monkeypatch, tmp_path):
     """Kismi constan arizasi GORUNUR olmali — ama run'i OLDURMEMELI.
 
     2026-08-04 REVIZYONU (mekanizma -> NIYET): test eskiden `pytest.raises(RuntimeError)`
@@ -104,6 +128,8 @@ def test_constan_partial_failure_is_visible_degraded(monkeypatch):
     veri-bozuk ayni sey degildir."""
     import run_daily
 
+    log_lines = _sandbox_run_daily_log(monkeypatch, run_daily, tmp_path)
+
     run_daily._CONSTAN_DEGRADE.clear()
     monkeypatch.setattr(run_daily, "_ipo_pull", lambda: None)
     monkeypatch.setattr(run_daily, "_bb_pull", lambda: (_ for _ in ()).throw(RuntimeError("down")))
@@ -115,6 +141,8 @@ def test_constan_partial_failure_is_visible_degraded(monkeypatch):
     assert run_daily._CONSTAN_DEGRADE, "degradasyon kaydi YOK -> sessiz gecmis olur"
     kayit = run_daily._CONSTAN_DEGRADE[-1]
     assert "DEGRADED" in kayit and "1/4" in kayit, kayit
+    # Gorunurluk LOG'da da var — ama artik prod log'da DEGIL, kum-havuzunda.
+    assert any("FAIL constan" in x and "down" in x for x in log_lines)
     run_daily._CONSTAN_DEGRADE.clear()
 
 
