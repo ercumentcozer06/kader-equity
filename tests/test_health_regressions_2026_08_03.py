@@ -90,16 +90,41 @@ def test_buyback_unhealthy_status_counts_as_failed_substep(monkeypatch):
 
 
 def test_constan_partial_failure_is_visible_degraded(monkeypatch):
-    import pytest
+    """Kismi constan arizasi GORUNUR olmali — ama run'i OLDURMEMELI.
+
+    2026-08-04 REVIZYONU (mekanizma -> NIYET): test eskiden `pytest.raises(RuntimeError)`
+    bekliyordu, yani gorunurlugu EXCEPTION'a bagliyordu. Olculen sonuc: S&P DJI bulten sayfasi
+    tasindi (press.spglobal.com?s=2429 artik JS-render, icinde 'buyback' SIFIR kez geciyor) ->
+    buyback alt-adimi KALICI 'no_listing' -> her gun exit 1 -> deira equity refresh'ini FAIL
+    sayip GLOBAL HALT verdi -> TICKET YOK. Olu bir basin-bulteni sayfasi tum kitabi durduruyordu,
+    oysa constan bandi cikti'da ACIKCA '[betimsel]' etiketli ve ayrac DEGIL.
+    Testin ADI zaten niyeti soyluyor: 'visible degraded'. Artik gorunurlugu dogru yerden
+    olcuyoruz — alarm kaydi olusur, exception ile boru hatti olmez.
+    Veri-BUTUNLUGU hatasi (verify_failed) hala _bb_pull icinde raise eder; kaynak-erisilemez ile
+    veri-bozuk ayni sey degildir."""
     import run_daily
 
+    run_daily._CONSTAN_DEGRADE.clear()
     monkeypatch.setattr(run_daily, "_ipo_pull", lambda: None)
     monkeypatch.setattr(run_daily, "_bb_pull", lambda: (_ for _ in ()).throw(RuntimeError("down")))
     monkeypatch.setattr(run_daily, "_net_supply_pull", lambda: None)
     monkeypatch.setattr(run_daily, "_balance_derive", lambda: None)
 
-    with pytest.raises(RuntimeError, match="DEGRADED"):
-        run_daily._refresh_constan()
+    run_daily._refresh_constan()          # OLDURMEZ
+
+    assert run_daily._CONSTAN_DEGRADE, "degradasyon kaydi YOK -> sessiz gecmis olur"
+    kayit = run_daily._CONSTAN_DEGRADE[-1]
+    assert "DEGRADED" in kayit and "1/4" in kayit, kayit
+    run_daily._CONSTAN_DEGRADE.clear()
+
+
+def test_constan_degradasyonu_ALARM_reasons_a_giriyor():
+    """Gorunurluk iddiasinin kaynak-duzeyi kaniti: alarm blogu listeyi `reasons`a doksun."""
+    from pathlib import Path
+    src = (Path(__file__).resolve().parents[1] / "run_daily.py").read_text(encoding="utf-8")
+    i = src.index("reasons = []")
+    assert "_CONSTAN_DEGRADE" in src[i:i + 250], (
+        "constan degradasyonu alarm `reasons`ina baglanmamis -> sessiz degrade")
 
 
 def test_forward_validation_serializes_strict_json():

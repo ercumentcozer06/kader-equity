@@ -256,6 +256,25 @@ skew-rank=SpotGamma / ETF-daily-flows / true-CESI) ya da FORWARD-only.
 **SONRAKİ (task 3):** canlı spine rekonstrüktörü (`spine/reconstruct.py`) — kader-macro JSON `per_module.*.capped`
 (m0/m3/m4/m5/m6/m8/m9) + FRED'den RAW m2 (smart-RRP DEĞİL) → frozen yerine canlı tide skoru.
 
+### 10.2 DEPLOY 2026-08-04 — **es_basis_unwind** (overlay #4; MANIA-UNWIND trim, EMİR KARARI)
+
+ES cash-futures basis'in implied-funding spread'i (**dealer bilanço-kirası**, bps over o/n FF; Conks
+"equity repo" 2026-07 tezi) trailing-2y **p75+ zengin bölgeden 10g-hızla dönerken** (`pctl504>0.75 &
+z(Δ10·5dm)<−1.5`) tide-long **FLAT** (binary, floor=0, tetik ~%1 gün → rebound-safe).
+`modules/es_basis_unwind.py` → `data/cache/es_basis_daily.parquet` (Barchart dolmuş-kontrat arşiv tabanı
+2009+, Conks-grafikleriyle 5/5 pencere valide; `evaluate()` canlı-append ile **kendiliğinden uzar**;
+yfinance ES=F+^GSPC + takvim-DTE[expiry>7g] + taban-son dy/DFF). Bayat >4bd → nötr + `available=False`
+(fail-closed tepe-kapı). Lab: `Desktop/backtesting/es_basis_lab/`.
+
+**DÜRÜST ETİKET — STRICT-FDR-ALTI küçük-alfa trim; Sharpe-gate'i EMİR KARARI aştı ("deploy et", 08-04).**
+Kanıt sicili: tide-üstü P(v>b) 88/96 → PIT-uzatılmış (forward_ledger, Jun-Aug'26) 91/97; **canlı-stack
+üstü SPX +1.61→+1.63 (P88) / NDX +1.82→+1.86 (P96)**, DSR200 0.957→0.962 / 0.990→0.992, boot-p5 ↑,
+maxDD/CVaR **nötr** (kuyruk-kalkanı DEĞİL — GEX/dispersion'dan mekanik farkı bu). Out-of-sample epizot:
+tek Jun'26 tetiği **22-Jun** (spread +121bp, dz −3.46) → T+1 SPX −1.44% / NDX −3.22% (tam tez-isabeti).
+Testler: `tests/test_es_basis_unwind.py` (factor-math + trim-only/nadir + 22-Jun-26 tarihsel kilit +
+fail-closed + config); decision-lock fingerprint güncellendi; **229 test PASS**. Forward-watch: tetik
+başına defter-izi (nadir tetik → kanıt yavaş birikir); FOMC faiz değişiminde taban dff tazelenir.
+
 ---
 
 ## FINDING 24 — Constan arkı: koşullu-Noel + hisse net-arzı (2026-06-13, Emir-talebi)

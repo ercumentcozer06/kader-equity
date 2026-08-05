@@ -50,6 +50,11 @@ def _step(name: str, fn) -> tuple[bool, str]:
         return False, tb
 
 
+# constan (BETIMSEL bant) degradasyonu: run'i OLDURMEZ ama alarm blogunda `reasons`a girer.
+# Bkz. _refresh_constan sonundaki 2026-08-04 notu.
+_CONSTAN_DEGRADE: list[str] = []
+
+
 def _substep(name: str, fn) -> bool:
     """BEST-EFFORT alt-adim: fail'i LOUD-log'lar ama EXCEPTION FIRLATMAZ (cagirana hata sizmaz).
     _step'ten farki: bu hep True'ya benzer akista kalir — bir Constan kaynagi dususe (FRED/EDGAR/
@@ -144,9 +149,24 @@ def _refresh_constan():
     _log(f"constan-refresh BITTI — {n_ok}/4 alt-adim OK "
          f"(dususler graceful-stale; daily-run akisini etkilemez)")
     if n_ok < 4:
-        # Ana boru sonraki adımlara devam eder (_step exception'ı yakalar), fakat koşu
-        # sahte "tüm adımlar OK"/temiz alarm üretmez: exit 1 + degrade alarmı görünür.
-        raise RuntimeError(f"constan-refresh DEGRADED: {4 - n_ok}/4 alt-adim basarisiz")
+        # 2026-08-04 DUZELTME — RAISE KALDIRILDI, GORUNURLUK KORUNDU.
+        # Eski hal: n_ok<4 -> RuntimeError -> run_daily exit 1. Bu, bu fonksiyonun KENDI
+        # sozlesmesiyle UC yerde celisiyordu: _substep docstring'i ("daily-run OLMEZ"), bu
+        # docstring ("run_daily ASLA bu yuzden olmez") ve _bb_pull'un log satiri ("atlandi,
+        # sonraki kosu dener"). Uc yerde "oldurmez" yazip sonda oldurmek.
+        # OLCULEN MALIYET (2026-08-04): S&P DJI bulten sayfasi (press.spglobal.com?s=2429)
+        # TASINDI — yeni sayfa JS-render, icinde 'buyback' kelimesi SIFIR kez geciyor ->
+        # _bulletin_listing() kalici bos -> buyback alt-adimi HER GUN 'no_listing' verdi ->
+        # exit 1 -> deira refresh'i FAIL saydi -> equity taze-degil -> GLOBAL HALT -> TICKET YOK.
+        # Yani olu bir basin-bulteni sayfasi tum kitabi durduruyordu. Oysa constan bandi
+        # cikti'da ACIKCA '[betimsel]' etiketli, ayrac DEGIL.
+        # YENI HAL: degradasyon SESSIZ DEGIL — asagidaki alarm blogu bunu `reasons`a ekler
+        # (push + STALE_ALERT.json) ve log'da ⚠ satiri durur; ama betimsel bir panelin
+        # kaynagi olduye diye sinyal boru hatti OLMEZ. Veri-butunlugu hatasi (verify_failed:
+        # parse edildi ama 12-ay self-check tutmadi) HALA _bb_pull icinde raise eder ve
+        # o alt-adim FAIL sayilir — kaynak-erisilemez ile veri-bozuk ayni sey degildir.
+        _CONSTAN_DEGRADE.append(f"constan DEGRADED: {4 - n_ok}/4 alt-adim basarisiz "
+                                f"(betimsel bant graceful-stale; sinyal yolu ETKILENMEDI)")
 
 
 def _brief_and_ledger():
@@ -224,6 +244,7 @@ def _alert_if_degraded(n_fail: int, results: list) -> None:
         import json as _json
         import notify
         reasons = []
+        reasons.extend(_CONSTAN_DEGRADE)   # betimsel bant degradasyonu: alarma girer, exit'e GIRMEZ
         if n_fail:
             failed = [n for (ok, tb), n in zip(results, ("collect", "constan", "brief+ledger", "forward-watch", "lock-guard")) if not ok]
             reasons.append(f"{n_fail} adım PATLADI ({', '.join(failed)})")

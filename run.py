@@ -28,7 +28,7 @@ except Exception:
 from config import load_config                            # noqa: E402
 from spine import contract as C, tide as T                # noqa: E402
 
-MODEL_TAG = "kader-equity-dispersion-v2-2026-07-28"
+MODEL_TAG = "kader-equity-dispersion-v2-esrepo-2026-08-04"
 
 # NYSE tatil takvimi (Audit 2026-06-19; F5 denetim 2026-07-05) — kapalı-piyasa gününde "current/age 0"
 # çağrı damgalanmasın. Eski sabit 2025-27 frozenset SESSİZ SON-KULLANMA tarihliydi: 2027-01-01 sonrası her
@@ -195,6 +195,33 @@ def build_decision(cfg: dict) -> dict:
         factor *= f3
         overlays_out["dispersion_ensemble"] = info3
         active_overlays.append("dispersion_ensemble")
+
+    # OVERLAY 4: es_basis_unwind — ES basis (dealer bilanço-kirası) MANIA-UNWIND trim. Zengin bölgeden
+    # (p75+) hızlı dönüş (dz<-1.5) → flat. Strict-FDR-altı; EMİR KARARI deploy (2026-08-04, Conks tezi).
+    ov4 = overlays_cfg.get("es_basis_unwind", {}) or {}
+    if bool(ov4.get("enabled")):
+        from modules import es_basis_unwind
+        if data_source == "frozen":
+            bpp = ROOT / "data" / "cache" / "es_basis_daily.parquet"
+            f4, info4 = 1.0, {"factor": 1.0, "available": False, "as_of": None,
+                              "warning": "es_basis parquet YOK (frozen yol)"}
+            if bpp.exists():
+                fs = es_basis_unwind.unwind_factor_series(
+                    pd.read_parquet(bpp)["spread_bps"],
+                    p_thr=float(ov4.get("p_thr", 0.75)), dz_thr=float(ov4.get("dz_thr", -1.5)),
+                    floor=float(ov4.get("floor", 0.0)))
+                fv = fs.asof(as_of) if len(fs) else None
+                f4 = float(fv) if fv is not None and not pd.isna(fv) else 1.0
+                info4 = {"factor": round(f4, 3), "as_of": "frozen(@tide as_of)",
+                         "available": bool(fv is not None and not pd.isna(fv)),
+                         "warning": None if (fv is not None and not pd.isna(fv)) else
+                         "es_basis serisi tide as_of'ta BOŞ — nötr + UNAVAILABLE"}
+        else:
+            info4 = es_basis_unwind.evaluate(cfg)
+            f4 = float(info4.get("factor", 1.0))
+        factor *= f4
+        overlays_out["es_basis_unwind"] = info4
+        active_overlays.append("es_basis_unwind")
 
     # Fail-closed tepe-kapı (denetim 2026-07-06): H3'ü GEX'ten TÜM pozisyon-etkileyen overlay'lere genişlet.
     overlay_block, overlay_block_reason = position_overlay_block(overlays_out)

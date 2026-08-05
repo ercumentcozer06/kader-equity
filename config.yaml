@@ -50,6 +50,23 @@ overlays:
     thr: 1.0       # A PRİORİ (1σ z-cutoff), grid'de tutuldu
     floor: 0.4     # A PRİORİ (rebound-safe %60-max-trim)
     win: 252       # A PRİORİ, OPTİMİZE EDİLMEDİ (standart 1-yıl trailing; hiç taranmadı)
+  # es_basis_unwind — 4. overlay (MANIA-UNWIND trim; Conks "equity repo" 2026-07 tezi). ES cash-futures
+  # basis implied-funding spread'i (dealer bilanço-kirası, bps over o/n FF) trailing-2y p75+ ZENGİN
+  # bölgeden 10g-hızla dönerken (dz<-1.5) → tide-long FLAT. Kanıt (es_basis_lab 08-04): canlı-stack
+  # SPX +1.61→+1.63 (P88) / NDX +1.82→+1.86 (P96), DSR200+boot-p5 ↑, maxDD/CVaR nötr; 22-Jun-26 tek
+  # tetik T+1 −1.44/−3.22 isabet. STRICT-FDR ALTI (SPX P<95) → EMİR KARARI deploy ("deploy et", 08-04);
+  # sınıf = küçük-alfa trim (kuyruk-kalkanı DEĞİL). Binary flat, tetik ~%1 gün, rebound-safe.
+  # Veri: data/cache/es_basis_daily.parquet (Barchart arşiv tabanı 2009+; evaluate canlı-append ile
+  # kendiliğinden uzar; FOMC faiz değişiminde dff taban-değeri es_basis_lab build'leriyle tazelenir).
+  es_basis_unwind:
+    enabled: true
+    p_thr: 0.75    # A PRİORİ (üst-çeyrek zengin-bölge; C1a pre-register — C1b p90/-1.0 daha zayıftı)
+    dz_thr: -1.5   # A PRİORİ (C1a pre-register)
+    pctl_win: 504  # trailing-2y percentile penceresi
+    dz_n: 10       # 10g değişim
+    z_win: 252     # dz z-penceresi (1y trailing)
+    floor: 0.0     # tetikte tam-flat (binary; tetik-nadir → rebound-safe)
+    max_age_bd: 4  # dispersion emsali: son veri >4 işgünü → available=False (fail-closed tepe-kapı)
 
 # OpEx taktik kapısı (overlay DEĞİL — frozen stack'e dokunmaz; per-asset ifade override + takvim uyarısı).
 # FINDING 23: NDX monthly OpEx günü −14.4bps/gün, block-boot t−3.35 p=0.001, OpEx-spesifik, 4 on yıl negatif.

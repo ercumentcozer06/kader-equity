@@ -1,0 +1,485 @@
+{
+ "census": {
+  "B1 pct>200dma (SPX-bilesen)": {
+   "n": 3062,
+   "start": "2014-06-02",
+   "end": "2026-08-04",
+   "years": 12.2,
+   "status": "OK"
+  },
+  "B2 NH (52w, bilesen)": {
+   "n": 3062,
+   "start": "2014-06-02",
+   "end": "2026-08-04",
+   "years": 12.2,
+   "status": "OK"
+  },
+  "B2 NL (52w, bilesen)": {
+   "n": 3062,
+   "start": "2014-06-02",
+   "end": "2026-08-04",
+   "years": 12.2,
+   "status": "OK"
+  },
+  "B3 adv-dec (bilesen proxy)": {
+   "n": 3062,
+   "start": "2014-06-02",
+   "end": "2026-08-04",
+   "years": 12.2,
+   "status": "OK"
+  }
+ },
+ "cross_check_corr": 0.5675071749123188,
+ "arms": {
+  "SPX": {
+   "BASE": {
+    "full": {
+     "sharpe": 1.661,
+     "maxdd": -0.132
+    },
+    "2020+": {
+     "sharpe": 1.61,
+     "maxdd": -0.132
+    },
+    "ex20H1": {
+     "sharpe": 1.828,
+     "maxdd": -0.132
+    }
+   },
+   "G1 p200<30 & fall -> x0.5": {
+    "full": {
+     "sharpe": 1.693,
+     "maxdd": -0.129,
+     "d_sharpe": 0.033
+    },
+    "2020+": {
+     "sharpe": 1.639,
+     "maxdd": -0.129,
+     "d_sharpe": 0.029
+    },
+    "ex20H1": {
+     "sharpe": 1.821,
+     "maxdd": -0.129,
+     "d_sharpe": -0.006
+    },
+    "nw_t": -1.45,
+    "ann_pnl_diff": -0.0123,
+    "verdict": "RED"
+   },
+   "G1inv p200>70 & rise -> x0.5": {
+    "full": {
+     "sharpe": 1.63,
+     "maxdd": -0.132,
+     "d_sharpe": -0.031
+    },
+    "2020+": {
+     "sharpe": 1.569,
+     "maxdd": -0.132,
+     "d_sharpe": -0.042
+    },
+    "ex20H1": {
+     "sharpe": 1.829,
+     "maxdd": -0.132,
+     "d_sharpe": 0.002
+    },
+    "nw_t": -1.8,
+    "ann_pnl_diff": -0.0159,
+    "verdict": "RED"
+   },
+   "G1sens esik35 [SENS]": {
+    "full": {
+     "sharpe": 1.682,
+     "maxdd": -0.129,
+     "d_sharpe": 0.021
+    },
+    "2020+": {
+     "sharpe": 1.625,
+     "maxdd": -0.129,
+     "d_sharpe": 0.015
+    },
+    "ex20H1": {
+     "sharpe": 1.809,
+     "maxdd": -0.129,
+     "d_sharpe": -0.018
+    },
+    "nw_t": -1.66,
+    "ann_pnl_diff": -0.0145,
+    "verdict": "RED"
+   },
+   "G2 NHNL 10x25 long/flat": {
+    "full": {
+     "sharpe": 1.292,
+     "maxdd": -0.115,
+     "d_sharpe": -0.369
+    },
+    "2020+": {
+     "sharpe": 1.217,
+     "maxdd": -0.115,
+     "d_sharpe": -0.393
+    },
+    "ex20H1": {
+     "sharpe": 1.293,
+     "maxdd": -0.115,
+     "d_sharpe": -0.535
+    },
+    "nw_t": -3.41,
+    "ann_pnl_diff": -0.0925,
+    "verdict": "RED"
+   },
+   "G2inv ters-cross": {
+    "full": {
+     "sharpe": 1.006,
+     "maxdd": -0.151,
+     "d_sharpe": -0.655
+    },
+    "2020+": {
+     "sharpe": 1.002,
+     "maxdd": -0.151,
+     "d_sharpe": -0.608
+    },
+    "ex20H1": {
+     "sharpe": 1.245,
+     "maxdd": -0.095,
+     "d_sharpe": -0.583
+    },
+    "nw_t": -3.49,
+    "ann_pnl_diff": -0.1207,
+    "verdict": "RED"
+   },
+   "G2sens 5x20 [SENS]": {
+    "full": {
+     "sharpe": 1.042,
+     "maxdd": -0.132,
+     "d_sharpe": -0.619
+    },
+    "2020+": {
+     "sharpe": 0.945,
+     "maxdd": -0.132,
+     "d_sharpe": -0.665
+    },
+    "ex20H1": {
+     "sharpe": 1.331,
+     "maxdd": -0.132,
+     "d_sharpe": -0.497
+    },
+    "nw_t": -3.9,
+    "ann_pnl_diff": -0.113,
+    "verdict": "RED"
+   },
+   "G3 MCO<-70 -> x1.25 10g": {
+    "full": {
+     "sharpe": 1.632,
+     "maxdd": -0.141,
+     "d_sharpe": -0.029
+    },
+    "2020+": {
+     "sharpe": 1.572,
+     "maxdd": -0.141,
+     "d_sharpe": -0.038
+    },
+    "ex20H1": {
+     "sharpe": 1.824,
+     "maxdd": -0.135,
+     "d_sharpe": -0.003
+    },
+    "nw_t": 2.55,
+    "ann_pnl_diff": 0.0135,
+    "verdict": "RED"
+   },
+   "G3inv MCO>+70 -> x1.25 10g": {
+    "full": {
+     "sharpe": 1.68,
+     "maxdd": -0.132,
+     "d_sharpe": 0.019
+    },
+    "2020+": {
+     "sharpe": 1.62,
+     "maxdd": -0.132,
+     "d_sharpe": 0.01
+    },
+    "ex20H1": {
+     "sharpe": 1.883,
+     "maxdd": -0.132,
+     "d_sharpe": 0.056
+    },
+    "nw_t": 3.32,
+    "ann_pnl_diff": 0.0137,
+    "verdict": "RED"
+   },
+   "G3sens esik-50 [SENS]": {
+    "full": {
+     "sharpe": 1.704,
+     "maxdd": -0.141,
+     "d_sharpe": 0.043
+    },
+    "2020+": {
+     "sharpe": 1.666,
+     "maxdd": -0.141,
+     "d_sharpe": 0.056
+    },
+    "ex20H1": {
+     "sharpe": 1.881,
+     "maxdd": -0.135,
+     "d_sharpe": 0.054
+    },
+    "nw_t": 4.55,
+    "ann_pnl_diff": 0.0316,
+    "verdict": "RED"
+   },
+   "G3b SI 10g-dusuyor -> x0.75": {
+    "full": {
+     "sharpe": 1.591,
+     "maxdd": -0.13,
+     "d_sharpe": -0.07
+    },
+    "2020+": {
+     "sharpe": 1.508,
+     "maxdd": -0.13,
+     "d_sharpe": -0.102
+    },
+    "ex20H1": {
+     "sharpe": 1.76,
+     "maxdd": -0.13,
+     "d_sharpe": -0.068
+    },
+    "nw_t": -4.7,
+    "ann_pnl_diff": -0.0337,
+    "verdict": "RED"
+   }
+  },
+  "NDX": {
+   "BASE": {
+    "full": {
+     "sharpe": 1.81,
+     "maxdd": -0.156
+    },
+    "2020+": {
+     "sharpe": 1.78,
+     "maxdd": -0.156
+    },
+    "ex20H1": {
+     "sharpe": 1.76,
+     "maxdd": -0.156
+    }
+   },
+   "G1 p200<30 & fall -> x0.5": {
+    "full": {
+     "sharpe": 1.814,
+     "maxdd": -0.156,
+     "d_sharpe": 0.004
+    },
+    "2020+": {
+     "sharpe": 1.782,
+     "maxdd": -0.156,
+     "d_sharpe": 0.002
+    },
+    "ex20H1": {
+     "sharpe": 1.752,
+     "maxdd": -0.156,
+     "d_sharpe": -0.008
+    },
+    "nw_t": -1.65,
+    "ann_pnl_diff": -0.0115,
+    "verdict": "RED"
+   },
+   "G1inv p200>70 & rise -> x0.5": {
+    "full": {
+     "sharpe": 1.768,
+     "maxdd": -0.156,
+     "d_sharpe": -0.042
+    },
+    "2020+": {
+     "sharpe": 1.731,
+     "maxdd": -0.156,
+     "d_sharpe": -0.049
+    },
+    "ex20H1": {
+     "sharpe": 1.739,
+     "maxdd": -0.156,
+     "d_sharpe": -0.021
+    },
+    "nw_t": -2.2,
+    "ann_pnl_diff": -0.028,
+    "verdict": "RED"
+   },
+   "G1sens esik35 [SENS]": {
+    "full": {
+     "sharpe": 1.801,
+     "maxdd": -0.153,
+     "d_sharpe": -0.009
+    },
+    "2020+": {
+     "sharpe": 1.766,
+     "maxdd": -0.153,
+     "d_sharpe": -0.014
+    },
+    "ex20H1": {
+     "sharpe": 1.737,
+     "maxdd": -0.153,
+     "d_sharpe": -0.023
+    },
+    "nw_t": -1.95,
+    "ann_pnl_diff": -0.0146,
+    "verdict": "RED"
+   },
+   "G2 NHNL 10x25 long/flat": {
+    "full": {
+     "sharpe": 1.576,
+     "maxdd": -0.133,
+     "d_sharpe": -0.234
+    },
+    "2020+": {
+     "sharpe": 1.546,
+     "maxdd": -0.133,
+     "d_sharpe": -0.234
+    },
+    "ex20H1": {
+     "sharpe": 1.481,
+     "maxdd": -0.133,
+     "d_sharpe": -0.279
+    },
+    "nw_t": -3.02,
+    "ann_pnl_diff": -0.1102,
+    "verdict": "RED"
+   },
+   "G2inv ters-cross": {
+    "full": {
+     "sharpe": 0.984,
+     "maxdd": -0.177,
+     "d_sharpe": -0.826
+    },
+    "2020+": {
+     "sharpe": 0.965,
+     "maxdd": -0.177,
+     "d_sharpe": -0.815
+    },
+    "ex20H1": {
+     "sharpe": 1.017,
+     "maxdd": -0.148,
+     "d_sharpe": -0.743
+    },
+    "nw_t": -3.97,
+    "ann_pnl_diff": -0.1798,
+    "verdict": "RED"
+   },
+   "G2sens 5x20 [SENS]": {
+    "full": {
+     "sharpe": 1.342,
+     "maxdd": -0.154,
+     "d_sharpe": -0.468
+    },
+    "2020+": {
+     "sharpe": 1.273,
+     "maxdd": -0.154,
+     "d_sharpe": -0.507
+    },
+    "ex20H1": {
+     "sharpe": 1.46,
+     "maxdd": -0.154,
+     "d_sharpe": -0.3
+    },
+    "nw_t": -3.61,
+    "ann_pnl_diff": -0.1339,
+    "verdict": "RED"
+   },
+   "G3 MCO<-70 -> x1.25 10g": {
+    "full": {
+     "sharpe": 1.782,
+     "maxdd": -0.16,
+     "d_sharpe": -0.028
+    },
+    "2020+": {
+     "sharpe": 1.741,
+     "maxdd": -0.16,
+     "d_sharpe": -0.039
+    },
+    "ex20H1": {
+     "sharpe": 1.748,
+     "maxdd": -0.16,
+     "d_sharpe": -0.012
+    },
+    "nw_t": 2.56,
+    "ann_pnl_diff": 0.0156,
+    "verdict": "RED"
+   },
+   "G3inv MCO>+70 -> x1.25 10g": {
+    "full": {
+     "sharpe": 1.844,
+     "maxdd": -0.156,
+     "d_sharpe": 0.034
+    },
+    "2020+": {
+     "sharpe": 1.817,
+     "maxdd": -0.156,
+     "d_sharpe": 0.037
+    },
+    "ex20H1": {
+     "sharpe": 1.793,
+     "maxdd": -0.156,
+     "d_sharpe": 0.033
+    },
+    "nw_t": 3.42,
+    "ann_pnl_diff": 0.0199,
+    "verdict": "RED"
+   },
+   "G3sens esik-50 [SENS]": {
+    "full": {
+     "sharpe": 1.839,
+     "maxdd": -0.16,
+     "d_sharpe": 0.029
+    },
+    "2020+": {
+     "sharpe": 1.82,
+     "maxdd": -0.16,
+     "d_sharpe": 0.04
+    },
+    "ex20H1": {
+     "sharpe": 1.796,
+     "maxdd": -0.16,
+     "d_sharpe": 0.036
+    },
+    "nw_t": 4.6,
+    "ann_pnl_diff": 0.0385,
+    "verdict": "RED"
+   },
+   "G3b SI 10g-dusuyor -> x0.75": {
+    "full": {
+     "sharpe": 1.763,
+     "maxdd": -0.155,
+     "d_sharpe": -0.048
+    },
+    "2020+": {
+     "sharpe": 1.707,
+     "maxdd": -0.155,
+     "d_sharpe": -0.073
+    },
+    "ex20H1": {
+     "sharpe": 1.709,
+     "maxdd": -0.155,
+     "d_sharpe": -0.051
+    },
+    "nw_t": -4.57,
+    "ann_pnl_diff": -0.0416,
+    "verdict": "RED"
+   }
+  }
+ },
+ "final": {
+  "G1 p200<30 & fall -> x0.5": "RED",
+  "G1inv p200>70 & rise -> x0.5": "RED",
+  "G1sens esik35 [SENS]": "RED",
+  "G2 NHNL 10x25 long/flat": "RED",
+  "G2inv ters-cross": "RED",
+  "G2sens 5x20 [SENS]": "RED",
+  "G3 MCO<-70 -> x1.25 10g": "RED",
+  "G3inv MCO>+70 -> x1.25 10g": "RED",
+  "G3sens esik-50 [SENS]": "RED",
+  "G3b SI 10g-dusuyor -> x0.75": "RED"
+ },
+ "notes": [
+  "survivorship: CURRENT S&P500 listesi (house-emsal fetch_breadth_internals)",
+  "B2/B3 = SPX-500 bilesen PROXY (NYSE genis-market degil)",
+  "McClellan ratio-adjusted (RANA), -70 esigi bu normalizasyonla",
+  "baseline = canli-replika stack; frozen 2019+; 2014+ penceresi mevcut degil"
+ ]
+}

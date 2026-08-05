@@ -536,6 +536,8 @@ def _bulletin_listing() -> list[dict]:
         dm = re.search(r"/(20\d{2}-\d{2}-\d{2})-", href)
         pub = pd.to_datetime(dm.group(1)) if dm else pd.NaT
         out.append({"quarter": q, "title": title.strip(), "url": href, "pub_date": pub})
+    if not out:
+        out = _bulletin_listing_prnewswire()
     # ceyrek-bazli dedup: ayni ceyrekte ilk (en ust = en yeni) kalir
     seen, dedup = set(), []
     for d in out:
@@ -544,6 +546,46 @@ def _bulletin_listing() -> list[dict]:
         seen.add(d["quarter"])
         dedup.append(d)
     return dedup
+
+
+def _bulletin_listing_prnewswire() -> list[dict]:
+    """YEDEK KESIF YOLU: PR Newswire (2026-08-04).
+
+    NEDEN: press.spglobal.com/index.php?s=2429 TASINDI — HTTP 200 doner ama icerik artik
+    JS-render yeni press sitesi; sayfada 'buyback' kelimesi SIFIR kez geciyor, __NEXT_DATA__ yok.
+    Sonuc: `_bulletin_listing()` KALICI bos -> auto_pull_buyback her gun 'no_listing' -> run_daily
+    exit 1 -> deira equity'yi taze-degil sayip GLOBAL HALT verdi (bilet yok). Olu bir kesif
+    sayfasi tum kitabi durduruyordu.
+    ?pagetemplate=rss calisiyor AMA parametre ne olursa olsun 5 item donuyor (ceyreklik bulten
+    icin yetersiz). S&P DJI bultenleri PR Newswire'a CAPRAZ yayinlaniyor ve slug'lari kararli:
+      /news-releases/sp-500-q<n>-<yyyy>-buybacks-...
+    (Dogrulama: elle CSV'deki 2025Q2 kaydinda zaten hem press.spglobal hem prnewswire URL'i var.)
+
+    NOT: 2026-08-04 taramasinda EN YENI bulten 2025Q3'tu — yani bandin 2025Q3'te olmasi eksik
+    cekim DEGIL, yayin yoklugu. Kaynak sagligi ile veri yoklugunu ayirt etmek icin bu yol sart.
+    pub_date PR Newswire slug'inda YOK -> NaT (yalniz bilgi amacli; hedef secimi quarter ile yapilir).
+    """
+    out: list[dict] = []
+    try:
+        r = requests.get("https://www.prnewswire.com/search/news/",
+                         params={"keyword": "S&P 500 buybacks", "pagesize": 100},
+                         headers=UA, timeout=60)
+        if r.status_code != 200:
+            return out
+    except requests.RequestException:
+        return out
+    for href in re.findall(r'href="(/news-releases/sp-500-q[1-4]-20\d\d-buybacks[^"]*)"',
+                           r.text, re.I):
+        m = re.search(r"sp-500-q([1-4])-(20\d\d)-buybacks", href, re.I)
+        if not m:
+            continue
+        qn, yy = int(m.group(1)), int(m.group(2))
+        out.append({"quarter": pd.Timestamp(year=yy, month=3 * qn - 2, day=1),
+                    "title": f"S&P 500 Q{qn} {yy} Buybacks (PR Newswire)",
+                    "url": "https://www.prnewswire.com" + href, "pub_date": pd.NaT})
+    if out:
+        print(f"  [liste] press.spglobal listesi bos -> PR Newswire yedegi: {len(out)} bulten")
+    return out
 
 
 def _existing_quarters() -> set[pd.Timestamp]:

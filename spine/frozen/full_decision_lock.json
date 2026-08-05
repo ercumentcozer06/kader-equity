@@ -1,5 +1,5 @@
 {
-  "fingerprint": "cd77d86229a269b7",
-  "scope": "run.py + config.yaml + spine/tide.py + modules/*.py",
-  "note": "Locks the live overlay and final-deploy recipe in addition to the tide anchor. Updated 2026-08-03 for K2 live as_of and canonical New York market clock."
+    "fingerprint":  "51389907856f92eb",
+    "scope":  "run.py + config.yaml + spine/tide.py + modules/*.py",
+    "note":  "Updated 2026-08-04b: es_basis_unwind intraday-append hijyeni (_should_write: settle ezilmez, canli satir gun-ici guncellenir)."
 }
