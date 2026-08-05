@@ -517,10 +517,22 @@ def buyback_selfcheck(bb_bn: float, ttm_bn: float, prior_q_bn: float,
 
 def _bulletin_listing() -> list[dict]:
     """press.spglobal.com buyback bulten listesini tara -> [{quarter(ts), title, url, pub_date}].
-    En yeni bulteni + URL'sini saglar; bos liste = sayfa-formati degismis/erisim yok."""
+    En yeni bulteni + URL'sini saglar; bos liste = sayfa-formati degismis/erisim yok.
+
+    2026-08-05 ONARIM (birincil kesif yolu geri geldi): eski listing URL'i
+    (index.php?s=2429&l=100) KALICI JS-shell — govdede tek bir bulten linki yok. AMA ayni
+    sitenin KEYWORD-ARAMASI (index.php?s=2429&keywords=buybacks) SERVER-RENDERED HTML doner
+    ve duz requests+UA ile erisilebilir (canli dogrulandi: 84 sonuc, anchor basliklari +
+    press.spglobal.com/YYYY-MM-DD-... slug'lari -> pub_date durust-PIT). Ilk sayfa = 10
+    en-yeni buyback bulteni (~2.5 yillik pencere); hedef secimi 'en yeni kapsam-disi ceyrek'
+    oldugundan yeterli. Bos/erisim-yok durumunda PR Newswire yedegi devrede kalir.
+    NOT (2026-08-05 tespiti): en yeni bulten HALA 2025-12-18 Q3-2025 — Q4-2025/Q1-2026
+    S&P DJI tarafindan YAYIMLANMADI (ayni yazarin ceyreklik 'Indicated Dividend Payments'
+    serisi de 2026-01-07'de durdu; kaynak-sagligi ile yayin-yoklugu ayrimi icin bu yol sart)."""
     out: list[dict] = []
     try:
-        r = requests.get("https://press.spglobal.com/index.php?s=2429&l=100", headers=UA, timeout=60)
+        r = requests.get("https://press.spglobal.com/index.php",
+                         params={"s": "2429", "keywords": "buybacks"}, headers=UA, timeout=60)
         if r.status_code != 200:
             return out
     except requests.RequestException:
