@@ -1,11 +1,11 @@
 {
-  "computed_at": "2026-08-05T06:46:34.984223+00:00",
+  "computed_at": "2026-08-05T11:57:54.214000+00:00",
   "ticker": "SPY",
   "index": "SPX",
   "model": {
     "model_tag": "kader-equity-dispersion-v2-esrepo-2026-08-04",
     "as_of": "2026-08-05",
-    "computed_at": "2026-08-05T06:46:34.586856+00:00",
+    "computed_at": "2026-08-05T11:57:53.789446+00:00",
     "data_source": "live",
     "call_status": "current",
     "data_source_stale": null,
@@ -241,6 +241,35 @@
       "tide_source": "live"
     },
     "_sd_derisk_position_effect": true,
+    "three_down_active": {
+      "SPX": false,
+      "NDX": false
+    },
+    "three_down_boost_applied": {
+      "SPX": 1.0,
+      "NDX": 1.0
+    },
+    "three_down_rule": {
+      "SPX": {
+        "factor": 1.0,
+        "available": true,
+        "flag_active": false,
+        "days_left": 0,
+        "last_flag_date": "2026-07-20",
+        "as_of": "2026-08-04",
+        "age_bd": 1,
+        "src": "yfinance ^GSPC",
+        "reason": null
+      },
+      "NDX": {
+        "factor": 1.0,
+        "available": false,
+        "flag_active": false,
+        "days_left": 0,
+        "last_flag_date": null,
+        "reason": "disabled (config; NDX ablation-FAIL)"
+      }
+    },
     "spine": {
       "recipe": "8-modül sweep winner (RAW m2, +1g lag); m9 .563/m5 .214/m2 .118/m0 .061/m3 .025/m6 .01/m8 .006/m4 .002",
       "vector": {
@@ -279,24 +308,24 @@
     "dispersion_froth_pct": 0.955,
     "dispersion_factor": 0.0,
     "spot": 7736.52,
-    "net_gex_bn": 8.543,
-    "net_vanna_m": 28409.75,
-    "net_charm_m": -886.8,
-    "gex_flip": 7674.65,
+    "net_gex_bn": 6.083,
+    "net_vanna_m": 33721.15,
+    "net_charm_m": -29746.85,
+    "gex_flip": 7694.77,
     "call_wall": 8000.0,
     "ghost": 8000.0,
     "put_wall": 7000.0,
-    "max_pain": 7420.0,
-    "exp_move_1d": 68.67,
+    "max_pain": 7450.0,
+    "exp_move_1d": 69.3,
     "rv_ratio": 1.51,
     "gamma_regime": "LONG GAMMA",
     "cor1m": null,
-    "atm_iv": 12.89,
-    "rr_skew": 1.37,
-    "ts_ratio": 0.774,
-    "atm_iv_30d": 14.09,
+    "atm_iv": 13.23,
+    "rr_skew": 1.27,
+    "ts_ratio": 0.798,
+    "atm_iv_30d": 14.22,
     "realized_vol": 15.69,
-    "vrp": -1.6
+    "vrp": -1.47
   },
   "meta": {
     "snapshot_as_of": "2026-08-05",
@@ -309,10 +338,10 @@
     "data_fails": [],
     "data_checks": {
       "spot": 7736.52,
-      "front_atm_iv": 12.89,
-      "exp_move_1d": 68.67,
-      "net_gex_bn": 8.543,
-      "em_cross_ratio": 1.09
+      "front_atm_iv": 13.23,
+      "exp_move_1d": 69.3,
+      "net_gex_bn": 6.083,
+      "em_cross_ratio": 1.07
     },
     "data_junk": false,
     "gamma_fallback_to_spy": false,
@@ -332,7 +361,7 @@
     "regime": {
       "short_gamma": false,
       "above_flip": true,
-      "dist_flip_em": 0.9009756807922061,
+      "dist_flip_em": 0.6024531024531025,
       "froth": false,
       "froth_soft": false,
       "near_wall": false,
@@ -342,7 +371,7 @@
       "backwardation": false,
       "calm": true,
       "cor1m": null,
-      "vrp": -1.6,
+      "vrp": -1.47,
       "vrp_rich": false,
       "vrp_cheap": true,
       "ticker": "SPY"

@@ -1,11 +1,11 @@
 {
-  "computed_at": "2026-08-05T06:47:27.688549+00:00",
+  "computed_at": "2026-08-05T11:58:04.811901+00:00",
   "ticker": "QQQ",
   "index": "NDX",
   "model": {
     "model_tag": "kader-equity-dispersion-v2-esrepo-2026-08-04",
     "as_of": "2026-08-05",
-    "computed_at": "2026-08-05T06:47:27.323756+00:00",
+    "computed_at": "2026-08-05T11:58:04.432570+00:00",
     "data_source": "live",
     "call_status": "current",
     "data_source_stale": null,
@@ -241,6 +241,35 @@
       "tide_source": "live"
     },
     "_sd_derisk_position_effect": true,
+    "three_down_active": {
+      "SPX": false,
+      "NDX": false
+    },
+    "three_down_boost_applied": {
+      "SPX": 1.0,
+      "NDX": 1.0
+    },
+    "three_down_rule": {
+      "SPX": {
+        "factor": 1.0,
+        "available": true,
+        "flag_active": false,
+        "days_left": 0,
+        "last_flag_date": "2026-07-20",
+        "as_of": "2026-08-04",
+        "age_bd": 1,
+        "src": "yfinance ^GSPC",
+        "reason": null
+      },
+      "NDX": {
+        "factor": 1.0,
+        "available": false,
+        "flag_active": false,
+        "days_left": 0,
+        "last_flag_date": null,
+        "reason": "disabled (config; NDX ablation-FAIL)"
+      }
+    },
     "spine": {
       "recipe": "8-modül sweep winner (RAW m2, +1g lag); m9 .563/m5 .214/m2 .118/m0 .061/m3 .025/m6 .01/m8 .006/m4 .002",
       "vector": {
@@ -278,25 +307,25 @@
     "dispersion_froth": true,
     "dispersion_froth_pct": 0.955,
     "dispersion_factor": 0.0,
-    "spot": 722.77,
-    "net_gex_bn": -0.203,
-    "net_vanna_m": 1233.06,
-    "net_charm_m": -88.07,
-    "gex_flip": 725.61,
+    "spot": 725.12,
+    "net_gex_bn": -0.077,
+    "net_vanna_m": 1474.97,
+    "net_charm_m": -2122.7,
+    "gex_flip": 726.15,
     "call_wall": 800.0,
     "ghost": 730.0,
     "put_wall": 700.0,
-    "max_pain": 698.0,
-    "exp_move_1d": 10.48,
+    "max_pain": 700.0,
+    "exp_move_1d": 10.53,
     "rv_ratio": 1.349,
     "gamma_regime": "SHORT GAMMA",
     "cor1m": null,
-    "atm_iv": 22.55,
-    "rr_skew": 2.3,
-    "ts_ratio": 0.915,
-    "atm_iv_30d": 23.01,
+    "atm_iv": 22.31,
+    "rr_skew": 2.26,
+    "ts_ratio": 0.905,
+    "atm_iv_30d": 23.05,
     "realized_vol": 28.71,
-    "vrp": -5.7
+    "vrp": -5.66
   },
   "meta": {
     "snapshot_as_of": "2026-08-05",
@@ -308,11 +337,11 @@
     "data_ok": true,
     "data_fails": [],
     "data_checks": {
-      "spot": 722.77,
-      "front_atm_iv": 22.55,
-      "exp_move_1d": 10.48,
-      "net_gex_bn": -0.203,
-      "em_cross_ratio": 1.02
+      "spot": 725.12,
+      "front_atm_iv": 22.31,
+      "exp_move_1d": 10.53,
+      "net_gex_bn": -0.077,
+      "em_cross_ratio": 1.03
     },
     "data_junk": false,
     "gamma_fallback_to_spy": false,
@@ -332,7 +361,7 @@
     "regime": {
       "short_gamma": true,
       "above_flip": false,
-      "dist_flip_em": 0.27099236641221675,
+      "dist_flip_em": 0.09781576448242857,
       "froth": false,
       "froth_soft": false,
       "near_wall": false,
@@ -342,7 +371,7 @@
       "backwardation": false,
       "calm": true,
       "cor1m": null,
-      "vrp": -5.7,
+      "vrp": -5.66,
       "vrp_rich": false,
       "vrp_cheap": true,
       "ticker": "QQQ"
