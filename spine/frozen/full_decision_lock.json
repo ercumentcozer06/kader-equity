@@ -1,5 +1,5 @@
 {
-    "fingerprint": "ea3b5c4cad6b2579",
+    "fingerprint": "d9239851fc69738e",
     "scope": "run.py + config.yaml + spine/tide.py + modules/*.py",
-    "note": "Updated 2026-08-05: three_down_rule overlay (SPX-only long-boost x1.25, ablation E3; Emir maxDD-taviziyle deploy emri). Rollback = config three_down_rule.enable_spx:false."
+    "note": "Updated 2026-08-06: guvenilirlik denetimi - es_basis_unwind canli-uc 10dk disk-memo (kosu basina 6->2 yf indirmesi) + parquet/latest.json ATOMIK yazim (tmp+os.replace) + --validate BAYAT rc=3 (btc ile hizalama). SINYAL YOLU DEGISMEDI: reproduce_baseline capa SPX +1.425 / NDX +1.489 birebir PASS (imzadan hemen once kosuldu). Onceki not (08-05 three_down_rule) gecerli kalir."
 }

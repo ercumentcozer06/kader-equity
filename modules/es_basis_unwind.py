@@ -78,9 +78,28 @@ def _should_write(d: pd.Timestamp, base: pd.DataFrame) -> bool:
     return True
 
 
+_LIVE_MEMO = ROOT / "data" / "cache" / "es_basis_live_memo.json"
+_LIVE_MEMO_TTL_S = 600     # 10 dk — gold spine/_live_prices ile ayni doktrin: repodaki her
+                           # tazelik esiginden SIKI; yalniz AYNI kosunun tekrar-cagrilarini soğurur
+
+
 def _live_spread_today(base: pd.DataFrame):
     """Bugunun ham spread'i (bps) — yfinance ES=F + ^GSPC son ORTAK kapanis; taban-son dy/dff.
-    Basari: (date, spread_bps) | yazilmamali/hata: None."""
+    Basari: (date, spread_bps) | yazilmamali/hata: None.
+
+    10dk DISK-MEMO (denetim 2026-08-06): evaluate() kosu basina ~3 kez cagriliyor (run_daily
+    adimlari ayri subprocess) ve her cagri 2 yf indirmesiydi -> 6 indirme/kosu. Memo ayni
+    kosunun tekrarlarini soğurur; TTL asiminda ya da memo bozuksa AYNEN canli yola duser
+    (sahte-taze uretmez: memo yalniz BASARILI canli sonucun kopyasi)."""
+    import json as _json
+    import time as _time
+    try:
+        m = _json.loads(_LIVE_MEMO.read_text(encoding="utf-8"))
+        if _time.time() - float(m["ts"]) < _LIVE_MEMO_TTL_S:
+            d = pd.Timestamp(m["date"])
+            return (d, float(m["spread"])) if _should_write(d, base) else None
+    except Exception:
+        pass
     import yfinance as yf
     es = yf.download("ES=F", period="5d", auto_adjust=False, progress=False)["Close"]
     gs = yf.download("^GSPC", period="5d", auto_adjust=False, progress=False)["Close"]
@@ -98,6 +117,14 @@ def _live_spread_today(base: pd.DataFrame):
     dff = float(base["dff"].dropna().iloc[-1])
     spread = ((float(j["f"].iloc[-1]) / float(j["s"].iloc[-1]) - 1.0)
               * 365.0 / (exp - d).days + dy - dff) * 1e4
+    try:                       # memo yalniz BASARILI sonucu tasir; yazim hatasi olumcul degil
+        import json as _json
+        import time as _time
+        _LIVE_MEMO.parent.mkdir(parents=True, exist_ok=True)
+        _LIVE_MEMO.write_text(_json.dumps({"ts": _time.time(), "date": str(d.date()),
+                                           "spread": float(spread)}), encoding="utf-8")
+    except Exception:
+        pass
     return d, float(spread)
 
 
@@ -125,7 +152,12 @@ def evaluate(cfg: dict) -> dict:
                     row.loc[d, c] = float(base[c].dropna().iloc[-1])
                 base = pd.concat([base[base.index < d], row]).sort_index()
                 try:
-                    base.to_parquet(PARQ)          # self-extending taban; yazim-hatasi olumcul degil
+                    # ATOMIK (08-06): dogrudan to_parquet(PARQ) yarim-yazimda 2009+ arsivi
+                    # bozardi (yeniden-insa es_basis_lab ister). tmp + os.replace: ya eski ya yeni.
+                    import os as _os
+                    _tmp = PARQ.with_suffix(f".tmp{_os.getpid()}")
+                    base.to_parquet(_tmp)
+                    _os.replace(_tmp, PARQ)        # self-extending taban; yazim-hatasi olumcul degil
                 except Exception:
                     pass
                 src = "canli-append"

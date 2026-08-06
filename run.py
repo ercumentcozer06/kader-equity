@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -615,6 +616,12 @@ def _validate(_cfg: dict) -> int:
     print(f"  {files[-1].name}: dir={d.get('direction')} pos={d.get('position_target')} "
           f"call={d.get('call_status')} → {'[OK]' if schema_ok else '[!] şema dışı'}"
           + ("  (BAYAT)" if stale else ""))
+    # ÇIKIŞ-SEMANTİĞİ HİZALAMASI (denetim 2026-08-06): BAYAT çağrı rc=0 dönüyordu — kader-btc
+    # aynı durumda rc=3 verir. İki model aynı olaya farklı cevap verince görev zinciri birinde
+    # arızayı görür, diğerinde görmezdi (fail-visible doktrini delik). Kural btc ile birebir:
+    # 3=BAYAT, 1=şema-dışı, 0=temiz.
+    if stale:
+        return 3
     return 0 if schema_ok else 1
 
 
@@ -636,8 +643,12 @@ def write_latest(d: dict) -> None:
     otomasyon yolu (run_daily) da her koşuda bunu çağırır. STALE çağrıda da yazılır (durum dürüst görünür)."""
     out_dir = ROOT / "output"
     out_dir.mkdir(exist_ok=True)
-    (out_dir / "kader_equity_latest.json").write_text(
-        json.dumps(d, indent=2, ensure_ascii=False), encoding="utf-8")
+    # ATOMIK (denetim 08-06): dogrudan write_text yarim-yazimda bozuk JSON birakir -> deira
+    # okuyamayip HALT eder (bayat-servis degil ama onlenebilir kesinti). tmp + os.replace.
+    _p = out_dir / "kader_equity_latest.json"
+    _tmp = _p.with_suffix(f".tmp{os.getpid()}")
+    _tmp.write_text(json.dumps(d, indent=2, ensure_ascii=False), encoding="utf-8")
+    os.replace(_tmp, _p)
 
 
 def main(argv=None) -> int:

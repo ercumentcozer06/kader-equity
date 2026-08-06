@@ -1,11 +1,11 @@
 {
-  "computed_at": "2026-08-06T06:46:37.365755+00:00",
+  "computed_at": "2026-08-06T07:40:37.256282+00:00",
   "ticker": "QQQ",
   "index": "NDX",
   "model": {
     "model_tag": "kader-equity-dispersion-v2-esrepo-2026-08-04",
     "as_of": "2026-08-06",
-    "computed_at": "2026-08-06T06:46:36.971109+00:00",
+    "computed_at": "2026-08-06T07:40:36.781178+00:00",
     "data_source": "live",
     "call_status": "current",
     "data_source_stale": null,
