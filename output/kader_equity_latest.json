@@ -1,7 +1,7 @@
 {
   "model_tag": "kader-equity-dispersion-v2-esrepo-2026-08-04",
   "as_of": "2026-08-06",
-  "computed_at": "2026-08-06T07:40:48.381064+00:00",
+  "computed_at": "2026-08-06T17:56:33.758854+00:00",
   "data_source": "live",
   "call_status": "current",
   "data_source_stale": null,
@@ -15,17 +15,17 @@
     "max_staleness_days": 5,
     "stale": false
   },
-  "tide_score": 8.4082,
+  "tide_score": 9.2078,
   "tide_dir": 1,
   "module_scores": {
     "m0": 0.0,
-    "m1": 0.3145,
+    "m1": 1.0905,
     "m2": -7.4236,
     "m3": 6.0,
     "m4": -0.4982,
-    "m5": 16.2631,
-    "m6": 16.8463,
-    "m8": -9.1784,
+    "m5": 20.0,
+    "m6": 16.7454,
+    "m8": -9.226,
     "m9": 9.86,
     "m10": -10.17,
     "m11": 2.51
@@ -65,17 +65,23 @@
       "spread": 27.67,
       "as_of": "2026-08-05",
       "age_days": 1,
+      "leg_as_of": {
+        "spread": "2026-08-05",
+        "dspx": "2026-08-05",
+        "cor1m": "2026-08-05"
+      },
+      "legs_aligned": true,
       "froth": true,
       "reason": "froth_pct 0.94 ≥ 0.70 → dispersion de-risk (factor 0.03; spr0.95/dspx0.93/¬cor0.94)"
     },
     "es_basis_unwind": {
       "factor": 1.0,
       "available": true,
-      "spread_bps": 41.6,
-      "pctl": 0.369,
-      "dz": -0.2,
-      "as_of": "2026-08-05",
-      "age_bd": 1,
+      "spread_bps": 31.4,
+      "pctl": 0.224,
+      "dz": -0.8,
+      "as_of": "2026-08-06",
+      "age_bd": 0,
       "src": "canli-append",
       "warning": null
     }
@@ -220,12 +226,12 @@
     "mega_ceiling_usd": 86249999880.0,
     "mega_label": "Space Exploration Technologies",
     "mega_hi": true,
-    "tide_score": 8.41,
+    "tide_score": 9.21,
     "tide_dir": 1,
     "tide_declining_63d": false,
     "demand_weak": false,
     "as_of": "2026-08-06",
-    "reason": "sus: talep guclu (tide +8.4)",
+    "reason": "sus: talep guclu (tide +9.2)",
     "label": "rejim-degisim SIGORTASI (alfa DEGIL); incremental ~0, donmus tide 2021-22'yi zaten de-risk ediyor; deger = backtest'in goremedigi arz-soku rejimi (Constan Q3-Q4)",
     "thresholds": {
       "supply_z": 1.0,
@@ -252,8 +258,8 @@
       "flag_active": false,
       "days_left": 0,
       "last_flag_date": "2026-07-20",
-      "as_of": "2026-08-05",
-      "age_bd": 1,
+      "as_of": "2026-08-06",
+      "age_bd": 0,
       "src": "yfinance ^GSPC",
       "reason": null
     },

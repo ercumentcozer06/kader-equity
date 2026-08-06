@@ -54,7 +54,17 @@ def froth_pct_series(cor1m: pd.Series, spread: pd.Series, dspx: pd.Series,
     fs = _pit_series(spread, win, min_periods)           # yüksek spread = froth
     fd = _pit_series(dspx, win, min_periods)             # yüksek DSPX = froth
     df = pd.concat([fc.rename("cor"), fs.rename("spr"), fd.rename("dsp")], axis=1)
-    return df.mean(axis=1, skipna=True).rename("froth_pct")   # eşit-ağırlık (FIT YOK)
+    # BUG-FIX 2026-08-06 (bug-sweep): skipna=True idi. Üç CBOE dosyası aynı anda yayınlanmadığı
+    # gün birleşim indeksinin son satırında 2 bacak olur; skipna=True o satırı NaN YAPMAZ, sessizce
+    # 2-yollu ortalama üretir — "eşit-ağırlık 3-yollu" iddiası bozulur ve `.dropna()` da onu atmaz.
+    # Ölçüm (08-06, canlı veriyle): DSPX 1 gün gecikirse factor 0.029->0.009 = pozisyonun %69'u;
+    # tazelik kapısı max(ages)<=4 işgününe izin verdiği için bunu HİÇ yakalamıyordu.
+    # skipna=False => kısmi satır NaN olur => hem canlı yol (`froth.dropna().iloc[-1]`) hem donuk
+    # yol (run.py:187 `fps.dropna().asof()`) kendiliğinden son TAM güne düşer.
+    # SHARPE-NÖTR (ölçüldü): üç bacağın tam olduğu günlerde skipna True/False farkı = 0.00e+00.
+    # NOT: 2015-06 öncesi (DSPX yok) satırlar artık NaN — orada zaten "3-yollu" diye tek bacak
+    # ortalanıyordu; geçerli 3-bacaklı bölge 2015-06-18+.
+    return df.mean(axis=1, skipna=False).rename("froth_pct")   # eşit-ağırlık (FIT YOK), 3 bacak ŞART
 
 
 def ensemble_factor(froth_pct: float | None, lo: float = 0.70, hi: float = 0.95, floor: float = 0.0) -> float:
@@ -136,14 +146,32 @@ def evaluate(cfg: dict) -> dict:
 
     # 3) bugünün froth_pct'i = üç bileşenin trailing-win percentile ortalaması (backtest ile aynı math)
     froth = froth_pct_series(cor, spread, dspx, win, mp)
-    fp = float(froth.dropna().iloc[-1]) if froth.notna().any() else None
-    comp = {"spread_pct": round(float(_pit_series(spread, win, mp).dropna().iloc[-1]), 3),
-            "dspx_pct": round(float(_pit_series(dspx, win, mp).dropna().iloc[-1]), 3),
-            "cor1m_inv_pct": round(float((1.0 - _pit_series(cor, win, mp)).dropna().iloc[-1]), 3)}
+    fvalid = froth.dropna()                      # 3 bacağı da TAM olan günler (skipna=False sayesinde)
+    if fvalid.empty:
+        return {"available": False, "factor": 1.0, "fail_safe_block": True,
+                "error": "dispersion: üç bacağın birlikte dolu olduğu gün YOK — froth kurulamaz"}
+    f_asof = fvalid.index[-1]
+    # BUG-FIX 2026-08-06: bileşenler ARTIK froth ile AYNI günden okunur. Eskiden her bacak kendi
+    # `.dropna().iloc[-1]`inden geliyordu -> rapor üç farklı tarihi "tutarlı" gösterirken kullanılan
+    # sayı başka tarihli/eksik bacaklı olabiliyordu (yanlış teşhis kanıtı).
+    f_age = _busday_age(f_asof)
+    if f_age > max_age:
+        return {"available": False, "factor": 1.0, "stale": True, "age_days": f_age,
+                "reason": f"dispersion STALE: son TAM 3-bacaklı gün {f_asof.date()} "
+                          f"({f_age} işgünü > {max_age}) → de-risk OFF (factor 1.0)"}
+    fp = float(fvalid.iloc[-1])
+    comp = {"spread_pct": round(float(_pit_series(spread, win, mp).loc[f_asof]), 3),
+            "dspx_pct": round(float(_pit_series(dspx, win, mp).loc[f_asof]), 3),
+            "cor1m_inv_pct": round(float((1.0 - _pit_series(cor, win, mp)).loc[f_asof]), 3)}
     f = ensemble_factor(fp, lo, hi, fl)
     return {"available": True, "factor": round(f, 3), "froth_pct": round(fp, 3) if fp is not None else None,
             "components": comp, "spread": round(float(spread.iloc[-1]), 2),
-            "as_of": str(spread.index[-1].date()), "age_days": ages[binding],
+            # as_of = froth'un FIILEN hesaplandığı gün (son TAM 3-bacaklı gün); leg_as_of tek tek
+            # bacakları gösterir ki hizasızlık raporda GÖRÜNSÜN (08-06 bug-sweep).
+            "as_of": str(f_asof.date()), "age_days": f_age,
+            "leg_as_of": {"spread": str(spread.index[-1].date()), "dspx": str(dspx.index[-1].date()),
+                          "cor1m": str(cor.index[-1].date())},
+            "legs_aligned": bool(f_asof == max(spread.index[-1], dspx.index[-1], cor.index[-1])),
             "froth": bool(fp is not None and fp >= lo),
             "reason": (f"froth_pct {fp:.2f} ≥ {lo:.2f} → dispersion de-risk (factor {f:.2f}; "
                        f"spr{comp['spread_pct']:.2f}/dspx{comp['dspx_pct']:.2f}/¬cor{comp['cor1m_inv_pct']:.2f})"
