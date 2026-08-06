@@ -1,7 +1,7 @@
 {
   "model_tag": "kader-equity-dispersion-v2-esrepo-2026-08-04",
-  "as_of": "2026-08-05",
-  "computed_at": "2026-08-05T11:58:14.568162+00:00",
+  "as_of": "2026-08-06",
+  "computed_at": "2026-08-06T06:47:12.267914+00:00",
   "data_source": "live",
   "call_status": "current",
   "data_source_stale": null,
@@ -9,30 +9,30 @@
   "market_closed_reason": null,
   "_live_error": null,
   "freshness": {
-    "as_of": "2026-08-05",
-    "today": "2026-08-05",
+    "as_of": "2026-08-06",
+    "today": "2026-08-06",
     "age_days": 0,
     "max_staleness_days": 5,
     "stale": false
   },
-  "tide_score": 9.1033,
+  "tide_score": 8.4082,
   "tide_dir": 1,
   "module_scores": {
     "m0": 0.0,
-    "m1": 0.1802,
+    "m1": 0.3145,
     "m2": -7.4236,
     "m3": 6.0,
-    "m4": -10.7922,
-    "m5": 19.576,
-    "m6": 17.9097,
-    "m8": -9.226,
+    "m4": -0.4982,
+    "m5": 16.2631,
+    "m6": 16.8463,
+    "m8": -9.1784,
     "m9": 9.86,
     "m10": -10.17,
-    "m11": 0.95
+    "m11": 2.51
   },
   "direction": "LONG",
-  "position_target": 0.0,
-  "deploy_fraction": 0.0,
+  "position_target": 0.029,
+  "deploy_fraction": 0.029,
   "leverage": 1.0,
   "active_overlays": [
     "gex_shield",
@@ -44,37 +44,37 @@
   "overlays": {
     "gex_shield": {
       "available": true,
-      "gex_z": 0.97,
-      "as_of": "2026-08-04",
+      "gex_z": 1.57,
+      "as_of": "2026-08-05",
       "factor": 1.0,
       "short_gamma": false,
       "z_stale": false,
       "z_stale_obs": 0,
       "src_age_td": 1,
-      "reason": "z(GEX) +1.0 ≥ −1 → normal (factor 1.0)"
+      "reason": "z(GEX) +1.6 ≥ −1 → normal (factor 1.0)"
     },
     "dispersion_ensemble": {
       "available": true,
-      "factor": 0.0,
-      "froth_pct": 0.955,
+      "factor": 0.029,
+      "froth_pct": 0.943,
       "components": {
-        "spread_pct": 0.966,
-        "dspx_pct": 0.958,
+        "spread_pct": 0.952,
+        "dspx_pct": 0.933,
         "cor1m_inv_pct": 0.943
       },
-      "spread": 29.23,
-      "as_of": "2026-08-04",
+      "spread": 27.67,
+      "as_of": "2026-08-05",
       "age_days": 1,
       "froth": true,
-      "reason": "froth_pct 0.96 ≥ 0.70 → dispersion de-risk (factor 0.00; spr0.97/dspx0.96/¬cor0.94)"
+      "reason": "froth_pct 0.94 ≥ 0.70 → dispersion de-risk (factor 0.03; spr0.95/dspx0.93/¬cor0.94)"
     },
     "es_basis_unwind": {
       "factor": 1.0,
       "available": true,
-      "spread_bps": 80.7,
-      "pctl": 0.823,
-      "dz": 0.2,
-      "as_of": "2026-08-04",
+      "spread_bps": 41.6,
+      "pctl": 0.369,
+      "dz": -0.2,
+      "as_of": "2026-08-05",
       "age_bd": 1,
       "src": "canli-append",
       "warning": null
@@ -86,7 +86,7 @@
     "third_friday": "2026-08-21",
     "holiday_shifted": false,
     "is_quad_witch_next": false,
-    "trading_days_until": 12,
+    "trading_days_until": 11,
     "is_opex_today": false,
     "warn": false,
     "warn_days": 3,
@@ -97,11 +97,11 @@
     "note": "veri-doğrulanmış (FINDING 23: NDX OpEx −14bps p=0.001, 4 on yıl); taktik NDX de-risk + uyarı; 3.-Cuma NYSE tatiliyse fiili vade Perşembe'ye kayar (Juneteenth/Good Friday vb.)"
   },
   "asset_deploy": {
-    "SPX": 0.0,
-    "NDX": 0.0
+    "SPX": 0.029,
+    "NDX": 0.029
   },
   "santa_context": {
-    "as_of": "2026-08-05",
+    "as_of": "2026-08-06",
     "window_months": [
       11,
       12
@@ -135,7 +135,7 @@
       }
     },
     "pit_date": "2026-06-15",
-    "pit_age_days": 51,
+    "pit_age_days": 52,
     "stale": false,
     "ratio4q_nfc_pct_ngdp": -0.48,
     "z10y_nfc": 1.29,
@@ -151,9 +151,9 @@
     "last_closed_quarter": "2026Q2",
     "roll4q_filings": 1531,
     "z10y": 0.67,
-    "last90d_new": 365,
+    "last90d_new": 364,
     "z90": 0.39,
-    "live_as_of": "2026-08-05",
+    "live_as_of": "2026-08-06",
     "stale": false,
     "mega_hits_120d": [
       {
@@ -168,7 +168,7 @@
     "label": "dosyalama = NIYET, gerceklesme degil; kayit-tavani != arz-buyuklugu; baglam-bandi — pozisyon etkisi SIFIR"
   },
   "ipo_supply_waves": {
-    "as_of": "2026-08-05",
+    "as_of": "2026-08-06",
     "n_active": 1,
     "waves": [
       {
@@ -184,14 +184,14 @@
         ],
         "lockup_status": "parse-ok",
         "lockup_expiry_date": "2027-06-04",
-        "days_to_lockup": 303,
+        "days_to_lockup": 302,
         "lockup_shares_est": 7800000000.0,
         "lockup_pct_note": "greater than 63% of shares outstanding (pre-offering)",
         "index_incl_eligible": true,
         "index_incl_window": {
           "earliest": "2026-09-01",
           "latest": "2027-06-03",
-          "days_to_earliest": 27
+          "days_to_earliest": 26
         },
         "forced_passive_demand_usd_lo": 12937499982.0,
         "forced_passive_demand_usd_hi": 17249999976.0,
@@ -220,12 +220,12 @@
     "mega_ceiling_usd": 86249999880.0,
     "mega_label": "Space Exploration Technologies",
     "mega_hi": true,
-    "tide_score": 9.1,
+    "tide_score": 8.41,
     "tide_dir": 1,
     "tide_declining_63d": false,
     "demand_weak": false,
-    "as_of": "2026-08-05",
-    "reason": "sus: talep guclu (tide +9.1)",
+    "as_of": "2026-08-06",
+    "reason": "sus: talep guclu (tide +8.4)",
     "label": "rejim-degisim SIGORTASI (alfa DEGIL); incremental ~0, donmus tide 2021-22'yi zaten de-risk ediyor; deger = backtest'in goremedigi arz-soku rejimi (Constan Q3-Q4)",
     "thresholds": {
       "supply_z": 1.0,
@@ -252,7 +252,7 @@
       "flag_active": false,
       "days_left": 0,
       "last_flag_date": "2026-07-20",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "age_bd": 1,
       "src": "yfinance ^GSPC",
       "reason": null

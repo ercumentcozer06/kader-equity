@@ -100,6 +100,7 @@ def main(argv=None) -> int:
     start = date.fromisoformat(a.start) if a.start else default_start
     days = _dates(start, end)
     counts = {"ok": 0, "exists": 0, "pending": 0, "error": 0}
+    upstream_403 = 0            # kaynak tarafli engel (bkz. asagidaki cikis-kodu notu)
     # OCC documents this as a batch-processing endpoint. Six workers keeps the
     # backfill practical without turning it into an aggressive scraper.
     jobs = [(s, k, day) for day in days for s, k in SYMBOLS.items()]
@@ -113,10 +114,25 @@ def main(argv=None) -> int:
                 counts["pending"] += 1
             except Exception as exc:
                 counts["error"] += 1
+                if "403" in str(exc) or "404" in str(exc):
+                    upstream_403 += 1
                 print(f"{day} {symbol}: {type(exc).__name__}: {str(exc)[:120]}")
     out = materialise()
     print(json.dumps({"start": str(start), "end": str(end), "days": len(days),
-                      "requests": counts, "rows": len(out), "output": str(OUT)}))
+                      "requests": counts, "rows": len(out), "output": str(OUT),
+                      "upstream_blocked": upstream_403}))
+    # CIKIS KODU (denetim 2026-08-06): kaynak TARAFLI engel (403/404) bu gorevi her gun kirmizi
+    # yakiyordu (KaderEquity_OCCParticipant_Daily rc=1; marketdata.theocc.com son gunler icin 403
+    # donuyor — UA degistirmek de cozmedi, WAF/rota degisikligi). Bu agac BETIMSEL: deira'nin
+    # veri-yuzeyi tablosunda `kader-equity/data/option_research/**` = "tuketicileri backtest/
+    # validation/screen; run.py KARAR YOLU bu agactan HIC okumaz". Karar yolunda olmayan bir
+    # arastirma arsivinin kaynak-engeli, gorev zincirini kirmizi yakip GERCEK arizalari
+    # golgelememeli. Kural: SADECE hatalarin TAMAMI upstream 403/404 ise rc=0 (satirlar log'da
+    # gorunur kalir); script/parse/yazim hatasi olursa rc=1 AYNEN korunur.
+    if counts["error"] and counts["error"] == upstream_403:
+        print(f"UYARI: {upstream_403} istek kaynak tarafindan engellendi (403/404) — arsiv "
+              f"BETIMSEL, karar yolunda degil; rc=0. Rota onarimi ayri is emri.")
+        return 0
     return 1 if counts["error"] else 0
 
 

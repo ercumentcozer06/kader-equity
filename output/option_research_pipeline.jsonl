@@ -1269,3 +1269,15 @@
 {"started_utc": "2026-08-05T20:35:01.732461+00:00", "finished_utc": "2026-08-05T20:35:01.839461+00:00", "mode": "intraday", "status": "ok"}
 {"started_utc": "2026-08-05T20:40:01.709616+00:00", "finished_utc": "2026-08-05T20:40:01.813445+00:00", "mode": "intraday", "status": "ok"}
 {"started_utc": "2026-08-05T20:45:01.821526+00:00", "finished_utc": "2026-08-05T20:45:01.951051+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-05T20:50:01.760946+00:00", "finished_utc": "2026-08-05T20:50:01.887975+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-05T20:55:01.728226+00:00", "finished_utc": "2026-08-05T20:55:01.835394+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-05T22:48:13.681408+00:00", "finished_utc": "2026-08-05T22:48:14.006934+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-05T22:48:13.803770+00:00", "finished_utc": "2026-08-05T22:49:28.592951+00:00", "mode": "eod", "status": "ok"}
+{"started_utc": "2026-08-06T06:41:26.055632+00:00", "finished_utc": "2026-08-06T06:41:26.462560+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-06T06:45:01.758962+00:00", "finished_utc": "2026-08-06T06:45:01.874408+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-06T06:50:01.583331+00:00", "finished_utc": "2026-08-06T06:50:01.696209+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-06T06:55:01.645652+00:00", "finished_utc": "2026-08-06T06:55:01.767549+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-06T07:00:08.427457+00:00", "finished_utc": "2026-08-06T07:00:08.718081+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-06T07:05:06.683394+00:00", "finished_utc": "2026-08-06T07:05:06.884863+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-06T07:10:08.556257+00:00", "finished_utc": "2026-08-06T07:10:08.809253+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-06T07:15:01.622105+00:00", "finished_utc": "2026-08-06T07:15:01.735670+00:00", "mode": "intraday", "status": "ok"}
