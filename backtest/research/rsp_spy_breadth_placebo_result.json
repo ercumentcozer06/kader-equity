@@ -1,0 +1,270 @@
+{
+ "E_placebo": {
+  "SPX|F1|x0.5": {
+   "d_sharpe_real": -0.026,
+   "placebo_mean": -0.0389,
+   "placebo_p5": -0.1656,
+   "placebo_p95": 0.1113,
+   "percentile": 0.568,
+   "verdict": "ZAMANLAMA YOK",
+   "flag_days": 424,
+   "n_days": 1929
+  },
+  "SPX|F1|x1.25": {
+   "d_sharpe_real": -0.0264,
+   "placebo_mean": -0.0074,
+   "placebo_p5": -0.0769,
+   "placebo_p95": 0.0559,
+   "percentile": 0.325,
+   "verdict": "ZAMANLAMA YOK",
+   "flag_days": 424,
+   "n_days": 1929
+  },
+  "SPX|F2|x0.5": {
+   "d_sharpe_real": -0.0282,
+   "placebo_mean": -0.0784,
+   "placebo_p5": -0.2781,
+   "placebo_p95": 0.1361,
+   "percentile": 0.63,
+   "verdict": "ZAMANLAMA YOK",
+   "flag_days": 1322,
+   "n_days": 1929
+  },
+  "SPX|F2|x1.25": {
+   "d_sharpe_real": -0.0217,
+   "placebo_mean": -0.0067,
+   "placebo_p5": -0.0607,
+   "placebo_p95": 0.0568,
+   "percentile": 0.376,
+   "verdict": "ZAMANLAMA YOK",
+   "flag_days": 1322,
+   "n_days": 1929
+  },
+  "SPX|F3|x0.5": {
+   "d_sharpe_real": -0.002,
+   "placebo_mean": -0.0802,
+   "placebo_p5": -0.2808,
+   "placebo_p95": 0.1417,
+   "percentile": 0.709,
+   "verdict": "ZAMANLAMA YOK",
+   "flag_days": 1173,
+   "n_days": 1929
+  },
+  "SPX|F3|x1.25": {
+   "d_sharpe_real": -0.0366,
+   "placebo_mean": -0.0077,
+   "placebo_p5": -0.0722,
+   "placebo_p95": 0.06,
+   "percentile": 0.253,
+   "verdict": "ZAMANLAMA YOK",
+   "flag_days": 1173,
+   "n_days": 1929
+  },
+  "SPX|F4|x0.5": {
+   "d_sharpe_real": 0.0072,
+   "placebo_mean": -0.0799,
+   "placebo_p5": -0.298,
+   "placebo_p95": 0.099,
+   "percentile": 0.729,
+   "verdict": "ZAMANLAMA YOK",
+   "flag_days": 1129,
+   "n_days": 1929
+  },
+  "SPX|F4|x1.25": {
+   "d_sharpe_real": -0.0344,
+   "placebo_mean": -0.0089,
+   "placebo_p5": -0.068,
+   "placebo_p95": 0.0785,
+   "percentile": 0.342,
+   "verdict": "ZAMANLAMA YOK",
+   "flag_days": 1129,
+   "n_days": 1929
+  },
+  "NDX|F1|x0.5": {
+   "d_sharpe_real": -0.0775,
+   "placebo_mean": -0.0512,
+   "placebo_p5": -0.1753,
+   "placebo_p95": 0.0751,
+   "percentile": 0.36,
+   "verdict": "ZAMANLAMA YOK",
+   "flag_days": 435,
+   "n_days": 1929
+  },
+  "NDX|F1|x1.25": {
+   "d_sharpe_real": -0.0061,
+   "placebo_mean": -0.0073,
+   "placebo_p5": -0.0623,
+   "placebo_p95": 0.0474,
+   "percentile": 0.5,
+   "verdict": "ZAMANLAMA YOK",
+   "flag_days": 435,
+   "n_days": 1929
+  },
+  "NDX|F2|x0.5": {
+   "d_sharpe_real": -0.0046,
+   "placebo_mean": -0.0924,
+   "placebo_p5": -0.2478,
+   "placebo_p95": 0.0847,
+   "percentile": 0.813,
+   "verdict": "ZAMANLAMA YOK",
+   "flag_days": 1420,
+   "n_days": 1929
+  },
+  "NDX|F2|x1.25": {
+   "d_sharpe_real": -0.0335,
+   "placebo_mean": -0.0079,
+   "placebo_p5": -0.0486,
+   "placebo_p95": 0.0345,
+   "percentile": 0.16,
+   "verdict": "ZAMANLAMA YOK",
+   "flag_days": 1420,
+   "n_days": 1929
+  },
+  "NDX|F3|x0.5": {
+   "d_sharpe_real": -0.0512,
+   "placebo_mean": -0.099,
+   "placebo_p5": -0.2696,
+   "placebo_p95": 0.086,
+   "percentile": 0.661,
+   "verdict": "ZAMANLAMA YOK",
+   "flag_days": 1389,
+   "n_days": 1929
+  },
+  "NDX|F3|x1.25": {
+   "d_sharpe_real": -0.0227,
+   "placebo_mean": -0.0078,
+   "placebo_p5": -0.0547,
+   "placebo_p95": 0.0422,
+   "percentile": 0.333,
+   "verdict": "ZAMANLAMA YOK",
+   "flag_days": 1389,
+   "n_days": 1929
+  },
+  "NDX|F4|x0.5": {
+   "d_sharpe_real": -0.044,
+   "placebo_mean": -0.0951,
+   "placebo_p5": -0.2586,
+   "placebo_p95": 0.0888,
+   "percentile": 0.702,
+   "verdict": "ZAMANLAMA YOK",
+   "flag_days": 1265,
+   "n_days": 1929
+  },
+  "NDX|F4|x1.25": {
+   "d_sharpe_real": -0.0261,
+   "placebo_mean": -0.0093,
+   "placebo_p5": -0.0579,
+   "placebo_p95": 0.0356,
+   "percentile": 0.275,
+   "verdict": "ZAMANLAMA YOK",
+   "flag_days": 1265,
+   "n_days": 1929
+  }
+ },
+ "F_expo_matched": {
+  "SPX|F1": {
+   "rule_sharpe": 0.618,
+   "const_sharpe": 0.566,
+   "rnd_sharpe_mean": 0.497,
+   "rnd_sharpe_p95": 0.682,
+   "rule_sharpe_percentile_vs_rnd": 0.883,
+   "rule_maxdd": -0.482,
+   "const_maxdd": -0.461,
+   "rnd_maxdd_mean": -0.486,
+   "rule_dd_percentile_vs_rnd": 0.608,
+   "expo": 0.759,
+   "fdr_pass": false
+  },
+  "SPX|F2": {
+   "rule_sharpe": 0.574,
+   "const_sharpe": 0.565,
+   "rnd_sharpe_mean": 0.418,
+   "rnd_sharpe_p95": 0.692,
+   "rule_sharpe_percentile_vs_rnd": 0.854,
+   "rule_maxdd": -0.24,
+   "const_maxdd": -0.323,
+   "rnd_maxdd_mean": -0.405,
+   "rule_dd_percentile_vs_rnd": 0.92,
+   "expo": 0.496,
+   "fdr_pass": false
+  },
+  "SPX|F3": {
+   "rule_sharpe": 0.462,
+   "const_sharpe": 0.569,
+   "rnd_sharpe_mean": 0.408,
+   "rnd_sharpe_p95": 0.639,
+   "rule_sharpe_percentile_vs_rnd": 0.685,
+   "rule_maxdd": -0.437,
+   "const_maxdd": -0.326,
+   "rnd_maxdd_mean": -0.404,
+   "rule_dd_percentile_vs_rnd": 0.408,
+   "expo": 0.501,
+   "fdr_pass": false
+  },
+  "SPX|F4": {
+   "rule_sharpe": 0.61,
+   "const_sharpe": 0.557,
+   "rnd_sharpe_mean": 0.45,
+   "rnd_sharpe_p95": 0.666,
+   "rule_sharpe_percentile_vs_rnd": 0.869,
+   "rule_maxdd": -0.276,
+   "const_maxdd": -0.394,
+   "rnd_maxdd_mean": -0.457,
+   "rule_dd_percentile_vs_rnd": 0.912,
+   "expo": 0.625,
+   "fdr_pass": false
+  },
+  "NDX|F1": {
+   "rule_sharpe": 0.73,
+   "const_sharpe": 0.751,
+   "rnd_sharpe_mean": 0.672,
+   "rnd_sharpe_p95": 0.839,
+   "rule_sharpe_percentile_vs_rnd": 0.714,
+   "rule_maxdd": -0.556,
+   "const_maxdd": -0.448,
+   "rnd_maxdd_mean": -0.48,
+   "rule_dd_percentile_vs_rnd": 0.117,
+   "expo": 0.788,
+   "fdr_pass": false
+  },
+  "NDX|F2": {
+   "rule_sharpe": 0.616,
+   "const_sharpe": 0.773,
+   "rnd_sharpe_mean": 0.449,
+   "rnd_sharpe_p95": 0.769,
+   "rule_sharpe_percentile_vs_rnd": 0.776,
+   "rule_maxdd": -0.234,
+   "const_maxdd": -0.194,
+   "rnd_maxdd_mean": -0.333,
+   "rule_dd_percentile_vs_rnd": 0.787,
+   "expo": 0.303,
+   "fdr_pass": false
+  },
+  "NDX|F3": {
+   "rule_sharpe": 0.724,
+   "const_sharpe": 0.771,
+   "rnd_sharpe_mean": 0.457,
+   "rnd_sharpe_p95": 0.763,
+   "rule_sharpe_percentile_vs_rnd": 0.929,
+   "rule_maxdd": -0.281,
+   "const_maxdd": -0.216,
+   "rnd_maxdd_mean": -0.349,
+   "rule_dd_percentile_vs_rnd": 0.73,
+   "expo": 0.34,
+   "fdr_pass": false
+  },
+  "NDX|F4": {
+   "rule_sharpe": 0.879,
+   "const_sharpe": 0.745,
+   "rnd_sharpe_mean": 0.507,
+   "rnd_sharpe_p95": 0.817,
+   "rule_sharpe_percentile_vs_rnd": 0.98,
+   "rule_maxdd": -0.219,
+   "const_maxdd": -0.273,
+   "rnd_maxdd_mean": -0.384,
+   "rule_dd_percentile_vs_rnd": 0.972,
+   "expo": 0.441,
+   "fdr_pass": false
+  }
+ }
+}

@@ -1,5 +1,5 @@
 {
-  "run_utc": "2026-08-05T22:49:28.501475+00:00",
+  "run_utc": "2026-08-06T21:20:46.504335+00:00",
   "prospective_start": "2026-07-17",
   "shadow": {
     "SPY|P4_forced_selling|2R": {
@@ -55,27 +55,27 @@
       "n": 0
     },
     "QQQ|P6_PDL_acceptance_short|2R": {
-      "n": 4,
-      "mean_net_bps": 15.904447777168375,
-      "median_net_bps": 17.15688936693971,
-      "t": 0.5114956770863355,
-      "p_one_sided": 0.3221365422098493,
-      "hit": 0.5,
-      "profit_factor": 1.86365500729029,
-      "mean_r_gross": 0.5,
-      "mean_mfe_r": 1.2073815181208816,
-      "mean_mae_r": 0.696118800662556,
+      "n": 5,
+      "mean_net_bps": 6.706391376859469,
+      "median_net_bps": -24.71710628377166,
+      "t": 0.26012012539621504,
+      "p_one_sided": 0.40380599441287346,
+      "hit": 0.4,
+      "profit_factor": 1.3232090873426776,
+      "mean_r_gross": 0.2,
+      "mean_mfe_r": 0.9932587771868823,
+      "mean_mae_r": 0.759808741940837,
       "block5_ci95_bps": [
         null,
         null
       ],
       "block5_probability_mean_gt0": null,
-      "cum_return": 0.006318772367707837,
-      "max_drawdown": -0.002471710628377033,
-      "top3_pnl_share": 1.769344678688094,
+      "cum_return": 0.003291178391474636,
+      "max_drawdown": -0.005472857703193057,
+      "top3_pnl_share": 3.35685151201938,
       "underpowered_n_lt_30": true,
       "exit_reasons": {
-        "stop": 2,
+        "stop": 3,
         "target": 2
       }
     }
@@ -208,54 +208,54 @@
     },
     "QQQ|P6_PDL_acceptance_short|2R": {
       "status": "COLLECTING",
-      "n": 4,
+      "n": 5,
       "metrics_2bps": {
-        "n": 4,
-        "mean_net_bps": 15.904447777168375,
-        "median_net_bps": 17.15688936693971,
-        "t": 0.5114956770863355,
-        "p_one_sided": 0.3221365422098493,
-        "hit": 0.5,
-        "profit_factor": 1.86365500729029,
-        "mean_r_gross": 0.5,
-        "mean_mfe_r": 1.2073815181208816,
-        "mean_mae_r": 0.696118800662556,
+        "n": 5,
+        "mean_net_bps": 6.706391376859469,
+        "median_net_bps": -24.71710628377166,
+        "t": 0.26012012539621504,
+        "p_one_sided": 0.40380599441287346,
+        "hit": 0.4,
+        "profit_factor": 1.3232090873426776,
+        "mean_r_gross": 0.2,
+        "mean_mfe_r": 0.9932587771868823,
+        "mean_mae_r": 0.759808741940837,
         "block5_ci95_bps": [
           null,
           null
         ],
         "block5_probability_mean_gt0": null,
-        "cum_return": 0.006318772367707837,
-        "max_drawdown": -0.002471710628377033,
-        "top3_pnl_share": 1.769344678688094,
+        "cum_return": 0.003291178391474636,
+        "max_drawdown": -0.005472857703193057,
+        "top3_pnl_share": 3.35685151201938,
         "underpowered_n_lt_30": true,
         "exit_reasons": {
-          "stop": 2,
+          "stop": 3,
           "target": 2
         }
       },
       "metrics_5bps": {
-        "n": 4,
-        "mean_net_bps": 12.904447777168375,
-        "median_net_bps": 14.15688936693971,
-        "t": 0.4150140480000469,
-        "p_one_sided": 0.353012876005663,
-        "hit": 0.5,
-        "profit_factor": 1.6479672157029532,
-        "mean_r_gross": 0.5,
-        "mean_mfe_r": 1.2073815181208816,
-        "mean_mae_r": 0.696118800662556,
+        "n": 5,
+        "mean_net_bps": 3.706391376859469,
+        "median_net_bps": -27.71710628377166,
+        "t": 0.1437594282139281,
+        "p_one_sided": 0.4463210749071992,
+        "hit": 0.4,
+        "profit_factor": 1.1643677009035451,
+        "mean_r_gross": 0.2,
+        "mean_mfe_r": 0.9932587771868823,
+        "mean_mae_r": 0.759808741940837,
         "block5_ci95_bps": [
           null,
           null
         ],
         "block5_probability_mean_gt0": null,
-        "cum_return": 0.005113614124300003,
-        "max_drawdown": -0.002771710628377,
-        "top3_pnl_share": 2.0063198742849804,
+        "cum_return": 0.001788111882942145,
+        "max_drawdown": -0.006071123614977636,
+        "top3_pnl_share": 5.588281950719034,
         "underpowered_n_lt_30": true,
         "exit_reasons": {
-          "stop": 2,
+          "stop": 3,
           "target": 2
         }
       },
@@ -263,9 +263,9 @@
       "bootstrap_upper95_mean_bps_5bps": null,
       "half_means_bps_5bps": [
         2.0434379791511894,
-        23.765457575185565
+        4.815026975331658
       ],
-      "top5_share_5bps": null
+      "top5_share_5bps": 1.0000000000000004
     }
   },
   "power_reference": {
