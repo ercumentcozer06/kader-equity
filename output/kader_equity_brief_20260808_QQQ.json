@@ -1,11 +1,11 @@
 {
-  "computed_at": "2026-08-08T20:42:00.170318+00:00",
+  "computed_at": "2026-08-08T23:36:03.620506+00:00",
   "ticker": "QQQ",
   "index": "NDX",
   "model": {
     "model_tag": "kader-equity-dispersion-v2-esrepo-2026-08-04",
     "as_of": "2026-08-07",
-    "computed_at": "2026-08-08T20:41:59.903248+00:00",
+    "computed_at": "2026-08-08T23:36:02.717407+00:00",
     "data_source": "live",
     "call_status": "current",
     "data_source_stale": null,
@@ -163,7 +163,7 @@
       "z10y": 0.67,
       "last90d_new": 370,
       "z90": 0.43,
-      "live_as_of": "2026-08-08",
+      "live_as_of": "2026-08-09",
       "stale": false,
       "mega_hits_120d": [
         {
@@ -314,15 +314,15 @@
     "dispersion_froth_pct": 0.9,
     "dispersion_factor": 0.2,
     "spot": 723.23,
-    "net_gex_bn": -0.124,
-    "net_vanna_m": 1688.36,
-    "net_charm_m": -803.05,
-    "gex_flip": 724.35,
+    "net_gex_bn": -0.095,
+    "net_vanna_m": 1648.46,
+    "net_charm_m": -838.16,
+    "gex_flip": 724.05,
     "call_wall": 800.0,
     "ghost": 730.0,
     "put_wall": 700.0,
     "max_pain": 700.0,
-    "exp_move_1d": 9.25,
+    "exp_move_1d": 9.19,
     "rv_ratio": 1.035,
     "gamma_regime": "SHORT GAMMA",
     "cor1m": null,
@@ -345,9 +345,9 @@
     "data_checks": {
       "spot": 723.23,
       "front_atm_iv": 17.94,
-      "exp_move_1d": 9.25,
-      "net_gex_bn": -0.124,
-      "em_cross_ratio": 1.13
+      "exp_move_1d": 9.19,
+      "net_gex_bn": -0.095,
+      "em_cross_ratio": 1.12
     },
     "data_junk": false,
     "gamma_fallback_to_spy": false,
@@ -367,7 +367,7 @@
     "regime": {
       "short_gamma": true,
       "above_flip": false,
-      "dist_flip_em": 0.12108108108108158,
+      "dist_flip_em": 0.08922742110989515,
       "froth": false,
       "froth_soft": false,
       "near_wall": false,

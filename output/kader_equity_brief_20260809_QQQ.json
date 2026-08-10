@@ -1,11 +1,11 @@
 {
-  "computed_at": "2026-08-08T23:33:34.040492+00:00",
-  "ticker": "SPY",
-  "index": "SPX",
+  "computed_at": "2026-08-09T17:52:10.346964+00:00",
+  "ticker": "QQQ",
+  "index": "NDX",
   "model": {
     "model_tag": "kader-equity-dispersion-v2-esrepo-2026-08-04",
     "as_of": "2026-08-07",
-    "computed_at": "2026-08-08T23:33:33.006799+00:00",
+    "computed_at": "2026-08-09T17:51:59.210398+00:00",
     "data_source": "live",
     "call_status": "current",
     "data_source_stale": null,
@@ -14,8 +14,8 @@
     "_live_error": null,
     "freshness": {
       "as_of": "2026-08-07",
-      "today": "2026-08-08",
-      "age_days": 1,
+      "today": "2026-08-09",
+      "age_days": 2,
       "max_staleness_days": 5,
       "stale": false
     },
@@ -111,7 +111,7 @@
       "NDX": 0.2
     },
     "santa_context": {
-      "as_of": "2026-08-08",
+      "as_of": "2026-08-09",
       "window_months": [
         11,
         12
@@ -145,7 +145,7 @@
         }
       },
       "pit_date": "2026-06-15",
-      "pit_age_days": 54,
+      "pit_age_days": 55,
       "stale": false,
       "ratio4q_nfc_pct_ngdp": -0.48,
       "z10y_nfc": 1.29,
@@ -178,7 +178,7 @@
       "label": "dosyalama = NIYET, gerceklesme degil; kayit-tavani != arz-buyuklugu; baglam-bandi — pozisyon etkisi SIFIR"
     },
     "ipo_supply_waves": {
-      "as_of": "2026-08-08",
+      "as_of": "2026-08-09",
       "n_active": 1,
       "waves": [
         {
@@ -194,14 +194,14 @@
           ],
           "lockup_status": "parse-ok",
           "lockup_expiry_date": "2027-06-04",
-          "days_to_lockup": 300,
+          "days_to_lockup": 299,
           "lockup_shares_est": 7800000000.0,
           "lockup_pct_note": "greater than 63% of shares outstanding (pre-offering)",
           "index_incl_eligible": true,
           "index_incl_window": {
             "earliest": "2026-09-01",
             "latest": "2027-06-03",
-            "days_to_earliest": 24
+            "days_to_earliest": 23
           },
           "forced_passive_demand_usd_lo": 12937499982.0,
           "forced_passive_demand_usd_hi": 17249999976.0,
@@ -309,32 +309,32 @@
     "_pass": "spine + gex_shield × dispersion_ensemble × es_basis_unwind"
   },
   "state": {
-    "ticker": "SPY",
+    "ticker": "QQQ",
     "dispersion_froth": true,
     "dispersion_froth_pct": 0.9,
     "dispersion_factor": 0.2,
-    "spot": 7757.64,
-    "net_gex_bn": 9.481,
-    "net_vanna_m": 34253.99,
-    "net_charm_m": -7825.53,
-    "gex_flip": 7708.37,
-    "call_wall": 8000.0,
-    "ghost": 8000.0,
-    "put_wall": 7000.0,
-    "max_pain": 7460.0,
-    "exp_move_1d": 58.98,
-    "rv_ratio": 0.997,
-    "gamma_regime": "LONG GAMMA",
+    "spot": 723.23,
+    "net_gex_bn": -0.095,
+    "net_vanna_m": 1648.46,
+    "net_charm_m": -838.16,
+    "gex_flip": 724.05,
+    "call_wall": 800.0,
+    "ghost": 730.0,
+    "put_wall": 700.0,
+    "max_pain": 700.0,
+    "exp_move_1d": 9.19,
+    "rv_ratio": 1.035,
+    "gamma_regime": "SHORT GAMMA",
     "cor1m": null,
-    "atm_iv": 10.62,
-    "rr_skew": 0.99,
-    "ts_ratio": 0.663,
-    "atm_iv_30d": 12.07,
-    "realized_vol": 14.3,
-    "vrp": -2.23
+    "atm_iv": 16.96,
+    "rr_skew": 1.93,
+    "ts_ratio": 0.725,
+    "atm_iv_30d": 20.17,
+    "realized_vol": null,
+    "vrp": null
   },
   "meta": {
-    "snapshot_as_of": "2026-08-08",
+    "snapshot_as_of": "2026-08-09",
     "snapshot_age_days": 0,
     "gamma_available": true,
     "surface_available": true,
@@ -343,31 +343,31 @@
     "data_ok": true,
     "data_fails": [],
     "data_checks": {
-      "spot": 7757.64,
-      "front_atm_iv": 10.62,
-      "exp_move_1d": 58.98,
-      "net_gex_bn": 9.481,
-      "em_cross_ratio": 1.14
+      "spot": 723.23,
+      "front_atm_iv": 16.96,
+      "exp_move_1d": 9.19,
+      "net_gex_bn": -0.095,
+      "em_cross_ratio": 1.19
     },
     "data_junk": false,
     "gamma_fallback_to_spy": false,
     "surface_fallback_to_spy": false,
-    "index": "SPX",
-    "mult": 1
+    "index": "NDX",
+    "mult": 41
   },
   "decision": {
     "direction": "LONG",
     "conviction": 0.2,
-    "horizon": "position",
+    "horizon": "intraday",
     "vehicle": {
-      "class": "directional_long",
-      "expression": "temiz trend (flip-üstü, sakin): DIRECTIONAL long",
-      "instrument": "delta-one SPLG"
+      "class": "call_debit",
+      "expression": "kısa-gamma/flip-altı + model LONG: CALL-debit-spread (tanımlı-risk ile katıl, kuyruğu satın al değil)",
+      "instrument": "call-debit-spread(SPY/QQQ)"
     },
     "regime": {
-      "short_gamma": false,
-      "above_flip": true,
-      "dist_flip_em": 0.8353679213292716,
+      "short_gamma": true,
+      "above_flip": false,
+      "dist_flip_em": 0.08922742110989515,
       "froth": false,
       "froth_soft": false,
       "near_wall": false,
@@ -377,49 +377,46 @@
       "backwardation": false,
       "calm": true,
       "cor1m": null,
-      "vrp": -2.23,
+      "vrp": null,
       "vrp_rich": false,
-      "vrp_cheap": true,
-      "ticker": "SPY"
+      "vrp_cheap": false,
+      "ticker": "QQQ"
     },
-    "rationale": "model LONG (konviksiyon 0.20); rejim: long-gamma, flip-üstü, FROTH (aktif dispersion ensemble), vol-sakin → temiz trend (flip-üstü, sakin): DIRECTIONAL long"
+    "rationale": "model LONG (konviksiyon 0.20); rejim: kısa-gamma, flip-altı, FROTH (aktif dispersion ensemble), vol-sakin → kısa-gamma/flip-altı + model LONG: CALL-debit-spread (tanımlı-risk ile katıl, kuyruğu satın al değil)"
   },
   "trade": {
-    "class": "directional_long",
+    "class": "call_debit",
     "ticket": {
-      "class": "directional_long",
-      "underlying": "SPY",
-      "spot": 7757.64,
-      "dte": 45,
-      "side": "LONG",
-      "instrument": "delta-one SPLG",
-      "entry": 7757.64,
-      "stop": 7000.0,
-      "target": 8000.0,
-      "rr": 0.32,
-      "levels": "giriş ~7757.64, stop 7000.0 (alt-kanat/put-wall), hedef 8000.0 (call-wall/+1.5σhafta)"
+      "class": "call_debit",
+      "underlying": "QQQ",
+      "spot": 723.23,
+      "dte": 21,
+      "structure": "call-debit-spread",
+      "long_call": 723,
+      "short_call": 800,
+      "max_loss": "ödenen debit (tanımlı)",
+      "target": "spot→800 (call-wall)",
+      "levels": "AL call 723 / SAT call 800, 21g — tanımlı-risk directional"
     },
-    "note": "temiz trend (flip-üstü, sakin): DIRECTIONAL long"
+    "note": "kısa-gamma/flip-altı + model LONG: CALL-debit-spread (tanımlı-risk ile katıl, kuyruğu satın al değil)"
   },
   "risk": {
     "pool": "options(Midas)",
     "account_size_usd": 1000.0,
     "conviction": 0.2,
     "risk_budget_usd": 4.0,
-    "action": "BUY",
-    "instrument": "delta-one SPLG",
-    "shares": 0,
-    "notional_usd": 0.0,
-    "dollar_risk": 0.0,
-    "note": "0 hisse delta-one SPLG; risk=(giriş−stop)×hisse",
+    "action": "OPEN call-debit-spread",
+    "contracts": "≈ floor(risk_bütçesi / yapı-max-loss)",
+    "dollar_risk": 4.0,
+    "note": "max-loss ≤ $4.0 (defined-risk); kontrat = bütçe ÷ (yapının canlı max-loss'u). Midas'ta debit/genişlik girince netleşir.",
     "futures_note": "prop hesabı kapalı → directional futures devre-dışı (cash-ETF/options kullanılıyor)"
   },
   "live_book": {
     "mode": "delta_one",
-    "etf": "SPLG",
+    "etf": "QQQM",
     "position": 0.2,
     "direction": "LONG",
-    "halt_pct": -19.8,
+    "halt_pct": -23.4,
     "options_paper": true,
     "unlock_usd": 10000
   },
