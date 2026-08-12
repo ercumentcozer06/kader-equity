@@ -1,7 +1,7 @@
 {
   "model_tag": "kader-equity-dispersion-v2-esrepo-2026-08-04",
   "as_of": "2026-08-11",
-  "computed_at": "2026-08-11T06:47:15.956868+00:00",
+  "computed_at": "2026-08-11T06:41:39.369914+00:00",
   "data_source": "live",
   "call_status": "current",
   "data_source_stale": null,
@@ -157,9 +157,9 @@
     "last_closed_quarter": "2026Q2",
     "roll4q_filings": 1531,
     "z10y": 0.67,
-    "last90d_new": 358,
-    "z90": 0.34,
-    "live_as_of": "2026-08-11",
+    "last90d_new": 363,
+    "z90": 0.38,
+    "live_as_of": "2026-08-10",
     "stale": false,
     "mega_hits_120d": [
       {

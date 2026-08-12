@@ -25,6 +25,7 @@ import hashlib
 import json
 import logging
 import os
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -35,6 +36,32 @@ _MODEL = ROOT.name.upper().replace("_", "-")
 _LOG = logging.getLogger(f"{ROOT.name.replace('-', '_')}.notify")
 
 _ALERT_STATE = ROOT / "output" / ".alert_state.json"       # konu-imzası → son kanal-gönderim zamanı (cooldown)
+_REAL_ROOT = Path(__file__).resolve().parent      # yamalanamaz gercek repo koku (test kacagi bekcisi)
+
+
+def _test_leak_blocked() -> bool:
+    """TEST KACAGI BEKCISI (2026-08-11).
+
+    Bulgu: `mark_to_market` / `run_daily`'nin alarm kolu testlerde de GERCEKTEN calisiyordu.
+    Testler ledger/run_daily'nin ROOT'unu tmp'ye monkeypatch'liyor ama notify'in ROOT'u
+    `__file__` tabanli oldugu icin bundan ETKILENMIYOR -> her `pytest` kosusu GERCEK repoya
+    output/STALE_ALERT.json yaziyor (ve webhook doluysa Emir'in telefonuna GERCEK push gider).
+    Somut zarar: 2026-08-11'de equity suite'i "fiyat-kaynagi BAYAT 43 isgunu (son 2026-06-11)"
+    alarmini uretti -- rakam bir test FIXTURE'inin sentetik serisiydi, canli besleme SAGLAMDI.
+    Sahte alarm, alarm kanalinin guvenilirligini yok eder (gercegini de gormezsin).
+
+    Kural: pytest altindayken ROOT hala GERCEK repo koku ise yazma/gonderme. Notify'in KENDISINI
+    test eden dosyalar (test_alert_antispam) ROOT'u tmp'ye tasidigi icin ETKILENMEZ = onlar calisir.
+    Uretimde pytest yuklu olmadigindan davranis birebir AYNI.
+    """
+    if not (os.environ.get("PYTEST_CURRENT_TEST") or "pytest" in sys.modules):
+        return False
+    try:
+        return Path(ROOT).resolve() == _REAL_ROOT
+    except Exception:
+        return True          # supheliyse YAZMA (gercek repoyu kirletmektense sus)
+
+
 _COOLDOWN_H = float(os.environ.get("KADER_ALERT_COOLDOWN_H", "72"))   # 07-12: 12→72s (12s çok-günlük
 # bayat koşulda GÜNLÜK re-push'a izin veriyordu = spam); 72s günlük tekrarı öldürür; env-override; <=0 KAPALI
 
@@ -117,6 +144,9 @@ def _mark_sent(subject: str) -> None:
 def alert(subject: str, body: str = "") -> dict:
     """Bayatlık/degradasyon alarmı → tüm yapılandırılmış kanallar + yerel iz. Hangi kanalların ateşlediğini döndürür.
     Kanal-gönderimi cooldown ile spam-korumalı (konu başına); yerel STALE_ALERT.json izi her zaman yazılır."""
+    if _test_leak_blocked():
+        _LOG.warning("ALARM BASTIRILDI (test kacagi bekcisi): %s | %s", subject, body)
+        return {"fired": [], "message": f"[test] {subject}", "suppressed": True, "test_blocked": True}
     a = _cfg_alert()
     ts = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%MZ")
     msg = f"🔴 {_MODEL} [{ts}] {subject}" + (f"\n{body}" if body else "")
@@ -159,6 +189,8 @@ def alert(subject: str, body: str = "") -> dict:
 def clear_alert() -> None:
     """Sağlıklı koşuda önceki STALE_ALERT.json + cooldown-durumunu temizle (bayat-alarm artefaktı kalmasın;
     düzelme sonrası nüks ANINDA yeniden alarmlar — cooldown susturmaz)."""
+    if _test_leak_blocked():
+        return                              # test gercek repodaki alarmi SILMESIN de
     for p in (ROOT / "output" / "STALE_ALERT.json", _ALERT_STATE):
         try:
             if p.exists():

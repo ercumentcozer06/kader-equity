@@ -487,8 +487,15 @@ def _render(d: dict) -> None:
         print(f"  overlay        : {name} → factor {inf.get('factor')}{_mark}")
     if not d.get("active_overlays"):
         print("  overlay        : — (yok)")
+    # RAPOR-DOĞRULUĞU (2026-08-11): manşet deploy = frozen stack (tide × overlay'ler). İFADE
+    # katmanı (OpEx-flat / K2-trim / üç-gün-boost) position_target'a BİLEREK dokunmaz, yalnız
+    # asset_deploy'u değiştirir — yani gerçekten gönderilecek sleeve boyutu bu satırdan FARKLI
+    # olabilir. Manşet artık bunu söylüyor (eskiden sessizce farklıydı).
+    _ad = d.get("asset_deploy") or {}
+    _ad_diff = any(abs(float(v) - float(d["deploy_fraction"])) > 1e-9 for v in _ad.values())
     print(f"  → POZİSYON     : {d['position_target']:+.2f}  "
-          f"(deploy %{100*d['deploy_fraction']:.0f} sermaye, kaldıraçsız)")
+          f"(deploy %{100*d['deploy_fraction']:.0f} sermaye, kaldıraçsız)"
+          + ("  ⚠ ifade katmanı DEĞİŞTİRDİ → sleeve boyutu per-asset satırında" if _ad_diff else ""))
     ox = d.get("opex_gate")
     if ox:
         if ox.get("is_opex_today"):
@@ -499,9 +506,20 @@ def _render(d: dict) -> None:
             wd = ox.get("next_opex_weekday", "")
             print(f"  ⚠ OpEx UYARI   : fiili monthly OpEx {ox['trading_days_until']} işgünü sonra "
                   f"({ox['next_opex']} {wd}{qw}{sh}) → o gün NDX FLAT planı")
-        ad = d.get("asset_deploy")
-        if ad:
-            print(f"  per-asset      : " + " / ".join(f"{k} %{100*v:.0f}" for k, v in ad.items()))
+    # per-asset satırı OpEx blokunun İÇİNDEYDİ (2026-08-11 fix): opex_gate kapatılırsa K2-trim ve
+    # üç-gün-boost deploy'u DEĞİŞTİRMEYE devam eder ama satır HİÇ basılmazdı = fiili sleeve boyutu
+    # rapordan okunamazdı. Artık asset_deploy varsa her koşulda basılır (OpEx'ten bağımsız).
+    if _ad:
+        _tag = "  ← manşetten FARKLI (ifade katmanı)" if _ad_diff else "  (= manşet deploy)"
+        print(f"  per-asset      : " + " / ".join(f"{k} %{100*v:.0f}" for k, v in _ad.items()) + _tag)
+    # İCRA SÖZLEŞMESİ (2026-08-11, backtest/research/execution_timing.py ile ÖLÇÜLDÜ).
+    # Ölçüm: rebalans anı gün içinde önemsiz (açılış vs kapanış dSharpe +0.03, CI sıfırı kapsıyor;
+    # bir gün gecikme −0.11, anlamsız). TEK katı kısıt GECE TAŞIMAK: pozisyonu her akşam
+    # düzleştirmek SPX stack'i 1.64→0.96, NDX'i 1.82→1.11 çeker (dSharpe −0.69/−0.71, CI sıfırı
+    # KAPSAMIYOR, P=0.00; toplam getiri %286→%80). Sebep attribution labında: spine'ın alfası
+    # gece penceresinde oluşuyor. Bu satır BETİMSEL — pozisyona/karara etkisi YOK.
+    print("  icra sözleşmesi: pozisyon GECE taşınır (gün içi rebalans anı serbest; geceyi "
+          "düzleştirmek ölçülen tek anlamlı kayıp: −0.69 Sharpe)  [betimsel]")
     sc = d.get("santa_context")
     if sc:
         st = sc.get("state")
@@ -652,7 +670,15 @@ def write_latest(d: dict) -> None:
 
 
 def main(argv=None) -> int:
-    ap = argparse.ArgumentParser(description="kader-equity karar motoru (tide × dispersion-ensemble × GEX-shield)")
+    # RAPOR-DOĞRULUĞU (2026-08-11): açıklama eskiden overlay'leri TEK TEK sayıyordu
+    # ("tide × dispersion-ensemble × GEX-shield") ve 4. overlay es_basis_unwind 2026-08-04'te
+    # deploy edilince sessizce BAYATLADI — `--help` canlı stack'i eksik gösteriyordu. Artık
+    # sabit liste YOK (fiili stack her koşuda `active_overlays` satırlarında basılır),
+    # böylece yeni/kaldırılan bir overlay bu metni bir daha yalancı yapamaz.
+    # Kilit: tests/test_cli_description_drift.py
+    ap = argparse.ArgumentParser(
+        description="kader-equity karar motoru (spine tide × config'te AÇIK overlay'ler; "
+                    "fiili liste her koşuda 'overlay :' satırlarında)")
     ap.add_argument("--json", action="store_true", help="output/kader_equity_YYYYMMDD.json yaz")
     ap.add_argument("--quiet", action="store_true")
     ap.add_argument("--validate", action="store_true", help="son JSON'u doğrula (fetch yok)")

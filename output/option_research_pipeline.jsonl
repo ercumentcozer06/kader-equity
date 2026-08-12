@@ -1864,3 +1864,64 @@
 {"started_utc": "2026-08-10T19:45:01.459953+00:00", "finished_utc": "2026-08-10T19:45:46.264994+00:00", "mode": "intraday", "status": "ok"}
 {"started_utc": "2026-08-10T19:50:01.493405+00:00", "finished_utc": "2026-08-10T19:50:25.616423+00:00", "mode": "intraday", "status": "ok"}
 {"started_utc": "2026-08-10T22:38:51.536499+00:00", "finished_utc": "2026-08-10T22:38:51.810018+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T06:35:08.281243+00:00", "finished_utc": "2026-08-11T06:35:08.871943+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T06:40:01.424556+00:00", "finished_utc": "2026-08-11T06:40:01.593718+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T06:45:01.340376+00:00", "finished_utc": "2026-08-11T06:45:01.488490+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T06:50:01.383953+00:00", "finished_utc": "2026-08-11T06:50:01.540257+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T06:55:01.433249+00:00", "finished_utc": "2026-08-11T06:55:01.570853+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T07:00:01.461788+00:00", "finished_utc": "2026-08-11T07:00:01.611145+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T07:05:01.543383+00:00", "finished_utc": "2026-08-11T07:05:01.679316+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T07:10:01.395840+00:00", "finished_utc": "2026-08-11T07:10:01.545545+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T07:15:01.399529+00:00", "finished_utc": "2026-08-11T07:15:01.551061+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T07:20:01.727905+00:00", "finished_utc": "2026-08-11T07:20:01.935166+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T07:25:01.568906+00:00", "finished_utc": "2026-08-11T07:25:01.799526+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T07:30:01.659483+00:00", "finished_utc": "2026-08-11T07:30:01.838457+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T07:35:01.582358+00:00", "finished_utc": "2026-08-11T07:35:01.768243+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T07:40:01.456580+00:00", "finished_utc": "2026-08-11T07:40:01.607302+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T07:45:01.714905+00:00", "finished_utc": "2026-08-11T07:45:01.907259+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T07:50:01.577882+00:00", "finished_utc": "2026-08-11T07:50:01.736021+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T07:55:01.470342+00:00", "finished_utc": "2026-08-11T07:55:01.617883+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T08:00:01.483110+00:00", "finished_utc": "2026-08-11T08:00:01.627451+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T08:05:01.579696+00:00", "finished_utc": "2026-08-11T08:05:01.717877+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T08:10:01.632488+00:00", "finished_utc": "2026-08-11T08:10:01.817002+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T08:15:01.632482+00:00", "finished_utc": "2026-08-11T08:15:01.855193+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T08:20:01.608462+00:00", "finished_utc": "2026-08-11T08:20:01.841412+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T08:25:01.598347+00:00", "finished_utc": "2026-08-11T08:25:01.783029+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T08:30:01.599289+00:00", "finished_utc": "2026-08-11T08:30:01.757950+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T08:35:01.769431+00:00", "finished_utc": "2026-08-11T08:35:01.940567+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T08:40:01.561399+00:00", "finished_utc": "2026-08-11T08:40:01.729068+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T08:45:02.180272+00:00", "finished_utc": "2026-08-11T08:45:02.342577+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T08:50:01.553290+00:00", "finished_utc": "2026-08-11T08:50:01.700595+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T11:17:19.132642+00:00", "finished_utc": "2026-08-11T11:17:19.568644+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T11:20:01.779595+00:00", "finished_utc": "2026-08-11T11:20:01.916116+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T11:25:01.783457+00:00", "finished_utc": "2026-08-11T11:25:01.927758+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T11:30:01.859796+00:00", "finished_utc": "2026-08-11T11:30:02.001248+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T11:35:01.895882+00:00", "finished_utc": "2026-08-11T11:35:02.087422+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T11:40:01.852862+00:00", "finished_utc": "2026-08-11T11:40:01.991449+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T11:45:01.804916+00:00", "finished_utc": "2026-08-11T11:45:01.952938+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T11:50:01.815178+00:00", "finished_utc": "2026-08-11T11:50:01.980816+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T11:55:01.860367+00:00", "finished_utc": "2026-08-11T11:55:02.006838+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T12:00:01.831531+00:00", "finished_utc": "2026-08-11T12:00:01.975960+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T12:05:01.816715+00:00", "finished_utc": "2026-08-11T12:05:01.981029+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T12:10:01.856331+00:00", "finished_utc": "2026-08-11T12:10:02.012452+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T12:15:02.019706+00:00", "finished_utc": "2026-08-11T12:15:02.218965+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T12:20:01.878123+00:00", "finished_utc": "2026-08-11T12:20:02.043630+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T12:25:02.278450+00:00", "finished_utc": "2026-08-11T12:25:02.551450+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T12:30:04.512279+00:00", "finished_utc": "2026-08-11T12:30:04.832377+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T12:35:02.049498+00:00", "finished_utc": "2026-08-11T12:35:02.225702+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T12:40:01.885663+00:00", "finished_utc": "2026-08-11T12:40:02.048453+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T12:45:01.935570+00:00", "finished_utc": "2026-08-11T12:45:02.091573+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T12:50:01.867853+00:00", "finished_utc": "2026-08-11T12:50:02.023270+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T12:55:01.955320+00:00", "finished_utc": "2026-08-11T12:55:02.100408+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T13:00:01.901024+00:00", "finished_utc": "2026-08-11T13:00:02.046116+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T13:05:01.864439+00:00", "finished_utc": "2026-08-11T13:05:01.994425+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T13:10:01.915802+00:00", "finished_utc": "2026-08-11T13:10:02.059031+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T13:15:01.919859+00:00", "finished_utc": "2026-08-11T13:15:02.059937+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-11T13:20:01.970199+00:00", "finished_utc": "2026-08-11T13:20:05.559312+00:00", "mode": "intraday", "status": "error:ConnectionError:HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/calendar?start=2026-08-11&end=2026-08-11 (Caused by NewConnectionError(\"HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to"}
+{"started_utc": "2026-08-11T13:25:01.915805+00:00", "finished_utc": "2026-08-11T13:25:04.450211+00:00", "mode": "intraday", "status": "error:ConnectionError:HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/calendar?start=2026-08-11&end=2026-08-11 (Caused by NewConnectionError(\"HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to"}
+{"started_utc": "2026-08-11T13:30:01.986443+00:00", "finished_utc": "2026-08-11T13:30:04.650195+00:00", "mode": "intraday", "status": "error:ConnectionError:HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/calendar?start=2026-08-11&end=2026-08-11 (Caused by NewConnectionError(\"HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to"}
+{"started_utc": "2026-08-11T13:35:01.963457+00:00", "finished_utc": "2026-08-11T13:35:04.490274+00:00", "mode": "intraday", "status": "error:ConnectionError:HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/calendar?start=2026-08-11&end=2026-08-11 (Caused by NewConnectionError(\"HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to"}
+{"started_utc": "2026-08-11T13:40:01.956324+00:00", "finished_utc": "2026-08-11T13:40:04.665137+00:00", "mode": "intraday", "status": "error:ConnectionError:HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/calendar?start=2026-08-11&end=2026-08-11 (Caused by NewConnectionError(\"HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to"}
+{"started_utc": "2026-08-11T13:45:01.944807+00:00", "finished_utc": "2026-08-11T13:45:04.511967+00:00", "mode": "intraday", "status": "error:ConnectionError:HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/calendar?start=2026-08-11&end=2026-08-11 (Caused by NewConnectionError(\"HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed to"}
+{"started_utc": "2026-08-12T06:38:17.566760+00:00", "finished_utc": "2026-08-12T06:38:18.531405+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-12T06:38:17.664760+00:00", "finished_utc": "2026-08-12T06:38:19.519724+00:00", "mode": "eod", "status": "error:ConnectionError:HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/calendar?start=2026-08-12&end=2026-08-12 (Caused by NameResolutionError(\"HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed t"}
