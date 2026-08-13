@@ -1,9 +1,13 @@
 """
-run — kader-equity karar motoru. MODEL = tide × dispersion-ensemble × GEX-shield.
+run — kader-equity karar motoru. MODEL = spine tide × config'te AÇIK overlay'ler.
+(Overlay adlarını burada SAYMA: 2026-08-04'te es_basis_unwind deploy edilince bu satır
+ sessizce bayatladı — fiili liste her koşuda 'overlay :' satırlarında basılır.)
 
 Akış: spine (frozen 8-modül sweep vektörü → TIDE_SCORE → TIDE_DIR) → overlay'ler (trim-only) → tazelik
-kapısı → §çıktı kontratı. Aktif overlay'ler (strict-FDR/stack-doğrulanmış): COR1M-froth (İLK alfa, düşük
-implied-corr=froth) + GEX-shield (dealer short-gamma drawdown kalkanı). Yeni overlay = screen'i geçince modules/'a.
+kapısı → §çıktı kontratı. Overlay'ler config'ten okunur (cor1m_froth / dispersion_ensemble /
+gex_shield / es_basis_unwind); hangisinin AÇIK olduğunu burada değil config.yaml + koşu çıktısı söyler
+(cor1m_froth 2026-07-08'de dispersion_ensemble'a devretti — sabit liste tutmak bu satırı da bayatlatmıştı).
+Yeni overlay = screen'i geçince modules/'a.
 
 Kullanım:
   python run.py                 # terminal kararı (en güncel frozen tarih)
