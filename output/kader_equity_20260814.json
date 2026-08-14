@@ -1,7 +1,7 @@
 {
   "model_tag": "kader-equity-dispersion-v2-esrepo-2026-08-04",
   "as_of": "2026-08-14",
-  "computed_at": "2026-08-14T13:33:24.483296+00:00",
+  "computed_at": "2026-08-14T11:34:00.938611+00:00",
   "data_source": "live",
   "call_status": "current",
   "data_source_stale": null,
@@ -77,11 +77,11 @@
     "es_basis_unwind": {
       "factor": 1.0,
       "available": true,
-      "spread_bps": 23.1,
-      "pctl": 0.175,
-      "dz": -1.17,
-      "as_of": "2026-08-14",
-      "age_bd": 0,
+      "spread_bps": 17.8,
+      "pctl": 0.133,
+      "dz": -0.96,
+      "as_of": "2026-08-13",
+      "age_bd": 1,
       "src": "canli-append",
       "warning": null
     }
@@ -258,8 +258,8 @@
       "flag_active": false,
       "days_left": 0,
       "last_flag_date": "2026-07-20",
-      "as_of": "2026-08-14",
-      "age_bd": 0,
+      "as_of": "2026-08-13",
+      "age_bd": 1,
       "src": "yfinance ^GSPC",
       "reason": null
     },
