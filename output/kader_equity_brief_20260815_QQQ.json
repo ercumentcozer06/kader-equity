@@ -1,21 +1,21 @@
 {
-  "computed_at": "2026-08-14T21:55:13.079258+00:00",
+  "computed_at": "2026-08-15T19:22:13.188381+00:00",
   "ticker": "QQQ",
   "index": "NDX",
   "model": {
     "model_tag": "kader-equity-dispersion-v2-esrepo-2026-08-04",
     "as_of": "2026-08-14",
-    "computed_at": "2026-08-14T21:55:12.789131+00:00",
+    "computed_at": "2026-08-15T19:22:12.900099+00:00",
     "data_source": "live",
     "call_status": "current",
     "data_source_stale": null,
-    "market_open": true,
-    "market_closed_reason": null,
+    "market_open": false,
+    "market_closed_reason": "hafta sonu",
     "_live_error": null,
     "freshness": {
       "as_of": "2026-08-14",
-      "today": "2026-08-14",
-      "age_days": 0,
+      "today": "2026-08-15",
+      "age_days": 1,
       "max_staleness_days": 5,
       "stale": false
     },
@@ -35,8 +35,8 @@
       "m11": 0.55
     },
     "direction": "LONG",
-    "position_target": 0.394,
-    "deploy_fraction": 0.394,
+    "position_target": 0.535,
+    "deploy_fraction": 0.535,
     "leverage": 1.0,
     "active_overlays": [
       "gex_shield",
@@ -54,29 +54,29 @@
         "short_gamma": false,
         "z_stale": false,
         "z_stale_obs": 0,
-        "src_age_td": 0,
+        "src_age_td": 1,
         "reason": "z(GEX) +3.2 ≥ −1 → normal (factor 1.0)"
       },
       "dispersion_ensemble": {
         "available": true,
-        "factor": 0.394,
-        "froth_pct": 0.851,
+        "factor": 0.535,
+        "froth_pct": 0.816,
         "components": {
-          "spread_pct": 0.858,
-          "dspx_pct": 0.771,
-          "cor1m_inv_pct": 0.925
+          "spread_pct": 0.824,
+          "dspx_pct": 0.692,
+          "cor1m_inv_pct": 0.933
         },
-        "spread": 23.09,
-        "as_of": "2026-08-13",
-        "age_days": 2,
+        "spread": 22.12,
+        "as_of": "2026-08-14",
+        "age_days": 1,
         "leg_as_of": {
-          "spread": "2026-08-13",
-          "dspx": "2026-08-13",
-          "cor1m": "2026-08-13"
+          "spread": "2026-08-14",
+          "dspx": "2026-08-14",
+          "cor1m": "2026-08-14"
         },
         "legs_aligned": true,
         "froth": true,
-        "reason": "froth_pct 0.85 ≥ 0.70 → dispersion de-risk (factor 0.39; spr0.86/dspx0.77/¬cor0.93)"
+        "reason": "froth_pct 0.82 ≥ 0.70 → dispersion de-risk (factor 0.54; spr0.82/dspx0.69/¬cor0.93)"
       },
       "es_basis_unwind": {
         "factor": 1.0,
@@ -96,7 +96,7 @@
       "third_friday": "2026-08-21",
       "holiday_shifted": false,
       "is_quad_witch_next": false,
-      "trading_days_until": 5,
+      "trading_days_until": 4,
       "is_opex_today": false,
       "warn": false,
       "warn_days": 3,
@@ -107,11 +107,11 @@
       "note": "veri-doğrulanmış (FINDING 23: NDX OpEx −14bps p=0.001, 4 on yıl); taktik NDX de-risk + uyarı; 3.-Cuma NYSE tatiliyse fiili vade Perşembe'ye kayar (Juneteenth/Good Friday vb.)"
     },
     "asset_deploy": {
-      "SPX": 0.394,
-      "NDX": 0.394
+      "SPX": 0.535,
+      "NDX": 0.535
     },
     "santa_context": {
-      "as_of": "2026-08-14",
+      "as_of": "2026-08-15",
       "window_months": [
         11,
         12
@@ -145,7 +145,7 @@
         }
       },
       "pit_date": "2026-06-15",
-      "pit_age_days": 60,
+      "pit_age_days": 61,
       "stale": false,
       "ratio4q_nfc_pct_ngdp": -0.48,
       "z10y_nfc": 1.29,
@@ -178,7 +178,7 @@
       "label": "dosyalama = NIYET, gerceklesme degil; kayit-tavani != arz-buyuklugu; baglam-bandi — pozisyon etkisi SIFIR"
     },
     "ipo_supply_waves": {
-      "as_of": "2026-08-14",
+      "as_of": "2026-08-15",
       "n_active": 1,
       "waves": [
         {
@@ -194,14 +194,14 @@
           ],
           "lockup_status": "parse-ok",
           "lockup_expiry_date": "2027-06-04",
-          "days_to_lockup": 294,
+          "days_to_lockup": 293,
           "lockup_shares_est": 7800000000.0,
           "lockup_pct_note": "greater than 63% of shares outstanding (pre-offering)",
           "index_incl_eligible": true,
           "index_incl_window": {
             "earliest": "2026-09-01",
             "latest": "2027-06-03",
-            "days_to_earliest": 18
+            "days_to_earliest": 17
           },
           "forced_passive_demand_usd_lo": 12937499982.0,
           "forced_passive_demand_usd_hi": 17249999976.0,
@@ -311,12 +311,12 @@
   "state": {
     "ticker": "QQQ",
     "dispersion_froth": true,
-    "dispersion_froth_pct": 0.851,
-    "dispersion_factor": 0.394,
-    "spot": 730.95,
-    "net_gex_bn": 1.271,
-    "net_vanna_m": 1883.05,
-    "net_charm_m": -973.1,
+    "dispersion_froth_pct": 0.816,
+    "dispersion_factor": 0.535,
+    "spot": 730.85,
+    "net_gex_bn": 1.249,
+    "net_vanna_m": 1884.4,
+    "net_charm_m": -973.79,
     "gex_flip": 725.37,
     "call_wall": 800.0,
     "ghost": 740.0,
@@ -327,14 +327,14 @@
     "gamma_regime": "LONG GAMMA",
     "cor1m": null,
     "atm_iv": 13.98,
-    "rr_skew": 2.1,
+    "rr_skew": 1.97,
     "ts_ratio": 0.616,
     "atm_iv_30d": 18.07,
     "realized_vol": 23.27,
     "vrp": -5.2
   },
   "meta": {
-    "snapshot_as_of": "2026-08-14",
+    "snapshot_as_of": "2026-08-15",
     "snapshot_age_days": 0,
     "gamma_available": true,
     "surface_available": true,
@@ -343,10 +343,10 @@
     "data_ok": true,
     "data_fails": [],
     "data_checks": {
-      "spot": 730.95,
+      "spot": 730.85,
       "front_atm_iv": 13.98,
       "exp_move_1d": 8.32,
-      "net_gex_bn": 1.271,
+      "net_gex_bn": 1.249,
       "em_cross_ratio": 1.29
     },
     "data_junk": false,
@@ -357,7 +357,7 @@
   },
   "decision": {
     "direction": "LONG",
-    "conviction": 0.394,
+    "conviction": 0.535,
     "horizon": "position",
     "vehicle": {
       "class": "directional_long",
@@ -367,13 +367,13 @@
     "regime": {
       "short_gamma": false,
       "above_flip": true,
-      "dist_flip_em": 0.6706730769230819,
+      "dist_flip_em": 0.6586538461538484,
       "froth": false,
       "froth_soft": false,
       "near_wall": false,
       "dispersion_froth": true,
-      "dispersion_froth_pct": 0.851,
-      "dispersion_factor": 0.394,
+      "dispersion_froth_pct": 0.816,
+      "dispersion_factor": 0.535,
       "backwardation": false,
       "calm": true,
       "cor1m": null,
@@ -382,30 +382,30 @@
       "vrp_cheap": true,
       "ticker": "QQQ"
     },
-    "rationale": "model LONG (konviksiyon 0.39); rejim: long-gamma, flip-üstü, FROTH (aktif dispersion ensemble), vol-sakin → temiz trend (flip-üstü, sakin): DIRECTIONAL long"
+    "rationale": "model LONG (konviksiyon 0.54); rejim: long-gamma, flip-üstü, FROTH (aktif dispersion ensemble), vol-sakin → temiz trend (flip-üstü, sakin): DIRECTIONAL long"
   },
   "trade": {
     "class": "directional_long",
     "ticket": {
       "class": "directional_long",
       "underlying": "QQQ",
-      "spot": 730.95,
+      "spot": 730.85,
       "dte": 45,
       "side": "LONG",
       "instrument": "delta-one QQQM",
-      "entry": 730.95,
+      "entry": 730.85,
       "stop": 700.0,
       "target": 800.0,
-      "rr": 2.23,
-      "levels": "giriş ~730.95, stop 700.0 (alt-kanat/put-wall), hedef 800.0 (call-wall/+1.5σhafta)"
+      "rr": 2.24,
+      "levels": "giriş ~730.85, stop 700.0 (alt-kanat/put-wall), hedef 800.0 (call-wall/+1.5σhafta)"
     },
     "note": "temiz trend (flip-üstü, sakin): DIRECTIONAL long"
   },
   "risk": {
     "pool": "options(Midas)",
     "account_size_usd": 1000.0,
-    "conviction": 0.394,
-    "risk_budget_usd": 7.88,
+    "conviction": 0.535,
+    "risk_budget_usd": 10.7,
     "action": "BUY",
     "instrument": "delta-one QQQM",
     "shares": 0,
@@ -417,7 +417,7 @@
   "live_book": {
     "mode": "delta_one",
     "etf": "QQQM",
-    "position": 0.394,
+    "position": 0.535,
     "direction": "LONG",
     "halt_pct": -23.4,
     "options_paper": true,

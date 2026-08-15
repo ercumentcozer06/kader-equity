@@ -1,5 +1,5 @@
 {
-  "run_utc": "2026-08-11T06:35:29.587230+00:00",
+  "run_utc": "2026-08-14T21:31:01.159495+00:00",
   "prospective_start": "2026-07-17",
   "shadow": {
     "SPY|P4_forced_selling|2R": {
@@ -55,27 +55,27 @@
       "n": 0
     },
     "QQQ|P6_PDL_acceptance_short|2R": {
-      "n": 5,
-      "mean_net_bps": 6.706391376859469,
-      "median_net_bps": -24.71710628377166,
-      "t": 0.26012012539621504,
-      "p_one_sided": 0.40380599441287346,
-      "hit": 0.4,
-      "profit_factor": 1.3232090873426776,
-      "mean_r_gross": 0.2,
-      "mean_mfe_r": 0.9932587771868823,
-      "mean_mae_r": 0.759808741940837,
+      "n": 6,
+      "mean_net_bps": 2.608584372122934,
+      "median_net_bps": -21.2987784676657,
+      "t": 0.12163517596998907,
+      "p_one_sided": 0.4539626185792497,
+      "hit": 0.3333333333333333,
+      "profit_factor": 1.1286840482041758,
+      "mean_r_gross": 0.0,
+      "mean_mfe_r": 1.0681912544969527,
+      "mean_mae_r": 0.8153524416485921,
       "block5_ci95_bps": [
         null,
         null
       ],
       "block5_probability_mean_gt0": null,
-      "cum_return": 0.003291178391474636,
-      "max_drawdown": -0.005472857703193057,
-      "top3_pnl_share": 3.35685151201938,
+      "cum_return": 0.001497248551037167,
+      "max_drawdown": -0.007251117052140543,
+      "top3_pnl_share": 7.628560090305773,
       "underpowered_n_lt_30": true,
       "exit_reasons": {
-        "stop": 3,
+        "stop": 4,
         "target": 2
       }
     }
@@ -208,64 +208,64 @@
     },
     "QQQ|P6_PDL_acceptance_short|2R": {
       "status": "COLLECTING",
-      "n": 5,
+      "n": 6,
       "metrics_2bps": {
-        "n": 5,
-        "mean_net_bps": 6.706391376859469,
-        "median_net_bps": -24.71710628377166,
-        "t": 0.26012012539621504,
-        "p_one_sided": 0.40380599441287346,
-        "hit": 0.4,
-        "profit_factor": 1.3232090873426776,
-        "mean_r_gross": 0.2,
-        "mean_mfe_r": 0.9932587771868823,
-        "mean_mae_r": 0.759808741940837,
+        "n": 6,
+        "mean_net_bps": 2.608584372122934,
+        "median_net_bps": -21.2987784676657,
+        "t": 0.12163517596998907,
+        "p_one_sided": 0.4539626185792497,
+        "hit": 0.3333333333333333,
+        "profit_factor": 1.1286840482041758,
+        "mean_r_gross": 0.0,
+        "mean_mfe_r": 1.0681912544969527,
+        "mean_mae_r": 0.8153524416485921,
         "block5_ci95_bps": [
           null,
           null
         ],
         "block5_probability_mean_gt0": null,
-        "cum_return": 0.003291178391474636,
-        "max_drawdown": -0.005472857703193057,
-        "top3_pnl_share": 3.35685151201938,
+        "cum_return": 0.001497248551037167,
+        "max_drawdown": -0.007251117052140543,
+        "top3_pnl_share": 7.628560090305773,
         "underpowered_n_lt_30": true,
         "exit_reasons": {
-          "stop": 3,
+          "stop": 4,
           "target": 2
         }
       },
       "metrics_5bps": {
-        "n": 5,
-        "mean_net_bps": 3.706391376859469,
-        "median_net_bps": -27.71710628377166,
-        "t": 0.1437594282139281,
-        "p_one_sided": 0.4463210749071992,
-        "hit": 0.4,
-        "profit_factor": 1.1643677009035451,
-        "mean_r_gross": 0.2,
-        "mean_mfe_r": 0.9932587771868823,
-        "mean_mae_r": 0.759808741940837,
+        "n": 6,
+        "mean_net_bps": -0.3914156278770662,
+        "median_net_bps": -24.2987784676657,
+        "t": -0.01825124357985957,
+        "p_one_sided": 0.5069278326234996,
+        "hit": 0.3333333333333333,
+        "profit_factor": 0.9824250583083073,
+        "mean_r_gross": 0.0,
+        "mean_mfe_r": 1.0681912544969527,
+        "mean_mae_r": 0.8153524416485921,
         "block5_ci95_bps": [
           null,
           null
         ],
         "block5_probability_mean_gt0": null,
-        "cum_return": 0.001788111882942145,
-        "max_drawdown": -0.006071123614977636,
-        "top3_pnl_share": 5.588281950719034,
+        "cum_return": -0.00030366684040694647,
+        "max_drawdown": -0.008146491900429376,
+        "top3_pnl_share": null,
         "underpowered_n_lt_30": true,
         "exit_reasons": {
-          "stop": 3,
+          "stop": 4,
           "target": 2
         }
       },
       "bootstrap_lower99_mean_bps_5bps": null,
       "bootstrap_upper95_mean_bps_5bps": null,
       "half_means_bps_5bps": [
-        2.0434379791511894,
-        4.815026975331658
+        26.444965797481718,
+        -27.22779705323585
       ],
-      "top5_share_5bps": 1.0000000000000004
+      "top5_share_5bps": null
     }
   },
   "power_reference": {

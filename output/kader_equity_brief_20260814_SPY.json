@@ -1,11 +1,11 @@
 {
-  "computed_at": "2026-08-14T13:33:07.479173+00:00",
+  "computed_at": "2026-08-14T21:55:04.450728+00:00",
   "ticker": "SPY",
   "index": "SPX",
   "model": {
     "model_tag": "kader-equity-dispersion-v2-esrepo-2026-08-04",
     "as_of": "2026-08-14",
-    "computed_at": "2026-08-14T13:33:07.155161+00:00",
+    "computed_at": "2026-08-14T21:55:04.139020+00:00",
     "data_source": "live",
     "call_status": "current",
     "data_source_stale": null,
@@ -19,16 +19,16 @@
       "max_staleness_days": 5,
       "stale": false
     },
-    "tide_score": 8.8457,
+    "tide_score": 8.8449,
     "tide_dir": 1,
     "module_scores": {
       "m0": -10.0,
-      "m1": 1.7819,
+      "m1": 1.5459,
       "m2": -7.557,
       "m3": -5.0,
       "m4": -4.5396,
       "m5": 20.0,
-      "m6": 15.3425,
+      "m6": 15.2704,
       "m8": -13.812,
       "m9": 10.91,
       "m10": -7.99,
@@ -48,14 +48,14 @@
     "overlays": {
       "gex_shield": {
         "available": true,
-        "gex_z": 1.15,
-        "as_of": "2026-08-13",
+        "gex_z": 3.15,
+        "as_of": "2026-08-14",
         "factor": 1.0,
         "short_gamma": false,
         "z_stale": false,
         "z_stale_obs": 0,
-        "src_age_td": 1,
-        "reason": "z(GEX) +1.2 ≥ −1 → normal (factor 1.0)"
+        "src_age_td": 0,
+        "reason": "z(GEX) +3.2 ≥ −1 → normal (factor 1.0)"
       },
       "dispersion_ensemble": {
         "available": true,
@@ -68,7 +68,7 @@
         },
         "spread": 23.09,
         "as_of": "2026-08-13",
-        "age_days": 1,
+        "age_days": 2,
         "leg_as_of": {
           "spread": "2026-08-13",
           "dspx": "2026-08-13",
@@ -81,11 +81,11 @@
       "es_basis_unwind": {
         "factor": 1.0,
         "available": true,
-        "spread_bps": 23.1,
-        "pctl": 0.175,
-        "dz": -1.17,
+        "spread_bps": 17.8,
+        "pctl": 0.133,
+        "dz": -1.28,
         "as_of": "2026-08-14",
-        "age_bd": 0,
+        "age_bd": 1,
         "src": "canli-append",
         "warning": null
       }
@@ -163,7 +163,7 @@
       "z10y": 0.67,
       "last90d_new": 361,
       "z90": 0.36,
-      "live_as_of": "2026-08-14",
+      "live_as_of": "2026-08-15",
       "stale": false,
       "mega_hits_120d": [
         {
@@ -230,7 +230,7 @@
       "mega_ceiling_usd": 86249999880.0,
       "mega_label": "Space Exploration Technologies",
       "mega_hi": true,
-      "tide_score": 8.85,
+      "tide_score": 8.84,
       "tide_dir": 1,
       "tide_declining_63d": false,
       "demand_weak": false,
@@ -263,7 +263,7 @@
         "days_left": 0,
         "last_flag_date": "2026-07-20",
         "as_of": "2026-08-14",
-        "age_bd": 0,
+        "age_bd": 1,
         "src": "yfinance ^GSPC",
         "reason": null
       },
@@ -313,25 +313,25 @@
     "dispersion_froth": true,
     "dispersion_froth_pct": 0.851,
     "dispersion_factor": 0.394,
-    "spot": 7798.99,
-    "net_gex_bn": 10.393,
-    "net_vanna_m": 38367.32,
-    "net_charm_m": -47499.89,
-    "gex_flip": 7762.39,
+    "spot": 7785.76,
+    "net_gex_bn": 9.507,
+    "net_vanna_m": 36578.88,
+    "net_charm_m": -9759.09,
+    "gex_flip": 7756.49,
     "call_wall": 8000.0,
     "ghost": 8000.0,
     "put_wall": 7000.0,
     "max_pain": 7500.0,
-    "exp_move_1d": 57.63,
-    "rv_ratio": 0.453,
+    "exp_move_1d": 55.37,
+    "rv_ratio": 0.483,
     "gamma_regime": "LONG GAMMA",
     "cor1m": null,
-    "atm_iv": 9.25,
-    "rr_skew": 1.08,
-    "ts_ratio": 0.571,
-    "atm_iv_30d": 11.73,
-    "realized_vol": 12.97,
-    "vrp": -1.24
+    "atm_iv": 8.02,
+    "rr_skew": 1.62,
+    "ts_ratio": 0.496,
+    "atm_iv_30d": 11.29,
+    "realized_vol": 12.64,
+    "vrp": -1.35
   },
   "meta": {
     "snapshot_as_of": "2026-08-14",
@@ -343,11 +343,11 @@
     "data_ok": true,
     "data_fails": [],
     "data_checks": {
-      "spot": 7798.99,
-      "front_atm_iv": 9.25,
-      "exp_move_1d": 57.63,
-      "net_gex_bn": 10.393,
-      "em_cross_ratio": 1.27
+      "spot": 7785.76,
+      "front_atm_iv": 8.02,
+      "exp_move_1d": 55.37,
+      "net_gex_bn": 9.507,
+      "em_cross_ratio": 1.41
     },
     "data_junk": false,
     "gamma_fallback_to_spy": false,
@@ -367,7 +367,7 @@
     "regime": {
       "short_gamma": false,
       "above_flip": true,
-      "dist_flip_em": 0.6350858927641758,
+      "dist_flip_em": 0.5286256095358577,
       "froth": false,
       "froth_soft": false,
       "near_wall": false,
@@ -377,7 +377,7 @@
       "backwardation": false,
       "calm": true,
       "cor1m": null,
-      "vrp": -1.24,
+      "vrp": -1.35,
       "vrp_rich": false,
       "vrp_cheap": true,
       "ticker": "SPY"
@@ -389,15 +389,15 @@
     "ticket": {
       "class": "directional_long",
       "underlying": "SPY",
-      "spot": 7798.99,
+      "spot": 7785.76,
       "dte": 45,
       "side": "LONG",
       "instrument": "delta-one SPLG",
-      "entry": 7798.99,
+      "entry": 7785.76,
       "stop": 7000.0,
       "target": 8000.0,
-      "rr": 0.25,
-      "levels": "giriş ~7798.99, stop 7000.0 (alt-kanat/put-wall), hedef 8000.0 (call-wall/+1.5σhafta)"
+      "rr": 0.27,
+      "levels": "giriş ~7785.76, stop 7000.0 (alt-kanat/put-wall), hedef 8000.0 (call-wall/+1.5σhafta)"
     },
     "note": "temiz trend (flip-üstü, sakin): DIRECTIONAL long"
   },
