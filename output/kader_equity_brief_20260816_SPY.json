@@ -1,11 +1,11 @@
 {
-  "computed_at": "2026-08-15T21:35:53.911208+00:00",
+  "computed_at": "2026-08-16T14:35:46.190159+00:00",
   "ticker": "SPY",
   "index": "SPX",
   "model": {
     "model_tag": "kader-equity-dispersion-v2-esrepo-2026-08-04",
     "as_of": "2026-08-14",
-    "computed_at": "2026-08-15T21:35:53.613863+00:00",
+    "computed_at": "2026-08-16T14:35:45.598944+00:00",
     "data_source": "live",
     "call_status": "current",
     "data_source_stale": null,
@@ -14,12 +14,12 @@
     "_live_error": null,
     "freshness": {
       "as_of": "2026-08-14",
-      "today": "2026-08-15",
-      "age_days": 1,
+      "today": "2026-08-16",
+      "age_days": 2,
       "max_staleness_days": 5,
       "stale": false
     },
-    "tide_score": 8.8449,
+    "tide_score": 8.845,
     "tide_dir": 1,
     "module_scores": {
       "m0": -10.0,
@@ -32,7 +32,7 @@
       "m8": -13.812,
       "m9": 10.91,
       "m10": -7.99,
-      "m11": 0.55
+      "m11": 0.59
     },
     "direction": "LONG",
     "position_target": 0.535,
@@ -111,7 +111,7 @@
       "NDX": 0.535
     },
     "santa_context": {
-      "as_of": "2026-08-15",
+      "as_of": "2026-08-16",
       "window_months": [
         11,
         12
@@ -145,7 +145,7 @@
         }
       },
       "pit_date": "2026-06-15",
-      "pit_age_days": 61,
+      "pit_age_days": 62,
       "stale": false,
       "ratio4q_nfc_pct_ngdp": -0.48,
       "z10y_nfc": 1.29,
@@ -161,8 +161,8 @@
       "last_closed_quarter": "2026Q2",
       "roll4q_filings": 1531,
       "z10y": 0.67,
-      "last90d_new": 361,
-      "z90": 0.36,
+      "last90d_new": 363,
+      "z90": 0.38,
       "live_as_of": "2026-08-16",
       "stale": false,
       "mega_hits_120d": [
@@ -178,7 +178,7 @@
       "label": "dosyalama = NIYET, gerceklesme degil; kayit-tavani != arz-buyuklugu; baglam-bandi — pozisyon etkisi SIFIR"
     },
     "ipo_supply_waves": {
-      "as_of": "2026-08-15",
+      "as_of": "2026-08-16",
       "n_active": 1,
       "waves": [
         {
@@ -194,14 +194,14 @@
           ],
           "lockup_status": "parse-ok",
           "lockup_expiry_date": "2027-06-04",
-          "days_to_lockup": 293,
+          "days_to_lockup": 292,
           "lockup_shares_est": 7800000000.0,
           "lockup_pct_note": "greater than 63% of shares outstanding (pre-offering)",
           "index_incl_eligible": true,
           "index_incl_window": {
             "earliest": "2026-09-01",
             "latest": "2027-06-03",
-            "days_to_earliest": 17
+            "days_to_earliest": 16
           },
           "forced_passive_demand_usd_lo": 12937499982.0,
           "forced_passive_demand_usd_hi": 17249999976.0,
@@ -230,7 +230,7 @@
       "mega_ceiling_usd": 86249999880.0,
       "mega_label": "Space Exploration Technologies",
       "mega_hi": true,
-      "tide_score": 8.84,
+      "tide_score": 8.85,
       "tide_dir": 1,
       "tide_declining_63d": false,
       "demand_weak": false,
@@ -314,27 +314,27 @@
     "dispersion_froth_pct": 0.816,
     "dispersion_factor": 0.535,
     "spot": 7785.76,
-    "net_gex_bn": 10.617,
-    "net_vanna_m": 35056.96,
-    "net_charm_m": -9063.86,
-    "gex_flip": 7753.61,
+    "net_gex_bn": 11.66,
+    "net_vanna_m": 35184.63,
+    "net_charm_m": -9052.99,
+    "gex_flip": 7751.96,
     "call_wall": 8000.0,
     "ghost": 8000.0,
     "put_wall": 7000.0,
     "max_pain": 7500.0,
-    "exp_move_1d": 56.01,
+    "exp_move_1d": 56.06,
     "rv_ratio": 0.483,
     "gamma_regime": "LONG GAMMA",
     "cor1m": null,
-    "atm_iv": 8.02,
-    "rr_skew": 1.18,
-    "ts_ratio": 0.496,
-    "atm_iv_30d": 11.29,
+    "atm_iv": 8.12,
+    "rr_skew": 1.17,
+    "ts_ratio": 0.502,
+    "atm_iv_30d": 11.43,
     "realized_vol": 12.64,
-    "vrp": -1.35
+    "vrp": -1.21
   },
   "meta": {
-    "snapshot_as_of": "2026-08-15",
+    "snapshot_as_of": "2026-08-16",
     "snapshot_age_days": 0,
     "gamma_available": true,
     "surface_available": true,
@@ -344,10 +344,10 @@
     "data_fails": [],
     "data_checks": {
       "spot": 7785.76,
-      "front_atm_iv": 8.02,
-      "exp_move_1d": 56.01,
-      "net_gex_bn": 10.617,
-      "em_cross_ratio": 1.42
+      "front_atm_iv": 8.12,
+      "exp_move_1d": 56.06,
+      "net_gex_bn": 11.66,
+      "em_cross_ratio": 1.41
     },
     "data_junk": false,
     "gamma_fallback_to_spy": false,
@@ -367,7 +367,7 @@
     "regime": {
       "short_gamma": false,
       "above_flip": true,
-      "dist_flip_em": 0.574004642028219,
+      "dist_flip_em": 0.6029254370317549,
       "froth": false,
       "froth_soft": false,
       "near_wall": false,
@@ -377,7 +377,7 @@
       "backwardation": false,
       "calm": true,
       "cor1m": null,
-      "vrp": -1.35,
+      "vrp": -1.21,
       "vrp_rich": false,
       "vrp_cheap": true,
       "ticker": "SPY"
