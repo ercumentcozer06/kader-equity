@@ -22,6 +22,7 @@ EŞİK PROVENANCE (GÖREV 5 denetimi):
 from __future__ import annotations
 
 import io
+import logging
 
 import numpy as np
 import pandas as pd
@@ -37,6 +38,9 @@ def froth_factor(cor1m: float | None, lo: float = 8.0, hi: float = 11.0, floor: 
     return float(np.clip((float(cor1m) - lo) / (hi - lo), floor, 1.0))
 
 
+log = logging.getLogger("kader_equity.cor1m")
+
+
 def froth_factor_series(cor1m: pd.Series, lo: float = 8.0, hi: float = 11.0, floor: float = 0.0) -> pd.Series:
     return ((cor1m - lo) / (hi - lo)).clip(floor, 1.0)
 
@@ -47,10 +51,29 @@ def fetch_cor1m_live(timeout: int = 20) -> pd.Series:
     r = http_get_retry(CBOE_COR1M, timeout=timeout)     # 3-deneme backoff (geçici hıçkırık = bayatlık DEĞİL)
     df = pd.read_csv(io.StringIO(r.text))
     dcol = [c for c in df.columns if "date" in c.lower()][0]
-    vcol = [c for c in df.columns if c != dcol][-1]
+    # DEGER KOLONU: once ISIMLE ara, ancak bulunamazsa pozisyona (son kolon) DUS.
+    # 2026-08-17 onarimi: eskiden kosulsuz `[-1]` idi — CBOE dosyaya yeni bir kolon
+    # eklerse (ya da kolon sirasi degisirse) YANLIS seri sessizce COR1M diye okunurdu.
+    # Kardes okuyucu fetch_cor1m_quote 07-11'de tam bu yuzden sertlestirilmisti; bu
+    # bacak atlanmisti ve dispersion_ensemble dogrudan BURAYI cagiriyor.
+    cand = [c for c in df.columns if c != dcol]
+    named = ([c for c in cand if "cor" in c.lower()]
+             or [c for c in cand if c.strip().lower() in ("close", "last", "value", "px_last")])
+    vcol = named[0] if named else cand[-1]
+    if not named:
+        log.warning("COR1M: isimli deger kolonu yok, POZISYONEL fallback '%s' "
+                    "(kolonlar: %s)", vcol, list(df.columns))
     s = pd.Series(pd.to_numeric(df[vcol], errors="coerce").values,
                   index=pd.to_datetime(df[dcol], errors="coerce")).dropna()
-    return s.sort_index()
+    s = s.sort_index()
+    # AKIL-SAGLIGI BANDI: COR1M yuzde-cinsi implied korelasyon (tarihsel ~5-60).
+    # Bant disi = kolon kaymasi/birim degisimi -> sessizce froth_factor'u bozmasin.
+    if len(s):
+        med = float(s.tail(60).median()) if len(s) >= 5 else float(s.median())
+        if not (1.0 <= med <= 99.0):
+            raise ValueError(f"COR1M akil-sagligi FAIL: son-60 medyan={med:.3f} "
+                             f"(beklenen 1..99) — kolon '{vcol}' yanlis olabilir")
+    return s
 
 
 def fetch_cor1m_quote(timeout: int = 15) -> tuple[float, str]:
