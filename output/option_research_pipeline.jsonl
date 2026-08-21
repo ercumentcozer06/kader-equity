@@ -2582,3 +2582,22 @@
 {"started_utc": "2026-08-19T11:25:01.557358+00:00", "finished_utc": "2026-08-19T11:25:01.721834+00:00", "mode": "intraday", "status": "ok"}
 {"started_utc": "2026-08-19T11:30:01.539343+00:00", "finished_utc": "2026-08-19T11:30:01.690340+00:00", "mode": "intraday", "status": "ok"}
 {"started_utc": "2026-08-19T11:35:01.321429+00:00", "finished_utc": "2026-08-19T11:35:01.454755+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-20T07:00:34.660438+00:00", "finished_utc": "2026-08-20T07:00:38.881599+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-20T07:00:34.669439+00:00", "finished_utc": "2026-08-20T07:00:52.644148+00:00", "mode": "eod", "status": "error:ConnectionError:HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/calendar?start=2026-08-20&end=2026-08-20 (Caused by NameResolutionError(\"HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed t"}
+{"started_utc": "2026-08-20T07:05:03.560025+00:00", "finished_utc": "2026-08-20T07:05:04.297087+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-20T07:10:01.807816+00:00", "finished_utc": "2026-08-20T07:10:01.987815+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-20T07:15:01.469945+00:00", "finished_utc": "2026-08-20T07:15:01.627457+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-20T07:20:01.602756+00:00", "finished_utc": "2026-08-20T07:20:01.790416+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-20T13:01:58.956014+00:00", "finished_utc": "2026-08-20T13:01:59.230014+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-20T13:05:00.923542+00:00", "finished_utc": "2026-08-20T13:05:01.060544+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-20T13:10:01.009073+00:00", "finished_utc": "2026-08-20T13:10:01.152626+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-20T13:15:00.796282+00:00", "finished_utc": "2026-08-20T13:15:00.936281+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-20T13:20:00.969296+00:00", "finished_utc": "2026-08-20T13:20:03.096935+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-20T13:25:00.893047+00:00", "finished_utc": "2026-08-20T13:25:02.100051+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-20T13:30:00.982523+00:00", "finished_utc": "2026-08-20T13:30:23.528829+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-20T13:35:01.450241+00:00", "finished_utc": "2026-08-20T13:35:32.714928+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-20T13:40:00.900494+00:00", "finished_utc": "2026-08-20T13:40:42.143085+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-20T13:45:00.863299+00:00", "finished_utc": "2026-08-20T13:45:23.546170+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-20T13:50:00.933637+00:00", "finished_utc": "2026-08-20T13:50:22.029510+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-21T10:55:06.760785+00:00", "finished_utc": "2026-08-21T10:55:07.461021+00:00", "mode": "intraday", "status": "ok"}
+{"started_utc": "2026-08-21T10:55:06.742783+00:00", "finished_utc": "2026-08-21T10:55:08.399660+00:00", "mode": "eod", "status": "error:ConnectionError:HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/calendar?start=2026-08-21&end=2026-08-21 (Caused by NameResolutionError(\"HTTPSConnection(host='paper-api.alpaca.markets', port=443): Failed t"}
