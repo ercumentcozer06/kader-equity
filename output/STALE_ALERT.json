@@ -1,7 +1,9 @@
 {
-  "ts": "2026-08-21 10:55Z",
+  "ts": "2026-08-21 17:35Z",
   "subject": "DEAD-MAN: run_daily sessiz",
-  "body": "run_daily 3 İŞGÜNÜ koşmadı (son başarı 2026-08-17 07:15Z, 100s; call_status=current) — koşu düşmüş olabilir",
-  "channels_fired": [],
+  "body": "run_daily 3 İŞGÜNÜ koşmadı (son başarı 2026-08-17 07:15Z, 106s; call_status=current) — koşu düşmüş olabilir",
+  "channels_fired": [
+    "telegram"
+  ],
   "suppressed": false
 }
